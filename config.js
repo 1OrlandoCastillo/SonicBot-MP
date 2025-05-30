@@ -25,8 +25,8 @@ global.author = '{\n "bot": {\n   "name": "Ai Hoshino",\n     "author": "Irokz D
 global.wait = '🐢 *Aɢᴜᴀʀᴅᴇ ᴜɴ ᴍᴏᴍᴇɴᴛᴏ, sᴏʏ ʟᴇɴᴛᴀ... ฅ^•ﻌ•^ฅ*'
 global.botname = '✯ Ai Hoshino - MD ✰'
 global.textbot = `Powered By Starlights Team`
-global.listo = '*Aqui tiene ฅ^•ﻌ•^ฅ*'
-global.namechannel = '【 ✯ Starlights Team - Oficial Chanel ✰ 】'
+global.idcanal = '120363274577422945@newsletter'
+global.namecanal = '【 ✯ Starlights Team - Oficial Chanel ✰ 】'
 
 //*─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─*
 
