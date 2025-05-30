@@ -1,7 +1,7 @@
 {
-  "name": "sylpha-bot",
+  "name": "Anya Forger",
   "version": "1.0.0",
-  "description": "Wa - bot Multi Device",
+  "description": "Multi Device",
   "main": "index.js",
   "type": "module",
   "directories": {
@@ -12,16 +12,16 @@
   "scripts": {
     "start": "node index.js"
   },
-  "homepage": "https://github.com/AleXD0009/Sylpha-bot",
+  "homepage": "https://github.com/LOVELLOUD/Anya-Forger",
   "author": {
-    "name": "JTxs"
+    "name": "Samsit"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/AleXD0009/Sylpha-bot.git"
+    "url": "git+https://github.com/LOVELLOUD/Anya-Forger.git"
   },
   "bugs": {
-    "url": "https://github.com/AleXD0009/Sylpha-bot/issues"
+    "url": "https://github.com/LOVELLOUD/Anya-Forger/issues"
   },
   "license": "GPL-3.0-or-later",
   "dependencies": {
