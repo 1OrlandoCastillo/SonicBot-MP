@@ -102,7 +102,7 @@ let lineM = '⋯ ⋯ ⋯ ⋯ ⋯ ⋯ ⋯ ⋯ ⋯ ⋯ ⋯ 》'
 opcion = await question('Seleccione una opción:\n1. Con código QR\n2. Con código de texto de 8 dígitos\n---> ')
 
 if (!/^[1-2]$/.test(opcion)) {
-console.log('Por favor, seleccione solo 1 o 2.\n')
+console.log('Seleccione solo 1 o 2.\n')
 }} while (opcion !== '1' && opcion !== '2' || fs.existsSync(`./${authFile}/creds.json`))
 }
 
@@ -111,7 +111,7 @@ const connectionOptions = {
 logger: pino({ level: 'silent' }),
 printQRInTerminal: opcion == '1' ? true : methodCodeQR ? true : false,
 mobile: MethodMobile, 
-browser: opcion == '1' ? ['𝐒𝐲𝐥𝐩𝐡𝐚 - 𝐁𝐨𝐭', 'Safari', '2.0.0'] : methodCodeQR ? ['𝐒𝐲𝐥𝐩𝐡𝐚 - 𝐁𝐨𝐭', 'Safari', '2.0.0'] : ['Ubuntu', 'Chrome', '110.0.5585.95'],
+browser: opcion == '1' ? ['Anya Forger', 'Safari', '2.0.0'] : methodCodeQR ? ['Anya Forger', 'Safari', '2.0.0'] : ['Ubuntu', 'Chrome', '110.0.5585.95'],
 auth: {
 creds: state.creds,
 keys: makeCacheableSignalKeyStore(state.keys, Pino({ level: "fatal" }).child({ level: "fatal" })),
@@ -142,17 +142,17 @@ let numeroTelefono
 if (!!phoneNumber) {
 numeroTelefono = phoneNumber.replace(/[^0-9]/g, '')
 if (!Object.keys(PHONENUMBER_MCC).some(v => numeroTelefono.startsWith(v))) {
-console.log(chalk.bgBlack(chalk.bold.redBright("Comience con el código de país de su número de WhatsApp.\nejemplo: 54xxxxxxxxx\n")))
+console.log(chalk.bgBlack(chalk.bold.redBright("Escriba su número de WhatsApp.\nEjemplo: 51928303585\n")))
 process.exit(0)
 }} else {
 while (true) {
-numeroTelefono = await question(chalk.bgBlack(chalk.bold.yellowBright('Por favor, escriba su número de WhatsApp.\nEjemplo: 54xxxxxxxxx\n')))
+numeroTelefono = await question(chalk.bgBlack(chalk.bold.yellowBright('Escriba su número de WhatsApp.\nEjemplo: 51928303585\n')))
 numeroTelefono = numeroTelefono.replace(/[^0-9]/g, '')
 
 if (numeroTelefono.match(/^\d+$/) && Object.keys(PHONENUMBER_MCC).some(v => numeroTelefono.startsWith(v))) {
 break 
 } else {
-console.log(chalk.bgBlack(chalk.bold.redBright("Por favor, escriba su número de WhatsApp.\nEjemplo: 5218261275256.\n")))
+console.log(chalk.bgBlack(chalk.bold.redBright("Escriba su número de WhatsApp.\nEjemplo: 51928303585\n")))
 }}
 rl.close()  
 } 
@@ -160,7 +160,7 @@ rl.close()
         setTimeout(async () => {
             let codigo = await conn.requestPairingCode(numeroTelefono)
             codigo = codigo?.match(/.{1,4}/g)?.join("-") || codigo
-            console.log(chalk.yellow('introduce el código de emparejamiento en WhatsApp.'));
+            console.log(chalk.yellow('Introduce el código de emparejamiento en WhatsApp.'));
             console.log(chalk.black(chalk.bgGreen(`Tu código de emparejamiento es : `)), chalk.black(chalk.white(codigo)))
         }, 3000)
 }}
@@ -218,7 +218,7 @@ unlinkSync(`./serbot/${directorio}/${fileInDir}`)
 })
 }
 })
-if (SBprekey.length === 0) return; console.log(chalk.cyanBright(`=> No hay archivos por eliminar.`))
+if (SBprekey.length === 0) return; console.log(chalk.cyanBright(`No hay archivos por eliminar.`))
 } catch (err) {
 console.log(chalk.bold.red(`Algo salio mal durante la eliminación, archivos no eliminados`))
 }}
