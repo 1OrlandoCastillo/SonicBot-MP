@@ -24,7 +24,6 @@ const {proto} = (await import('@whiskeysockets/baileys')).default
 const { DisconnectReason, useMultiFileAuthState, MessageRetryMap, fetchLatestBaileysVersion, Browsers, makeCacheableSignalKeyStore, jidNormalizedUser, PHONENUMBER_MCC } = await import('@whiskeysockets/baileys')
 import readline from 'readline'
 import NodeCache from 'node-cache'
-import qrcode from 'qrcode-terminal'  // <-- Agregado para QR
 const {CONNECTING} = ws
 const {chain} = lodash
 const PORT = process.env.PORT || process.env.SERVER_PORT || 3000
@@ -120,37 +119,23 @@ logger.level = "fatal"
 
 global.conn = makeWASocket(connectionOptions)
 
-// Aquí está la parte modificada para código o QR
 if (!conn.authState.creds.registered) {
-  let loginMethod = await question(chalk.green('¿Cómo deseas iniciar sesión?\nEscribe "qr" para escanear el código QR o "code" para usar un código de 8 dígitos:\n'))
+  let phoneNumber = await question(chalk.blue('Ingresa el número de WhatsApp en el cual estará la Bot\n'))
 
-  if (loginMethod.toLowerCase() === 'code') {
-    let phoneNumber = await question(chalk.blue('Ingresa el número de WhatsApp donde estará el bot:\n'))
-    phoneNumber = phoneNumber.replace(/\D/g, '')
-    if (phoneNumber.startsWith('52') && phoneNumber.length === 12) {
-      phoneNumber = `521${phoneNumber.slice(2)}`
-    } else if (phoneNumber.startsWith('52')) {
-      phoneNumber = `521${phoneNumber.slice(2)}`
-    } else if (phoneNumber.startsWith('0')) {
-      phoneNumber = phoneNumber.replace(/^0/, '')
-    }
+  phoneNumber = phoneNumber.replace(/\D/g, '')
+  if (phoneNumber.startsWith('52') && phoneNumber.length === 12) {
+    phoneNumber = `521${phoneNumber.slice(2)}`
+  } else if (phoneNumber.startsWith('52')) {
+    phoneNumber = `521${phoneNumber.slice(2)}`
+  } else if (phoneNumber.startsWith('0')) {
+    phoneNumber = phoneNumber.replace(/^0/, '')
+  }
 
-    if (conn.requestPairingCode) {
-      let code = await conn.requestPairingCode(phoneNumber)
-      code = code?.match(/.{1,4}/g)?.join("-") || code
-      console.log(chalk.cyan('Tu código de emparejamiento es:', code))
-    } else {
-      console.log(chalk.red('Tu versión de Baileys no soporta emparejamiento por código.'))
-    }
-
+  if (conn.requestPairingCode) {
+    let code = await conn.requestPairingCode(phoneNumber)
+    code = code?.match(/.{1,4}/g)?.join("-") || code
+    console.log(chalk.cyan('Su código es:', code))
   } else {
-    console.log(chalk.yellow('Generando código QR, escanéalo con tu WhatsApp...'))
-    const qr = await new Promise((resolve) => {
-      conn.ev.on('connection.update', ({ qr }) => {
-        if (qr) resolve(qr)
-      })
-    })
-    qrcode.generate(qr, { small: true })
   }
 }
 
