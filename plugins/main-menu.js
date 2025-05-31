@@ -9,7 +9,7 @@ let tags = {
 
 const defaultMenu = {
   before: `
- • *Links Canales :*
+ • *Links Canales :* ${namebot}
 
 *﹙ ✿ ﹚Principal*
 https://whatsapp.com/channel/0029VbAZUQ3002T9KZfx2O1M
