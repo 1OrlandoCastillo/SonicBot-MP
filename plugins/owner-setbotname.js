@@ -8,10 +8,10 @@ let handler = async (m, { text }) => {
     const data = JSON.parse(fs.readFileSync(filePath));
 
     // Validar si existe el campo global
-    if (!data.global) data.global = { botname: null, };
+    if (!data.global) data.global = { botname: null, currency: null, videos: [] };
 
     // Actualizar el nombre global del bot
-    data.global.botname = text;
+    data.global.botName = text;
 
     fs.writeFileSync(filePath, JSON.stringify(data, null, 2));
     m.reply(`✅ Nombre del bot actualizado a: *${text}*`);
