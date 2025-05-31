@@ -107,7 +107,6 @@ let handler = async (m, { conn }) => {
             m.chat,
             {
                 img: { url: 'https://telegra.ph/file/72f984396bb1db415d153.jpg' },
-                gifPlayback: true,
                 caption: menuMessage,
                 mentions: [m.sender]
             }
