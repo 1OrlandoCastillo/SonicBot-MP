@@ -145,7 +145,6 @@ let img = 'https://telegra.ph/file/72f984396bb1db415d153.jpg'
 }
 
 handler.command = ['menu', 'help', 'menú'] 
-export default handler
 
 
 const more = String.fromCharCode(8206)
