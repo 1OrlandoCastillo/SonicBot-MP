@@ -7,6 +7,18 @@ let tags = {
   'owner': '• Creador',
 }
 
+const filePath = './database/personalize.json';
+
+let handler = async (m, { conn }) => {
+    try {
+        const data = JSON.parse(fs.readFileSync(filePath));
+
+        // Cargar datos globales y predeterminados
+        const globalConfig = data.global;
+        const defaultConfig = data.default;
+
+        const botname = globalConfig.botname || defaultConfig.botname;
+
 const defaultMenu = {
   before: `
  • *Links Canales :* ${botname}
