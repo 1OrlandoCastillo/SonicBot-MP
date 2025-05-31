@@ -3,10 +3,6 @@ import { join } from 'path'
 import fetch from 'node-fetch'
 import { xpRange } from '../lib/levelling.js'
 
-let tags = {
-  'owner': '• Creador',
-}
-
 const filePath = './database/personalize.json';
 
 let handler = async (m, { conn }) => {
@@ -19,9 +15,13 @@ let handler = async (m, { conn }) => {
 
         const botname = globalConfig.botname || defaultConfig.botname;
 
+let tags = {
+  'owner': '• Creador',
+}
+
 const defaultMenu = {
   before: `
- • *Links Canales :* ${botname}
+ • Hola soy ${botname}
 
 *﹙ ✿ ﹚Principal*
 https://whatsapp.com/channel/0029VbAZUQ3002T9KZfx2O1M
