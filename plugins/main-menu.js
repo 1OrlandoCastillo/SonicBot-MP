@@ -1,4 +1,4 @@
-import { promises } from 'fs'
+import fs from 'fs';
 
 const filePath = './database/personalize.json';
 
@@ -12,40 +12,119 @@ let handler = async (m, { conn }) => {
 
         const botname = globalConfig.botname || defaultConfig.botname;
 
-let tags = {
-  'owner': '• Creador',
-}
+        const menuMessage = `
+╔═══════════════════🌙
+║ ❀•° ${botname} °•❀
+║ 💜 𝑫𝒆𝒔𝒂𝒓𝒓𝒐𝒍𝒍𝒂𝒅𝒐 𝒑𝒐
+║ 🎀 𝑽𝒆𝒓𝒔𝒊
+╚❀•°🌠°•❀═══════════════════
 
-const menuMessage = `
- • Hola soy ${botname}
+💬¡Hola ! Soy ${botname}, aquí tienes la lista de comandos ✨
+💰 Moneda actual:
 
-*﹙ ✿ ﹚Principal*
-https://whatsapp.com/channel/0029VbAZUQ3002T9KZfx2O1M
-*﹙ ✿ ﹚Secundario*
-https://whatsapp.com/channel/0029Vb3oShrICVfiTWhDHM13
+╭── ⋆⋅🎀⋅⋆ ──╮
+│ 🎨 𝙿𝙴𝚁𝚂𝙾𝙽𝙰𝙻𝙸𝚉𝙰𝙲𝙸Ó𝙽 🌸
+│ ✧ .setname 🖋️
+│ ✧ .setbanner 🖼️
+│ ✧ .setmoneda 💰
+│ ✧ .viewbanner 📜
+│ ✧ .deletebanner 🚮
+│ ✧ .resetpreferences 🔄
+╰── ⋆⋅🚀⋅⋆ ──╯
+
+╭── ⋆⋅🎀⋅⋆ ──╮
+│ 🎩 𝙰𝙳𝙼𝙸𝙽𝙸𝚂𝚃𝚁𝙰𝙲𝙸Ó𝙽 ⚙️
+│ ✧ .ban ➩ .kick 🚫 Expulsa a los usuarios (Solo Admins)
+│ ✧ .getplugin 🔌
+│ ✧ .getpack 📦
+│ ✧ .store 🛒
+│ ✧ .status 💻
+│ ✧ .ping ⏳
+╰── ⋆⋅🚀⋅⋆ ──╯
+
+╭── ⋆⋅🎀⋅⋆ ──╮
+│ 🎲 𝚁𝙰𝙽𝙳𝙾𝙼 🎭
+│ ✧ .rw ➩ .rollwaifu 💖
+│ ✧ .winfo 💖
+│ ✧ .c ➩ .claim 📜
+│ ✧ .harem 💑
+│ ✧ .addrw 📝
+│ ✧ .alya ➩ .bot 💖
+│ ✧ .kaori 💖
+╰── ⋆⋅🚀⋅⋆ ──╯
+
+╭── ⋆⋅🎀⋅⋆ ──╮
+│ 📥 𝙳𝙴𝚂𝙲𝙰𝚁𝙶𝙰𝚂 🎵
+│ ✧ .play ➩ nombre de la canción 🎶 (audio)
+│ ✧ .play2 ➩ nombre de la canción 🎥 (video)
+│ ✧ .tt ➩ .tiktok ➩ enlace de TikTok 🎞️
+│ ✧ .sp ➩ .Spotify enlace de Spotify 🎼
+│ ✧ .fb ➩ link de facebook 🎥 (video)
+╰── ⋆⋅🚀⋅⋆ ──╯
+
+╭── ⋆⋅🎀⋅⋆ ──╮
+│ ⚔️ 𝚁𝙿𝙶 🏹
+│ ✧ .w ➩ .work 💼
+│ ✧ .slut 😈
+│ ✧ .robar 💰
+│ ✧ .deposit (cantidad) 🏦
+│ ✧ .retirar (cantidad) 🏧
+│ ✧ .perfil 🆔
+╰── ⋆⋅🚀⋅⋆ ──╯
+
+╭── ⋆⋅🎀⋅⋆ ──╮
+│ 💕 𝚁𝙴𝙰𝙲𝙲𝙸𝙾𝙽𝙴𝚂 𝙰𝙽𝙸𝙼𝙴 🎭
+│ ✧ .abrazar 🤗
+│ ✧ .aburrido 😑
+│ ✧ .bañarse 🛁
+│ ✧ .bleh 😝
+│ ✧ .comer 🍙
+│ ✧ .dance 💃🕺
+│ ✧ .enojado 😡
+│ ✧ .feliz 😊
+│ ✧ .kiss 😘
+│ ✧ .love ❤️
+│ ✧ .matar 🔪
+│ ✧ .morder 🦷
+│ ✧ .nalguear 🍑
+│ ✧ .punch 👊
+│ ✧ .saludar 👋
+│ ✧ .bofetada 🖐️
+│ ✧ .dormir 😴
+╰── ⋆⋅🚀⋅⋆ ──╯
+
+╭── ⋆⋅🎀⋅⋆ ──╮
+│ 👑 𝙾𝚆𝙽𝙴𝚁 🛠️
+│ ✧ .update 🔄
+│ ✧ .dsowner ➩ .purgar 🗑️
+│ ✧ .join 🎎
+╰── ⋆⋅🚀⋅⋆ ──╯
+
+> didjejd
 `;
 
-let img = 'https://telegra.ph/file/72f984396bb1db415d153.jpg'
-    
-   await conn.sendFile(m.chat, img, 'thumbnail.jpg', text.trim(), m)
+        await conn.sendMessage(
+            m.chat,
+            {
+                img: { url: 'https://telegra.ph/file/72f984396bb1db415d153.jpg' },
+                gifPlayback: true,
+                caption: menuMessage,
+                mentions: [m.sender]
+            }
+        );
+    } catch (error) {
+        conn.reply(m.chat, `❌ Error al cargar el menú: ${error.message}`, m);
+    }
+};
 
-  } catch (e) {
-    conn.reply(m.chat, '❎ Lo sentimos, el menú tiene un error.', m)
-    throw e
-  }
-}
+handler.help = ['menu'];
+handler.tags = ['info'];
+handler.command = /^(menu)$/i;
 
-handler.command = ['menu', 'help', 'menú'] 
+export default handler;
 
-export default handler
+/* estilos de menu
 
-const more = String.fromCharCode(8206)
-const readMore = more.repeat(4001)
-
-function clockString(ms) {
-let horas = Math.floor(ms / 3600000)
-let minutos = Math.floor(ms / 60000) % 60
-let segundos = Math.floor(ms / 1000) % 60
-  console.log({ ms, horas, minutos, segundos })
-return [horas, minutos, segundos].map((v) => v.toString().padStart(2, 0)).join(":")
-}
+┎───•✧•───⌬
+┃
+┖───•✧•  */
