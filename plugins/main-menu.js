@@ -4,29 +4,17 @@ import fetch from 'node-fetch'
 import { xpRange } from '../lib/levelling.js'
 
 let tags = {
-  'main': '𝐈𝐍𝐅𝐎',
-  'search': '𝐒𝐄𝐀𝐑𝐂𝐇',
-  'dl': '𝐃𝐄𝐒𝐂𝐀𝐑𝐆𝐀𝐒',
-  'tools': '𝐓𝐎𝐎𝐋𝐒',
-  'sticker': '𝐒𝐓𝐈𝐂𝐊𝐄𝐑𝐒',
-  'owner': '𝐂𝐑𝐄𝐀𝐃𝐎𝐑',
+  'owner': '• Creador',
 }
 
 const defaultMenu = {
   before: `
-┌─「 𝐈𝐍𝐅𝐎 𝐁𝐎𝐓 」
-┃ *⚙ Modo* : Público
-┃ *📚 Baileys* : Multi Device
-┃ *⏱ Tiempo Activo* : %muptime
-┃ *👤 Usuarios* : %totalreg
-╰─────────────
-%readmore
-┌─「 𝐈𝐍𝐅𝐎 𝐔𝐒𝐄𝐑 」
-┃ *☁ Nombre* : %name
-┃ *💰 coins* : %limit
-┃ *📈 Nivel* : %level
-┃ *💫 XP* : %totalexp
-╰─────────────
+ • *Links Canales :*
+
+*﹙ ✿ ﹚Principal*
+https://whatsapp.com/channel/0029VbAZUQ3002T9KZfx2O1M
+*﹙ ✿ ﹚Secundario*
+https://whatsapp.com/channel/0029Vb3oShrICVfiTWhDHM13
 %readmore
 \t\t\t
 `.trimStart(),
@@ -134,16 +122,9 @@ let handler = async (m, { conn, usedPrefix: _p, __dirname }) => {
     }
     text = text.replace(new RegExp(`%(${Object.keys(replace).sort((a, b) => b.length - a.length).join`|`})`, 'g'), (_, name) => '' + replace[name])
 
-
-/*let pp = `https://telegra.ph/file/666f347726644b3f59504.mp4`
-let pp2 = `https://telegra.ph/file/f3ecc05a390ff8033943d.mp4`
-    await m.react('💙')
-    await conn.sendMessage(m.chat, { video: { url: [ pp, pp2 ].getRandom() }, gifPlayback: true, caption: text.trim(), mentions: [m.sender] }, { quoted: m })*/
-
 let img = 'https://telegra.ph/file/72f984396bb1db415d153.jpg'
     
    await conn.sendFile(m.chat, img, 'thumbnail.jpg', text.trim(), m, null, rcanal)
-   //await conn.sendSP(m.chat, botname, null, text.trim(), img, img, null, m)
 
   } catch (e) {
     conn.reply(m.chat, '❎ Lo sentimos, el menú tiene un error.', m)
