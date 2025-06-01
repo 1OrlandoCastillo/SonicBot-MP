@@ -2,6 +2,8 @@ const { useMultiFileAuthState, DisconnectReason, makeCacheableSignalKeyStore, fe
 import qrcode from "qrcode"
 import NodeCache from "node-cache"
 import fs from "fs"
+import { channelList } from './config.js'
+global.ch = channelList
 import path from "path"
 import pino from 'pino'
 import chalk from 'chalk'
@@ -107,7 +109,7 @@ const { connection, lastDisconnect, isNewLogin, qr } = update
 if (isNewLogin) sock.isInit = false
 if (qr && !mcode) {
 if (m?.chat) {
-txtQR = await conn.sendMessage(m.chat, { image: await qrcode.toBuffer(qr, { scale: 8 }), caption: rtx, m, null, rcanal)
+txtQR = await conn.sendMessage(m.chat, { image: await qrcode.toBuffer(qr, { scale: 8 }), caption: rtx.trim()}, { quoted: m})
 } else {
 return 
 }
@@ -260,6 +262,7 @@ return minutes + ' m y ' + seconds + ' s '
 }
 
 async function joinChannels(conn) {
-for (const channelId of Object.values(global.ch)) {
-await conn.newsletterFollow(channelId).catch(() => {})
-}}
+  for (const channelId of Object.values(global.ch)) {
+    await conn.newsletterFollow(channelId).catch(() => {})
+  }
+}
