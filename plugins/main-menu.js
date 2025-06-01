@@ -4,8 +4,9 @@ import fetch from 'node-fetch';
 import { xpRange } from '../lib/levelling.js';
 
 const tags = {
-  owner: '• Creador',
   serbot: '• Subs - Bots',
+  owner: '• Owner',
+  group: '• Group',
 };
 
 const defaultMenu = {
