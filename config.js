@@ -28,6 +28,10 @@ global.namecanal = 'LOVELLOUD'
 global.canal = 'https://whatsapp.com/channel/0029VbAZUQ3002T9KZfx2O1M'
 global.idcanal = '120363403143798163@newsletter'
 
+export const channelList = {
+  canal1: '120363403143798163@newsletter.whatsapp.net',
+  canal2: '120363403143798163@newsletter.whatsapp.net'
+}
 
 global.multiplier = 69 
 global.maxwarn = '2'
