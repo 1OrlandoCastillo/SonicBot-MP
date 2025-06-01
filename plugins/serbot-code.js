@@ -24,11 +24,6 @@ const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 const yukiJBOptions = {}
 if (global.conns instanceof Array) console.log()
-
-global.ch = {
-  canalOficial: '120363403143798163@newsletter' // <-- Reemplaza con tu canal real
-}
-
 else global.conns = []
 let handler = async (m, { conn, args, usedPrefix, command, isOwner }) => {
 
