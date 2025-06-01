@@ -17,8 +17,8 @@ let crm3 = "SBpbmZvLWRvbmFyLmpz"
 let crm4 = "IF9hdXRvcmVzcG9uZGVyLmpzIGluZm8tYm90Lmpz"
 let drm1 = ""
 let drm2 = ""
-let rtx = "✿ *Vincula tu cuenta usando el qr:*\n*Más opciones → Dispositivos vinculados → Vincular nuevo dispositivo → Con qr*\n> *Qr válido solo para este número.*"
-let rtx2 = "✿ *Vincula tu cuenta usando el código:*\n*Más opciones → Dispositivos vinculados → Vincular nuevo dispositivo → Con número*\n> *Código válido solo para este número.*"
+let rtx = "✿ *Vincula tu cuenta usando el qr:*\n\n*Más opciones → Dispositivos vinculados → Vincular nuevo dispositivo → Con qr*\n\n> *Qr válido solo para este número.*"
+let rtx2 = "✿ *Vincula tu cuenta usando el código:*\n*Más opciones → Dispositivos vinculados → Vincular nuevo dispositivo → Con número*\n\n> *Código válido solo para este número.*"
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
@@ -195,7 +195,7 @@ sock.isInit = true
 global.conns.push(sock)
 await joinChannels(sock)
 
-m?.chat ? await conn.sendMessage(m.chat, {text: args[0] ? `*✿ Te conectaste exitosamente, ahora eres un subbot*\n> *Sigue el canal para estar atento a todas las actualizaciones y avisos.*\nhttps://whatsapp.com/channel/0029VbAZUQ3002T9KZfx2O1M`, mentions: [m.sender]}, { quoted: m }) : ''
+m?.chat ? await conn.sendMessage(m.chat, {text: args[0] ? `*✿ Te conectaste exitosamente, ahora eres un subbot*\n\n> *Sigue el canal para estar atento a todas las actualizaciones y avisos.*\n\nhttps://whatsapp.com/channel/0029VbAZUQ3002T9KZfx2O1M`, mentions: [m.sender]}, { quoted: m }) : ''
 
 }}
 setInterval(async () => {
