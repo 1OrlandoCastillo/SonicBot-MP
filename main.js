@@ -16,7 +16,7 @@ import pino from 'pino'
 import { Boom } from '@hapi/boom'
 import { makeWASocket, protoType, serialize } from './lib/simple.js'
 import { Low, JSONFile } from 'lowdb'
-import store from './lib/store.js'
+import lodash from 'lodash' // ✅ Usamos lodash directamente
 import readline from 'readline'
 import NodeCache from 'node-cache'
 import qrcode from 'qrcode-terminal'
@@ -96,7 +96,7 @@ global.loadDatabase = async function loadDatabase() {
     settings: {},
     ...(global.db.data || {}),
   }
-  global.db.chain = store.chain(global.db.data)
+  global.db.chain = lodash.chain(global.db.data) // ✅ Usamos lodash directamente
 }
 
 global.authFile = `sessions`
