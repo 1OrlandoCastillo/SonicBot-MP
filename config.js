@@ -11,6 +11,14 @@ global.owner = [
 global.mods = []
 global.prems = []
 
+global.libreria = 'Baileys'
+global.baileys = 'V 6.7.16' 
+global.vs = '2.2.0'
+global.nameqr = 'YukiBot-MD'
+global.namebot = '✿◟Yυƙι-Sυσυ-Bσƚ◞✿'
+global.sessions = 'Sessions'
+global.jadi = 'JadiBots' 
+global.yukiJadibts = true
 
 global.namebot = 'Anya Forger'
 global.author = 'Samsit'
