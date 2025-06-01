@@ -98,7 +98,6 @@ global.loadDatabase = async function loadDatabase() {
   }
   global.db.chain = chain(global.db.data)
 }
-}
 
 global.authFile = `sessions`
 const { state, saveCreds } = await useMultiFileAuthState(global.authFile)
