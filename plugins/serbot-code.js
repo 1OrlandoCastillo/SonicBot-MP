@@ -27,11 +27,12 @@ let handler = async (m, { conn: star, args, usedPrefix, command }) => {
   const isForced = args[0] === 'plz'
   const isBotPrincipal = m.sender === parent.user.jid
 
-  if (!isForced && !isBotPrincipal) {
-    return m.reply(
-      `🚫 *Acceso denegado*\n\nEste comando solo puede ser usado desde el bot principal.\n\n📱 Intenta desde:\nwa.me/${parent.user.jid.split('@')[0]}?text=${usedPrefix}code`
-    )
-  }
+  // Se elimina el bloqueo de acceso y el mensaje
+  // if (!isForced && !isBotPrincipal) {
+  //   return m.reply(
+  //     `🚫 *Acceso denegado*\n\nEste comando solo puede ser usado desde el bot principal.\n\n📱 Intenta desde:\nwa.me/${parent.user.jid.split('@')[0]}?text=${usedPrefix}code`
+  //   )
+  // }
 
   async function serbot() {
     const phoneNumber = m.sender.split('@')[0]
