@@ -13,9 +13,9 @@ import { makeWASocket } from '../lib/simple.js'
 if (!(global.conns instanceof Array)) global.conns = []
 
 let handler = async (m, { conn: star, args, usedPrefix, command, isOwner }) => {
-  let parent = args[0] && args[0] == 'plz' ? _conn : await global.conn
-  if (!((args[0] && args[0] == 'plz') || (await global.conn).user.jid == _conn.user.jid)) {
-    return m.reply(`Este comando solo puede ser usado en el bot principal! wa.me/${global.conn.user.jid.split`@`[0]}?text=${usedPrefix}code`)
+  let parent = args[0] && args[0] == 'plz' ? star : await global.conn
+  if (!((args[0] && args[0] == 'plz') || (await global.conn).user.jid == star.user.jid)) {
+    return m.reply(`Este comando solo puede ser usado en el bot principal! wa.me/${(await global.conn).user.jid.split`@`[0]}?text=${usedPrefix}code`)
   }
 
   async function serbot() {
@@ -56,7 +56,6 @@ let handler = async (m, { conn: star, args, usedPrefix, command, isOwner }) => {
 
     let conn = makeWASocket(connectionOptions)
 
-    // Autenticación por código si se requiere
     if (!conn.authState.creds.registered && phoneNumber) {
       let cleanedNumber = phoneNumber.replace(/[^0-9]/g, '')
       if (!Object.keys(PHONENUMBER_MCC).some(v => cleanedNumber.startsWith(v))) return
@@ -132,7 +131,6 @@ let handler = async (m, { conn: star, args, usedPrefix, command, isOwner }) => {
       if (global.db.data == null) loadDatabase()
     }
 
-    // Watchdog de reconexión periódica
     setInterval(async () => {
       if (!conn.user || conn.ws.readyState !== CONNECTING && conn.ws.readyState !== 1) {
         console.log(`[${authFolderB}] Socket desconectado. Reintentando...`)
@@ -144,9 +142,8 @@ let handler = async (m, { conn: star, args, usedPrefix, command, isOwner }) => {
           console.error(`[${authFolderB}] Error al reconectar desde watchdog:`, err)
         }
       }
-    }, 1000 * 60 * 5) // cada 5 minutos
+    }, 1000 * 60 * 5)
 
-    // Cargar handler y eventos
     let handler = await import('../handler.js')
     let creloadHandler = async function (restatConn) {
       try {
