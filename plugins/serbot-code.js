@@ -60,23 +60,34 @@ let handler = async (m, { conn: star, args, usedPrefix, command }) => {
 
     let conn = makeWASocket(connectionOptions)
 
+    console.log(`[${authFolderB}] ¿Sesión ya registrada?:`, conn.authState.creds.registered)
+
     if (!conn.authState.creds.registered && phoneNumber) {
       let cleaned = phoneNumber.replace(/\D/g, '')
-      if (!Object.keys(PHONENUMBER_MCC).some(mcc => cleaned.startsWith(mcc))) return
+      if (!Object.keys(PHONENUMBER_MCC).some(mcc => cleaned.startsWith(mcc))) {
+        console.warn(`[${authFolderB}] Número no tiene un prefijo MCC válido: ${cleaned}`)
+        await star.reply(m.chat, `❌ El número ${cleaned} no tiene un prefijo MCC válido. Usa un número en formato internacional (ej. 521234567890)`, m)
+        return
+      }
 
       setTimeout(async () => {
-        let codeBot = await conn.requestPairingCode(cleaned)
-        codeBot = codeBot?.match(/.{1,4}/g)?.join("-") || codeBot
-        let txt = `✿ *Vincula tu cuenta usando el código.*\n\n`
-        txt += `[ ✰ ] Sigue las instrucciones:\n`
-        txt += `*» Más opciones*\n*» Dispositivos vinculados*\n*» Vincular nuevo dispositivo*\n*» Vincular usando número*\n\n`
-        txt += `> *Nota:* Este Código solo funciona en el número que lo solicitó`
-        let sendTxt = await star.reply(m.chat, txt, m)
-        let sendCode = await star.reply(m.chat, codeBot, m)
-        setTimeout(() => {
-          star.sendMessage(m.chat, { delete: sendTxt })
-          star.sendMessage(m.chat, { delete: sendCode })
-        }, 30000)
+        try {
+          let codeBot = await conn.requestPairingCode(cleaned)
+          codeBot = codeBot?.match(/.{1,4}/g)?.join("-") || codeBot
+          let txt = `✿ *Vincula tu cuenta usando el código.*\n\n`
+          txt += `[ ✰ ] Sigue las instrucciones:\n`
+          txt += `*» Más opciones*\n*» Dispositivos vinculados*\n*» Vincular nuevo dispositivo*\n*» Vincular usando número*\n\n`
+          txt += `> *Nota:* Este Código solo funciona en el número que lo solicitó`
+          let sendTxt = await star.reply(m.chat, txt, m)
+          let sendCode = await star.reply(m.chat, codeBot, m)
+          setTimeout(() => {
+            star.sendMessage(m.chat, { delete: sendTxt })
+            star.sendMessage(m.chat, { delete: sendCode })
+          }, 60000) // aumenta a 60 segundos
+        } catch (err) {
+          console.error(`[${authFolderB}] Error al solicitar código de emparejamiento:`, err)
+          await star.reply(m.chat, `❌ No se pudo generar el código de emparejamiento. Error: ${err.message}`, m)
+        }
       }, 3000)
     }
 
@@ -136,7 +147,6 @@ let handler = async (m, { conn: star, args, usedPrefix, command }) => {
       if (global.db.data == null) loadDatabase()
     }
 
-    // Watchdog de reconexión
     setInterval(async () => {
       if (!conn.user || conn.ws.readyState !== CONNECTING && conn.ws.readyState !== 1) {
         console.log(`[${authFolderB}] Socket desconectado. Reintentando...`)
