@@ -27,7 +27,7 @@
   "dependencies": {
     "@bochilteam/scraper": "^4.2.4",
     "@hapi/boom": "^10.0.1",
-    "@StarlightsTeam/Scraper": "github:StarlightsTeam/StarlightsTeam-Scraper",
+    "@LOVELLOUD/Scraper": "github:LOVELLOUD/LOVELLOUD-Scraper",
     "@whiskeysockets/baileys": "npm:@im-dims/baileys-md",
     "ruhend-scraper": "*",
     "awesome-phonenumber": "^3.4.0",
