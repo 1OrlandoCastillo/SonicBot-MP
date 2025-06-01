@@ -27,13 +27,6 @@ let handler = async (m, { conn: star, args, usedPrefix, command }) => {
   const isForced = args[0] === 'plz'
   const isBotPrincipal = m.sender === parent.user.jid
 
-  // Se elimina el bloqueo de acceso y el mensaje
-  // if (!isForced && !isBotPrincipal) {
-  //   return m.reply(
-  //     `🚫 *Acceso denegado*\n\nEste comando solo puede ser usado desde el bot principal.\n\n📱 Intenta desde:\nwa.me/${parent.user.jid.split('@')[0]}?text=${usedPrefix}code`
-  //   )
-  // }
-
   async function serbot() {
     const phoneNumber = m.sender.split('@')[0]
     const userFolder = `./serbot/${phoneNumber}`
@@ -51,6 +44,11 @@ let handler = async (m, { conn: star, args, usedPrefix, command }) => {
     const { state, saveCreds } = await useMultiFileAuthState(userFolder)
     const msgRetryCounterCache = new NodeCache()
     const { version } = await fetchLatestBaileysVersion()
+
+    // Evita error por store indefinido
+    const store = {
+      loadMessage: async () => null
+    }
 
     const connectionOptions = {
       logger: pino({ level: 'silent' }),
@@ -76,9 +74,13 @@ let handler = async (m, { conn: star, args, usedPrefix, command }) => {
     conn.isInit = false
     let isInit = true
 
+    let timeoutId = null
+
     async function connectionUpdate(update) {
       const { connection, lastDisconnect, isNewLogin } = update
       const code = lastDisconnect?.error?.output?.statusCode || lastDisconnect?.error?.output?.payload?.statusCode
+
+      console.log("[DEBUG] Estado de conexión:", connection)
 
       if (isNewLogin) conn.isInit = true
 
@@ -96,6 +98,10 @@ let handler = async (m, { conn: star, args, usedPrefix, command }) => {
       if (connection === 'open') {
         conn.isInit = true
         global.conns.push(conn)
+
+        clearTimeout(timeoutId) // 🔁 Cancela eliminación
+
+        await saveCreds() // 🧠 Guarda sesión
 
         if (exists && args[0]) {
           await parent.reply(m.chat, '✅ *Reconectado automáticamente usando una sesión existente.*', m)
@@ -152,7 +158,7 @@ let handler = async (m, { conn: star, args, usedPrefix, command }) => {
       return true
     }
 
-    const timeoutId = setTimeout(() => {
+    timeoutId = setTimeout(() => {
       if (!conn.user) {
         try { conn.ws.close() } catch {}
         conn.ev.removeAllListeners()
@@ -161,19 +167,33 @@ let handler = async (m, { conn: star, args, usedPrefix, command }) => {
           delete global.conns[i]
           global.conns.splice(i, 1)
         }
-        fs.rmdirSync(userFolder, { recursive: true })
+        fs.rmSync(userFolder, { recursive: true, force: true })
         console.log(`[⛔] Sub-bot de ${phoneNumber} eliminado por inactividad.`)
       }
-    }, 30000)
+    }, 60000) // ⏳ Ampliado
 
     await creloadHandler(false)
 
+    // Esperar activamente la conexión
+    await new Promise((resolve, reject) => {
+      const maxWait = 60000
+      const start = Date.now()
+      const check = () => {
+        if (conn.user && conn.user.id) return resolve()
+        if (Date.now() - start > maxWait) return reject(new Error("Conexión no completada"))
+        setTimeout(check, 1000)
+      }
+      check()
+    })
+
+    // Generar código si no existía sesión
     if (!exists && !conn.authState.creds.registered) {
       let cleaned = phoneNumber.replace(/[^0-9]/g, '')
       if (Object.keys(PHONENUMBER_MCC).some(v => cleaned.startsWith(v))) {
         setTimeout(async () => {
           let codeBot = await conn.requestPairingCode(cleaned)
           codeBot = codeBot?.match(/.{1,4}/g)?.join("-") || codeBot
+          console.log("[DEBUG] Código generado:", codeBot)
           let txt = `✿ *Vincula tu cuenta usando el código:*\n\n*📲 Más opciones → Dispositivos vinculados → Vincular nuevo dispositivo → Con número*\n\n> *Código válido solo para este número.*`
           await star.reply(m.chat, txt, m)
           let sendCode = await star.reply(m.chat, codeBot, m)
