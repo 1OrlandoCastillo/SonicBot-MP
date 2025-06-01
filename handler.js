@@ -278,7 +278,7 @@ export async function handler(chatUpdate) {
                     fail('admin', m, this)
                     continue
                 }
-                if (plugin.private && m.is) {
+                if (plugin.private && m.isGroup) {
                     fail('private', m, this)
                     continue
                 }
@@ -407,10 +407,10 @@ global.dfail = (type, m, conn, usedPrefix) => {
         owner: `✿ Hola, este comando solo puede ser utilizado por el *Creador* de la Bot y *Sub Bots*.`,
         mods: `✿ Hola, este comando solo puede ser utilizado por los *Moderadores* de la Bot.`,
         premium: `✿ Hola, este comando solo puede ser utilizado por Usuarios *Premium*.`,
+        group: `✿ Hola, este comando solo puede ser utilizado en *Grupos*.`,
         admin: `✿ Hola, este comando solo puede ser utilizado por los *Administradores* del Grupo.`,
         botAdmin: `✿ Hola, la bot debe ser *Administradora* para ejecutar este Comando.`,
-        restrict: `✿ Hola, esta característica está *deshabilitada.*`,
-        group:
+        restrict: `✿ Hola, esta característica está *deshabilitada.*`  
     }[type]
     if (msg) return conn.reply(m.chat, msg, m, rcanal).then(_ => m.react('✖️'))
 }
