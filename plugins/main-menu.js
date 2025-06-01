@@ -5,6 +5,7 @@ import { xpRange } from '../lib/levelling.js';
 
 const tags = {
   owner: '• Creador',
+  serbot: '• Subs - Bots',
 };
 
 const defaultMenu = {
