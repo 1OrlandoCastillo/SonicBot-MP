@@ -195,8 +195,6 @@ sock.isInit = true
 global.conns.push(sock)
 await joinChannels(sock)
 
-await conn.reply(m.chat, args[0] ? `*✿ Te conectaste exitosamente, ahora eres un subbot*\n\n> *Sigue el canal para estar atento a todas las actualizaciones y avisos.*\n\nhttps://whatsapp.com/channel/0029VbAZUQ3002T9KZfx2O1M`, m)
-
 }}
 setInterval(async () => {
 if (!sock.user) {
