@@ -11,7 +11,7 @@ m.reply(`✿ ¡Has sido añadido al grupo!`, user)
 
 }
 
-handler.help = ['add *número*']
+handler.help = ['add *<número>*']
 handler.tags = ['group']
 handler.command = ['add', 'añadir'] 
 handler.admin = true
