@@ -2,8 +2,6 @@ const { useMultiFileAuthState, DisconnectReason, makeCacheableSignalKeyStore, fe
 import qrcode from "qrcode"
 import NodeCache from "node-cache"
 import fs from "fs"
-import { channelList } from './config.js'
-global.ch = channelList
 import path from "path"
 import pino from 'pino'
 import chalk from 'chalk'
@@ -26,6 +24,11 @@ const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 const yukiJBOptions = {}
 if (global.conns instanceof Array) console.log()
+
+global.ch = {
+  canalOficial: '120363403143798163@newsletter' // <-- Reemplaza con tu canal real
+}
+
 else global.conns = []
 let handler = async (m, { conn, args, usedPrefix, command, isOwner }) => {
 
@@ -262,7 +265,6 @@ return minutes + ' m y ' + seconds + ' s '
 }
 
 async function joinChannels(conn) {
-  for (const channelId of Object.values(global.ch)) {
-    await conn.newsletterFollow(channelId).catch(() => {})
-  }
-}
+for (const channelId of Object.values(global.ch)) {
+await conn.newsletterFollow(channelId).catch(() => {})
+}}
