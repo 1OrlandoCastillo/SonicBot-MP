@@ -17,8 +17,8 @@ let crm3 = "SBpbmZvLWRvbmFyLmpz"
 let crm4 = "IF9hdXRvcmVzcG9uZGVyLmpzIGluZm8tYm90Lmpz"
 let drm1 = ""
 let drm2 = ""
-let rtx = "Pruebaa"
-let rtx2 = "Pruebaa"
+let rtx = "✿ *Vincula tu cuenta usando el qr:*\n*Más opciones → Dispositivos vinculados → Vincular nuevo dispositivo → Con qr*\n> *Qr válido solo para este número.*"
+let rtx2 = "✿ *Vincula tu cuenta usando el código:*\n*Más opciones → Dispositivos vinculados → Vincular nuevo dispositivo → Con número*\n> *Código válido solo para este número.*"
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
@@ -32,7 +32,7 @@ let time = global.db.data.users[m.sender].Subs + 120000
 const subBots = [...new Set([...global.conns.filter((conn) => conn.user && conn.ws.socket && conn.ws.socket.readyState !== ws.CLOSED).map((conn) => conn)])]
 const subBotsCount = subBots.length
 if (subBotsCount === 20) {
-return m.reply(`${emoji2} No se han encontrado espacios para *Sub-Bots* disponibles.`)
+return m.reply(`No se han encontrado espacios para *Sub-Bots* disponibles.`)
 }
 
 let who = m.mentionedJid && m.mentionedJid[0] ? m.mentionedJid[0] : m.fromMe ? conn.user.jid : m.sender
@@ -195,7 +195,7 @@ sock.isInit = true
 global.conns.push(sock)
 await joinChannels(sock)
 
-m?.chat ? await conn.sendMessage(m.chat, {text: args[0] ? `@${m.sender.split('@')[0]}, ya estás conectado, leyendo mensajes entrantes...` : `@${m.sender.split('@')[0]}, genial ya eres parte de nuestra familia de Sub-Bots.`, mentions: [m.sender]}, { quoted: m }) : ''
+m?.chat ? await conn.sendMessage(m.chat, {text: args[0] ? `*✿ Te conectaste exitosamente, ahora eres un subbot*\n> *Sigue el canal para estar atento a todas las actualizaciones y avisos.*\nhttps://whatsapp.com/channel/0029VbAZUQ3002T9KZfx2O1M`, mentions: [m.sender]}, { quoted: m }) : ''
 
 }}
 setInterval(async () => {
@@ -217,7 +217,7 @@ const Handler = await import(`../handler.js?update=${Date.now()}`).catch(console
 if (Object.keys(Handler || {}).length) handler = Handler
 
 } catch (e) {
-console.error('⚠️ Nuevo error: ', e)
+console.error('Nuevo error: ', e)
 }
 if (restatConn) {
 const oldChats = sock.chats
