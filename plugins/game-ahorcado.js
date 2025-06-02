@@ -20,23 +20,23 @@ let handler = async (m, { conn, command, args, usedPrefix }) => {
             finalizado: false
         }
 
-        return conn.reply(m.chat, `✿ Hola, el juego ya a iniciado para jugar\n\n• *Intentos →* ${maxIntentos}\n\n> *Escribe .resolver <letra|palabra> para comenzar.*`, m, rcanal)
+        return conn.reply(m.chat, `*✿ Hola, el juego ya a iniciado para jugar*\n\n• *Intentos →* ${maxIntentos}\n\n*Escribe .resolver <letra|palabra> para comenzar.* \n\n> *Ejemplo de uso → .resolver m*`, m, rcanal)
     }
 
     // Resolver una letra o palabra
     if (command === 'resolver') {
         if (!partidas[id]) {
-            return conn.reply(m.chat, '✿ No tienes una partida activa usa *.ahorcado* para comenzar una nueva.', m, rcanal)
+            return conn.reply(m.chat, '✿ No tienes una partida activa. Usa *.ahorcado* para comenzar una nueva.', m, rcanal)
         }
 
         let partida = partidas[id]
         if (partida.finalizado) {
             delete partidas[id]
-            return conn.reply(m.chat, '✿ Esta partida ya terminó usa *.ahorcado* para comenzar otra.', m, rcanal)
+            return conn.reply(m.chat, '✿ Esta partida ya terminó. Usa *.ahorcado* para comenzar otra de nuevo.', m, rcanal)
         }
 
         let intento = args[0]?.toLowerCase()
-        if (!intento) return conn.reply(m.chat, '✿ Ingresa una letra o una palabra completa para resolver.', m, rcanal)
+        if (!intento) return conn.reply(m.chat, '✿ Ingresa una *letra o una palabra* completa para resolver.', m, rcanal)
 
         // Intento completo
         if (intento.length > 1) {
