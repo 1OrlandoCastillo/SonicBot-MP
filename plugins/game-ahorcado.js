@@ -82,7 +82,7 @@ let handler = async (m, { conn, command, args, usedPrefix }) => {
                 return conn.reply(m.chat, `✿ ¡Perdiste! La palabra era: *${partida.palabra}*`, m, rcanal)
             }
 
-            return conn.reply(m.chat, `*✿ Hola, esta es un letra incorrecta*\n\n• *Intentos Totales →* ${partida.intentos}\n\n*${partida.progreso.join(' ')}*\n\n> *Letras usadas → ${partida.letrasUsadas.join(', ')}.*`, m, rcanal)
+            return conn.reply(m.chat, `*✿ Hola, esta es un letra incorrecta*\n\n• *Intentos Totales →* ${partida.intentos}\n\n> *Letras usadas → ${partida.letrasUsadas.join(', ')}.*`, m, rcanal)
         }
     }
 }
