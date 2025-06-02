@@ -28,22 +28,6 @@ let handler = async (message, { conn, text, usedPrefix, command }) => {
     return videoMessage;
   }
 
-  try {
-    // Mensaje de espera
-    conn.reply(message.chat, '✧ *ENVIANDO SUS RESULTADOS..*', message, {
-      contextInfo: { 
-        externalAdReply: { 
-          mediaUrl: null,
-          mediaType: 1,
-          showAdAttribution: true,
-          title: '✧ TikTok Buscador ✧',
-          body: 'Tu bot favorito ✨',
-          previewType: 0,
-          sourceUrl: 'https://t.me/tucanal'
-        }
-      }
-    });
-
     // Buscar resultados en la API
     let { data } = await axios.get(`https://apis-starlights-team.koyeb.app/starlight/tiktoksearch?text=${encodeURIComponent(text)}`);
     let searchResults = data.data;
@@ -70,34 +54,6 @@ let handler = async (message, { conn, text, usedPrefix, command }) => {
       });
     }
 
-    // Crear mensaje interactivo tipo carrusel
-    const messageContent = generateWAMessageFromContent(message.chat, {
-      viewOnceMessage: {
-        message: {
-          messageContextInfo: {
-            deviceListMetadata: {},
-            deviceListMetadataVersion: 2
-          },
-          interactiveMessage: proto.Message.InteractiveMessage.fromObject({
-            body: proto.Message.InteractiveMessage.Body.create({
-              text: `✧ RESULTADOS DE BÚSQUEDA: ${text}`
-            }),
-            footer: proto.Message.InteractiveMessage.Footer.create({
-              text: "TikTokBot"
-            }),
-            header: proto.Message.InteractiveMessage.Header.create({
-              hasMediaAttachment: false
-            }),
-            carouselMessage: proto.Message.InteractiveMessage.CarouselMessage.fromObject({
-              cards
-            })
-          })
-        }
-      }
-    }, {
-      quoted: message
-    });
-
     // Enviar mensaje
     await conn.relayMessage(message.chat, messageContent.message, {
       messageId: messageContent.key.id
@@ -114,4 +70,4 @@ handler.help = ["tiktoksearch <texto>"];
 handler.tags = ["buscador"];
 handler.command = ["tiktoksearch", "ttss", "tiktoks"];
 
-export default handler
+export default handler;
