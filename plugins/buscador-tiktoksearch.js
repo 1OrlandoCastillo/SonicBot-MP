@@ -13,24 +13,24 @@ let handler = async (message, { conn, text }) => {
   }
 
   try {
-    let { data } = await axios.get(`https://apis-starlights-team.koyeb.app/starlight/tiktoksearch?text=${encodeURIComponent(text)}`);
-    let searchResults = data.data;
+    const { data } = await axios.get(`https://apis-starlights-team.koyeb.app/starlight/tiktoksearch?text=${encodeURIComponent(text)}`);
+    const searchResults = data.data;
 
     if (!searchResults || searchResults.length === 0) {
       return conn.reply(message.chat, "⚠︎ No se encontraron resultados para tu búsqueda.", message);
     }
 
     shuffleArray(searchResults);
-    let topResults = searchResults.slice(0, 7); // Hasta 7 resultados
+    const topResults = searchResults.slice(0, 7); // 7 videos como máximo
 
-    let responseText = `✧ *Resultados de TikTok para:* ${text}\n\n`;
-
-    topResults.forEach((result, index) => {
-      responseText += `*${index + 1}.* ${result.title || 'Sin título'}\n`;
-      responseText += `📎 ${result.nowm}\n\n`;
-    });
-
-    conn.reply(message.chat, responseText.trim(), message);
+    for (const result of topResults) {
+      if (result.nowm) {
+        await conn.sendMessage(message.chat, {
+          video: { url: result.nowm },
+          caption: result.title || "🎵 Video de TikTok"
+        }, { quoted: message });
+      }
+    }
 
   } catch (error) {
     console.error(error);
