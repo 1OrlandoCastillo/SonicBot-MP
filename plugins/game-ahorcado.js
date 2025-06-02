@@ -74,7 +74,7 @@ let handler = async (m, { conn, command, args, usedPrefix }) => {
                 return conn.reply(m.chat, `✿ ¡Ganaste! La palabra era: *${partida.palabra}*`, m, rcanal)
             }
 
-            return conn.reply(m.chat, `*✿ Hola, esta es una letra correcta*\n\n• *Intentos Totales →* ${partida.intentos}\n\n*${partida.progreso.join(' ')}*\n\n> *Letras usadas → ${partida.letrasUsadas.join(', ')}.*`, m, rcanal)
+            return conn.reply(m.chat, `*✿ Hola, esta es una letra correcta*\n\n• *Intentos Totales →* ${partida.intentos}\n• *Letras Usadas →* ${partida.letrasUsadas.join(', ')}\n\n*${partida.progreso.join(' ')}*\n\n> *Intenta con otra letra correcta para ganar.*`, m, rcanal)
         } else {
             partida.intentos--
             if (partida.intentos <= 0) {
@@ -82,7 +82,7 @@ let handler = async (m, { conn, command, args, usedPrefix }) => {
                 return conn.reply(m.chat, `✿ ¡Perdiste! La palabra era: *${partida.palabra}*`, m, rcanal)
             }
 
-            return conn.reply(m.chat, `*✿ Hola, esta es un letra incorrecta*\n\n• *Intentos Totales →* ${partida.intentos}\n\n> *Letras usadas → ${partida.letrasUsadas.join(', ')}.*`, m, rcanal)
+            return conn.reply(m.chat, `*✿ Hola, esta es un letra incorrecta*\n\n• *Intentos Totales →* ${partida.intentos}\n• *Letras Usadas →* ${partida.letrasUsadas.join(', ')}\n\n> *Intenta con otra letra que sea correcta.*`, m, rcanal)
         }
     }
 }
