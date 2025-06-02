@@ -54,6 +54,5 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
 handler.help = ['aptoide *<búsqueda>*']
 handler.tags = ['downloader']
 handler.command = ['aptoide', 'apk']
-handler.register = true
 
 export default handler
