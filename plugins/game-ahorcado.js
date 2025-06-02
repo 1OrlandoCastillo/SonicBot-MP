@@ -89,6 +89,6 @@ let handler = async (m, { conn, command, args, usedPrefix }) => {
 
 handler.help = ['ahorcado']
 handler.tags = ['game']
-handler.command = ['ahorcado']
+handler.command = ['ahorcado', 'resolver']
 
 export default handler
