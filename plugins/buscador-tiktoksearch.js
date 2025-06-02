@@ -1,4 +1,4 @@
-import axios from 'axios'
+.import axios from 'axios'
 
 let handler = async (m, { conn, usedPrefix, command, text, args }) => {
   if (!text) return conn.reply(m.chat, `🚩 Ingresa el nombre del video que deseas buscar en TikTok.\n\nEjemplo:\n> *${usedPrefix + command}* Ai Hoshino Edit`, m)
@@ -41,6 +41,5 @@ let handler = async (m, { conn, usedPrefix, command, text, args }) => {
 handler.tags = ['search']
 handler.help = ['tiktoksearch *<búsqueda>*']
 handler.command = ['tiktoksearch', 'tiktoks']
-handler.register = true
 
 export default handler
