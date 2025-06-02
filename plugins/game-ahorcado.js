@@ -20,7 +20,7 @@ let handler = async (m, { conn, command, args, usedPrefix }) => {
             finalizado: false
         }
 
-        return conn.reply(m.chat, `*✿ Hola, el juego ya a iniciado para jugar*\n\n• *Intentos Totales→* ${maxIntentos}\n\n*Escribe .resolver <letra|palabra> para comenzar.* \n\n> *Ejemplo de uso → .resolver m.*`, m, rcanal)
+        return conn.reply(m.chat, `*✿ Hola, el juego ya a iniciado para jugar*\n\n• *Intentos Totales →* ${maxIntentos}\n\n*Escribe .resolver <letra|palabra> para comenzar.* \n\n> *Ejemplo de uso → .resolver m.*`, m, rcanal)
     }
 
     // Resolver una letra o palabra
