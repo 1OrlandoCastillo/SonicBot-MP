@@ -25,6 +25,12 @@ let handler = async (m, { conn, args, usedPrefix, command }) => {
             await m.react('✅')
         } else {
             await m.react('✖️')
+        } // <- ESTA llave estaba faltando
+    } catch (err) {
+        console.error(err)
+        await m.reply('❌ Ocurrió un error al intentar descargar el video.')
+        await m.react('⚠️')
+    }
 }
 
 handler.help = ['facebook *<link fb>*']
