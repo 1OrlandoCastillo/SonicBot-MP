@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 let handler = async (m, { conn, usedPrefix, command, text, args }) => {
-  if (!text) return conn.reply(m.chat, `🚩 Ingresa el nombre del video que deseas buscar en TikTok.\n\nEjemplo:\n> *${usedPrefix + command}* Ai Hoshino Edit`, m)
+  if (!text) return conn.reply(m.chat, `✿ Ingresa el nombre del video que deseas buscar en TikTok.`, m, rcanal)
 
   await m.react('🕓')
   let img = `./storage/img/menu.jpg`
@@ -18,9 +18,9 @@ let handler = async (m, { conn, usedPrefix, command, text, args }) => {
       for (let i = 0; i < (results.length >= 15 ? 15 : results.length); i++) {
         const video = results[i]
         txt += `\n\n`
-        txt += `  *• Nro ⪼* ${i + 1}\n`
-        txt += `  *• Título ⪼* ${video.title || 'Sin título'}\n`
-        txt += `  *• Url ⪼* ${video.nowm || video.url}`
+        txt += `*• Nro ⪼* ${i + 1}\n`
+        txt += `*• Título ⪼* ${video.title || 'Sin título'}\n`
+        txt += `*• Url ⪼* ${video.nowm || video.url}`
       }
 
       await conn.sendFile(m.chat, img, 'thumbnail.jpg', txt, m, null, rcanal)
