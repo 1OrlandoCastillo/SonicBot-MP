@@ -8,7 +8,7 @@ let handler = async (m, { conn, usedPrefix, command, text, args }) => {
 
   try {
     // Usamos una API de búsqueda de YouTube (puedes cambiarla si tienes otra)
-    const { data } = await axios.get(`https://api.lolhuman.xyz/api/ytsearch?apikey=TuApiKeyAqui&query=${encodeURIComponent(text)}`)
+    const { data } = await axios.get(`https://api.starlights.uk/api/search/youtube?q=q=${encodeURIComponent(text)}`)
 
     const results = data?.result || []
 
