@@ -4,7 +4,7 @@ let handler = async (m, { conn, usedPrefix, command, text, args }) => {
   if (!text) return conn.reply(m.chat, `🚩 Ingresa el nombre del video que deseas buscar en TikTok.\n\nEjemplo:\n> *${usedPrefix + command}* Ai Hoshino Edit`, m)
 
   await m.react('🕓')
-  let img = `./storage/img/menu.jpg`
+  let img = `./storage/img/tiktok.jpeg`
 
   try {
     // Llamada a la API externa de búsqueda de TikTok
@@ -24,17 +24,13 @@ let handler = async (m, { conn, usedPrefix, command, text, args }) => {
         txt += `  *» Url* : ${video.nowm || video.url}`
       }
 
-      await conn.sendFile(m.chat, img, 'thumbnail.jpg', txt, m)
+      await conn.sendFile(m.chat, img, 'thumbnail.jpg', txt, m, null, rcanal)
       await m.react('✅')
     } else {
-      await m.react('✖️')
-      await conn.reply(m.chat, '⚠️ No se encontraron resultados para esa búsqueda.', m)
+      await conn.react('✖️')
     }
-
-  } catch (err) {
-    console.error(err)
+  } catch {
     await m.react('✖️')
-    await conn.reply(m.chat, '⚠️ Ocurrió un error al buscar en TikTok.', m)
   }
 }
 
