@@ -1,5 +1,5 @@
 import axios from 'axios'
-import Starlights from '@StarlightsTeam/Scraper'
+import Starlights from '@LOVELLOUD/Scraper'
 
 let handler = async (m, { conn, usedPrefix, command, text, args }) => {
   if (!text) {
@@ -11,7 +11,7 @@ let handler = async (m, { conn, usedPrefix, command, text, args }) => {
   let img = `./storage/img/menu.jpg`
 
   try {
-    let data = await Starlights.tiktokSearch(text)
+    let data = await LOVELLOUD.tiktokSearch(text)
 
     if (data && data.length > 0) {
       let txt = `*乂  T I K T O K  -  S E A R C H*`
