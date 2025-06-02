@@ -36,10 +36,9 @@ let handler = async (message, { conn, text, usedPrefix, command }) => {
           mediaType: 1, 
           showAdAttribution: true,
           title: '♡  ͜ ۬︵࣪᷼⏜݊᷼𝘿𝙚𝙨𝙘𝙖𝙧𝙜𝙖𝙨⏜࣪᷼︵۬ ͜ ',
-          body: dev,
+          body: namebot,
           previewType: 0, 
-          thumbnail: avatar,
-          sourceUrl: redes 
+          sourceUrl: canal 
         }
       }
     });
@@ -75,7 +74,7 @@ let handler = async (message, { conn, text, usedPrefix, command }) => {
               text: "✧ RESULTADO DE: " + text
             }),
             footer: proto.Message.InteractiveMessage.Footer.create({
-              text: dev
+              text: namebot
             }),
             header: proto.Message.InteractiveMessage.Header.create({
               hasMediaAttachment: false
