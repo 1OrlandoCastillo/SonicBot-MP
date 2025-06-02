@@ -2,8 +2,6 @@ import axios from 'axios'
 
 let handler = async (m, { conn, args, usedPrefix, command }) => {
 if (!args || !args[0]) return conn.reply(m.chat,`🚩 Ingresa el enlace del vídeo de Facebook junto al comando.\n\n📌 *Ejemplo:*\n> ${usedPrefix + command} https://www.facebook.com/username/videos/1234567890/`, m, rcanal)
-    )
-  }
 
   await m.react('🕓')
 
