@@ -7,8 +7,8 @@ const tags = {
   serbot: '• Subs - Bots',
   owner: '• Owner',
   group: '• Group',
-  downloader: '• Download',
   search: '• Searchs',
+  game: '• Games',
 };
 
 const defaultMenu = {
