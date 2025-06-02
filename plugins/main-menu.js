@@ -8,6 +8,7 @@ const tags = {
   owner: '• Owner',
   group: '• Group',
   downloader: '• Download',
+  search: '• Searchs',
 };
 
 const defaultMenu = {
