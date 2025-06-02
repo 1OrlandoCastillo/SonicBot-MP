@@ -4,7 +4,7 @@ let handler = async (m, { conn, usedPrefix, command, text, args }) => {
   if (!text) return conn.reply(m.chat, `🚩 Ingresa el nombre del video que deseas buscar en TikTok.\n\nEjemplo:\n> *${usedPrefix + command}* Ai Hoshino Edit`, m)
 
   await m.react('🕓')
-  let img = `./storage/img/tiktok.jpeg`
+  let img = `./storage/img/menu.jpg`
 
   try {
     // Llamada a la API externa de búsqueda de TikTok
@@ -15,7 +15,7 @@ let handler = async (m, { conn, usedPrefix, command, text, args }) => {
     if (results.length > 0) {
       let txt = `*乂  T I K T O K  -  S E A R C H*`
 
-      for (let i = 0; i < (results.length >= 50 ? 50 : results.length); i++) {
+      for (let i = 0; i < (results.length >= 15 ? 15 : results.length); i++) {
         const video = results[i]
         txt += `\n\n`
         txt += `  *» Nro* : ${i + 1}\n`
