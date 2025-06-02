@@ -1,58 +1,35 @@
 import axios from 'axios'
 
-let handler = async (m, { conn, text, usedPrefix, command }) => {
-  if (!text) return conn.reply(m.chat, '[ ✰ ] Ingresa el nombre de la aplicación que deseas descargar de *Aptoide* junto al comando.\n\n`» Ejemplo :`\n' + `> *${usedPrefix + command}* WhatsApp`, m)
+let handler = async (m, { conn, command, text, usedPrefix }) => {
+  if (!text) {
+    return conn.reply(m.chat, `✿ Ingresa el nombre de una aplicación para buscar en *Aptoide*.\n\nEjemplo: ${usedPrefix + command} Spotify`, m)
+  }
 
-  await m.react('🕓')
+  await m.react('🔍')
 
   try {
-    // Buscar la aplicación en Aptoide usando su API pública
-    const res = await axios.get(`https://api.starlights.uk/api/downloader/aptoide?text=texto=${encodeURIComponent(text)}`)
-    const app = res.data[0]
+    const searchUrl = `https://api.starlights.uk/api/downloader/aptoide?text=texto=${encodeURIComponent(text)}/json`
+    const { data } = await axios.get(searchUrl)
 
-    if (!app) {
-      await m.react('❌')
-      return conn.reply(m.chat, '[ ✘ ] No se encontró ninguna aplicación con ese nombre.', m)
+    if (!data || !data.datalist || !data.datalist.list || data.datalist.list.length === 0) {
+      await m.react('✖️')
+      return conn.reply(m.chat, '✖️ No se encontraron resultados en Aptoide para esa búsqueda.', m)
     }
 
-    const { uname, size, icon, developer, file, stats } = app
-    const readableSize = (size / 1024 / 1024).toFixed(2) + ' MB'
+    const app = data.datalist.list[0] // Tomamos la primera coincidencia
+    const appInfo = `*📱 Nombre:* ${app.name}\n*📦 Paquete:* ${app.package}\n*🧑‍💻 Desarrollador:* ${app.store.name}\n*🆕 Versión:* ${app.file.vername}\n*📥 Descarga:* ${app.file.path}`
 
-    // Verificar si el tamaño del archivo es mayor a 300 MB
-    if (size > 300 * 1024 * 1024) {
-      return await m.reply('El archivo pesa más de 300 MB, se canceló la descarga.')
-    }
-
-    // Preparar el mensaje con la información de la aplicación
-    let txt = `*乂  A P T O I D E  -  D O W N L O A D*\n\n`
-    txt += `  ✩   *Nombre* : ${app.title}\n`
-    txt += `  ✩   *Versión* : ${file.vername}\n`
-    txt += `  ✩   *Descargas* : ${stats.downloads}\n`
-    txt += `  ✩   *Peso* :  ${readableSize}\n`
-    txt += `  ✩   *Desarrollador* : ${developer.name}\n\n`
-    txt += `*- ↻ El archivo se está enviando, espera un momento...*`
-
-    // Enviar la miniatura con la información
-    await conn.sendFile(m.chat, icon, 'thumbnail.jpg', txt, m)
-
-    // Enviar el archivo APK
-    await conn.sendMessage(m.chat, {
-      document: { url: file.path },
-      mimetype: 'application/vnd.android.package-archive',
-      fileName: `${app.title}.apk`,
-      caption: null
-    }, { quoted: m })
-
+    await conn.sendMessage(m.chat, { text: `*✅ RESULTADO ENCONTRADO:*\n\n${appInfo}` }, { quoted: m })
     await m.react('✅')
   } catch (err) {
     console.error(err)
-    await m.react('❌')
-    conn.reply(m.chat, '[ ✘ ] Ocurrió un error al buscar o descargar la aplicación. Intenta nuevamente.', m)
+    await m.react('✖️')
+    conn.reply(m.chat, '⚠️ Ocurrió un error al buscar la aplicación.', m)
   }
 }
 
-handler.help = ['aptoide *<búsqueda>*']
-handler.tags = ['downloader']
-handler.command = ['aptoide', 'apk']
+handler.help = ['aptoide *<nombre>*']
+handler.tags = ['downloader', 'apk']
+handler.command = ['aptoide', 'apksearch']
 
 export default handler
