@@ -1,45 +1,46 @@
-import axios from 'axios';
+import axios from 'axios'
 
-let handler = async (message, { conn, text }) => {
-  if (!text) {
-    return conn.reply(message.chat, "❀ Por favor, ingrese un texto para realizar una búsqueda en TikTok.", message);
-  }
+let handler = async (m, { conn, usedPrefix, command, text, args }) => {
+  if (!text) return conn.reply(m.chat, `🚩 Ingresa el nombre del video que deseas buscar en TikTok.\n\nEjemplo:\n> *${usedPrefix + command}* Ai Hoshino Edit`, m)
 
-  function shuffleArray(array) {
-    for (let i = array.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [array[i], array[j]] = [array[j], array[i]];
-    }
-  }
+  await m.react('🕓')
+  let img = `./storage/img/menu.jpg`
 
   try {
-    const { data } = await axios.get(`https://apis-starlights-team.koyeb.app/starlight/tiktoksearch?text=${encodeURIComponent(text)}`);
-    const searchResults = data.data;
+    // Llamada a la API externa de búsqueda de TikTok
+    const { data } = await axios.get(`https://apis-starlights-team.koyeb.app/starlight/tiktoksearch?text=${encodeURIComponent(text)}`)
 
-    if (!searchResults || searchResults.length === 0) {
-      return conn.reply(message.chat, "⚠︎ No se encontraron resultados para tu búsqueda.", message);
-    }
+    const results = data?.data || []
 
-    shuffleArray(searchResults);
-    const topResults = searchResults.slice(0, 7); // 7 videos como máximo
+    if (results.length > 0) {
+      let txt = `*乂  T I K T O K  -  S E A R C H*`
 
-    for (const result of topResults) {
-      if (result.nowm) {
-        await conn.sendMessage(message.chat, {
-          video: { url: result.nowm },
-          caption: result.title || "🎵 Video de TikTok"
-        }, { quoted: message });
+      for (let i = 0; i < (results.length >= 50 ? 50 : results.length); i++) {
+        const video = results[i]
+        txt += `\n\n`
+        txt += `  *» Nro* : ${i + 1}\n`
+        txt += `  *» Título* : ${video.title || 'Sin título'}\n`
+        txt += `  *» Autor* : ${video.author || 'Desconocido'}\n`
+        txt += `  *» Url* : ${video.nowm || video.url}`
       }
+
+      await conn.sendFile(m.chat, img, 'thumbnail.jpg', txt, m)
+      await m.react('✅')
+    } else {
+      await m.react('✖️')
+      await conn.reply(m.chat, '⚠️ No se encontraron resultados para esa búsqueda.', m)
     }
 
-  } catch (error) {
-    console.error(error);
-    conn.reply(message.chat, `⚠︎ Ocurrió un error: ${error.message}`, message);
+  } catch (err) {
+    console.error(err)
+    await m.react('✖️')
+    await conn.reply(m.chat, '⚠️ Ocurrió un error al buscar en TikTok.', m)
   }
-};
+}
 
-handler.help = ["tiktoksearch <texto>"];
-handler.tags = ["buscador"];
-handler.command = ["tiktoksearch", "ttss", "tiktoks"];
+handler.tags = ['search']
+handler.help = ['tiktoksearch *<búsqueda>*']
+handler.command = ['tiktoksearch', 'tiktoks']
+handler.register = true
 
-export default handler;
+export default handler
