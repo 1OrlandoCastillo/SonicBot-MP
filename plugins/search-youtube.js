@@ -1,9 +1,9 @@
 import axios from 'axios'
 
 let handler = async (m, { conn, usedPrefix, command, text, args }) => {
-  if (!text) return conn.reply(m.chat, `✿ Ingresa el nombre del video que deseas buscar en *YouTube.*`, m)
+  if (!text) return conn.reply(m.chat, `✿ Ingresa el nombre del video que deseas buscar en *YouTube.*`, m, rcanal)
 
-  await m.react('🔍')
+  await m.react('🕓')
   let img = `./storage/img/menu.jpg`
 
   try {
@@ -13,9 +13,9 @@ let handler = async (m, { conn, usedPrefix, command, text, args }) => {
     const results = data?.result || []
 
     if (results.length > 0) {
-      let txt = `*✿ Resultados de búsqueda en YouTube:*`
+      let txt = `*✿ Hola, aquí está la lista de youtube-search*`
 
-      for (let i = 0; i < (results.length >= 10 ? 10 : results.length); i++) {
+      for (let i = 0; i < (results.length >= 15 ? 15 : results.length); i++) {
         const video = results[i]
         txt += `\n\n`
         txt += `*• Nro →* ${i + 1}\n`
@@ -25,7 +25,7 @@ let handler = async (m, { conn, usedPrefix, command, text, args }) => {
         txt += `*• Url →* ${video.link}`
       }
 
-      await conn.sendFile(m.chat, img, 'youtube-thumbnail.jpg', txt, m)
+      await conn.sendFile(m.chat, img, 'youtube-thumbnail.jpg', txt, m, null, rcanal)
       await m.react('✅')
     } else {
       await conn.react('✖️')
@@ -36,7 +36,7 @@ let handler = async (m, { conn, usedPrefix, command, text, args }) => {
 }
 
 handler.tags = ['search']
-handler.help = ['search-youtube *<término>*']
-handler.command = ['youtube', 'ytsearch', 'searchyoutube']
+handler.help = ['youtubesearch *<búsqueda>*']
+handler.command = ['youtubesearch', 'youtubes']
 
 export default handler
