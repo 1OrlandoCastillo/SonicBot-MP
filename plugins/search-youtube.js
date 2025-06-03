@@ -13,16 +13,16 @@ let handler = async (m, { conn, usedPrefix, command, text, args }) => {
     const results = data?.result || []
 
     if (results.length > 0) {
-      let txt = `*✿ Hola, aquí está la lista de youtube-search*`
+      let txt = `*Lista De Youtube-Search*`
 
       for (let i = 0; i < (results.length >= 15 ? 15 : results.length); i++) {
         const video = results[i]
         txt += `\n\n`
-        txt += `*• Nro →* ${i + 1}\n`
-        txt += `*• Título →* ${video.title || 'Sin título'}\n`
-        txt += `*• Duración →* ${video.duration || 'Desconocida'}\n`
-        txt += `*• Canal →* ${video.uploader || 'Desconocido'}\n`
-        txt += `*• Url →* ${video.link}`
+        txt += `*◦Nro →* ${i + 1}\n`
+        txt += `*◦Título →* ${video.title || 'Sin título'}\n`
+        txt += `*◦Duración →* ${video.duration || 'Desconocida'}\n`
+        txt += `*◦Canal →* ${video.uploader || 'Desconocido'}\n`
+        txt += `*◦Url →* ${video.link}`
       }
 
       await conn.sendFile(m.chat, img, 'youtube-thumbnail.jpg', txt, m, null, rcanal)
