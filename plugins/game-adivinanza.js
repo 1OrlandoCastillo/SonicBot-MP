@@ -28,7 +28,7 @@ let handler = async (m, { conn, command, args, usedPrefix }) => {
             finalizado: false
         }
 
-        return conn.reply(m.chat, `*Adivina Esta Pregunta*\n\n*◦Intentos Totales →* ${maxIntentos}\n\n*${pregunta}*\n\n> *Responde con .responder <respuesta> para comenzar.*`, m, rcanal)
+        return conn.reply(m.chat, `*Adivina esta pregunta. *${pregunta}* Intentos totales: ${maxIntentos}. Responde con .responder <respuesta> para comenzar.*`, m, rcanal)
     }
 
     if (command === 'responder') {
@@ -54,7 +54,7 @@ let handler = async (m, { conn, command, args, usedPrefix }) => {
                 partida.finalizado = true
                 return conn.reply(m.chat, `¡Has perdido! La respuesta correcta era: *${partida.respuesta}*`, m, rcanal)
             } else {
-                return conn.reply(m.chat, `*Respuesta Incorrecta*\n\n*◦Intentos Totales →* ${partida.intentos}\n\n> *Intentalo de nuevo con .responder <respuesta>.*`, m, rcanal)
+                return conn.reply(m.chat, `* Esta es una respuesta incorrecta. Intentos totales: *${partida.intentos}.*`, m, rcanal)
             }
         }
     }
