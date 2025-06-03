@@ -13,14 +13,14 @@ let handler = async (m, { conn, usedPrefix, command, text, args }) => {
     const results = data?.data || []
 
     if (results.length > 0) {
-      let txt = `*✿ Hola, aquí está la lista de tiktok-search*`
+      let txt = `*Lista De Tiktok-Search*`
 
       for (let i = 0; i < (results.length >= 15 ? 15 : results.length); i++) {
         const video = results[i]
         txt += `\n\n`
-        txt += `*• Nro →* ${i + 1}\n`
-        txt += `*• Título →* ${video.title || 'Sin título'}\n`
-        txt += `*• Url →* ${video.url}`
+        txt += `*◦Nro →* ${i + 1}\n`
+        txt += `*◦Título →* ${video.title || 'Sin título'}\n`
+        txt += `*◦Url →* ${video.url}`
       }
 
       await conn.sendFile(m.chat, img, 'thumbnail.jpg', txt, m, null, rcanal)
