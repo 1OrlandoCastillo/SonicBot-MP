@@ -1,0 +1,67 @@
+let adivinanzas = {
+    'Tiene agujas pero no pincha.': 'reloj',
+    'Tiene dientes pero no muerde.': 'peine',
+    'Va por el agua y no se moja.': 'sombra',
+    'Tiene patas pero no camina.': 'mesa',
+    'Tiene hojas pero no es planta.': 'libro'
+}
+
+let partidasAdivinanza = {}
+
+let handler = async (m, { conn, command, args, usedPrefix }) => {
+    let id = m.sender
+    const maxIntentos = 3
+
+    if (command === 'adivinanza') {
+        if (partidasAdivinanza[id]) {
+            return conn.reply(m.chat, '✿ Ya tienes una partida dn curso. Usa *.responder <respuesta>* para continuar.', m, rcanal)
+        }
+
+        let claves = Object.keys(adivinanzas)
+        let pregunta = claves[Math.floor(Math.random() * claves.length)]
+        let respuesta = adivinanzas[pregunta]
+
+        partidasAdivinanza[id] = {
+            pregunta,
+            respuesta,
+            intentos: maxIntentos,
+            finalizado: false
+        }
+
+        return conn.reply(m.chat, `*✿ Adivina esta:* \n\n"${pregunta}"\n\n• *Intentos Totales →* ${maxIntentos}\n\n> *Responde con:* .responder <respuesta>`, m)
+    }
+
+    if (command === 'responder') {
+        if (!partidasAdivinanza[id]) {
+            return conn.reply(m.chat, '✿ No tienes una adivinanza activa. Usa *.adivinanza* para comenzar una nueva.', m)
+        }
+
+        let partida = partidasAdivinanza[id]
+        if (partida.finalizado) {
+            delete partidasAdivinanza[id]
+            return conn.reply(m.chat, '✿ Esta adivinanza ya terminó. Usa *.adivinanza* para jugar otra vez.', m)
+        }
+
+        let intento = args.join(' ')?.toLowerCase().trim()
+        if (!intento) return conn.reply(m.chat, '✿ Escribe una respuesta para intentar adivinar.', m)
+
+        if (intento === partida.respuesta.toLowerCase()) {
+            partida.finalizado = true
+            return conn.reply(m.chat, `✿ ¡Correcto! La respuesta era: *${partida.respuesta}*`, m)
+        } else {
+            partida.intentos--
+            if (partida.intentos <= 0) {
+                partida.finalizado = true
+                return conn.reply(m.chat, `✿ ¡Has perdido! La respuesta correcta era: *${partida.respuesta}*`, m)
+            } else {
+                return conn.reply(m.chat, `✿ Respuesta incorrecta.\n\n• *Intentos restantes →* ${partida.intentos}\n\n> Inténtalo de nuevo con: .responder <respuesta>`, m)
+            }
+        }
+    }
+}
+
+handler.help = ['adivinanza']
+handler.tags = ['game']
+handler.command = ['adivinanza', 'responder']
+
+export default handler
