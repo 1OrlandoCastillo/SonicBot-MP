@@ -14,7 +14,7 @@ let handler = async (m, { conn, command, args, usedPrefix }) => {
 
     if (command === 'adivinanza') {
         if (partidasAdivinanza[id]) {
-            return conn.reply(m.chat, '✿ Ya tienes una partida dn curso. Usa *.responder <respuesta>* para continuar.', m, rcanal)
+            return conn.reply(m.chat, '✿ Ya tienes una partida en curso. Usa *.responder <respuesta>* para continuar.', m, rcanal)
         }
 
         let claves = Object.keys(adivinanzas)
@@ -28,22 +28,22 @@ let handler = async (m, { conn, command, args, usedPrefix }) => {
             finalizado: false
         }
 
-        return conn.reply(m.chat, `*✿ Adivina esta:* \n\n"${pregunta}"\n\n• *Intentos Totales →* ${maxIntentos}\n\n> *Responde con:* .responder <respuesta>`, m)
+        return conn.reply(m.chat, `*✿ Hola, el juego ya a iniciado para jugar adivina esta*\n\n• *Intento Totales →* ${maxIntentos}\n\n*${pregunta}*\n\n> *Responde con .responder <respuesta> para comenzar.*`, m, rcanal)
     }
 
     if (command === 'responder') {
         if (!partidasAdivinanza[id]) {
-            return conn.reply(m.chat, '✿ No tienes una adivinanza activa. Usa *.adivinanza* para comenzar una nueva.', m)
+            return conn.reply(m.chat, '✿ No tienes una partida activa. Usa *.adivinanza* para comenzar una nueva.', m, rcanal)
         }
 
         let partida = partidasAdivinanza[id]
         if (partida.finalizado) {
             delete partidasAdivinanza[id]
-            return conn.reply(m.chat, '✿ Esta adivinanza ya terminó. Usa *.adivinanza* para jugar otra vez.', m)
+            return conn.reply(m.chat, '✿ Esta partida ya terminó. Usa *.adivinanza* para jugar otra vez.', m)
         }
 
         let intento = args.join(' ')?.toLowerCase().trim()
-        if (!intento) return conn.reply(m.chat, '✿ Escribe una respuesta para intentar adivinar.', m)
+        if (!intento) return conn.reply(m.chat, '✿ Escribe una respuesta para intentar adivinar.', m, rcanal)
 
         if (intento === partida.respuesta.toLowerCase()) {
             partida.finalizado = true
@@ -54,7 +54,7 @@ let handler = async (m, { conn, command, args, usedPrefix }) => {
                 partida.finalizado = true
                 return conn.reply(m.chat, `✿ ¡Has perdido! La respuesta correcta era: *${partida.respuesta}*`, m)
             } else {
-                return conn.reply(m.chat, `✿ Respuesta incorrecta.\n\n• *Intentos restantes →* ${partida.intentos}\n\n> Inténtalo de nuevo con: .responder <respuesta>`, m)
+                return conn.reply(m.chat, `*✿ Hola, esta es una respuesta incorrecta*\n\n• *Intento Totales →* ${maxIntentos}\n\n*${pregunta}*\n\n> *Intentalo de nuevo con .responder <respuesta>.*`, m, rcanal)
             }
         }
     }
