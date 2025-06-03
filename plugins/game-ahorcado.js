@@ -20,7 +20,7 @@ let handler = async (m, { conn, command, args, usedPrefix }) => {
             finalizado: false
         }
 
-        return conn.reply(m.chat, `*Juego Iniciado*\n\n*◦Intentos Totales →* ${maxIntentos}\n\n> Responde con .resolver <letra|palabra> para comenzar.`, m, rcanal)
+        return conn.reply(m.chat, `Juego iniciado. Intentos totales: *${maxIntentos}.* Responde con *.resolver <letra|palabra>* para comenzar.`, m, rcanal)
     }
 
     // Resolver una letra o palabra
@@ -74,7 +74,7 @@ let handler = async (m, { conn, command, args, usedPrefix }) => {
                 return conn.reply(m.chat, `¡Ganaste! La palabra era: *${partida.palabra}*`, m, rcanal)
             }
 
-            return conn.reply(m.chat, `*Letra Correcta*\n\n*◦Intentos Totales →* ${partida.intentos}\n*◦Letras Usadas →* ${partida.letrasUsadas.join(', ')}\n\n*${partida.progreso.join(' ')}*\n\n> *Intenta con otra letra correcta para ganar.*`, m, rcanal)
+            return conn.reply(m.chat, `Letra Correcta. Intentos totales: *${partida.intentos}.* Letras usadas: *${partida.letrasUsadas.join(', ')}*\n\n*${partida.progreso.join(' ')}*`, m, rcanal)
         } else {
             partida.intentos--
             if (partida.intentos <= 0) {
@@ -82,7 +82,7 @@ let handler = async (m, { conn, command, args, usedPrefix }) => {
                 return conn.reply(m.chat, `¡Perdiste! La palabra era: *${partida.palabra}*`, m, rcanal)
             }
 
-            return conn.reply(m.chat, `*Letra Incorrecta*\n\n*◦Intentos Totales →* ${partida.intentos}\n*◦Letras Usadas →* ${partida.letrasUsadas.join(', ')}\n\n> *Intenta con otra letra que sea correcta.*`, m, rcanal)
+            return conn.reply(m.chat, `Letra incorrecta. Intentos totales: *${partida.intentos}* Letras usadas: *${partida.letrasUsadas.join(', ')}*`, m, rcanal)
         }
     }
 }
