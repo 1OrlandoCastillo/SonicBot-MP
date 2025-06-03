@@ -13,7 +13,7 @@ let handler = async (m, { conn, usedPrefix, command, text, args }) => {
     const results = data?.result || []
 
     if (results.length > 0) {
-      let txt = `*Lista De Youtube-Search*`
+      let txt = `「 *• Searchs* 」`
 
       for (let i = 0; i < (results.length >= 15 ? 15 : results.length); i++) {
         const video = results[i]
