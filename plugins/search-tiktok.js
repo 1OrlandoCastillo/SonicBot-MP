@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 let handler = async (m, { conn, usedPrefix, command, text, args }) => {
-  if (!text) return conn.reply(m.chat, `𖧊 Hola, debes dar el nombre del video *Tiktok* que deseas Buscar.`, m, rcanal)
+  if (!text) return conn.reply(m.chat, `𖧊 Hola, necesito que me proporciones el nombre del video *Tiktok* que deseas Buscar.`, m, rcanal)
 
   await m.react('🕓')
   let img = `./storage/img/menu.jpg`
