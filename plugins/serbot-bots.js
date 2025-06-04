@@ -24,7 +24,7 @@ let handler = async (m, { conn }) => {
     count++
   }
 
-  await conn.reply(m.chat, txt.trim(), m)
+  await conn.reply(m.chat, txt, m, rcanal)
 }
 
 handler.command = ['listjadibot', 'bots']
