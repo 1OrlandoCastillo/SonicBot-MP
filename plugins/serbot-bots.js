@@ -1,5 +1,14 @@
 import ws from 'ws'
 
+// Función para convertir milisegundos a formato legible
+function formatDuration(ms) {
+  let totalSeconds = Math.floor(ms / 1000)
+  let hours = Math.floor(totalSeconds / 3600)
+  let minutes = Math.floor((totalSeconds % 3600) / 60)
+  let seconds = totalSeconds % 60
+  return `${hours}h ${minutes}m ${seconds}s`
+}
+
 let handler = async (m, { conn }) => {
   let uniqueUsers = new Map()
 
@@ -16,11 +25,15 @@ let handler = async (m, { conn }) => {
   let totalUsers = uniqueUsers.size
   let txt = `✿ Total Bots → *${totalUsers || 0}*\n\n`
 
-  // Enumerar cada subbot con número, nombre y jid
+  const now = Date.now()
   let count = 1
+
   for (let [jid, conn] of uniqueUsers.entries()) {
     let name = conn.user.name || conn.user.pushname || 'Desconocido'
-    txt += `${count}. ${name} (${jid})\n`
+    let connectedAt = conn.connectedAt || null
+    let uptime = connectedAt ? formatDuration(now - connectedAt) : 'Desconocido'
+
+    txt += `${count}. ${name} (${jid})\n   ⌛ Tiempo conectado: ${uptime}\n\n`
     count++
   }
 
