@@ -1,26 +1,28 @@
 import ws from 'ws'
 
 let handler = async (m, { conn, usedPrefix, command }) => {
-  // Inicializa el mapa para usuarios únicos
   let uniqueUsers = new Map()
 
-  // Inicializa global.conns si no existe o no es array
   if (!global.conns || !Array.isArray(global.conns)) {
     global.conns = []
   }
 
-  // Recorre todas las conexiones para agregar usuarios únicos
   global.conns.forEach((conn) => {
     if (conn.user && conn.ws?.socket?.readyState !== ws.CLOSED) {
       uniqueUsers.set(conn.user.jid, conn)
     }
   })
 
-  // Cuenta total de bots conectados (usuarios únicos)
   let totalUsers = uniqueUsers.size
-  let txt = '✿ Total Bots' + ` → *${totalUsers || 0}*`
+  let txt = `✿ Total Bots → *${totalUsers || 0}*\n\n`
 
-  // Envía el mensaje de respuesta
+  // Listar todos los usuarios con su jid y nombre
+  for (let [jid, conn] of uniqueUsers.entries()) {
+    // Intentamos obtener el nombre, si no hay, mostrar jid
+    let name = conn.user.name || conn.user.pushname || 'Desconocido'
+    txt += `- ${name} (${jid})\n`
+  }
+
   await conn.reply(m.chat, txt, m)
 }
 
