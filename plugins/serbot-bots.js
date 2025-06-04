@@ -20,7 +20,7 @@ let handler = async (m, { conn }) => {
   for (let [jid, conn] of uniqueUsers.entries()) {
     let number = jid.split('@')[0]
     let name = conn.user?.name || 'Sin nombre'
-    txt += `*${count}.* ${name} - wa.me/${number}\n`
+    txt += `*◦Nro →* ${count}\n*◦Nombre →* ${name}\n*◦Fono →* wa.me/${number}\n\n`
     count++
   }
 
