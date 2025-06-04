@@ -1,4 +1,4 @@
-import ws from 'ws'
+.import ws from 'ws'
 
 let handler = async (m, { conn }) => {
   let uniqueUsers = new Map()
@@ -21,10 +21,10 @@ let handler = async (m, { conn }) => {
   for (let [jid, botConn] of uniqueUsers.entries()) {
     let name = botConn.user?.name || 'Sin nombre'
     let number = jid.split('@')[0]
-    msg += `│ ${index++}. *${name}*\n│     📞 Número: wa.me/${number}\n`
+    txt += `│ ${index++}. *${name}*\n│     📞 Número: wa.me/${number}\n`
   }
 
-  msg += `╰───────────────⬣`
+  txt += `╰───────────────⬣`
 
   await conn.reply(m.chat, txt, m, rcanal)
 }
