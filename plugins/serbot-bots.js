@@ -1,6 +1,6 @@
 import ws from 'ws'
 
-let handler = async (m, { conn, usedPrefix, command }) => {
+let handler = async (m, { conn }) => {
   let uniqueUsers = new Map()
 
   if (!global.conns || !Array.isArray(global.conns)) {
@@ -16,11 +16,12 @@ let handler = async (m, { conn, usedPrefix, command }) => {
   let totalUsers = uniqueUsers.size
   let txt = `✿ Total Bots → *${totalUsers || 0}*\n\n`
 
-  // Listar todos los usuarios con su jid y nombre
+  // Enumerar cada subbot con número, nombre y jid
+  let count = 1
   for (let [jid, conn] of uniqueUsers.entries()) {
-    // Intentamos obtener el nombre, si no hay, mostrar jid
     let name = conn.user.name || conn.user.pushname || 'Desconocido'
-    txt += `- ${name} (${jid})\n`
+    txt += `${count}. ${name} (${jid})\n`
+    count++
   }
 
   await conn.reply(m.chat, txt, m)
