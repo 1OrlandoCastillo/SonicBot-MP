@@ -1,4 +1,4 @@
-.import ws from 'ws'
+import ws from 'ws'
 
 let handler = async (m, { conn }) => {
   let uniqueUsers = new Map()
@@ -7,30 +7,27 @@ let handler = async (m, { conn }) => {
     global.conns = []
   }
 
-  global.conns.forEach((botConn) => {
-    if (botConn.user && botConn.ws?.socket?.readyState !== ws.CLOSED) {
-      uniqueUsers.set(botConn.user.jid, botConn)
+  global.conns.forEach((conn) => {
+    if (conn.user && conn.ws?.socket?.readyState !== ws.CLOSED) {
+      uniqueUsers.set(conn.user.jid, conn)
     }
   })
 
   let totalUsers = uniqueUsers.size
-  let index = 1
-  let txt = `╭───❖「 *SUBBOTS CONECTADOS* 」\n│\n`
-  txt += `│ ✿ Total de bots: *${totalUsers}*\n│\n`
+  let txt = `✿ *Total Bots* → *${totalUsers || 0}*\n\n`
 
-  for (let [jid, botConn] of uniqueUsers.entries()) {
-    let name = botConn.user?.name || 'Sin nombre'
+  let count = 1
+  for (let [jid, conn] of uniqueUsers.entries()) {
     let number = jid.split('@')[0]
-    txt += `│ ${index++}. *${name}*\n│     📞 Número: wa.me/${number}\n`
+    let name = conn.user?.name || 'Sin nombre'
+    txt += `*${count}.* ${name} - wa.me/${number}\n`
+    count++
   }
 
-  txt += `╰───────────────⬣`
-
-  await conn.reply(m.chat, txt, m, rcanal)
+  await conn.reply(m.chat, txt.trim(), m)
 }
 
 handler.command = ['listjadibot', 'bots']
 handler.help = ['bots']
 handler.tags = ['serbot']
-
 export default handler
