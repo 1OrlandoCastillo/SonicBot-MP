@@ -20,7 +20,7 @@ let handler = async (m, { conn, usedPrefix, command, text, args }) => {
         txt += `\n\n`
         txt += `*◦Nro →* ${i + 1}\n`
         txt += `*◦Título →* ${video.title || 'Sin título'}\n`
-        txt += `*◦Url →* ${video.nowm || video.url}`
+        txt += `*◦Url →* ${video.url}`
       }
 
       await conn.sendFile(m.chat, img, 'thumbnail.jpg', txt, m, null, rcanal)
