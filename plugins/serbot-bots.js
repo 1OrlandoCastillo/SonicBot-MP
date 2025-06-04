@@ -7,24 +7,26 @@ let handler = async (m, { conn }) => {
     global.conns = []
   }
 
-  global.conns.forEach((conn) => {
-    if (conn.user && conn.ws?.socket?.readyState !== ws.CLOSED) {
-      uniqueUsers.set(conn.user.jid, conn)
+  global.conns.forEach((botConn) => {
+    if (botConn.user && botConn.ws?.socket?.readyState !== ws.CLOSED) {
+      uniqueUsers.set(botConn.user.jid, botConn)
     }
   })
 
   let totalUsers = uniqueUsers.size
-  let txt = `✿ Total Bots → *${totalUsers || 0}*\n\n`
+  let index = 1
+  let txt = `╭───❖「 *SUBBOTS CONECTADOS* 」\n│\n`
+  txt += `│ ✿ Total de bots: *${totalUsers}*\n│\n`
 
-  // Enumerar cada subbot con número, nombre y jid
-  let count = 1
-  for (let [jid, conn] of uniqueUsers.entries()) {
-    let name = conn.user.name || conn.user.pushname || 'Desconocido'
-    txt += `${count}. ${name} (${jid})\n`
-    count++
+  for (let [jid, botConn] of uniqueUsers.entries()) {
+    let name = botConn.user?.name || 'Sin nombre'
+    let number = jid.split('@')[0]
+    msg += `│ ${index++}. *${name}*\n│     📞 Número: wa.me/${number}\n`
   }
 
-  await conn.reply(m.chat, txt, m)
+  msg += `╰───────────────⬣`
+
+  await conn.reply(m.chat, txt, m, rcanal)
 }
 
 handler.command = ['listjadibot', 'bots']
