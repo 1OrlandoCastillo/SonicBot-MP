@@ -1,25 +1,31 @@
 import ws from 'ws'
 
-let handler = async (m, { conn }) => {
-   let uniqueUsers = new Map()
+let handler = async (m, { conn, usedPrefix, command }) => {
+  // Inicializa el mapa para usuarios únicos
+  let uniqueUsers = new Map()
 
-   if (!global.conns || !Array.isArray(global.conns)) {
-     global.conns = []
-   }
+  // Inicializa global.conns si no existe o no es array
+  if (!global.conns || !Array.isArray(global.conns)) {
+    global.conns = []
+  }
 
-   global.conns.forEach((conn) => {
-     if (conn.user && conn.ws?.socket?.readyState !== ws.CLOSED) {
-       uniqueUsers.set(conn.user.jid, conn)
-     }
-   })
+  // Recorre todas las conexiones para agregar usuarios únicos
+  global.conns.forEach((conn) => {
+    if (conn.user && conn.ws?.socket?.readyState !== ws.CLOSED) {
+      uniqueUsers.set(conn.user.jid, conn)
+    }
+  })
 
-   let totalUsers = uniqueUsers.size
-   let txt = `「 *• Subs - Bots* 」\n\n*◦Bot Principal →* 1\n*◦Bots Totales →* ${totalUsers || 0}\n\n> *No asumimos responsabilidad alguna por los sub-bots y sus acciones.*`
+  // Cuenta total de bots conectados (usuarios únicos)
+  let totalUsers = uniqueUsers.size
+  let txt = '✿ Total Bots' + ` → *${totalUsers || 0}*`
 
-   await conn.reply(m.chat, txt, m, rcanal)
+  // Envía el mensaje de respuesta
+  await conn.reply(m.chat, txt, m)
 }
 
 handler.command = ['listjadibot', 'bots']
 handler.help = ['bots']
 handler.tags = ['serbot']
+
 export default handler
