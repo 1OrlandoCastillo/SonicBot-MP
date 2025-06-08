@@ -22,8 +22,8 @@ let handler = async (m, { conn }) => {
   txt += `\n\n`
   txt += `*◦ Bot Principal →* 1\n`
   txt += `*◦ Nombre →* ${namebot}\n`
-  txt += `*◦Tiempo Activa →* ${formatUptime}\n\n`
-  txt += `*◦Total Bots →* ${totalUsers || 0}`
+  txt += `*◦Tiempo Conectada →* ${formatUptime}\n`
+  txt += `*◦Conectados →* ${totalUsers || 0}`
 
   await conn.reply(m.chat, txt, m, rcanal)
 }
