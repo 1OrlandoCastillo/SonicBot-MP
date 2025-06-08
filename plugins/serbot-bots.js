@@ -1,4 +1,5 @@
 import ws from 'ws'
+import { format } from 'util'
 
 let handler = async (m, { conn }) => {
   let uniqueUsers = new Map()
@@ -13,24 +14,31 @@ let handler = async (m, { conn }) => {
     }
   })
 
+  // Calcular tiempo activo
+  let uptime = process.uptime() * 1000
+  let formatUptime = clockString(uptime)
+
+  // Datos de propietario principal
+  let mainOwnerNumber = global.owner?.[0]?.[0] || 'No definido'
+  let mainOwnerName = global.owner?.[0]?.[1] || 'Bot Principal'
+
   let totalUsers = uniqueUsers.size
-  let txt = hola\n\n
+  let txt = `*✿ BOT PRINCIPAL*\n*◦ Nombre →* ${mainOwnerName}\n*◦ Número →* wa.me/${mainOwnerNumber}\n\n`
+  txt += `*✿ Tiempo activo →* ${formatUptime}\n\n`
+  txt += `*✿ Total Bots →* *${totalUsers || 0}*`
 
-  let count = 1
-  for (let [jid, conn] of uniqueUsers.entries()) {
-    let number = jid.split('@')[0]
-    let name = conn.user?.name || 'Sin nombre'
-    txt += `*◦Nro →* ${count}\n*◦Nombre →* ${name}\n*◦Fono →* wa.me/${number}\n\n`
-    count++
-  }
-
-  // Agrega el total al final
-  txt += `✿ *Total Bots* → *${totalUsers || 0}*`
-
-  await conn.reply(m.chat, txt.trim(), m, rcanal)
+  await conn.reply(m.chat, txt, m, rcanal)
 }
 
 handler.command = ['listjadibot', 'bots']
 handler.help = ['bots']
 handler.tags = ['serbot']
 export default handler
+
+// Función para formatear uptime en hh:mm:ss
+function clockString(ms) {
+  let h = Math.floor(ms / 3600000)
+  let m = Math.floor((ms % 3600000) / 60000)
+  let s = Math.floor((ms % 60000) / 1000)
+  return [h, m, s].map(v => v.toString().padStart(2, '0')).join(':')
+}
