@@ -13,20 +13,21 @@ let handler = async (m, { conn }) => {
     }
   })
 
-  let txt = `「 *• Searchs* 」\n\n`
-
-    txt = `${totalUsers || 0}`
   let totalUsers = uniqueUsers.size
+  let txt = ''
+
   let count = 1
   for (let [jid, conn] of uniqueUsers.entries()) {
     let number = jid.split('@')[0]
     let name = conn.user?.name || 'Sin nombre'
-    txt = `${totalUsers || 0}`
     txt += `*◦Nro →* ${count}\n*◦Nombre →* ${name}\n*◦Fono →* wa.me/${number}\n\n`
     count++
   }
 
-  await conn.reply(m.chat, txt, m, rcanal)
+  // Agrega el total al final
+  txt += `✿ *Total Bots* → *${totalUsers || 0}*`
+
+  await conn.reply(m.chat, txt.trim(), m, rcanal)
 }
 
 handler.command = ['listjadibot', 'bots']
