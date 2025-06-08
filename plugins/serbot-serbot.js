@@ -1,4 +1,13 @@
-import { DisconnectReason, useMultiFileAuthState, MessageRetryMap, fetchLatestBaileysVersion, Browsers, makeCacheableSignalKeyStore, jidNormalizedUser, PHONENUMBER_MCC } from '@whiskeysockets/baileys';
+import {
+  DisconnectReason,
+  useMultiFileAuthState,
+  MessageRetryMap,
+  fetchLatestBaileysVersion,
+  Browsers,
+  makeCacheableSignalKeyStore,
+  jidNormalizedUser,
+  PHONENUMBER_MCC
+} from '@whiskeysockets/baileys';
 import moment from 'moment-timezone';
 import NodeCache from 'node-cache';
 import readline from 'readline';
@@ -13,21 +22,14 @@ import { makeWASocket } from '../lib/simple.js';
 if (!(global.conns instanceof Array)) global.conns = [];
 
 let handler = async (m, { conn: star, args, usedPrefix, command, isOwner }) => {
-  // Obtener conexión principal
   let mainConn = await global.conn;
-
-  // Si hay conexiones hijas en global.conns, usar la primera como _conn
   let _conn = global.conns.length ? global.conns[0] : null;
-
-  // Determinar cuál será la conexión padre (main o sub-bot)
   let parent = args[0] && args[0] === 'plz' ? _conn : mainConn;
 
-  // Validación: si se pide 'plz' pero _conn no existe
   if (args[0] && args[0] === 'plz' && !_conn) {
     return m.reply('No hay sub-bots activos actualmente.');
   }
 
-  // Validación: solo permitir ejecutar en bot principal si no es 'plz'
   if (!args[0] || args[0] !== 'plz') {
     if (mainConn.user.jid !== parent?.user?.jid) {
       return m.reply(`Este comando solo puede ser usado en el bot principal! wa.me/${mainConn.user.jid.split`@`[0]}?text=${usedPrefix}code`);
@@ -166,11 +168,17 @@ let handler = async (m, { conn: star, args, usedPrefix, command, isOwner }) => {
 
     let handlerModule = await import('../handler.js');
     let creloadHandler = async function (restatConn) {
+      let Handler = {};
       try {
-        const Handler = await import(`../handler.js?update=${Date.now()}`).catch(console.error);
-        if (Object.keys(Handler || {}).length) handlerModule = Handler;
+        Handler = await import(`../handler.js?update=${Date.now()}`);
       } catch (e) {
-        console.error(e);
+        console.error("Error al recargar el handler:", e);
+        Handler = {}; // prevenir undefined
+      }
+
+      // ✅ VALIDACIÓN FIJA DEL ERROR
+      if (Handler && typeof Handler === 'object' && Object.keys(Handler).length) {
+        handlerModule = Handler;
       }
 
       if (restatConn) {
@@ -191,23 +199,23 @@ let handler = async (m, { conn: star, args, usedPrefix, command, isOwner }) => {
       conn.credsUpdate = saveCreds.bind(conn, true);
 
       conn.ev.on('messages.upsert', conn.handler);
-      conn.ev.on('connection.update', conn.connectionUpdate);
-      conn.ev.on('creds.update', conn.credsUpdate);
-      isInit = false;
-      return true;
-    };
-    creloadHandler(false);
-  }
-  serbot();
-};
+      conn.ev.on('connection.update', conn.connectionUpdate)
+conn.ev.on('creds.update', conn.credsUpdate)
+isInit = false
+return true
+}
+creloadHandler(false)
+}
+serbot()
 
-handler.help = ['code'];
-handler.tags = ['serbot'];
-handler.command = ['code', 'codebot'];
-handler.rowner = false;
+}
+handler.help = ['code']
+handler.tags = ['serbot']
+handler.command = ['code', 'codebot']
+handler.rowner = false
 
-export default handler;
+export default handler
 
 function sleep(ms) {
-  return new Promise(resolve => setTimeout(resolve, ms));
+    return new Promise(resolve => setTimeout(resolve, ms))
 }
