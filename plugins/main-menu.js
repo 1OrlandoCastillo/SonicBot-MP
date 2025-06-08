@@ -15,12 +15,12 @@ const defaultMenu = {
   before: `
 • ${namebot}
 
-*﹙ ✿ ﹚Channel Principal*
+*﹙ ✿ ﹚Channel Official*
 https://whatsapp.com/channel/0029VbAZUQ3002T9KZfx2O1M
-*﹙ ✿ ﹚* Akirax Host*
+
+*﹙ ✿ ﹚Akirax Host*
 https://home.akirax.net
 
-Welcome User
 %readmore`.trimStart(),
 
   header: '*`%category`*',
