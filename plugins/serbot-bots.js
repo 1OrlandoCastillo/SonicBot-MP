@@ -14,20 +14,16 @@ let handler = async (m, { conn }) => {
     }
   })
 
-  // Calcular tiempo activo
   let uptime = process.uptime() * 1000
   let formatUptime = clockString(uptime)
 
-  // Datos de propietario principal
-  let mainOwnerNumber = global.owner?.[0]?.[0] || 'No definido'
-  let mainOwnerName = global.owner?.[0]?.[1] || 'Bot Principal'
-
   let totalUsers = uniqueUsers.size
-  let txt = `*✿ BOT PRINCIPAL*\n\n`
-  txt += `*◦ Nombre →* ${mainOwnerName}\n`
-  txt += `*◦ Número →* wa.me/${mainOwnerNumber}\n\n`
-  txt += `*✿ Tiempo activo →* ${formatUptime}\n\n`
-  txt += `*✿ Total Bots →* *${totalUsers || 0}*`
+  let txt = `「 *• Subs - Bots* 」`
+  txt += `\n\n`
+  txt += `*◦ Bot Principal →* 1\n`
+  txt += `*◦ Nombre →* ${botname}\n`
+  txt += `*◦Tiempo Activa →* ${formatUptime}\n\n`
+  txt += `*◦Total Bots →* ${totalUsers || 0}`
 
   await conn.reply(m.chat, txt, m, rcanal)
 }
@@ -37,7 +33,6 @@ handler.help = ['bots']
 handler.tags = ['serbot']
 export default handler
 
-// Función para formatear uptime en hh:mm:ss
 function clockString(ms) {
   let h = Math.floor(ms / 3600000)
   let m = Math.floor((ms % 3600000) / 60000)
