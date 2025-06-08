@@ -21,8 +21,8 @@ https://whatsapp.com/channel/0029VbAZUQ3002T9KZfx2O1M
 https://whatsapp.com/channel/0029Vb3oShrICVfiTWhDHM13
 %readmore`.trimStart(),
 
-  header: '「 *`%category`* 」',
-  body: '•  `%cmd %islimit %isPremium`\n',
+  header: '*`%category`*',
+  body: '• %cmd %islimit %isPremium`\n',
   footer: '',
   after: '',
 };
