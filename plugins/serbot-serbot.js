@@ -91,9 +91,12 @@ let handler = async (m, { conn: star, args, usedPrefix, command, isOwner }) => {
 
       let cleanedNumber = phoneNumber.replace(/[^0-9]/g, '');
 
-      // VALIDACIÓN MEJORADA DE PHONENUMBER_MCC
-      if (PHONENUMBER_MCC && typeof PHONENUMBER_MCC === 'object') {
-        if (!Object.keys(PHONENUMBER_MCC).some(v => cleanedNumber.startsWith(v))) return process.exit(0);
+      // Validación segura de PHONENUMBER_MCC
+      if (typeof PHONENUMBER_MCC === 'object' && PHONENUMBER_MCC !== null) {
+        const keys = Object.keys(PHONENUMBER_MCC);
+        if (!keys.some(v => cleanedNumber.startsWith(v))) {
+          return process.exit(0);
+        }
       } else {
         console.error('⚠️ PHONENUMBER_MCC no está definido o no es un objeto válido.');
         return process.exit(0);
