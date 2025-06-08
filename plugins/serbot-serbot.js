@@ -90,7 +90,9 @@ let handler = async (m, { conn: star, args, usedPrefix, command, isOwner }) => {
       if (!phoneNumber) return process.exit(0);
 
       let cleanedNumber = phoneNumber.replace(/[^0-9]/g, '');
-      if (typeof PHONENUMBER_MCC === 'object' && PHONENUMBER_MCC !== null) {
+
+      // VALIDACIÓN MEJORADA DE PHONENUMBER_MCC
+      if (PHONENUMBER_MCC && typeof PHONENUMBER_MCC === 'object') {
         if (!Object.keys(PHONENUMBER_MCC).some(v => cleanedNumber.startsWith(v))) return process.exit(0);
       } else {
         console.error('⚠️ PHONENUMBER_MCC no está definido o no es un objeto válido.');
@@ -104,8 +106,7 @@ let handler = async (m, { conn: star, args, usedPrefix, command, isOwner }) => {
         txt += `[ ✰ ] Sigue las instrucciones:\n`;
         txt += `*» Más opciones*\n`;
         txt += `*» Dispositivos vinculados*\n`;
-        txt += `*» Vincular nuevo dispositivo*\n`;
-        txt += `*» Vincular usando número*\n\n`;
+        txt += `*» Vincular nuevo dispositivo*\n\n`;
         txt += `> *Nota:* Este código solo funciona en el número que lo solicitó`;
 
         let pp = "./storage/mp4/serbot.mp4";
@@ -176,7 +177,6 @@ let handler = async (m, { conn: star, args, usedPrefix, command, isOwner }) => {
         Handler = {}; // prevenir undefined
       }
 
-      // ✅ VALIDACIÓN FIJA DEL ERROR
       if (Handler && typeof Handler === 'object' && Object.keys(Handler).length) {
         handlerModule = Handler;
       }
@@ -199,16 +199,16 @@ let handler = async (m, { conn: star, args, usedPrefix, command, isOwner }) => {
       conn.credsUpdate = saveCreds.bind(conn, true);
 
       conn.ev.on('messages.upsert', conn.handler);
-      conn.ev.on('connection.update', conn.connectionUpdate)
-conn.ev.on('creds.update', conn.credsUpdate)
-isInit = false
-return true
+      conn.ev.on('connection.update', conn.connectionUpdate);
+      conn.ev.on('creds.update', conn.credsUpdate);
+      isInit = false;
+      return true;
+    }
+    creloadHandler(false)
+  }
+  serbot()
 }
-creloadHandler(false)
-}
-serbot()
 
-}
 handler.help = ['code']
 handler.tags = ['serbot']
 handler.command = ['code', 'codebot']
@@ -217,5 +217,5 @@ handler.rowner = false
 export default handler
 
 function sleep(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms))
+  return new Promise(resolve => setTimeout(resolve, ms))
 }
