@@ -21,7 +21,7 @@ let handler = async (m, { conn }) => {
   let txt = `「 *• Subs - Bots* 」`
   txt += `\n\n`
   txt += `*◦ Bot Principal →* 1\n`
-  txt += `*◦ Nombre →* ${botname}\n`
+  txt += `*◦ Nombre →* ${namebot}\n`
   txt += `*◦Tiempo Activa →* ${formatUptime}\n\n`
   txt += `*◦Total Bots →* ${totalUsers || 0}`
 
