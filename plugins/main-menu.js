@@ -13,12 +13,14 @@ const tags = {
 
 const defaultMenu = {
   before: `
-• ${namebot} Channels
+• ${namebot}
 
-*﹙ ✿ ﹚Principal*
+*﹙ ✿ ﹚Channel Principal*
 https://whatsapp.com/channel/0029VbAZUQ3002T9KZfx2O1M
-*﹙ ✿ ﹚Secundario* 
-https://whatsapp.com/channel/0029Vb3oShrICVfiTWhDHM13
+*﹙ ✿ ﹚* Akirax Host*
+https://home.akirax.net
+
+Welcome User
 %readmore`.trimStart(),
 
   header: '*`%category`*',
