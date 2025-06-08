@@ -22,7 +22,7 @@ https://whatsapp.com/channel/0029Vb3oShrICVfiTWhDHM13
 %readmore`.trimStart(),
 
   header: '*`%category`*',
-  body: ' ⃘ᴥ %cmd %islimit %isPremium\n',
+  body: '*◦→* %cmd %islimit %isPremium\n',
   footer: '',
   after: '',
 };
