@@ -14,8 +14,9 @@ let handler = async (m, { conn }) => {
   })
 
   let totalUsers = uniqueUsers.size
-  let txt = `✿ *Total Bots* → *${totalUsers || 0}*\n\n`
+  let txt = `「 *• Searchs* 」\n\n`
 
+    txt = `${totalUsers || 0}`
   let count = 1
   for (let [jid, conn] of uniqueUsers.entries()) {
     let number = jid.split('@')[0]
