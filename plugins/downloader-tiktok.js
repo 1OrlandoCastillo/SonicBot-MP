@@ -1,52 +1,51 @@
-import axios from 'axios'
+import fetch from 'node-fetch'
 
-let handler = async (m, { conn, text }) => {
-  if (!text) {
-    return conn.reply(m.chat, `✿ Ingresa el enlace de un video de *TikTok* que deseas descargar.`, m)
+let handler = async (m, { conn, args, usedPrefix, command }) => {
+  if (!args || !args[0]) {
+    return conn.reply(
+      m.chat,
+      '🚩 Ingresa un enlace del vídeo de TikTok junto al comando.\n\n`Ejemplo:`\n' + `> *${usedPrefix + command}* https://vm.tiktok.com/ZMrFCX5jf/`, m, rcanal)
+  }
+
+  if (!args[0].match(/tiktok/gi)) {
+    return conn.reply(m.chat, `Verifica que el link sea de TikTok`, m, rcanal).then(_ => m.react('✖️'))
   }
 
   await m.react('🕓')
 
   try {
-    const url = `https://api.sylphy.xyz/download/tiktok?url=${encodeURIComponent(text)}&apikey=sylph-c57e298ea6`
-    const { data } = await axios.get(url)
+    // API externa
+    const apiURL = `https://api.sylphy.xyz/download/tiktok?url=${encodeURIComponent(args[0])}` // Cambia por tu endpoint real
+    let res = await fetch(apiURL)
+    if (!res.ok) throw new Error('Error en la API')
 
-    if (!data || data.status !== true) {
-      await m.react('✖️')
-      return conn.reply(m.chat, '✖️ No se pudo obtener el contenido. Verifica que el enlace sea válido.', m)
-    }
+    let data = await res.json()
+    let { title, author, duration, views, likes, comment, share, published, downloads, dl_url } = data
 
-    const info = data.data
-    const dl = data.dl
-    const type = data.type
+    let txt = '`乂  T I K T O K  -  D O W N L O A D`\n\n'
+    txt += `	✩  *Título* : ${title}\n`
+    txt += `	✩  *Autor* : ${author}\n`
+    txt += `	✩  *Duración* : ${duration} segundos\n`
+    txt += `	✩  *Vistas* : ${views}\n`
+    txt += `	✩  *Likes* : ${likes}\n`
+    txt += `	✩  *Comentarios* : ${comment}\n`
+    txt += `	✩  *Compartidos* : ${share}\n`
+    txt += `	✩  *Publicado* : ${published}\n`
+    txt += `	✩  *Descargas* : ${downloads}\n\n`
+    txt += `> 🚩 *${textbot}*`
 
-    let caption = `*✅ TIKTOK DOWNLOADER*\n\n`
-    caption += `*• Autor:* ${info.author || 'Desconocido'}\n`
-    caption += `*• Título:* ${info.title || 'Sin título'}\n`
-    caption += `*• Región:* ${info.region || 'Desconocida'}\n`
-    caption += `*• Duración:* ${info.duration}s\n`
-
-    if (type === 'video') {
-      await conn.sendFile(m.chat, dl.url, 'tiktok.mp4', caption, m)
-    } else if (type === 'image') {
-      await conn.reply(m.chat, caption + '\n*• Tipo:* Imagen\n\nEnviando imágenes...', m)
-      for (let i = 0; i < dl.url.length; i++) {
-        await conn.sendFile(m.chat, dl.url[i], `img${i + 1}.jpg`, '', m)
-      }
-    } else {
-      await conn.reply(m.chat, '⚠️ Tipo de contenido no soportado.', m)
-    }
-
+    await conn.sendFile(m.chat, dl_url, 'tiktok.mp4', txt, m, null, rcanal)
     await m.react('✅')
-  } catch (err) {
-    console.error(err)
+  } catch (e) {
+    console.error(e)
     await m.react('✖️')
-    conn.reply(m.chat, '⚠️ Ocurrió un error al intentar descargar el contenido.', m)
+    conn.reply(m.chat, '❌ Ocurrió un error al procesar el video. Intenta más tarde o revisa el link.', m, rcanal)
   }
 }
 
-handler.help = ['tiktokdl *<enlace>*']
+handler.help = ['tiktok *<url tt>*']
 handler.tags = ['downloader']
-handler.command = ['tiktokdl', 'tiktokdescargar', 'tt']
+handler.command = /^(tiktok|ttdl|tiktokdl|tiktoknowm)$/i
+handler.register = true
 
 export default handler
