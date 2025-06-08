@@ -1,4 +1,4 @@
-.const {
+const {
   DisconnectReason,
   useMultiFileAuthState,
   MessageRetryMap,
