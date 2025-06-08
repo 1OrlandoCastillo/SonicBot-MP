@@ -8,7 +8,7 @@ let handler = async (m, { conn, usedPrefix, command, text }) => {
   await m.react('🕓')
 
   try {
-    const { data } = await axios.get(`https://api.dorratz.com/v2/tiktok-dl?url=${encodeURIComponent(text)}`)
+    const { data } = await axios.get(`https://api.sylphy.xyz/download/tiktok?url=${encodeURIComponent(text)}`)
 
     if (!data || !data.result || !data.result.video) {
       await m.react('✖️')
