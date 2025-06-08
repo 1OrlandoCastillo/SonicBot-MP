@@ -83,7 +83,7 @@ let handler = async (m, { conn: star, args, usedPrefix, command, isOwner }) => {
       return new Promise(resolve => setTimeout(resolve, ms));
     }
 
-    let handlerRef = await import('../handler.js');
+    let handlerRef = await import('../handler.js').then(mod => mod?.default || mod).catch(console.error);
 
     async function reconnectWithBackoff() {
       reconnectAttempts++;
@@ -210,7 +210,7 @@ let handler = async (m, { conn: star, args, usedPrefix, command, isOwner }) => {
       try {
         const Handler = await import(`../handler.js?update=${Date.now()}`).catch(console.error);
         if (Object.keys(Handler || {}).length) handlerRef = Handler;
-       } catch (e) {
+      } catch (e) {
         console.error(e);
       }
       if (restatConn) {
