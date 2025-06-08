@@ -18,22 +18,18 @@ let handler = async (m, { conn }) => {
   let uptime = process.uptime() * 1000
   let formatUptime = clockString(uptime)
 
-  // Datos del propietario principal
+  // Datos de propietario principal
   let mainOwnerNumber = global.owner?.[0]?.[0] || 'No definido'
-  let mainOwnerName = global.owner?.[0]?.[1] || 'Desconocido'
-
-  // Nombre del bot actual (asegúrate de que esté definido en algún lugar)
-  let currentBotName = global.botName || 'Nombre del Bot'
+  let mainOwnerName = global.owner?.[0]?.[1] || 'Bot Principal'
 
   let totalUsers = uniqueUsers.size
-  let txt = `*✿ BOT PRINCIPAL*\n`
-  txt += `*◦ Nombre del Bot Principal →* ${mainOwnerName}\n`
-  txt += `*◦ Número del Bot Principal →* wa.me/${mainOwnerNumber}\n`
-  txt += `*◦ Nombre del Bot Actual →* ${currentBotName}\n\n`
+  let txt = `*✿ BOT PRINCIPAL*\n\n`
+  txt += `*◦ Nombre →* ${mainOwnerName}\n`
+  txt += `*◦ Número →* wa.me/${mainOwnerNumber}\n\n`
   txt += `*✿ Tiempo activo →* ${formatUptime}\n\n`
-  txt += `*✿ Total Bots Conectados →* *${totalUsers || 0}*`
+  txt += `*✿ Total Bots →* *${totalUsers || 0}*`
 
-  await conn.reply(m.chat, txt, m)
+  await conn.reply(m.chat, txt, m, rcanal)
 }
 
 handler.command = ['listjadibot', 'bots']
