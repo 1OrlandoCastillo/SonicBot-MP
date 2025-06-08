@@ -14,7 +14,7 @@ let handler = async (m, { conn }) => {
   })
 
   let totalUsers = uniqueUsers.size
-  let txt = ''
+  let txt = hola\n\n
 
   let count = 1
   for (let [jid, conn] of uniqueUsers.entries()) {
