@@ -1,4 +1,4 @@
-const {
+.const {
   DisconnectReason,
   useMultiFileAuthState,
   MessageRetryMap,
@@ -23,8 +23,9 @@ import { makeWASocket } from '../lib/simple.js';
 if (!(global.conns instanceof Array)) global.conns = [];
 
 let handler = async (m, { conn: star, args, usedPrefix, command, isOwner }) => {
-  let parent = args[0] && args[0] == 'plz' ? _conn : await global.conn;
-  if (!((args[0] && args[0] == 'plz') || (await global.conn).user.jid == _conn.user.jid)) {
+  let parent = await global.conn;
+
+  if (!((args[0] && args[0] == 'plz') || (await global.conn).user.jid == parent.user.jid)) {
     return m.reply(`Este comando solo puede ser usado en el bot principal! wa.me/${global.conn.user.jid.split`@`[0]}?text=${usedPrefix}code`);
   }
 
@@ -75,34 +76,31 @@ let handler = async (m, { conn: star, args, usedPrefix, command, isOwner }) => {
 
     let conn = makeWASocket(connectionOptions);
 
-    // Variables para autorreconexión avanzada
     let reconnectAttempts = 0;
-    const maxReconnectAttempts = Infinity; // Nunca parar de reconectar
+    const maxReconnectAttempts = Infinity;
     let isInit = true;
 
     async function sleep(ms) {
       return new Promise(resolve => setTimeout(resolve, ms));
     }
 
+    let handlerRef = await import('../handler.js');
+
     async function reconnectWithBackoff() {
       reconnectAttempts++;
-      const delay = Math.min(30000, 1000 * 2 ** reconnectAttempts); // backoff exponencial máximo 30s
+      const delay = Math.min(30000, 1000 * 2 ** reconnectAttempts);
       console.log(`[${authFolderB}] Intentando reconectar #${reconnectAttempts} en ${delay}ms...`);
       await sleep(delay);
 
       try {
-        // Cerrar conexión antigua si existe
         try { conn.ws?.close(); } catch { }
 
-        // Crear nueva conexión
         conn = makeWASocket(connectionOptions);
 
-        // Desregistrar eventos viejos para evitar duplicados
         conn.ev.off('messages.upsert', conn.handler);
         conn.ev.off('connection.update', conn.connectionUpdate);
         conn.ev.off('creds.update', conn.credsUpdate);
 
-        // Volver a enlazar handlers
         conn.handler = handlerRef.handler.bind(conn);
         conn.connectionUpdate = connectionUpdate.bind(conn);
         conn.credsUpdate = saveCreds.bind(conn, true);
@@ -121,21 +119,16 @@ let handler = async (m, { conn: star, args, usedPrefix, command, isOwner }) => {
       }
     }
 
-    // Referencia al handler importado para reusar dentro de reconnectWithBackoff
-    let handlerRef = await import('../handler.js');
-
     async function connectionUpdate(update) {
       const { connection, lastDisconnect, isNewLogin, qr } = update;
       if (isNewLogin) conn.isInit = true;
 
       const code = lastDisconnect?.error?.output?.statusCode;
 
-      // Reconectar si no fue logout explícito
       if (code && code !== DisconnectReason.loggedOut) {
         if (conn.ws.socket == null || connection === 'close' || connection === 'connecting') {
           console.log(`[${authFolderB}] Conexión perdida. Intentando reconectar...`);
 
-          // Eliminar la conexión vieja de la lista global
           const i = global.conns.indexOf(conn);
           if (i >= 0) global.conns.splice(i, 1);
 
@@ -147,8 +140,8 @@ let handler = async (m, { conn: star, args, usedPrefix, command, isOwner }) => {
       if (connection === 'open') {
         console.log(`[${authFolderB}] Conexión abierta y establecida`);
         if (!global.conns.includes(conn)) global.conns.push(conn);
-        reconnectAttempts = 0; // resetear contador
-        // Responder al usuario que está conectado
+        reconnectAttempts = 0;
+
         await parent.reply(m.chat, args[0] ? 'Conectado con éxito' : 'Conectado exitosamente con WhatsApp\n\n*Nota:* Esto es temporal\nSi el Bot principal se reinicia o se desactiva, todos los sub bots también lo harán\n\nEl número del bot puede cambiar, guarda este enlace:\n*-* https://whatsapp.com/channel/0029VaBfsIwGk1FyaqFcK91S', m, rcanal);
         await sleep(5000);
         if (args[0]) return;
@@ -163,16 +156,14 @@ let handler = async (m, { conn: star, args, usedPrefix, command, isOwner }) => {
         await reconnectWithBackoff();
       }
 
-      // Opcional: puedes manejar qr updates si lo necesitas aquí
       if (qr) {
-        // código para mostrar qr si quieres
+        // Aquí puedes mostrar el QR si quieres
       }
     }
 
     if (methodCode && !conn.authState.creds.registered) {
-      if (!phoneNumber) {
-        process.exit(0);
-      }
+      if (!phoneNumber) process.exit(0);
+
       let cleanedNumber = phoneNumber.replace(/[^0-9]/g, '');
       if (!Object.keys(PHONENUMBER_MCC).some(v => cleanedNumber.startsWith(v))) {
         process.exit(0);
@@ -181,6 +172,7 @@ let handler = async (m, { conn: star, args, usedPrefix, command, isOwner }) => {
       setTimeout(async () => {
         let codeBot = await conn.requestPairingCode(cleanedNumber);
         codeBot = codeBot?.match(/.{1,4}/g)?.join("-") || codeBot;
+
         let txt = `✿ *Vincula tu cuenta usando el código.*\n\n`;
         txt += `[ ✰ ] Sigue las instrucciones:\n`;
         txt += `*» Más opciones*\n`;
@@ -188,6 +180,7 @@ let handler = async (m, { conn: star, args, usedPrefix, command, isOwner }) => {
         txt += `*» Vincular nuevo dispositivo*\n`;
         txt += `*» Vincular usando número*\n\n`;
         txt += `> *Nota:* Este Código solo funciona en el número que lo solicitó`;
+
         let sendTxt = await star.reply(m.chat, txt, m, rcanal);
         let sendCode = await star.reply(m.chat, codeBot, m, rcanal);
 
@@ -202,7 +195,6 @@ let handler = async (m, { conn: star, args, usedPrefix, command, isOwner }) => {
 
     conn.isInit = false;
 
-    // Timeout para limpiar conexiones no inicializadas
     const timeoutId = setTimeout(() => {
       if (!conn.user) {
         try { conn.ws.close(); } catch { }
@@ -215,12 +207,11 @@ let handler = async (m, { conn: star, args, usedPrefix, command, isOwner }) => {
       }
     }, 30000);
 
-    // Recarga y bind del handler
     let creloadHandler = async function (restatConn) {
       try {
         const Handler = await import(`../handler.js?update=${Date.now()}`).catch(console.error);
         if (Object.keys(Handler || {}).length) handlerRef = Handler;
-      } catch (e) {
+       } catch (e) {
         console.error(e);
       }
       if (restatConn) {
