@@ -1,33 +1,23 @@
-let handler = async (m, { conn, isAdmin, isBotAdmin, groupMetadata }) => {
-  if (!m.isGroup) return;
-  if (!isBotAdmin) return;
+const linkRegex = /chat.whatsapp.com\/(?:invite\/)?([0-9A-Za-z]{20,24})/i
 
-  const regex = /(https?:\/\/chat\.whatsapp\.com\/[A-Za-z0-9]+)/gi;
+export async function before(m, {conn, isAdmin, isBotAdmin }) {
+    if (m.isBaileys && m.fromMe)
+        return !0
+    if (!m.isGroup) return !1
+    let chat = global.db.data.chats[m.chat]
+    let bot = global.db.data.settings[this.user.jid] || {}
+    const isGroupLink = linkRegex.exec(m.text)
 
-  if (regex.test(m.text)) {
-    const sender = m.sender;
-    const participants = groupMetadata.participants || [];
-
-    const isSenderAdmin = participants.find(p => p.id === sender)?.admin;
-
-    if (!isSenderAdmin) {
-      await conn.reply(m.chat, `🚫 *Enlaces de grupo no están permitidos.*`, m);
-      await conn.sendMessage(m.chat, {
-        delete: m.key
-      });
-
-      try {
-        await conn.groupParticipantsUpdate(m.chat, [sender], 'remove');
-      } catch (e) {
-        await conn.reply(m.chat, `❗ No se pudo expulsar a @${sender.split('@')[0]}`, m, {
-          mentions: [sender]
-        });
-      }
+    if (chat.antiLink && isGroupLink && !isAdmin) {
+        if (isBotAdmin) {
+            const linkThisGroup = `https://chat.whatsapp.com/${await this.groupInviteCode(m.chat)}`
+            if (m.text.includes(linkThisGroup)) return !0
+        }
+        await conn.reply(m.chat, `🚩 No permitimos enlaces de otros grupos, lo siento *@${m.sender.split('@')[0]}* serás expulsado del grupo ${isBotAdmin ? '' : '\n\nNo soy admin así que no te puedo expulsar :"v'}`, null, { mentions: [m.sender] } )
+        if (isBotAdmin && chat.antiLink) {
+        	await conn.sendMessage(m.chat, { delete: m.key })
+            await conn.groupParticipantsUpdate(m.chat, [m.sender], 'remove')
+        } else if (!chat.antiLink) return //m.reply('')
     }
-  }
-};
-
-handler.group = true;
-handler.botAdmin = true;
-
-export default handler;
+    return !0
+}
