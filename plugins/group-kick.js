@@ -1,7 +1,7 @@
 let handler = async (m, rcanal) => {
     let { conn, participants } = rcanal
 
-    let kickMsg = `+ Menciona al usuario que deseas eliminar.`
+    let kickMsg = `🚩 Menciona al usuario que deseas eliminar.`
 
     if (!m.mentionedJid?.[0] && !m.quoted)
         return m.reply(kickMsg, m.chat, { mentions: conn.parseMention(kickMsg) }, m, rcanal)
@@ -10,12 +10,13 @@ let handler = async (m, rcanal) => {
 
     // Verifica si el usuario es parte del grupo
     let isParticipant = participants.some(p => p.id === user)
-    if (!isParticipant) return m.reply('❌ El usuario no está en el grupo.', m.chat, {}, m, rcanal)
+    if (!isParticipant)
+        return m.reply('❌ El usuario no está en el grupo.', m.chat, {}, m, rcanal)
 
     // Intenta eliminar al usuario
     await conn.groupParticipantsUpdate(m.chat, [user], 'remove')
 
-    // Confirmaciones
+    // Confirmaciones desde el canal
     m.reply(`🚩 Usuario eliminado del grupo.`, m.chat, {}, m, rcanal)
     m.reply(`Has sido eliminado del grupo.`, user, {}, m, rcanal)
 }
