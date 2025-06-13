@@ -1,7 +1,7 @@
 let handler = async (m, { conn, participants }) => {
     
     if (!m.mentionedJid?.[0] && !m.quoted) {
-    return conn.reply(m.chat, `🚩 Menciona al usuario que deseas eliminar.`, m, rcanal)
+    return conn.reply(m.chat, `+ Menciona al usuario que deseas eliminar.`, m, rcanal)
 
     let user = m.mentionedJid?.[0] ? m.mentionedJid[0] : m.quoted.sender
 
