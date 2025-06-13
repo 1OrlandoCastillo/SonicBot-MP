@@ -4,7 +4,7 @@ let handler = async (m, { conn, participants }) => {
 
     // Verifica si se ha mencionado a un usuario o se ha citado un mensaje
     if (!m.mentionedJid[0] && !m.quoted) {
-        return m.reply(kickMsg, m.chat, { mentions: conn.parseMention(kickMsg) })
+        return m.reply(m.chat, kickMsg, { mentions: conn.parseMention(kickMsg), m, rcanal)
     }
 
     // Obtiene el usuario a eliminar
