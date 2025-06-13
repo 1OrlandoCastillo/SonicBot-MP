@@ -1,9 +1,9 @@
 let handler = async (m, { conn, participants }) => {
 
-let kickMsg = `🚩 Menciona al usuario que deseas eliminar.`
+let kickMsg = `+ Menciona al usuario que deseas eliminar.`, m, rcanal)
 
 if (!m.mentionedJid[0] && !m.quoted) 
-    return m.reply(m.chat, kickMsg, m, rcanal, { mentions: conn.parseMention(kickMsg) })
+    return m.reply(kickMsg, m.chat, { mentions: conn.parseMention(kickMsg) })
 
 let user = m.mentionedJid[0] ? m.mentionedJid[0] : m.quoted.sender
 await conn.groupParticipantsUpdate(m.chat, [user], 'remove')
