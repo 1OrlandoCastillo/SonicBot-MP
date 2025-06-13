@@ -1,7 +1,7 @@
 let handler = async (m, rcanal) => {
     let { conn, participants } = rcanal
 
-    let kickMsg = `🚩 Menciona al usuario que deseas eliminar.`
+    let kickMsg = `+ Menciona al usuario que deseas eliminar.`
 
     if (!m.mentionedJid?.[0] && !m.quoted)
         return m.reply(kickMsg, m.chat, { mentions: conn.parseMention(kickMsg) }, m, rcanal)
