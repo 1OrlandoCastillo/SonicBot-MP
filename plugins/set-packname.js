@@ -3,7 +3,7 @@ let handler = async (m, { args, usedPrefix, command }) => {
     return m.reply(`✦ Ingresa el nombre del paquete.\n\n*Ejemplo:* \n${usedPrefix + command} Mis Stickers`)
   }
   
-  global.db.data.users[m.sender].namebot = args.join(' ')
+  global.db.data.users[m.sender].packname = args.join(' ')
   m.reply(`✅ Packname actualizado a:\n*${args.join(' ')}*`)
 }
 
