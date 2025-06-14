@@ -24,7 +24,7 @@ let handler = async (m, { conn, args }) => {
       buffer = await res.buffer()
 
     } else {
-      return conn.reply(m.chat, '𖧏 Hola, debes responder a una *Imagen, Sticker, Video, Webm, Tgs* para completar lo que Buscas.', m, rcanal)
+      return conn.reply(m.chat, '𖧏 Hola, debes responder a una *Imagen, Sticker, Video, Webm, Tgs* para completar.', m, rcanal)
     }
 
     await m.react('🕓')
@@ -40,11 +40,8 @@ let handler = async (m, { conn, args }) => {
 
     await conn.sendFile(m.chat, finalSticker, 'sticker.webp', '', m)
     await m.react('✅')
-    
   } catch (e) {
     await m.react('✖️')
-    console.error(e)
-    conn.reply(m.chat, '[ ✰ ] Error al convertir el sticker.', m)
   }
 }
 
