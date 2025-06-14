@@ -3,9 +3,6 @@ import { join } from 'path';
 import fetch from 'node-fetch';
 import { xpRange } from '../lib/levelling.js';
 
-const user = global.db.data.users[m.sender] || {}
-    const namebot = user.namebot || global.namebot
-
 const tags = {
   serbot: '• Subs - Bots',
   owner: '• Owner',
@@ -34,6 +31,8 @@ https://home.akirax.net
 
 const handler = async (m, { conn, usedPrefix: _p, __dirname }) => {
   try {
+      const user = global.db.data.users[m.sender] || {};
+    const namebot = user.namebot || global.namebot;
     // Obtener información del paquete
     const _package = JSON.parse(
       await fs.readFile(join(__dirname, '../package.json')).catch(() => '{}')
