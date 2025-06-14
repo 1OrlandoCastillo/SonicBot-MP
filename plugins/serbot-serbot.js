@@ -26,6 +26,9 @@ const yukiJBOptions = {}
 if (global.conns instanceof Array) console.log()
 else global.conns = []
 let handler = async (m, { conn, args, usedPrefix, command, isOwner }) => {
+  if (!m.fromMe && !isOwner) {
+    return conn.reply(m.chat, 'Solo los subbots o el owner pueden usar este comando.', m)
+  }
 
 let time = global.db.data.users[m.sender].Subs + 120000
 
