@@ -10,6 +10,7 @@ const namebot = user.namebot || global.namebot;
 
     const tags = {
       serbot: '• Subs - Bots',
+      set: '• Sets - Bots',
       owner: '• Owner',
       group: '• Group',
       search: '• Searchs',
