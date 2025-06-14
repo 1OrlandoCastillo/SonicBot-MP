@@ -24,7 +24,7 @@ let handler = async (m, { conn, args }) => {
       buffer = await res.buffer()
 
     } else {
-      return conn.reply(m.chat, '𖧏 Hola, debes responder a una *Imagen, Sticker, Video, Webm, Tgs* para completar.', m, rcanal)
+      return conn.reply(m.chat, '𖧏 Hola, debes responder a una *Imagen, Sticker, Video, Webm, Tgs* para Completar.', m, rcanal)
     }
 
     await m.react('🕓')
