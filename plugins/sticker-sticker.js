@@ -14,7 +14,7 @@ let handler = async (m, { conn, args }) => {
     // Si responde a archivo multimedia
     if (/image|video|webp|tgs|webm/g.test(mime) && q.download) {
       if (/video|webm/.test(mime) && (q.msg || q).seconds > 11)
-        return conn.reply(m.chat, '[ ✰ ] El sticker animado no puede durar más de *10 segundos*', m, rcanal)
+        return conn.reply(m.chat, '𖧏 Hola, este sticker animado no puede durar más de *10* Segundos.', m, rcanal)
 
       buffer = await q.download()
 
@@ -24,7 +24,7 @@ let handler = async (m, { conn, args }) => {
       buffer = await res.buffer()
 
     } else {
-      return conn.reply(m.chat, '[ ✰ ] Responde a una *imagen, sticker, video, .webm o .tgs*.', m, rcanal)
+      return conn.reply(m.chat, '𖧏 Hola, debes responder a una *Imagen, Sticker, Video, Webm, Tgs* para completar lo que Buscas.', m, rcanal)
     }
 
     await m.react('🕓')
