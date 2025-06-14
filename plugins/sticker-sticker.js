@@ -31,12 +31,12 @@ let handler = async (m, { conn, args }) => {
 
     // Obtiene packname personalizado si existe
     const user = global.db.data.users[m.sender] || {}
-    const namebot = user.namebot || global.namebot
+    const packname = user.packname || global.packname
     const author = user.author || global.author
 
     // Convierte y agrega EXIF personalizado
     const stickerData = await toWebp(buffer)
-    const finalSticker = await addExif(stickerData, namebot, author)
+    const finalSticker = await addExif(stickerData, packname, author)
 
     await conn.sendFile(m.chat, finalSticker, 'sticker.webp', '', m)
     await m.react('✅')
