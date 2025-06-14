@@ -1,6 +1,6 @@
 let handler = async (m, { args, usedPrefix, command }) => {
   if (!args[0]) {
-    return conn.reply(m.chat,`𖧏 Hola, necesito que me proporciones el nombre que del *Paquete* que deseas Poner.`, m, rcanal)
+    return conn.reply(m.chat,`𖧏 Hola, necesito que me proporciones el nombre del *Paquete* que deseas Poner.`, m, rcanal)
   }
   
   global.db.data.users[m.sender].packname = args.join(' ')
