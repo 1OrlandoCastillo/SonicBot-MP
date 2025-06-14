@@ -3,6 +3,9 @@ import { join } from 'path';
 import fetch from 'node-fetch';
 import { xpRange } from '../lib/levelling.js';
 
+const user = global.db.data.users[m.sender] || {}
+    const namebot = user.namebot || global.namebot
+
 const tags = {
   serbot: '• Subs - Bots',
   owner: '• Owner',
