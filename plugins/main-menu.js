@@ -5,7 +5,6 @@ import { xpRange } from '../lib/levelling.js'
 
 const handler = async (m, { conn, usedPrefix: _p, __dirname }) => {
   try {
-    // Cargar nombre del bot personalizado por subbot
 const namebot = user.namebot || global.namebot;
 
     const tags = {
