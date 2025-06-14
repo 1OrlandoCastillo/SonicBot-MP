@@ -1,15 +1,13 @@
 let handler = async (m, { args, usedPrefix, command }) => {
-  if (!global.db.data.subbots?.[m.sender]) 
-    return m.reply('🚫 Este comando es solo para sub-bots conectados.')
-
-  if (!args[0]) 
-    return m.reply(`✦ Escribe el nombre del paquete.\nEj: ${usedPrefix + command} Mis Stickers`)
-
+  if (!args[0]) {
+    return conn.reply(m.chat,`𖧏 Hola, necesito que me proporciones el nombre que del *Paquete* que deseas Poner.`, m, rcanal)
+  }
+  
   global.db.data.users[m.sender].packname = args.join(' ')
-  m.reply(`✅ Packname actualizado a:\n*${args.join(' ')}*`)
+  return conn.reply(m.chat,`𖧏 Hola, el *Packname* que proporcionastes se cambio a *${args.join(' ')}* Correctamente.`, m, rcanal)
 }
 
-handler.help = ['setpackname <texto>']
+handler.help = ['setpackname']
 handler.tags = ['set']
 handler.command = ['setpackname']
 
