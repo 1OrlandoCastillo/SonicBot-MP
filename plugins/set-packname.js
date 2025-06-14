@@ -4,7 +4,7 @@ let handler = async (m, { args, usedPrefix, command }) => {
   }
   
   global.db.data.users[m.sender].packname = args.join(' ')
-  return conn.reply(m.chat,`𖧏 Hola, el *Packname* que proporcionastes se cambio a *${args.join(' ')}* Correctamente.`, m, rcanal)
+  return conn.reply(m.chat,`𖧏 Hola, el nombre del packname que proporcionastes se cambio a *${args.join(' ')}* Correctamente.`, m, rcanal)
 }
 
 handler.help = ['setpackname']
