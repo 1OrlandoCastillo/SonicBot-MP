@@ -18,18 +18,18 @@ let handler = async (m, { conn, args }) => {
 
       buffer = await q.download()
 
-    // Si es una URL
+    // Si es una URL válida
     } else if (args[0] && isUrl(args[0])) {
       const res = await fetch(args[0])
       buffer = await res.buffer()
 
     } else {
-      return conn.reply(m.chat, '𖧏 Hola, debes responder a una *Imagen, Sticker, Video, Webm, Tgs* para Completar.', m, rcanal)
+      return conn.reply(m.chat, '𖧏 Hola, debes responder a una *Imagen, Sticker, Video, Webm o Tgs* para Convertirlo.', m, rcanal)
     }
 
     await m.react('🕓')
 
-    // Obtiene packname personalizado si existe
+    // ➤ PASO 3: obtener packname/author personalizado por usuario
     const user = global.db.data.users[m.sender] || {}
     const packname = user.packname || global.packname
     const author = user.author || global.author
@@ -93,7 +93,5 @@ async function toWebp(buffer, opts = {}) {
 }
 
 function isUrl(text) {
-  return text.match(
-    new RegExp(/https?:\/\/\S+\.(jpg|jpeg|png|gif|webp)/, 'gi')
-  )
+  return /^https?:\/\/\S+\.(jpg|jpeg|png|gif|webp)$/i.test(text)
 }
