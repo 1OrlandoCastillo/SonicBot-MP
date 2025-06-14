@@ -20,6 +20,7 @@ global.sessions = 'Sessions'
 global.jadi = 'JadiBots' 
 global.yukiJadibts = true
 
+global.packname = 'LOVELLOUD'
 global.namebot = 'Anya Forger'
 global.author = 'Samsit'
 
