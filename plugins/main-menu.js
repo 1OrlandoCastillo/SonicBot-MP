@@ -8,6 +8,7 @@ const tags = {
   owner: '• Owner',
   group: '• Group',
   search: '• Searchs',
+  sticker: '• Stickers',
 };
 
 const defaultMenu = {
