@@ -1,10 +1,10 @@
 let handler = async (m, { args, usedPrefix, command }) => {
   if (!args[0]) {
-    return m.reply(`✦ Ingresa el nombre del paquete.\n\n*Ejemplo:* \n${usedPrefix + command} Mis Stickers`)
+    return m.reply(`𖧏 Hola, debes ingresar el nombre del *Paquete* que deseas Poner.`)
   }
   
   global.db.data.users[m.sender].packname = args.join(' ')
-  m.reply(`✅ Packname actualizado a:\n*${args.join(' ')}*`)
+  m.reply(`𖧏 Hola, el *Packname* se actualizado a *${args.join(' ')}* Correctamente.`)
 }
 
 handler.help = ['setpackname']
