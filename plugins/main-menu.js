@@ -5,16 +5,24 @@ import { xpRange } from '../lib/levelling.js'
 
 const handler = async (m, { conn, usedPrefix: _p, __dirname }) => {
   try {
-let namebot = global.namebot;
-let subbotOwner = '';
+import { promises as fs } from 'fs'
+import path from 'path'
 
-global.subBots = global.subBots || {};
-const jid = conn.user.jid;
+let namebot = global.namebot
+let subbotOwner = ''
 
-if (global.subBots[jid]) {
-  namebot = global.subBots[jid].namebot || namebot;
-  const owner = global.subBots[jid].owner;
-  subbotOwner = '@' + owner.split('@')[0];
+try {
+  const sessionFolder = conn?.auth?.creds?.me?.id?.split(':')[0]
+  if (sessionFolder) {
+    const configPath = path.join(`./${jadi}/${sessionFolder}`, 'config.json')
+    const exists = await fs.stat(configPath).then(() => true).catch(() => false)
+    if (exists) {
+      const config = JSON.parse(await fs.readFile(configPath))
+      if (config.botname) namebot = config.botname
+    }
+  }
+} catch (e) {
+  console.log('❌ Error leyendo nombre del sub-bot personalizado:', e)
 }
 
     const tags = {
