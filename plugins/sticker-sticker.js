@@ -29,11 +29,6 @@ let handler = async (m, { conn, args }) => {
 
     await m.react('🕓')
 
-    // ➤ PASO 3: obtener packname/author personalizado por usuario
-    const user = global.db.data.users[m.sender] || {}
-    const packname = user.packname || global.packname
-    const author = user.author || global.author
-
     // Convierte y agrega EXIF personalizado
     const stickerData = await toWebp(buffer)
     const finalSticker = await addExif(stickerData, packname, author)
