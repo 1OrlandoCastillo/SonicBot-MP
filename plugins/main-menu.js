@@ -159,22 +159,9 @@ const handler = async (m, { conn, usedPrefix: _p, __dirname }) => {
       (_, name) => String(replace[name])
     );
 
-    await conn.sendMessage(m.chat, {
-  text: text.trim(),
-  contextInfo: {
-    mentionedJid: conn.parseMention(text.trim()),
-    isForwarded: true,
-    forwardingScore: 999,
-    externalAdReply: {
-      title: 'Hola',
-      body: 'Gallito',
-      thumbnail: await fs.readFile('./storage/img/menu.jpg'),
-      sourceUrl: 'https://files.catbox.moe/x9hw62.png',
-      mediaType: 1,
-      renderLargerThumbnail: true,
-    }
-  }
-}, { quoted: m });
+    const img = `./storage/img/menu.jpg`;
+
+    await conn.sendFile(m.chat, img, 'thumbnail.jpg', text.trim(), m, null, rcanal);
 
   } catch (e) {
     conn.reply(m.chat, '❎ Lo sentimos, el menú tiene un error.', m);
