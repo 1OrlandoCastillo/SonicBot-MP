@@ -167,7 +167,7 @@ const handler = async (m, { conn, usedPrefix: _p, __dirname }) => {
     forwardingScore: 999,
     externalAdReply: {
       title: 'Hola',
-      body: '',
+      body: 'Gallito',
       thumbnail: await fs.readFile('./storage/img/menu.jpg'),
       sourceUrl: 'https://files.catbox.moe/x9hw62.png',
       mediaType: 1,
