@@ -1,31 +1,66 @@
 import fetch from 'node-fetch'
 
-let handler = async (m, { conn, args, usedPrefix, command }) => {
-  if (!args[0]) {
-    return conn.reply(m.chat, `🚩 Ingresa el nombre del vídeo junto al comando.`, m)
+let handler = async (m, { conn, usedPrefix, command, text }) => {
+  if (!text) {
+    return conn.reply(
+      m.chat,
+      '🚩 Ingresa un texto junto al comando.\n\n`Ejemplo:`\n' +
+        `> *${usedPrefix + command}* Anya`,
+      m
+    )
   }
 
   await m.react('🕓')
 
   try {
-    const res = await fetch(`https://api-pbt.onrender.com/api/download/tiktokQuery?query=${encodeURIComponent(args[0])}`)
-    const json = await res.json()
+    let url = `https://api-pbt.onrender.com/api/download/tiktokQuery?query=${encodeURIComponent(text)}&apikey=a7q587awu57`
+    let res = await fetch(url)
+    if (!res.ok) throw await res.text()
+    
+    let json = await res.json()
+    let result = json.data
 
-    if (!json.status || !json.result || !json.result.url) {
-      throw '❌ No se pudo obtener el video. Verifica el enlace.'
-    }
+    if (!result || !result.sin_marca_de_agua || !result.titulo) throw '❌ No se encontró ningún resultado válido.'
 
-    const videoUrl = json.result.url
-    await conn.sendFile(m.chat, videoUrl, 'tiktok.mp4', `✅ Video descargado con éxito.`, m)
+    let {
+      titulo,
+      visualizaciones,
+      me_gustas,
+      comentarios,
+      compartidos,
+      creado_en,
+      descargas,
+      sin_marca_de_agua,
+      musica
+    } = result
+
+    let autor = musica?.autor || 'Desconocido'
+    let duracion = musica?.duracion || '¿?'
+    let fecha = new Date(creado_en).toLocaleString('es-ES')
+
+    let txt = '`乂  T I K T O K  -  D O W N L O A D`\n\n'
+    txt += `    ✩  *Título* : ${titulo}\n`
+    txt += `    ✩  *Autor* : ${autor}\n`
+    txt += `    ✩  *Duración* : ${duracion} segundos\n`
+    txt += `    ✩  *Vistas* : ${visualizaciones}\n`
+    txt += `    ✩  *Likes* : ${me_gustas}\n`
+    txt += `    ✩  *Comentarios* : ${comentarios}\n`
+    txt += `    ✩  *Compartidos* : ${compartidos}\n`
+    txt += `    ✩  *Publicado* : ${fecha}\n`
+    txt += `    ✩  *Descargas* : ${descargas}\n\n`
+    txt += `> Bot TikTok Downloader`
+
+    await conn.sendFile(m.chat, sin_marca_de_agua, `tiktok.mp4`, txt, m)
     await m.react('✅')
   } catch (e) {
     console.error(e)
-    await conn.reply(m.chat, '❌ Error al descargar el video. Asegúrate de que el enlace es válido y público.', m)
+    await conn.reply(m.chat, '❌ Error al obtener el video. Intenta de nuevo más tarde.', m)
     await m.react('✖️')
   }
 }
 
-handler.help = ['ttvid']
+handler.help = ['tiktokvid']
 handler.tags = ['downloader']
-handler.command = /^(tiktokvid|ttvid|facebookdl|fbdl)$/i
+handler.command = ['ttvid', 'tiktokvid']
+
 export default handler
