@@ -168,15 +168,14 @@ const handler = async (m, { conn, usedPrefix: _p, __dirname }) => {
     contextInfo: {
       mentionedJid: conn.parseMention(text.trim()),
       isForwarded: true,
-      forwardingScore: 999,
+      newsletterJid: '120363403143798163@newsletter', // tu canal
+        newsletterName: 'LOVELLOUD',
       externalAdReply: {
         title: 'Hola',
         body: '',
         thumbnail: fs.readFileSync('./storage/img/menu2.jpg'),
         sourceUrl: 'https://your-url.com',
         mediaType: 1,
-        newsletterJid: '120363403143798163@newsletter', // tu canal
-        newsletterName: 'LOVELLOUD',
         renderLargerThumbnail: true
       }
     }
