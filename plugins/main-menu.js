@@ -160,23 +160,27 @@ const handler = async (m, { conn, usedPrefix: _p, __dirname }) => {
       (_, name) => String(replace[name])
     )
 
-    await conn.sendMessage(m.chat, {
-  image: fs.readFileSync('./storage/img/menu.jpg'),
-  caption: text.trim(),
-  contextInfo: {
-    mentionedJid: conn.parseMention(text.trim()),
-    isForwarded: true,
-    forwardingScore: 999,
-    externalAdReply: {
-      title: 'Hola',
-      body: '',
-      thumbnail: fs.readFileSync('./storage/img/menu2.jpg'),
-      sourceUrl: 'https://your-url.com',
-      mediaType: 1,
-      renderLargerThumbnail: true
+    await conn.sendMessage(
+  rcanal || m.chat, // si existe rcanal, úsalo; si no, usa m.chat
+  {
+    image: fs.readFileSync('./storage/img/menu.jpg'),
+    caption: text.trim(),
+    contextInfo: {
+      mentionedJid: conn.parseMention(text.trim()),
+      isForwarded: true,
+      forwardingScore: 999,
+      externalAdReply: {
+        title: 'Hola',
+        body: '',
+        thumbnail: fs.readFileSync('./storage/img/menu2.jpg'),
+        sourceUrl: 'https://your-url.com',
+        mediaType: 1,
+        renderLargerThumbnail: true
+      }
     }
-  }
-}, { quoted: m }, rcanal);
+  },
+  { quoted: m } // Responde al mensaje original
+);
 
   } catch (e) {
     conn.reply(m.chat, '❎ Lo sentimos, el menú tiene un error.', m)
