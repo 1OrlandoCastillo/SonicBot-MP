@@ -1,4 +1,7 @@
-import { promises as fs } from 'fs'
+import fs from 'fs';
+import { promises as fsp } from 'fs';
+// fs.readFileSync(...) → para síncrona
+// fsp.readFile(...) → para async/await
 import { join } from 'path'
 import fetch from 'node-fetch'
 import { xpRange } from '../lib/levelling.js'
@@ -32,10 +35,17 @@ https://home.akirax.net
 const handler = async (m, { conn, usedPrefix: _p, __dirname }) => {
   try {
     const _package = JSON.parse(
-      await fs.readFile(join(__dirname, '../package.json'), 'utf-8').catch(() => '{}')
+      await fs.promises.readFile(join(__dirname, '../package.json'), 'utf-8').catch(() => '{}')
     ) || {}
 
-    const { exp, limit, level } = global.db.data.users[m.sender]
+    // ✅ Validación para evitar error con usuarios no registrados
+    const user = global.db.data?.users?.[m.sender]
+    if (!user) {
+      conn.reply(m.chat, '❎ Usuario no registrado en la base de datos.', m)
+      return
+    }
+
+    const { exp, limit, level } = user
     const { min, xp, max } = xpRange(level, global.multiplier)
     const name = await conn.getName(m.sender)
 
@@ -151,7 +161,7 @@ const handler = async (m, { conn, usedPrefix: _p, __dirname }) => {
     )
 
     await conn.sendMessage(m.chat, {
-      image: fs.readFileSync("./storage/img/menu.jpg"),
+      image: fs.readFileSync('./storage/img/menu.jpg'),
       caption: text.trim(),
       contextInfo: {
         mentionedJid: conn.parseMention(text.trim()),
@@ -160,7 +170,7 @@ const handler = async (m, { conn, usedPrefix: _p, __dirname }) => {
         externalAdReply: {
           title: 'Hola',
           body: '',
-          thumbnail: fs.readFileSync("./storage/img/menu2.jpg"),
+          thumbnail: fs.readFileSync('./storage/img/menu2.jpg'),
           sourceUrl: 'https://your-url.com',
           mediaType: 1,
           renderLargerThumbnail: true
