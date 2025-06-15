@@ -168,7 +168,7 @@ externalAdReply: {
 title: 'Hola',
 body: "",
 thumbnail: fs.readFileSync("./storage/img/menu2.jpg"),
-sourceUrl: "https...",
+sourceUrl: "https://files.catbox.moe/x9hw62.png",
 mediaType: 1,
 renderLargerThumbnail: true
 }}}, { quoted: m })
