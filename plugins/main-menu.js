@@ -171,6 +171,8 @@ const handler = async (m, { conn, usedPrefix: _p, __dirname }) => {
       forwardedNewsletterMessageInfo: {
         newsletterJid: '120363403143798163@newsletter',
         newsletterName: 'LOVELLOUD',
+        },
+      forwardingScore: 999,
       externalAdReply: {
         title: 'Hola',
         body: '',
