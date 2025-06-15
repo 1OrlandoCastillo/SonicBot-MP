@@ -1,21 +1,26 @@
-let handler = async (m, { conn, text }) => {
-  if (!text) return m.reply(`✳️ Escribe el nombre que deseas darle a tu SubBot.  Ejemplo:
-.setbotname Bot`);
+import fs from 'fs'
+import path from 'path'
 
-  global.subBots = global.subBots || {};
-  const jid = conn.user.jid;
+let handler = async (m, { args, conn, usedPrefix, command }) => {
+  let name = args.join(' ').trim()
+  if (!name) return m.reply(`✿ Ingresa un nombre para el bot.\n\n*Ejemplo:* ${usedPrefix + command} StarBot`)
 
-  if (!global.subBots[jid])
-    return m.reply('Este bot no es un subbot generado con `.code`');
+  let sessionFolder = conn?.auth?.creds?.me?.id?.split(':')[0] // ID de sesión del sub-bot
+  if (!sessionFolder) return m.reply('⚠️ No se pudo identificar el Sub-Bot.')
 
-  if (global.subBots[jid].owner !== m.sender)
-    return m.reply('⛔ Solo el dueño del SubBot puede cambiar su nombre.');
+  let configPath = path.join(`./${jadi}/${sessionFolder}`, 'config.json')
 
-  global.subBots[jid].namebot = text.trim();
-  return m.reply(`✅ Nombre del SubBot actualizado a: *${text.trim()}*`);
-};
+  let config = {}
+  if (fs.existsSync(configPath)) {
+    try { config = JSON.parse(fs.readFileSync(configPath)) } catch { }
+  }
+  config.botname = name
+  fs.writeFileSync(configPath, JSON.stringify(config, null, 2))
 
-handler.help = ['setbotname']
-handler.tags = ['set']
-handler.command = ['setbotname']
-export default handler;
+  m.reply(`✅ Nombre del bot actualizado a *${name}*`)
+}
+handler.help = ['setbotname <nombre>']
+handler.tags = ['serbot']
+handler.command = /^setbotname$/i
+handler.register = true
+export default handler
