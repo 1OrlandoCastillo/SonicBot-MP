@@ -168,6 +168,7 @@ const handler = async (m, { conn, usedPrefix: _p, __dirname }) => {
     contextInfo: {
       mentionedJid: conn.parseMention(text.trim()),
       isForwarded: true,
+      forwardingScore: 999,
       externalAdReply: {
         title: 'Hola',
         body: '',
