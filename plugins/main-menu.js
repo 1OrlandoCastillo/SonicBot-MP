@@ -169,7 +169,7 @@ const handler = async (m, { conn, usedPrefix: _p, __dirname }) => {
       title: 'Hola',
       body: '',
       thumbnail: await fs.readFile('./storage/img/menu.jpg'),
-      sourceUrl: 'https://tinyurl.com/yrkgv3qm',
+      sourceUrl: 'https://files.catbox.moe/x9hw62.png',
       mediaType: 1,
       renderLargerThumbnail: true,
     }
