@@ -16,7 +16,8 @@ const tags = {
 
 const defaultMenu = {
   before: `
-• ${namebot}
+*﹙ ✿ ﹚Sylphy*
+https://api.sylphy.xyz
 
 *﹙ ✿ ﹚PBT-API*
 https://api-pbt.onrender.com
