@@ -172,12 +172,11 @@ const handler = async (m, { conn, usedPrefix: _p, __dirname }) => {
         newsletterJid: '120363403143798163@newsletter',
         newsletterName: 'LOVELLOUD',
         },
-      forwardingScore: 999,
       externalAdReply: {
-        title: 'Hola',
+        title: 'Anya Forger',
         body: '',
         thumbnail: fs.readFileSync('./storage/img/menu2.jpg'),
-        sourceUrl: 'https://your-url.com',
+        sourceUrl: 'LOVELLOUD',
         mediaType: 1,
         renderLargerThumbnail: true
       }
