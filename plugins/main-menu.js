@@ -161,25 +161,26 @@ const handler = async (m, { conn, usedPrefix: _p, __dirname }) => {
     )
 
     await conn.sendMessage(
-  rcanal || m.chat, // si existe rcanal, úsalo; si no, usa m.chat
+  m.chat,
   {
     image: fs.readFileSync('./storage/img/menu.jpg'),
     caption: text.trim(),
     contextInfo: {
       mentionedJid: conn.parseMention(text.trim()),
       isForwarded: true,
-      forwardingScore: 999,
       externalAdReply: {
         title: 'Hola',
         body: '',
         thumbnail: fs.readFileSync('./storage/img/menu2.jpg'),
         sourceUrl: 'https://your-url.com',
         mediaType: 1,
+        newsletterJid: '120363403143798163@newsletter', // tu canal
+        newsletterName: 'LOVELLOUD',
         renderLargerThumbnail: true
       }
     }
   },
-  { quoted: m } // Responde al mensaje original
+  { quoted: m }
 );
 
   } catch (e) {
