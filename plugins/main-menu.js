@@ -13,7 +13,7 @@ const tags = {
 
 const defaultMenu = {
   before: `
-• ${namebot} Channels
+• ${namebot}
 
 *﹙ ✿ ﹚PBT-API*
 https://api-pbt.onrender.com
@@ -23,7 +23,7 @@ https://home.akirax.net
 
 %readmore`.trimStart(),
 
-  header: '*%category*',
+  header: '*`%category`*',
   body: '• %cmd %islimit %isPremium\n',
   footer: '',
   after: '',
