@@ -13,7 +13,7 @@ const tags = {
 
 const defaultMenu = {
   before: `
-• ${namebot}
+• ${namebot} Channels
 
 *﹙ ✿ ﹚PBT-API*
 https://api-pbt.onrender.com
@@ -23,7 +23,7 @@ https://home.akirax.net
 
 %readmore`.trimStart(),
 
-  header: '*`%category`*',
+  header: '*%category*',
   body: '• %cmd %islimit %isPremium\n',
   footer: '',
   after: '',
@@ -159,9 +159,19 @@ const handler = async (m, { conn, usedPrefix: _p, __dirname }) => {
       (_, name) => String(replace[name])
     );
 
-    const img = `./storage/img/menu.jpg`;
-
-    await conn.sendFile(m.chat, img, 'thumbnail.jpg', text.trim(), m, null, rcanal);
+    conn.sendMessage(m.chat, { image: fs.readFileSync("./storage/img/menu.jpg"), caption: text.trim(),
+contextInfo: {
+mentionedJid: conn.parseMention(text.trim()),
+isForwarded: true,
+forwardingScore: 999,
+externalAdReply: {
+title: 'Hola',
+body: "",
+thumbnail: fs.readFileSync("./storage/img/menu2.jpg"),
+sourceUrl: "https...",
+mediaType: 1,
+renderLargerThumbnail: true
+}}}, { quoted: m })
 
   } catch (e) {
     conn.reply(m.chat, '❎ Lo sentimos, el menú tiene un error.', m);
