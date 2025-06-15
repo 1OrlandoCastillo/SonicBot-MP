@@ -1,63 +1,31 @@
 import fetch from 'node-fetch'
 
-let handler = async (m, { conn, usedPrefix, command, text }) => {
-  if (!text) {
-    return conn.reply(
-      m.chat,
-      '🚩 Ingresa un texto junto al comando.\n\n`Ejemplo:`\n' +
-        `> *${usedPrefix + command}* Anya`,
-      m
-    )
+let handler = async (m, { conn, args, usedPrefix, command }) => {
+  if (!args[0]) {
+    return conn.reply(m.chat, `🚩 Ingresa el nombre del vídeo junto al comando.`, m)
   }
 
   await m.react('🕓')
 
   try {
-    let url = `https://api-pbt.onrender.com/api/download/tiktokQuery?query=${encodeURIComponent(text)}&apikey=a7q587awu57`
-    let res = await fetch(url)
-    if (!res.ok) throw await res.text()
-    
-    let json = await res.json()
-    let result = json.result
+    const res = await fetch(`https://api-pbt.onrender.com/api/download/tiktokQuery?query=${encodeURIComponent(args[0])}`)
+    const json = await res.json()
 
-    if (!result || !result.video || !result.title) throw '❌ No se encontró ningún resultado válido.'
+    if (!json.status || !json.result || !json.result.url) {
+      throw '❌ No se pudo obtener el video. Verifica el enlace.'
+    }
 
-    let {
-      title,
-      author,
-      duration,
-      views,
-      likes,
-      comments,
-      shares,
-      published,
-      downloads,
-      video
-    } = result
-
-    let txt = '`乂  T I K T O K  -  D O W N L O A D`\n\n'
-    txt += `    ✩  *Título* : ${title}\n`
-    txt += `    ✩  *Autor* : ${author}\n`
-    txt += `    ✩  *Duración* : ${duration} segundos\n`
-    txt += `    ✩  *Vistas* : ${views}\n`
-    txt += `    ✩  *Likes* : ${likes}\n`
-    txt += `    ✩  *Comentarios* : ${comments}\n`
-    txt += `    ✩  *Compartidos* : ${shares}\n`
-    txt += `    ✩  *Publicado* : ${published}\n`
-    txt += `    ✩  *Descargas* : ${downloads}\n\n`
-    txt += `> Bot TikTok Downloader`
-
-    await conn.sendFile(m.chat, video, `tiktok.mp4`, txt, m)
+    const videoUrl = json.result.url
+    await conn.sendFile(m.chat, videoUrl, 'tiktok.mp4', `✅ Video descargado con éxito.`, m)
     await m.react('✅')
   } catch (e) {
     console.error(e)
-    await conn.reply(m.chat, '❌ Error al obtener el video. Intenta de nuevo más tarde.', m)
+    await conn.reply(m.chat, '❌ Error al descargar el video. Asegúrate de que el enlace es válido y público.', m)
     await m.react('✖️')
   }
 }
 
-handler.help = ['tiktokvid']
+handler.help = ['ttvid']
 handler.tags = ['downloader']
-handler.command = ['ttvid', 'tiktokvid']
-
+handler.command = /^(tiktokvid|ttvid|facebookdl|fbdl)$/i
 export default handler
