@@ -22,5 +22,4 @@ let handler = async (m, { args, conn, usedPrefix, command }) => {
 handler.help = ['setbotname <nombre>']
 handler.tags = ['serbot']
 handler.command = /^setbotname$/i
-handler.register = true
 export default handler
