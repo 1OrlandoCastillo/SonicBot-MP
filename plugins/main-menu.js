@@ -176,7 +176,7 @@ const handler = async (m, { conn, usedPrefix: _p, __dirname }) => {
         title: 'Anya Forger',
         body: '',
         thumbnail: fs.readFileSync('./storage/img/menu2.jpg'),
-        sourceUrl: 'LOVELLOUD',
+        sourceUrl: 'https://dash.lovelloud.uk',
         mediaType: 1,
         renderLargerThumbnail: true
       }
