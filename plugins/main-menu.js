@@ -171,7 +171,7 @@ const handler = async (m, { conn, usedPrefix: _p, __dirname }) => {
           title: 'Hola',
           body: '',
           thumbnail: fs.readFileSync('./storage/img/menu2.jpg'),
-          sourceUrl: 'https://your-url.com',
+          sourceUrl: rcanal,
           mediaType: 1,
           renderLargerThumbnail: true
         }
