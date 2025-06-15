@@ -1,14 +1,21 @@
-let handler = async (m, { args, usedPrefix, command }) => {
-  if (!args[0]) {
-    return conn.reply(m.chat,`𖧏 Hola, necesito que me proporciones el nombre del *Bot* que deseas Poner.`, m, rcanal)
-  }
-  
-  global.db.data.users[m.sender].namebot = args.join(' ')
-  return conn.reply(m.chat,`𖧏 Hola, el *Nombre* que proporcionastes se cambio a *${args.join(' ')}* Correctamente.`, m, rcanal)
-}
+let handler = async (m, { conn, text }) => {
+  if (!text) return m.reply(`✳️ Escribe el nombre que deseas darle a tu SubBot.  Ejemplo:
+.setbotname Bot`);
+
+  global.subBots = global.subBots || {};
+  const jid = conn.user.jid;
+
+  if (!global.subBots[jid])
+    return m.reply('Este bot no es un subbot generado con `.code`');
+
+  if (global.subBots[jid].owner !== m.sender)
+    return m.reply('⛔ Solo el dueño del SubBot puede cambiar su nombre.');
+
+  global.subBots[jid].namebot = text.trim();
+  return m.reply(`✅ Nombre del SubBot actualizado a: *${text.trim()}*`);
+};
 
 handler.help = ['setbotname']
 handler.tags = ['set']
 handler.command = ['setbotname']
-
-export default handler
+export default handler;
