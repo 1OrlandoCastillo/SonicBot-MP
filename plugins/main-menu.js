@@ -5,8 +5,17 @@ import { xpRange } from '../lib/levelling.js'
 
 const handler = async (m, { conn, usedPrefix: _p, __dirname }) => {
   try {
-const user = global.db.data.users[m.sender] || {};
-const namebot = user.namebot || global.namebot;
+let namebot = global.namebot;
+let subbotOwner = '';
+
+global.subBots = global.subBots || {};
+const jid = conn.user.jid;
+
+if (global.subBots[jid]) {
+  namebot = global.subBots[jid].namebot || namebot;
+  const owner = global.subBots[jid].owner;
+  subbotOwner = '@' + owner.split('@')[0];
+}
 
     const tags = {
       serbot: '• Subs - Bots',
