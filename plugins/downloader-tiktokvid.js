@@ -1,59 +1,37 @@
-import fetch from 'node-fetch'
+import fetch from 'node-fetch';
 
-let handler = async (m, { conn, args, usedPrefix, command }) => {
-  if (!args || !args[0]) {
-    return conn.reply(
-      m.chat,
-      '🚩 Ingresa un texto junto al comando.\n\n`Ejemplo:`\n' +
-      `> *${usedPrefix + command}* Anya`,
-      m, rcanal
-    )
+const handler = async (m, { conn, args }) => {
+  if (!args[0]) {
+    return conn.reply(m.chat, '𖧊 Hola, necesito que me proporciones el nombre del video *Tiktok* que deseas Buscar.', m);
   }
 
-  await m.react('🕓')
+  await m.react('🕓');
+
   try {
-    let url = `https://api-pbt.onrender.com/api/download/tiktokQuery?query=${encodeURIComponent(args.join(' '))}&apikey=a7q587awu57`
-    let res = await fetch(url)
-    if (!res.ok) throw await res.text()
-    
-    let json = await res.json()
-    let result = json.data
+    const url = `https://api-pbt.onrender.com/api/download/tiktokQuery?query=${encodeURIComponent(args.join(' '))}&apikey=a7q587awu57`;
+    const res = await fetch(url);
 
-    if (!result || !result.sin_marca_de_agua) throw '❌ No se encontró ningún resultado válido.'
+    if (!res.ok) {
+      throw await res.text();
+    }
 
-    let {
-      titulo,
-      autor,
-      duracion,
-      vistas,
-      likes,
-      comentarios,
-      compartidos,
-      fecha_subida,
-    } = result
+    const json = await res.json();
+    const result = json.data;
 
-    let txt = '`乂  T I K T O K  -  D O W N L O A D`\n\n'
-    txt += `    ✩  *Título* : ${titulo}\n`
-    txt += `    ✩  *Autor* : ${autor}\n`
-    txt += `    ✩  *Duración* : ${duracion} segundos\n`
-    txt += `    ✩  *Vistas* : ${vistas}\n`
-    txt += `    ✩  *Likes* : ${likes}\n`
-    txt += `    ✩  *Comentarios* : ${comentarios}\n`
-    txt += `    ✩  *Compartidos* : ${compartidos}\n`
-    txt += `    ✩  *Publicado* : ${fecha_subida}`
+    if (!result || !result.sin_marca_de_agua) {
+      await m.react('✖️');
+      return;
+    }
 
-    await conn.sendFile(m.chat, 'tiktok.mp4', txt, m, null, rcanal)
-    await m.react('✅')
-
-  } catch (e) {
-    console.error(e)
-    await m.react('✖️')
-    conn.reply(m.chat, '❌ Ocurrió un error al procesar tu solicitud.', m)
+    await conn.sendFile(m.chat, result.sin_marca_de_agua, 'tiktok.mp4', null, m, null, rcanal);
+    await m.react('✅');
+  } catch {
+    await m.react('✖️');
   }
-}
+};
 
-handler.help = ['tiktokvid *<nombre>*']
-handler.tags = ['downloader']
-handler.command = /^(ttvid|tiktokvid)$/i
+handler.help = ['tiktokvid *<nombre>*'];
+handler.tags = ['downloader'];
+handler.command = /^(ttvid|tiktokvid)$/i;
 
-export default handler
+export default handler;
