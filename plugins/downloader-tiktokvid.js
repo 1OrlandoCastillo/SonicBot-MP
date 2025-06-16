@@ -3,7 +3,7 @@ import fetch from 'node-fetch'
 let handler = async (m, { conn, args, usedPrefix, command }) => {
   if (!args || !args[0]) return conn.reply(
     m.chat,
-    '𖧊 ola, necesito que me proporciones el nombre del video *Tiktok* que deseas Buscar.',
+    '𖧊 Hola, necesito que me proporciones el nombre del video *Tiktok* que deseas Buscar.',
     m,
     rcanal
   )
@@ -16,8 +16,6 @@ let handler = async (m, { conn, args, usedPrefix, command }) => {
 
     let json = await res.json()
     let result = json.data
-
-    if (!result || !result.sin_marca_de_agua) throw '❌ No se encontró ningún resultado válido.'
 
     await conn.sendFile(m.chat, 'tiktok.mp4', null, m, rcanal)
     await m.react('✅')
