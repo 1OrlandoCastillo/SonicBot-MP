@@ -30,7 +30,6 @@ let handler = async (m, { conn, args, usedPrefix, command }) => {
       comentarios,
       compartidos,
       fecha_subida,
-      sin_marca_de_agua
     } = result
 
     let txt = '`乂  T I K T O K  -  D O W N L O A D`\n\n'
@@ -43,7 +42,7 @@ let handler = async (m, { conn, args, usedPrefix, command }) => {
     txt += `    ✩  *Compartidos* : ${compartidos}\n`
     txt += `    ✩  *Publicado* : ${fecha_subida}`
 
-    await conn.sendFile(m.chat, sin_marca_de_agua, 'tiktok.mp4', txt, m, null, rcanal)
+    await conn.sendFile(m.chat, 'tiktok.mp4', txt, m, null, rcanal)
     await m.react('✅')
 
   } catch (e) {
