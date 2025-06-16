@@ -6,7 +6,7 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
   await m.react('💬')
 
   try {
-    let res = await fetch(`https://api-pbt.onrender.com/api/ai/model/deepseek?texto=${encodeURIComponent(text)}`)
+    let res = await fetch(`https://api-pbt.onrender.com/api/ai/model/deepseek?texto=${encodeURIComponent(text)}&apikey=8jkh5icbf05`)
     let json = await res.json()
     if (json.result) {
       await conn.reply(m.chat, json.result, m, rcanal)
