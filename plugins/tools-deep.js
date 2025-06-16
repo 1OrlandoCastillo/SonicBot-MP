@@ -1,7 +1,7 @@
 import fetch from 'node-fetch'
 
 let handler = async (m, { conn, text, usedPrefix, command }) => {
-  if (!text) return conn.reply(m.chat, `🚩 Ingrese su petición\n📌 *Ejemplo de uso:* ${usedPrefix + command} como hacer estrella de papel`, m, rcanal)
+  if (!text) return conn.reply(m.chat, `ℵ Hola, para poder ayudarte necesito que escribas una consulta o una pregunta junto al comando.`, m, rcanal)
 
   await m.react('💬')
 
@@ -19,7 +19,7 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
   }
 }
 
-handler.help = ['deepseek *<petición>*']
+handler.help = ['deepseek']
 handler.tags = ['tools']
 handler.command = /^(deep|deepseek|deeps)$/i
 
