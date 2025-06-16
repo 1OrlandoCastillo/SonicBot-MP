@@ -29,7 +29,5 @@ let handler = async (m, { conn, args, usedPrefix, command }) => {
 handler.help = ['tiktokvid *<nombre>*']
 handler.tags = ['downloader']
 handler.command = /^(ttvid|tiktokvid)$/i
-handler.register = true
-// handler.limit = 1
 
 export default handler
