@@ -19,7 +19,7 @@ let handler = async (m, { conn, args, usedPrefix, command }) => {
 
     if (!result || !result.sin_marca_de_agua) throw '❌ No se encontró ningún resultado válido.'
 
-    await conn.sendFile(m.chat, result.sin_marca_de_agua, 'tiktok.mp4', null, m, rcanal)
+    await conn.sendFile(m.chat, 'tiktok.mp4', null, m, rcanal)
     await m.react('✅')
 
   } catch {
