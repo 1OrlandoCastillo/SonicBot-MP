@@ -1,11 +1,7 @@
 import fetch from 'node-fetch'
 
 let handler = async (m, { conn, args, usedPrefix, command }) => {
-  if (!args || !args[0]) return conn.reply(
-    m.chat,
-    '🚩 Ingresa una palabra clave para buscar un video de TikTok.\n\n`Ejemplo:`\n' +
-    `> *${usedPrefix + command}* Anya`,
-    m, rcanal)
+  if (!args || !args[0]) return conn.reply(m.chat,'𖧊 Hola, necesito que me proporciones el nombre del video *Tiktok* que deseas Buscar.', m, rcanal)
 
   await m.react('🕓')
   try {
@@ -18,7 +14,7 @@ let handler = async (m, { conn, args, usedPrefix, command }) => {
 
     if (!result || !result.sin_marca_de_agua) throw '❌ No se encontró ningún resultado válido.'
 
-    await conn.sendFile(m.chat, result.sin_marca_de_agua, 'tiktok.mp4', null, m, null, rcanal)
+    await conn.sendFile(m.chat, result.sin_marca_de_agua, 'tiktok.mp4', m, null, rcanal)
     await m.react('✅')
 
   } catch {
