@@ -8,6 +8,7 @@ import { xpRange } from '../lib/levelling.js'
 
 const tags = {
   serbot: '• Subs - Bots',
+  downloader: '• Downloaders',
   owner: '• Owner',
   group: '• Group',
   search: '• Searchs',
