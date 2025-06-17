@@ -16,7 +16,7 @@ let handler = async (m, { conn, args, usedPrefix, command }) => {
     }
 
     let videoUrl = json.result.video
-    await conn.sendFile(m.chat, videoUrl, 'tiktok.mp4', '✅ Video descargado con éxito.', m)
+    await conn.sendFile(m.chat, videoUrl, 'tiktok.mp4', m)
     await m.react('✅')
   } catch (e) {
     await m.react('✖️')
