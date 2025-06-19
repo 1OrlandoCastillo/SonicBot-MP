@@ -12,8 +12,12 @@ let handler = async (m, { conn, args, usedPrefix, command }) => {
   let user = m.sender.split('@')[0]
   let folder = `./serbot/${user}`
   if (!fs.existsSync(folder)) fs.mkdirSync(folder, { recursive: true })
+
   if (args[0]) {
     fs.writeFileSync(`${folder}/creds.json`, Buffer.from(args[0], 'base64').toString('utf-8'))
+  } else {
+    const credsPath = `${folder}/creds.json`
+    if (!fs.existsSync(credsPath)) fs.writeFileSync(credsPath, '{}')
   }
 
   const { state, saveCreds } = await useMultiFileAuthState(folder)
@@ -33,14 +37,17 @@ let handler = async (m, { conn, args, usedPrefix, command }) => {
     msgRetryCounterCache,
     generateHighQualityLinkPreview: true,
     markOnlineOnConnect: true,
-    getMessage: async (key) => {
-      return ''
-    }
+    getMessage: async () => ''
   }
 
-  sock = makeWASocket(connectionOptions)
-  sock.isInit = false
   let isInit = true
+  const startSocket = () => {
+    sock = makeWASocket(connectionOptions)
+    sock.handler = handlerModule.handler?.bind(sock)
+    sock.connectionUpdate = connectionUpdate.bind(sock)
+    sock.credsUpdate = saveCreds.bind(sock, true)
+    bindHandlers()
+  }
 
   async function connectionUpdate(update) {
     const { connection, lastDisconnect, isNewLogin, qr } = update
@@ -64,11 +71,10 @@ let handler = async (m, { conn, args, usedPrefix, command }) => {
     const shouldReconnect = code !== DisconnectReason.loggedOut
 
     if (connection === 'close') {
+      console.log(`[CONNECTION] Cerrado con código ${code} | Reintentar: ${shouldReconnect}`)
       if (shouldReconnect) {
-        console.log(`[RECONNECT] SubBot desconectado con código ${code}. Intentando reconectar...`)
-        reconnect()
+        reconnectLoop()
       } else {
-        console.log('[LOGOUT] SubBot se desconectó permanentemente.')
         try { sock.ws.close() } catch {}
         sock.ev.removeAllListeners()
         let i = global.conns.indexOf(sock)
@@ -83,25 +89,24 @@ let handler = async (m, { conn, args, usedPrefix, command }) => {
     if (connection === 'open') {
       sock.isInit = true
       global.conns.push(sock)
-
       await conn.reply(m.chat, args[0] ? '✅ Conectado con éxito' : '✅ Sub Bot conectado exitosamente\n\n📌 *Nota:* Esta sesión es temporal.\nSi el bot principal se reinicia o apaga, esta sesión también lo hará.\n\n🔗 Guarda este enlace: https://whatsapp.com/channel/0029VaBfs3wek1Ffaq5cK91S', m)
-
-      if (args[0]) return
-
-      await sleep(5000)
-      await conn.reply(sock.user.jid, `🔄 Para reconectar sin QR ni código, responde con este mensaje:`, m)
-      await conn.reply(sock.user.jid, `${usedPrefix}${command} ${Buffer.from(fs.readFileSync(`${folder}/creds.json`), 'utf-8').toString('base64')}`, m)
+      if (!args[0]) {
+        await sleep(5000)
+        await conn.reply(sock.user.jid, `🔄 Para reconectar sin QR ni código, responde con este mensaje:`, m)
+        await conn.reply(sock.user.jid, `${usedPrefix}${command} ${Buffer.from(fs.readFileSync(`${folder}/creds.json`), 'utf-8').toString('base64')}`, m)
+      }
     }
   }
 
-  async function reconnect() {
+  async function reconnectLoop(retry = 0) {
+    console.log(`[RECONNECT] Intento #${retry + 1}`)
     try {
       sock.ev.removeAllListeners()
       sock = makeWASocket(connectionOptions)
       bindHandlers()
-    } catch (err) {
-      console.error('[FATAL] Error en reconexión:', err)
-      setTimeout(reconnect, 10000)
+    } catch (e) {
+      console.error('[RECONNECT ERROR]', e)
+      setTimeout(() => reconnectLoop(retry + 1), 5000)
     }
   }
 
@@ -112,7 +117,7 @@ let handler = async (m, { conn, args, usedPrefix, command }) => {
   }
 
   const methodCode = !!m.sender
-  if (methodCode && !sock.authState.creds.registered) {
+  if (methodCode && !sock?.authState?.creds?.registered) {
     let phone = m.sender.split('@')[0]
     let cleaned = phone.replace(/\D/g, '')
     if (!Object.keys(PHONENUMBER_MCC || {}).some(v => cleaned.startsWith(v))) return
@@ -139,7 +144,7 @@ let handler = async (m, { conn, args, usedPrefix, command }) => {
   }
 
   let handlerModule = await import('../handler.js')
-  let creloadHandler = async function (restartConn) {
+  async function creloadHandler(restartConn) {
     try {
       let updated = await import(`../handler.js?update=${Date.now()}`)
       if (updated && typeof updated === 'object' && Object.keys(updated).length > 0) {
@@ -169,11 +174,7 @@ let handler = async (m, { conn, args, usedPrefix, command }) => {
     return true
   }
 
-  sock.handler = handlerModule.handler?.bind(sock)
-  sock.connectionUpdate = connectionUpdate.bind(sock)
-  sock.credsUpdate = saveCreds.bind(sock, true)
-
-  bindHandlers()
+  startSocket()
   creloadHandler(false)
 }
 
