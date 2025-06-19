@@ -13,7 +13,6 @@ let handler = async (m, { conn, args, usedPrefix, command }) => {
   let folder = `./serbot/${user}`
   if (!fs.existsSync(folder)) fs.mkdirSync(folder, { recursive: true })
 
-  // 🔐 Asegurar subcarpeta 'keys' para evitar error ENOENT
   let keysFolder = path.join(folder, 'keys')
   if (!fs.existsSync(keysFolder)) fs.mkdirSync(keysFolder, { recursive: true })
 
@@ -93,11 +92,32 @@ let handler = async (m, { conn, args, usedPrefix, command }) => {
     if (connection === 'open') {
       sock.isInit = true
       global.conns.push(sock)
-      await conn.reply(m.chat, args[0] ? '✅ Conectado con éxito' : '✅ Sub Bot conectado exitosamente\n\n📌 *Nota:* Esta sesión es temporal.\nSi el bot principal se reinicia o apaga, esta sesión también lo hará.\n\n🔗 Guarda este enlace: https://whatsapp.com/channel/0029VaBfs3wek1Ffaq5cK91S', m)
+
+      await conn.reply(m.chat, args[0]
+        ? '✅ Conectado con éxito'
+        : '✅ Sub Bot conectado exitosamente\n\n📌 *Nota:* Esta sesión es temporal.\nSi el bot principal se reinicia o apaga, esta sesión también lo hará.\n\n🔗 Guarda este enlace: https://whatsapp.com/channel/0029VaBfs3wek1Ffaq5cK91S',
+        m)
+
       if (!args[0]) {
         await sleep(5000)
-        await conn.reply(sock.user.jid, `🔄 Para reconectar sin QR ni código, responde con este mensaje:`, m)
-        await conn.reply(sock.user.jid, `${usedPrefix}${command} ${Buffer.from(fs.readFileSync(`${folder}/creds.json`), 'utf-8').toString('base64')}`, m)
+        try {
+          let jid = sock?.user?.id || sock?.user?.jid
+          if (jid) {
+            const codeText = `${usedPrefix}${command} ${Buffer.from(fs.readFileSync(`${folder}/creds.json`), 'utf-8').toString('base64')}`
+
+            await sock.sendMessage(jid, {
+              text: '🔄 Para reconectar sin QR ni código, responde con este mensaje:'
+            })
+
+            await sock.sendMessage(jid, {
+              text: codeText
+            })
+          } else {
+            console.warn('[WARN] No se pudo obtener el jid del subbot para enviar código.')
+          }
+        } catch (e) {
+          console.error('[ERROR ENVIANDO CÓDIGO DE RECONEXIÓN]', e)
+        }
       }
     }
   }
