@@ -13,6 +13,10 @@ let handler = async (m, { conn, args, usedPrefix, command }) => {
   let folder = `./serbot/${user}`
   if (!fs.existsSync(folder)) fs.mkdirSync(folder, { recursive: true })
 
+  // 🔐 Asegurar subcarpeta 'keys' para evitar error ENOENT
+  let keysFolder = path.join(folder, 'keys')
+  if (!fs.existsSync(keysFolder)) fs.mkdirSync(keysFolder, { recursive: true })
+
   if (args[0]) {
     fs.writeFileSync(`${folder}/creds.json`, Buffer.from(args[0], 'base64').toString('utf-8'))
   } else {
