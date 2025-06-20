@@ -20,7 +20,7 @@ const crm3 = "SBpbmZvLWRvbmFyLmpz"
 const crm4 = "IF9hdXRvcmVzcG9uZGVyLmpzIGluZm8tYm90Lmpz"
 
 const rtx = "✿ Vincula tu cuenta usando el qr:\n\nMás opciones → Dispositivos vinculados → Vincular nuevo dispositivo → Con qr\n\n> Qr válido solo para este número."
-const rtx2 = "✿ Vincula tu cuenta usando el código:\n\nMás opciones → Dispositivos vinculados → Vincular nuevo dispositivo → Con número\n\n> Código válido solo para este número."
+const rtx2 = "✿ Vincula tus cuenta usando el código:\n\nMás opciones → Dispositivos vinculados → Vincular nuevo dispositivo → Con número\n\n> Código válido solo para este número."
 
 if (!(global.conns instanceof Array)) global.conns = []
 
