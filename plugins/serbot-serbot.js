@@ -26,7 +26,7 @@ async function initSubBot({ userJid, args, msg, conn, usedPrefix, command }) {
   if (!fs.existsSync(sessionPath)) fs.mkdirSync(sessionPath, { recursive: true })
 
   const credsFile = path.join(sessionPath, "creds.json")
-  if (args[0]) {
+  if (args[0] && !isCode) {
     try {
       fs.writeFileSync(credsFile, JSON.stringify(JSON.parse(Buffer.from(args[0], "base64").toString("utf-8")), null, 2))
     } catch {
@@ -91,19 +91,25 @@ async function initSubBot({ userJid, args, msg, conn, usedPrefix, command }) {
         return
       }
 
-      if (qr && isCode) {
-        let pairingCode = await sock.requestPairingCode(userId)
-        pairingCode = pairingCode.match(/.{1,4}/g)?.join("-")
-        const txtCode = await conn.sendMessage(msg.chat, { text: rtx2 }, { quoted: msg })
-        const codeMsg = await conn.sendMessage(msg.chat, { text: pairingCode }, { quoted: msg })
-        if (txtCode?.key) setTimeout(() => conn.sendMessage(msg.sender, { delete: txtCode.key }), 30000)
-        if (codeMsg?.key) setTimeout(() => conn.sendMessage(msg.sender, { delete: codeMsg.key }), 30000)
+      if (isCode && connection === "connecting") {
+        try {
+          let pairingCode = await sock.requestPairingCode(userId)
+          pairingCode = pairingCode.match(/.{1,4}/g)?.join("-")
+          const txtCode = await conn.sendMessage(msg.chat, { text: rtx2 }, { quoted: msg })
+          const codeMsg = await conn.sendMessage(msg.chat, { text: pairingCode }, { quoted: msg })
+          if (txtCode?.key) setTimeout(() => conn.sendMessage(msg.sender, { delete: txtCode.key }), 30000)
+          if (codeMsg?.key) setTimeout(() => conn.sendMessage(msg.sender, { delete: codeMsg.key }), 30000)
+        } catch (e) {
+          console.error("Error al generar código:", e)
+          await conn.reply(msg.chat, "❌ No se pudo generar el código de emparejamiento.", msg)
+        }
       }
 
       if (connection === 'open') {
         sock.isInit = true
         global.conns.push(sock)
         console.log(`[✓] SubBot ${sock.user.id.split('@')[0]} conectado.`)
+        await conn.reply(msg.chat, `✅ SubBot vinculado exitosamente como *@${sock.user.id.split('@')[0]}*`, msg)
       }
 
       if (connection === 'close') {
