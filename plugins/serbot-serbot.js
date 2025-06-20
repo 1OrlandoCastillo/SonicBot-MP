@@ -20,7 +20,7 @@ const crm3 = "SBpbmZvLWRvbmFyLmpz"
 const crm4 = "IF9hdXRvcmVzcG9uZGVyLmpzIGluZm8tYm90Lmpz"
 
 const rtx = "✿ Vincula tu cuenta usando el qr:\n\nMás opciones → Dispositivos vinculados → Vincular nuevo dispositivo → Con qr\n\n> Qr válido solo para este número."
-const rtx2 = "✿ Vincula tus cuenta usando el código:\n\nMás opciones → Dispositivos vinculados → Vincular nuevo dispositivo → Con número\n\n> Código válido solo para este número."
+const rtx2 = "✿ Vincula tu cuenta usando el código:\n\nMás opciones → Dispositivos vinculados → Vincular nuevo dispositivo → Con número\n\n> Código válido solo para este número."
 
 if (!(global.conns instanceof Array)) global.conns = []
 
@@ -118,6 +118,12 @@ export async function yukiJadiBot(options) {
       const reason = lastDisconnect?.error?.output?.statusCode || 0
       if (connection === 'close') {
         console.log(chalk.bold.magenta(`[REINTENTANDO SUBBOT ${path.basename(pathYukiJadiBot)} - Motivo: ${reason}]`))
+
+        if (reason === DisconnectReason.loggedOut || reason === 401) {
+          console.log(chalk.redBright(`[✘] Sesión inválida del SubBot ${path.basename(pathYukiJadiBot)}, eliminando...`))
+          try { fs.rmSync(pathYukiJadiBot, { recursive: true, force: true }) } catch (e) {}
+        }
+
         await creloadHandler(true).catch(console.error)
       }
 
