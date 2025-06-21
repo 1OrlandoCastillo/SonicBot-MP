@@ -1,7 +1,5 @@
-import fs from 'fs';
-import { promises as fsp } from 'fs';
-// fs.readFileSync(...) → para síncrona
-// fsp.readFile(...) → para async/await
+import fs from 'fs'
+import { promises as fsp } from 'fs'
 import { join } from 'path'
 import fetch from 'node-fetch'
 import { xpRange } from '../lib/levelling.js'
@@ -18,7 +16,7 @@ const tags = {
 
 const defaultMenu = {
   before: `
-*﹙ ✿ ﹚Sylphy*
+*﹙ ✿ ﹚%botname*
 https://api.sylphy.xyz
 
 *﹙ ✿ ﹚PBT-API*
@@ -28,7 +26,6 @@ https://api-pbt.onrender.com
 https://home.akirax.net
 
 %readmore`.trimStart(),
-
   header: '*`%category`*',
   body: '• %cmd %islimit %isPremium\n',
   footer: '',
@@ -40,13 +37,6 @@ const handler = async (m, { conn, usedPrefix: _p, __dirname }) => {
     const _package = JSON.parse(
       await fs.promises.readFile(join(__dirname, '../package.json'), 'utf-8').catch(() => '{}')
     ) || {}
-
-    // ✅ Validación para evitar error con usuarios no registrados
-    const user = global.db.data?.users?.[m.sender]
-    if (!user) {
-      conn.reply(m.chat, '❎ Usuario no registrado en la base de datos.', m)
-      return
-    }
 
     const { exp, limit, level } = user
     const { min, xp, max } = xpRange(level, global.multiplier)
@@ -80,7 +70,6 @@ const handler = async (m, { conn, usedPrefix: _p, __dirname }) => {
 
     const uptime = clockString(_uptime)
     const muptime = clockString(_muptime)
-
     const totalreg = Object.keys(global.db.data.users).length
     const rtotalreg = Object.values(global.db.data.users).filter(user => user.registered).length
 
@@ -101,6 +90,21 @@ const handler = async (m, { conn, usedPrefix: _p, __dirname }) => {
           }
         }
       }
+    }
+
+    // ✅ Leer nombre personalizado del subbot
+    let nombreBot = global.namebot || 'Bot'
+    try {
+      const sessionId = conn?.auth?.creds?.me?.id?.split(':')[0]
+      if (sessionId) {
+        const configPath = join(`./subbots/sesion-${sessionId}`, 'config.json')
+        if (fs.existsSync(configPath)) {
+          const config = JSON.parse(fs.readFileSync(configPath))
+          if (config?.namebot) nombreBot = config.namebot
+        }
+      }
+    } catch (e) {
+      console.log('❌ Error leyendo nombre personalizado del Sub-Bot:', e)
     }
 
     const menuConfig = conn.menu || defaultMenu
@@ -130,6 +134,7 @@ const handler = async (m, { conn, usedPrefix: _p, __dirname }) => {
       p: _p,
       uptime,
       muptime,
+      botname: nombreBot,
       taguser: '@' + m.sender.split('@')[0],
       wasp: '@0',
       me: conn.getName(conn.user.jid),
@@ -164,29 +169,29 @@ const handler = async (m, { conn, usedPrefix: _p, __dirname }) => {
     )
 
     await conn.sendMessage(
-  m.chat,
-  {
-    image: fs.readFileSync('./storage/img/menu.jpg'),
-    caption: text.trim(),
-    contextInfo: {
-      mentionedJid: conn.parseMention(text.trim()),
-      isForwarded: true,
-      forwardedNewsletterMessageInfo: {
-        newsletterJid: '120363403143798163@newsletter',
-        newsletterName: 'LOVELLOUD',
-        },
-      externalAdReply: {
-        title: 'Anya Forger',
-        body: '',
-        thumbnail: fs.readFileSync('./storage/img/menu2.jpg'),
-        sourceUrl: 'https://dash.lovelloud.uk',
-        mediaType: 1,
-        renderLargerThumbnail: true
-      }
-    }
-  },
-  { quoted: m }
-);
+      m.chat,
+      {
+        image: fs.readFileSync('./storage/img/menu.jpg'),
+        caption: text.trim(),
+        contextInfo: {
+          mentionedJid: conn.parseMention(text.trim()),
+          isForwarded: true,
+          forwardedNewsletterMessageInfo: {
+            newsletterJid: '120363403143798163@newsletter',
+            newsletterName: 'LOVELLOUD',
+          },
+          externalAdReply: {
+            title: 'Anya Forger',
+            body: '',
+            thumbnail: fs.readFileSync('./storage/img/menu2.jpg'),
+            sourceUrl: 'https://dash.lovelloud.uk',
+            mediaType: 1,
+            renderLargerThumbnail: true
+          }
+        }
+      },
+      { quoted: m }
+    )
 
   } catch (e) {
     conn.reply(m.chat, '❎ Lo sentimos, el menú tiene un error.', m)
