@@ -38,7 +38,7 @@ const handler = async (m, { conn, usedPrefix: _p, __dirname }) => {
       await fs.promises.readFile(join(__dirname, '../package.json'), 'utf-8').catch(() => '{}')
     ) || {}
 
-    const { exp, limit, level } = user
+    const { exp, limit, level } = global.db.data.users[m.sender]
     const { min, xp, max } = xpRange(level, global.multiplier)
     const name = await conn.getName(m.sender)
 
