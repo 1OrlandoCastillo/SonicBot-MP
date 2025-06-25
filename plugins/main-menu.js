@@ -1,5 +1,4 @@
 import fs from 'fs'
-import { promises as fsp } from 'fs'
 import { join } from 'path'
 import fetch from 'node-fetch'
 import { xpRange } from '../lib/levelling.js'
@@ -92,15 +91,15 @@ const handler = async (m, { conn, usedPrefix: _p, __dirname }) => {
       }
     }
 
-    // ✅ Leer nombre personalizado del subbot
+    // Nombre personalizado del sub-bot
     let nombreBot = global.namebot || 'Bot'
     try {
       const sessionId = conn?.auth?.creds?.me?.id?.split(':')[0]
       if (sessionId) {
-        const configPath = join(`./subbots/sesion-${sessionId}`, 'config.json')
+        const configPath = join(`./JadiBots/${sessionId}`, 'config.json') // Usamos tu ruta real
         if (fs.existsSync(configPath)) {
           const config = JSON.parse(fs.readFileSync(configPath))
-          if (config?.namebot) nombreBot = config.namebot
+          if (config?.botname) nombreBot = config.botname
         }
       }
     } catch (e) {
@@ -181,7 +180,7 @@ const handler = async (m, { conn, usedPrefix: _p, __dirname }) => {
             newsletterName: 'LOVELLOUD',
           },
           externalAdReply: {
-            title: 'Anya Forger',
+            title: nombreBot,
             body: '',
             thumbnail: fs.readFileSync('./storage/img/menu2.jpg'),
             sourceUrl: 'https://dash.lovelloud.uk',
@@ -202,7 +201,6 @@ const handler = async (m, { conn, usedPrefix: _p, __dirname }) => {
 handler.command = ['menu', 'help', 'menú']
 export default handler
 
-// Utilidades
 const more = String.fromCharCode(8206)
 const readMore = more.repeat(4001)
 
@@ -241,5 +239,4 @@ const greetingMap = {
   22: 'una linda noche 🌙',
   23: 'una linda noche 🌃',
 }
-
 var greeting = 'espero que tengas ' + (greetingMap[hour] || 'un buen día')
