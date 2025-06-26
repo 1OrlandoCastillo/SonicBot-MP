@@ -1,14 +1,14 @@
 import fs from 'fs'
 import path from 'path'
 
-const handler = async (m, { conn, args }) => {
-  const sessionId = conn?.auth?.creds?.me?.id?.split(':')[0]
-  if (!sessionId) return m.reply('❎ No se pudo identificar la sesión del sub-bot.')
+const handler = async (m, { args }) => {
+  const name = args.join(' ')
+  if (!name) return m.reply('❎ Por favor ingresa un nombre para el bot.\n\nEjemplo:\n*.setbotname Bot*')
 
-  const dir = `./JadiBots/${sessionId}`
+  const senderId = m.sender.split('@')[0]
+  const dir = `./JadiBots/${senderId}`
   const configPath = path.join(dir, 'config.json')
 
-  // Crear carpeta si no existe
   if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true })
 
   let config = {}
@@ -19,9 +19,6 @@ const handler = async (m, { conn, args }) => {
       config = {}
     }
   }
-
-  const name = args.join(' ')
-  if (!name) return m.reply('❎ Por favor ingresa un nombre para el bot.\n\nEjemplo:\n*.setbotname Bot*')
 
   config.namebot = name
   fs.writeFileSync(configPath, JSON.stringify(config, null, 2))
