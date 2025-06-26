@@ -174,7 +174,7 @@ const handler = async (m, { conn, usedPrefix: _p, __dirname }) => {
         newsletterName: 'LOVELLOUD',
         },
       externalAdReply: {
-        title: 'Anya Forger',
+        title: '',
         body: 'LOVELLOUD',
         thumbnail: fs.readFileSync('./storage/img/menu2.jpg'),
         sourceUrl: 'LOVELLOUD',
