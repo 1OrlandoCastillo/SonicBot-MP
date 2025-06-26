@@ -99,7 +99,7 @@ const handler = async (m, { conn, usedPrefix: _p, __dirname }) => {
         const configPath = join(`./JadiBots/${sessionId}`, 'config.json') // Usamos tu ruta real
         if (fs.existsSync(configPath)) {
           const config = JSON.parse(fs.readFileSync(configPath))
-          if (config?.botname) nombreBot = config.botname
+          if (config?.namebot) nombreBot = config.namebot
         }
       }
     } catch (e) {
