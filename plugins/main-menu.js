@@ -15,7 +15,7 @@ const tags = {
 
 const defaultMenu = {
   before: `
-*﹙ ✿ ﹚%botname*
+*﹙ ✿ ﹚Sylphy*
 https://api.sylphy.xyz
 
 *﹙ ✿ ﹚PBT-API*
