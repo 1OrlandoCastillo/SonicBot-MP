@@ -18,12 +18,7 @@ let handler = async (m, { conn }) => {
   let formatUptime = clockString(uptime)
 
   let totalUsers = uniqueUsers.size
-  let txt = `「 *• Subs - Bots* 」`
-  txt += `\n\n`
-  txt += `*◦Bot Principal →* 1\n`
-  txt += `*◦Nombre →* ${namebot}\n`
-  txt += `*◦Tiempo Conectada →* ${formatUptime}\n`
-  txt += `*◦Conectados →* ${totalUsers || 0}`
+  let txt = `Aquí tienes ${totalUsers || 0} subs conectados y activos todos están sincronizados correctamente con el núcleo principal.`
 
   await conn.reply(m.chat, txt, m, rcanal)
 }
