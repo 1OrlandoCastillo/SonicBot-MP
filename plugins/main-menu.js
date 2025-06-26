@@ -19,9 +19,9 @@ const defaultMenu = {
   before: `
 Hello, how are you? I'm Name ${namebot}, and this is my menu.
 
-Registered users: 95826184
+Registered users: *95826184476*
 
-Registered groups: 57383376
+Registered groups: *57383376375*
 
 %readmore`.trimStart(),
 
