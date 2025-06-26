@@ -19,9 +19,11 @@ const defaultMenu = {
   before: `
 Hello, how are you? I'm Name ${namebot}, and this is my menu.
 
-Registered users: *95826184476*
+Registered users:
+958261
 
-Registered groups: *57383376375*
+Registered groups:
+573833
 
 %readmore`.trimStart(),
 
@@ -172,7 +174,7 @@ const handler = async (m, { conn, usedPrefix: _p, __dirname }) => {
         newsletterName: 'LOVELLOUD',
         },
       externalAdReply: {
-        title: 'Anya Forger',
+        title: '> Anya Forger',
         body: '',
         thumbnail: fs.readFileSync('./storage/img/menu2.jpg'),
         sourceUrl: 'LOVELLOUD',
