@@ -15,7 +15,7 @@ const tags = {
 
 const defaultMenu = {
   before: `
-Hola soy ${botname}
+Hola soy %botname
 *﹙ ✿ ﹚Sylphy*
 https://api.sylphy.xyz
 
@@ -92,15 +92,14 @@ const handler = async (m, { conn, usedPrefix: _p, __dirname }) => {
       }
     }
 
-    // Nombre personalizado del sub-bot
     let nombreBot = global.namebot || 'Bot'
     try {
       const sessionId = conn?.auth?.creds?.me?.id?.split(':')[0]
       if (sessionId) {
-        const configPath = join(`./JadiBots/${sessionId}`, 'config.json') // Usamos tu ruta real
+        const configPath = join(`./JadiBots/${sessionId}`, 'config.json')
         if (fs.existsSync(configPath)) {
           const config = JSON.parse(fs.readFileSync(configPath))
-          if (config?.namebot) nombreBot = config.namebot
+          if (config?.botname) nombreBot = config.botname // ✅ aquí el nombre correcto
         }
       }
     } catch (e) {
@@ -218,26 +217,4 @@ const greetingMap = {
   0: 'una linda noche 🌙',
   1: 'una linda noche 💤',
   2: 'una linda noche 🦉',
-  3: 'una linda mañana ✨',
-  4: 'una linda mañana 💫',
-  5: 'una linda mañana 🌅',
-  6: 'una linda mañana 🌄',
-  7: 'una linda mañana 🌅',
-  8: 'una linda mañana 💫',
-  9: 'una linda mañana ✨',
-  10: 'un lindo día 🌞',
-  11: 'un lindo día 🌨',
-  12: 'un lindo día ❄',
-  13: 'un lindo día 🌤',
-  14: 'una linda tarde 🌇',
-  15: 'una linda tarde 🥀',
-  16: 'una linda tarde 🌹',
-  17: 'una linda tarde 🌆',
-  18: 'una linda noche 🌙',
-  19: 'una linda noche 🌃',
-  20: 'una linda noche 🌌',
-  21: 'una linda noche 🌃',
-  22: 'una linda noche 🌙',
-  23: 'una linda noche 🌃',
-}
-var greeting = 'espero que tengas ' + (greetingMap[hour] || 'un buen día')
+  3: 'una linda
