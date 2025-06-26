@@ -1,22 +1,20 @@
 import fs from 'fs'
+import { promises as fsp } from 'fs'
 import { join } from 'path'
 import fetch from 'node-fetch'
 import { xpRange } from '../lib/levelling.js'
 
 const tags = {
-  serbot: '• Subs - Bots',
-  downloader: '• Downloaders',
-  tools: '• Tools',
-  owner: '• Owner',
-  group: '• Group',
-  search: '• Searchs',
-  sticker: '• Stickers',
+  serbot: 'ᗝ̵      ִ       ꯭ ꯭s꯭u꯭bb꯭o꯭t꯭s ꯭ ꯭        ֹ     𓋲',
+  search: 'ᗝ̵      ִ       ꯭ ꯭s꯭ea꯭rc꯭h꯭s ꯭ ꯭        ֹ     𓋲',
+  downloader: 'ᗝ̵      ִ       ꯭ ꯭do꯭w꯭nl꯭o꯭ae꯭r ꯭ ꯭        ֹ     𓋲',
+  tools: 'ᗝ̵      ִ       ꯭ ꯭to꯭ol꯭s꯭ ꯭ ꯭        ֹ     𓋲',
+  sticker: 'ᗝ̵      ִ       ꯭ ꯭s꯭ti꯭ck꯭e꯭rs꯭ ꯭ ꯭        ֹ     𓋲',
+  owner: 'ᗝ̵      ִ       ꯭ ꯭o꯭w꯭ne꯭r꯭ ꯭ ꯭        ֹ     𓋲',
 }
 
 const defaultMenu = {
   before: `
-Hola soy ${namebot} un gusto
-
 *﹙ ✿ ﹚Sylphy*
 https://api.sylphy.xyz
 
@@ -27,8 +25,8 @@ https://api-pbt.onrender.com
 https://home.akirax.net
 
 %readmore`.trimStart(),
-  header: '*`%category`*',
-  body: '• %cmd %islimit %isPremium\n',
+  header: '%category',
+  body: '𔖲𔖰𔖭  𔘓꯭፝𔘓  📓 ᩨ ︳%cmd %islimit %isPremium\n',
   footer: '',
   after: '',
 }
@@ -91,21 +89,6 @@ const handler = async (m, { conn, usedPrefix: _p, __dirname }) => {
           }
         }
       }
-    }
-
-    let nombreBot = global.namebot || 'Bot'
-    try {
-      const sessionId = conn?.auth?.creds?.me?.id?.split(':')[0]
-      if (sessionId) {
-        const configPath = join(`./JadiBots/${sessionId}`, 'config.json')
-        if (fs.existsSync(configPath)) {
-          const config = JSON.parse(fs.readFileSync(configPath))
-          if (config?.botname) nombreBot = config.botname // ✅ aquí el nombre correcto
-        }
-      }
-    } catch (e) {
-      console.log('❌ Error leyendo nombre personalizado del Sub-Bot:', e)
-    }
 
     const menuConfig = conn.menu || defaultMenu
     const _text = [
@@ -181,7 +164,7 @@ const handler = async (m, { conn, usedPrefix: _p, __dirname }) => {
             newsletterName: 'LOVELLOUD',
           },
           externalAdReply: {
-            title: nombreBot,
+            title: 'Anya Forger',
             body: '',
             thumbnail: fs.readFileSync('./storage/img/menu2.jpg'),
             sourceUrl: 'https://dash.lovelloud.uk',
@@ -202,6 +185,7 @@ const handler = async (m, { conn, usedPrefix: _p, __dirname }) => {
 handler.command = ['menu', 'help', 'menú']
 export default handler
 
+// Utilidades
 const more = String.fromCharCode(8206)
 const readMore = more.repeat(4001)
 
@@ -218,4 +202,27 @@ const greetingMap = {
   0: 'una linda noche 🌙',
   1: 'una linda noche 💤',
   2: 'una linda noche 🦉',
-  3: 'una linda
+  3: 'una linda mañana ✨',
+  4: 'una linda mañana 💫',
+  5: 'una linda mañana 🌅',
+  6: 'una linda mañana 🌄',
+  7: 'una linda mañana 🌅',
+  8: 'una linda mañana 💫',
+  9: 'una linda mañana ✨',
+  10: 'un lindo día 🌞',
+  11: 'un lindo día 🌨',
+  12: 'un lindo día ❄',
+  13: 'un lindo día 🌤',
+  14: 'una linda tarde 🌇',
+  15: 'una linda tarde 🥀',
+  16: 'una linda tarde 🌹',
+  17: 'una linda tarde 🌆',
+  18: 'una linda noche 🌙',
+  19: 'una linda noche 🌃',
+  20: 'una linda noche 🌌',
+  21: 'una linda noche 🌃',
+  22: 'una linda noche 🌙',
+  23: 'una linda noche 🌃',
+}
+
+var greeting = 'espero que tengas ' + (greetingMap[hour] || 'un buen día')
