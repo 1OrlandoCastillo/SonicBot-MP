@@ -15,6 +15,7 @@ const tags = {
 
 const defaultMenu = {
   before: `
+Hola soy ${botname}
 *﹙ ✿ ﹚Sylphy*
 https://api.sylphy.xyz
 
