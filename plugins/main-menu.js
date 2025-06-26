@@ -168,7 +168,7 @@ const handler = async (m, { conn, usedPrefix: _p, __dirname }) => {
     caption: text.trim(),
     contextInfo: {
       mentionedJid: conn.parseMention(text.trim()),
-      isForwarded: false,
+      isForwarded: true,
       forwardedNewsletterMessageInfo: {
         newsletterJid: '120363403143798163@newsletter',
         newsletterName: 'LOVELLOUD',
