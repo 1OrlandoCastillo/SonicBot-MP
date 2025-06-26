@@ -14,7 +14,7 @@ let handler = async (m, { conn, args }) => {
     // Si responde a archivo multimedia
     if (/image|video|webp|tgs|webm/g.test(mime) && q.download) {
       if (/video|webm/.test(mime) && (q.msg || q).seconds > 11)
-        return conn.reply(m.chat, '𖧏 Hola, este sticker animado no puede durar más de *10* Segundos.', m, rcanal)
+        return conn.reply(m.chat, 'Asegúrate de que el video o animación que vas a convertir tenga una duración máxima de 10 segundos.', m, rcanal)
 
       buffer = await q.download()
 
