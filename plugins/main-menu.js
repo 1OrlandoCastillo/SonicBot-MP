@@ -7,27 +7,26 @@ import fetch from 'node-fetch'
 import { xpRange } from '../lib/levelling.js'
 
 const tags = {
-  serbot: '• Subs - Bots',
-  owner: '• Owner',
-  group: '• Group',
-  search: '• Searchs',
-  sticker: '• Stickers',
+  serbot: 'ᗝ̵      ִ       ꯭ ꯭s꯭u꯭bb꯭o꯭t꯭s ꯭ ꯭        ֹ     𓋲',
+  search: 'ᗝ̵      ִ       ꯭ ꯭s꯭ea꯭rc꯭h꯭s ꯭ ꯭        ֹ     𓋲',
+  downloader: 'ᗝ̵      ִ       ꯭ ꯭do꯭w꯭nl꯭o꯭ae꯭r ꯭ ꯭        ֹ     𓋲',
+  tools: 'ᗝ̵      ִ       ꯭ ꯭to꯭ol꯭s꯭ ꯭ ꯭        ֹ     𓋲',
+  sticker: 'ᗝ̵      ִ       ꯭ ꯭s꯭ti꯭ck꯭e꯭rs꯭ ꯭ ꯭        ֹ     𓋲',
+  owner: 'ᗝ̵      ִ       ꯭ ꯭o꯭w꯭ne꯭r꯭ ꯭ ꯭        ֹ     𓋲',
 }
 
 const defaultMenu = {
   before: `
-• ${namebot}
+Hello, how are you? I'm Name ${namebot}, and this is my menu.
 
-*﹙ ✿ ﹚PBT-API*
-https://api-pbt.onrender.com
+Registered users: 95826184
 
-*﹙ ✿ ﹚Akirax Host*
-https://home.akirax.net
+Registered groups: 57383376
 
 %readmore`.trimStart(),
 
-  header: '*`%category`*',
-  body: '• %cmd %islimit %isPremium\n',
+  header: '%category',
+  body: '𔖲𔖰𔖭  𔘓꯭፝𔘓  📓 ᩨ ︳%cmd %islimit %isPremium\n',
   footer: '',
   after: '',
 }
