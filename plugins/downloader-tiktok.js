@@ -25,7 +25,7 @@ let handler = async (m, { conn, args, usedPrefix, command }) => {
 │ *👤 Autor:* ${author || 'Desconocido'}
 ╰──────╯`
 
-    await conn.sendFile(m.chat, video_url, 'tiktok.mp4', `${info}\n\n✨ ¡Aquí tienes tu video`, m, rcanal)
+    await conn.sendFile(m.chat, video_url, 'tiktok.mp4', `${info}\n\n✨ ¡Aquí tienes tu video`, m, null rcanal)
     await m.react('✅')
   } catch (e) {
     console.error(e)
