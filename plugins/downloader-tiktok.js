@@ -6,7 +6,7 @@ let handler = async (m, { conn, args, usedPrefix, command }) => {
       `> *${usedPrefix + command}* https://www.tiktok.com/@usuario/video/1234567890`, m)
   }
 
-  await m.react('⚡')
+  await m.react('💎')
 
   try {
     const res = await fetch(`https://g-mini-ia.vercel.app/api/tiktok?url=${encodeURIComponent(args[0])}`)
@@ -25,7 +25,7 @@ let handler = async (m, { conn, args, usedPrefix, command }) => {
 │ *👤 Autor:* ${author || 'Desconocido'}
 ╰──────╯`
 
-    await conn.sendFile(m.chat, video_url, 'tiktok.mp4', `${info}\n\n✨ ¡Aquí tienes tu video con poder *Pikachu*! ⚡`, m)
+    await conn.sendFile(m.chat, video_url, 'tiktok.mp4', `${info}\n\n✨ ¡Aquí tienes tu video`, m, rcanal)
     await m.react('✅')
   } catch (e) {
     console.error(e)
