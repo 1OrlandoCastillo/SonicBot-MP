@@ -2,38 +2,41 @@ import fetch from 'node-fetch'
 
 let handler = async (m, { conn, args, usedPrefix, command }) => {
   if (!args || !args[0]) {
-    return conn.reply(m.chat, 'Por favor, envía un enlace de TikTok para descargar el video.\n\n📌 *Ejemplo:*\n' +
-      `> *${usedPrefix + command}* https://www.tiktok.com/@usuario/video/1234567890`, m)
+    return conn.reply(m.chat, `🚩 Ingresa un enlace del vídeo de *TikTok* junto al comando.\n\n` +
+      `> *Ejemplo:* ${usedPrefix + command} https://vm.tiktok.com/ZMrFCX5jf/`, m)
   }
 
-  await m.react('💎')
+  if (!args[0].match(/tiktok/i)) {
+    await m.react('✖️')
+    return conn.reply(m.chat, '🚫 Verifica que el enlace sea de TikTok.', m)
+  }
+
+  await m.react('🕓')
 
   try {
     const res = await fetch(`https://g-mini-ia.vercel.app/api/tiktok?url=${encodeURIComponent(args[0])}`)
-    if (!res.ok) throw new Error('❌ La API no respondió correctamente')
-
     const json = await res.json()
-    if (!json || !json.video_url) {
-      throw new Error('❌ No se pudo obtener el video.')
-    }
 
-    const { video_url, title, author } = json
+    let {
+      title = 'Sin título',
+      author = 'Desconocido',
+      video: { url: dl_url } = {}
+    } = json?.data || {}
 
-    let txt = '`乂  T I K T O K  -  D O W N L O A D`\n\n'
-    txt += `	✩  *Título* : ${title}\n`
-    txt += `	✩  *Autor* : ${author}`
+    if (!dl_url) return await m.react('✖️')
 
-    await conn.sendFile(m.chat, video_url, 'tiktok.mp4', txt, m, null, rcanal)
+    let txt = `	✩  *Título:* ${title}\n`
+    txt += `	✩  *Autor:* ${author}`
+
+    await conn.sendFile(m.chat, dl_url, 'tiktok.mp4', txt, m, null, rcanal)
     await m.react('✅')
-  } catch (e) {
-    console.error(e)
+  } catch {
     await m.react('✖️')
-    conn.reply(m.chat, '❌ Error al descargar el video. Verifica el enlace o intenta más tarde.', m)
   }
 }
 
-handler.help = ['tiktok <enlace>']
+handler.help = ['tiktok *<url>*']
 handler.tags = ['downloader']
-handler.command = /^(tiktok|tt|tiktokdl|ttdl)$/i
+handler.command = /^(tiktok|ttdl|tiktokdl|tiktoknowm)$/i
 
 export default handler
