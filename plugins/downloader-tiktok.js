@@ -19,13 +19,11 @@ let handler = async (m, { conn, args, usedPrefix, command }) => {
 
     const { video_url, title, author } = json
 
-    const info = `
-╭──────╮
-│ *🎬 Título:* ${title || 'No disponible'}
-│ *👤 Autor:* ${author || 'Desconocido'}
-╰──────╯`
+    let txt = '`乂  T I K T O K  -  D O W N L O A D`\n\n'
+    txt += `	✩  *Título* : ${title}\n`
+    txt += `	✩  *Autor* : ${author}`
 
-    await conn.sendFile(m.chat, video_url, 'tiktok.mp4', `${info}\n\n✨ ¡Aquí tienes tu video`, m, null rcanal)
+    await conn.sendFile(m.chat, video_url, 'tiktok.mp4', txt, m, null, rcanal)
     await m.react('✅')
   } catch (e) {
     console.error(e)
