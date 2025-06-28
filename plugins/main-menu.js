@@ -6,6 +6,32 @@ import { join } from 'path'
 import fetch from 'node-fetch'
 import { xpRange } from '../lib/levelling.js'
 
+/ Creamos un objeto global para almacenar el banner y el nombre por sesión
+global.botNames = {};   // Almacenará los nombres personalizados por sesión
+
+let handler = async (m, { conn, usedPrefix, text, command }) => {
+  try {
+    if (!global.botNames[conn.user.jid]) {
+      global.botNames[conn.user.jid] = 'Bot'; // Nombre inicial del bot
+    }
+
+    // Verificar si el usuario es el socket activo
+    const isSocketActive = conn.user.jid === m.sender;
+
+    // Comando para cambiar el nombre del bot (solo permitido para el socket activo)
+    if (command === 'setname') {
+      if (!isSocketActive) {
+        return await m.reply('「🩵」Este comando solo puede ser usado por el socket.', m);
+      }
+      if (!text) {
+        return await m.reply('「🩵」¿Qué nombre deseas agregar al socket?', m);
+      }
+      global.botNames[conn.user.jid] = text.trim(); // Actualiza el nombre solo para esta sesión
+      return await m.reply('「🩵」El nombre fue actualizado con éxito...', m);
+    }
+
+      let namebot = global.botNames[conn.user.jid]; // Nombre del bot específico para esta sesión
+
 const tags = {
   serbot: 'ᗝ̵      ִ       ꯭ ꯭s꯭u꯭bb꯭o꯭t꯭s ꯭ ꯭        ֹ     𓋲',
   search: 'ᗝ̵      ִ       ꯭ ꯭s꯭ea꯭rc꯭h꯭s ꯭ ꯭        ֹ     𓋲',
