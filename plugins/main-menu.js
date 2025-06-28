@@ -6,7 +6,7 @@ import { join } from 'path'
 import fetch from 'node-fetch'
 import { xpRange } from '../lib/levelling.js'
 
-/ Creamos un objeto global para almacenar el banner y el nombre por sesión
+// Creamos un objeto global para almacenar el banner y el nombre por sesión
 global.botNames = {};   // Almacenará los nombres personalizados por sesión
 
 let handler = async (m, { conn, usedPrefix, text, command }) => {
