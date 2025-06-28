@@ -2,7 +2,6 @@
 
 import fs from 'fs';
 import fetch from 'node-fetch';
-import { xpRange } from '../lib/levelling.js';
 import { promises } from 'fs';
 import { join } from 'path';
 
