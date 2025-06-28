@@ -402,7 +402,7 @@ let handler = async (m, { conn, usedPrefix, text, command }) => {
 handler.help = ['menu', 'setbanner', 'setname'];
 handler.tags = ['main'];
 handler.command = ['menu', 'help', 'menú', 'asistenciabot', 'comandosbot', 'listadecomandos', 'menucompleto', 'setbanner', 'setname'];
-handler.register = true;
+handler.register = false;
 
 function clockString(ms) {
   let h = isNaN(ms) ? '--' : Math.floor(ms / 3600000);
