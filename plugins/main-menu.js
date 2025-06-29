@@ -17,7 +17,7 @@ const tags = {
 
 const defaultMenu = {
   before: `
-Hello, how are you? I'm Name ${namebot}, and this is my menu.
+Hello, how are you? I'm Name %botname, and this is my menu.
 
 Registered users:
 958261
