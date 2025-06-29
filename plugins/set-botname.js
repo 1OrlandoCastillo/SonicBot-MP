@@ -2,41 +2,34 @@ import fs from 'fs'
 import path from 'path'
 
 const handler = async (m, { conn, text, usedPrefix, command }) => {
-  if (!text) return m.reply(`Usa correctamente *${usedPrefix + command} nombre nuevo*`)
+  if (!text) return m.reply(`Debes escribir el nombre que deseas asignar junto al comando, sin dejarlo vacío.`, m, rcanal)
 
   const senderNumber = m.sender.replace(/[^0-9]/g, '')
   const botPath = path.join('./JadiBots', senderNumber)
   const configPath = path.join(botPath, 'config.json')
 
   if (!fs.existsSync(botPath)) {
-    return m.reply('No encontré tu sub bot activo.')
+    return m.reply('Parece que no tienes ningún sub bot conectado actualmente o tu sesión ha expirado.', m, rcanal)
   }
 
   let config = {}
 
-  // Si existe config.json, leerlo
   if (fs.existsSync(configPath)) {
     try {
       config = JSON.parse(fs.readFileSync(configPath))
-    } catch (e) {
-      return m.reply('Error al leer el config.json.')
-    }
+    } catch {}
   }
 
-  // Editar o crear el campo "name"
   config.name = text.trim()
 
   try {
     fs.writeFileSync(configPath, JSON.stringify(config, null, 2))
-    m.reply(`Nombre del sub bot cambiado a: *${text.trim()}*`)
-  } catch (err) {
-    console.error(err)
-    m.reply('Ocurrió un error al guardar el nombre.')
-  }
+    m.reply(`Este será el nombre ${text.trim()} visible en los menús y respuestas del bot a partir de ahora.`, m, rcanal)
+  } catch {}
 }
 
-handler.help = ['setname']
-handler.tags= ['serbot']
-handler.command = /^setname$/i
+handler.help = ['setbotname']
+handler.tags = ['serbot']
+handler.command = /^(stn|setbotname|setname|setn)$/i
 
 export default handler
