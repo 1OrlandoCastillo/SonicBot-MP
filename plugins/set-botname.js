@@ -1,39 +1,42 @@
-//* Código creado por Félix, no quites créditos *//
+import fs from 'fs'
+import path from 'path'
 
-global.botNames = global.botNames || {}; // Por si no fue inicializado aún
+const handler = async (m, { conn, text, usedPrefix, command }) => {
+  if (!text) return m.reply(`Usa correctamente *${usedPrefix + command} nombre nuevo*`)
 
-let handler = async (m, { conn, text, command }) => {
-  try {
-    // Validación de estructura básica
-    if (!conn?.user?.jid || typeof conn.user.jid !== 'string') {
-      return await m.reply('✘ Error interno: El socket aún no está completamente inicializado.', m);
-    }
+  const senderNumber = m.sender.replace(/[^0-9]/g, '')
+  const botPath = path.join('./JadiBots', senderNumber)
+  const configPath = path.join(botPath, 'config.json')
 
-    if (!m?.sender || typeof m.sender !== 'string') {
-      return await m.reply('✘ Error interno: No se pudo detectar el remitente.', m);
-    }
-
-    const isSocketActive = conn.user.jid === m.sender;
-
-    // Solo el socket puede usar este comando
-    if (!isSocketActive) {
-      return await m.reply('「🩵」Este comando solo puede ser usado por el socket.', m);
-    }
-
-    if (!text) {
-      return await m.reply('「🩵」¿Qué nombre deseas agregar al socket?', m);
-    }
-
-    global.botNames[conn.user.jid] = text.trim(); // Guardamos nombre personalizado por sesión
-
-    return await m.reply('「🩵」El nombre fue actualizado con éxito...', m);
-  } catch (e) {
-    return await m.reply(`✘ Ocurrió un error al ejecutar el comando:\n\n${e}`, m);
+  if (!fs.existsSync(botPath)) {
+    return m.reply('No encontré tu sub bot activo.')
   }
-};
 
-handler.help = ['setname'];
-handler.tags = ['subbots'];
-handler.command = ['setname'];
+  let config = {}
 
-export default handler;
+  // Si existe config.json, leerlo
+  if (fs.existsSync(configPath)) {
+    try {
+      config = JSON.parse(fs.readFileSync(configPath))
+    } catch (e) {
+      return m.reply('Error al leer el config.json.')
+    }
+  }
+
+  // Editar o crear el campo "name"
+  config.name = text.trim()
+
+  try {
+    fs.writeFileSync(configPath, JSON.stringify(config, null, 2))
+    m.reply(`Nombre del sub bot cambiado a: *${text.trim()}*`)
+  } catch (err) {
+    console.error(err)
+    m.reply('Ocurrió un error al guardar el nombre.')
+  }
+}
+
+handler.help = ['setname']
+handler.tags= ['serbot']
+handler.command = /^setname$/i
+
+export default handler
