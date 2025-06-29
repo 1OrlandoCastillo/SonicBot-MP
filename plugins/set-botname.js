@@ -30,6 +30,6 @@ const handler = async (m, { conn, text, usedPrefix, command }) => {
 
 handler.help = ['setbotname']
 handler.tags = ['serbot']
-handler.command = /^(stn|setbotname|setname|setn)$/i
+handler.command = /^setbotname$/i
 
 export default handler
