@@ -14,10 +14,13 @@ const handler = async (m, { conn, text, usedPrefix, command }) => {
 
   let config = {}
 
+  // Si existe config.json, leerlo
   if (fs.existsSync(configPath)) {
     try {
       config = JSON.parse(fs.readFileSync(configPath))
-    } catch {}
+    } catch (e) {
+      return m.reply('⚠️ Error al leer el config.json.')
+    }
   }
 
   config.name = text.trim()
@@ -25,11 +28,14 @@ const handler = async (m, { conn, text, usedPrefix, command }) => {
   try {
     fs.writeFileSync(configPath, JSON.stringify(config, null, 2))
     m.reply(`Este será el nombre ${text.trim()} visible en los menús y respuestas del bot a partir de ahora.`, m, rcanal)
-  } catch {}
+  } catch (err) {
+    console.error(err)
+    m.reply('❌ Ocurrió un error al guardar el nombre.')
+  }
 }
 
 handler.help = ['setbotname']
-handler.tags = ['serbot']
+handler.tags= ['serbot']
 handler.command = /^setbotname$/i
 
 export default handler
