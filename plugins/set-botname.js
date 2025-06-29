@@ -2,7 +2,7 @@ import fs from 'fs'
 import path from 'path'
 
 const handler = async (m, { conn, text, usedPrefix, command }) => {
-  if (!text) return m.reply(`Debes escribir el nombre que deseas asignar junto al comando, sin dejarlo vacío.`, m, rcanal)
+  if (!text) return m.reply(`Debes escribir el nombre que deseas asignar junto al comando, sin dejarlo vacío ejemplo ${usedPrefix + command} Anya Forger.`, m, rcanal)
 
   const senderNumber = m.sender.replace(/[^0-9]/g, '')
   const botPath = path.join('./JadiBots', senderNumber)
