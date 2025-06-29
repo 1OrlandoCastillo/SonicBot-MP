@@ -17,7 +17,7 @@ const tags = {
 
 const defaultMenu = {
   before: `
-Hello, how are you? I'm Name %botname, and this is my menu.
+Hola como estas?, mi nombre es %botname
 
 Registered users:
 958261
@@ -57,7 +57,7 @@ const handler = async (m, { conn, usedPrefix: _p }) => {
     }))
 
     let nombreBot = global.namebot || 'Anya Forger'
-    let bannerFinal = './storage/img/menu.jpg'
+    let bannerFinal = './storage/img/menu2.jpg'
 
     const botActual = conn.user?.jid?.split('@')[0].replace(/\D/g, '')
     const configPath = join('./JadiBots', botActual, 'config.json')
