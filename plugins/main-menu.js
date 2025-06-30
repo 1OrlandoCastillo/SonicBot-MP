@@ -117,8 +117,8 @@ const handler = async (m, { conn, usedPrefix: _p }) => {
       (_, name) => String(replace[name])
     )
 
-    const isURL = typeof bannerFinal === 'string' && /^https?:\/\//i.test(bannerFinal)
-    const imageContent = isURL ? { image: { url: bannerFinal } } : { image: fs.readFileSync(bannerFinal) }
+    const isURL = typeof logoBot === 'string' && /^https?:\/\//i.test(logoBot)
+    const imageContent = isURL ? { image: { url: logoBot } } : { image: fs.readFileSync(logoBot) }
 
     const rcanal = {
       contextInfo: {
