@@ -57,7 +57,7 @@ const handler = async (m, { conn, usedPrefix: _p }) => {
     }))
 
     let nombreBot = global.namebot || 'Anya Forger'
-    let bannerFinal = './storage/img/menu3.jpg'
+    let logoBot = './storage/img/menu3.jpg'
 
     const botActual = conn.user?.jid?.split('@')[0].replace(/\D/g, '')
     const configPath = join('./JadiBots', botActual, 'config.json')
@@ -65,7 +65,7 @@ const handler = async (m, { conn, usedPrefix: _p }) => {
       try {
         const config = JSON.parse(fs.readFileSync(configPath))
         if (config.name) nombreBot = config.name
-        if (config.banner) bannerFinal = config.banner
+        if (config.logo) logoBot = config.logo
       } catch (err) {
         console.log('⚠️ No se pudo leer config del subbot:', err)
       }
