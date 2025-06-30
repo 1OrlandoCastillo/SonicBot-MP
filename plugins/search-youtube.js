@@ -11,7 +11,6 @@ let imgBot = './storage/img/menu3.jpg'
     if (fs.existsSync(configPath)) {
       try {
         const config = JSON.parse(fs.readFileSync(configPath))
-        if (config.name) nombreBot = config.name
         if (config.img) imgBot = config.img
       } catch (err) {
         console.log('⚠️ No se pudo leer config del subbot:', err)
