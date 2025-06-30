@@ -17,13 +17,11 @@ const tags = {
 
 const defaultMenu = {
   before: `
-Hola como estas?, mi nombre es %botname
+Hola soy %botname
 
-Registered users:
-958261
+Tiempo Activa :: %uptime
 
-Registered groups:
-573833
+> Registered users :: 958261
 
 %readmore`.trimStart(),
 
