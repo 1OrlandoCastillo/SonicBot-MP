@@ -23,6 +23,8 @@ Tiempo Activa :: %uptime
 
 > Registered users :: 958261
 
+Puedes usar .setbotname para cambiar en nombre y .setlogo para cambiar la foto
+
 %readmore`.trimStart(),
 
   header: '%category',
