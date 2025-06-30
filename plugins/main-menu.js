@@ -19,7 +19,7 @@ const defaultMenu = {
   before: `
 Hola soy %botname
 
-Tiempo Activa :: %uptime
+Tiempo :: %uptime
 
 > Registered users :: 958261
 
