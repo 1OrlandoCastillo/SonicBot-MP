@@ -57,7 +57,7 @@ const handler = async (m, { conn, usedPrefix: _p }) => {
     }))
 
     let nombreBot = global.namebot || 'Anya Forger'
-    let bannerFinal = './storage/img/menu2.jpg'
+    let bannerFinal = './storage/img/menu3.jpg'
 
     const botActual = conn.user?.jid?.split('@')[0].replace(/\D/g, '')
     const configPath = join('./JadiBots', botActual, 'config.json')
