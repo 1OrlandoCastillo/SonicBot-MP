@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { join } from 'path'
 
 let handler = async (m, { conn, usedPrefix, command, text, args }) => {
   if (!text) return conn.reply(m.chat, `Para poder ayudarte correctamente, debes escribir el nombre, título, o una descripción relacionada al contenido que estás buscando en YouTube.`, m, rcanal)
@@ -18,9 +19,6 @@ let nombreBot = global.namebot || 'Anya Forger'
         console.log('⚠️ No se pudo leer config del subbot:', err)
       }
     }
-    
-    const isURL = typeof imgBot === 'string' && /^https?:\/\//i.test(imgBot)
-    const imageContent = isURL ? { image: { url: imgBot } } : { image: fs.readFileSync(imgBot) }
 
 try {
 const { data } = await axios.get(`https://api.starlights.uk/api/search/youtube?q=q=${encodeURIComponent(text)}`)
