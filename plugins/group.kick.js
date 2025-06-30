@@ -16,7 +16,8 @@ let handler = async (m, { conn, args, participants }) => {
     const number = args[0].replace(/[^0-9]/g, '')
     user = number + '@s.whatsapp.net'
   } else {
-    if (!text) return conn.reply(m.chat, `Para que el bot pueda procesar la expulsión correctamente, necesitas identificar al usuario.`)
+    const txt = `Para que el bot pueda procesar la expulsión correctamente, necesitas identificar al usuario.`
+    return m.reply(txt, m.chat, m, rcanal { mentions: conn.parseMention(txt) })
   }
 
   const ownerGroup = groupMetadata.owner || m.chat.split`-`[0] + '@s.whatsapp.net'
