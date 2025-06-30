@@ -6,17 +6,6 @@ let handler = async (m, { conn, usedPrefix, command, text, args }) => {
 await m.react('🕓')
 let imgBot = './storage/img/menu3.jpg'
 
-    const botActual = conn.user?.jid?.split('@')[0].replace(/\D/g, '')
-    const configPath = join('./JadiBots', botActual, 'config.json')
-    if (fs.existsSync(configPath)) {
-      try {
-        const config = JSON.parse(fs.readFileSync(configPath))
-        if (config.img) imgBot = config.img
-      } catch (err) {
-        console.log('⚠️ No se pudo leer config del subbot:', err)
-      }
-    }
-
 try {
 const { data } = await axios.get(`https://api.starlights.uk/api/search/youtube?q=q=${encodeURIComponent(text)}`)
 
