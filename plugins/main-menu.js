@@ -23,7 +23,9 @@ Tiempo Activa :: %uptime
 
 > Registered users :: 958261
 
-Puedes usar .setbotname para cambiar en nombre y .setlogo para cambiar la foto
+Puedes usar .setbotname para cambiar el nombre y .setlogo para cambiar la foto
+
+> Aquí está mi menú
 
 %readmore`.trimStart(),
 
