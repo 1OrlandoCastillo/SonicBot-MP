@@ -6,7 +6,6 @@ let handler = async (m, { conn, usedPrefix, command, text, args }) => {
   if (!text) return conn.reply(m.chat, `Para poder ayudarte correctamente, debes escribir el nombre, título, o una descripción relacionada al contenido que estás buscando en YouTube.`, m, rcanal)
 
 await m.react('🕓')
-let nombreBot = global.namebot || 'Anya Forger'
 let imgBot = './storage/img/menu3.jpg'
 
 const botActual = conn.user?.jid?.split('@')[0].replace(/\D/g, '')
@@ -14,7 +13,6 @@ const configPath = join('./JadiBots', botActual, 'config.json')
     if (fs.existsSync(configPath)) {
       try {
 const config = JSON.parse(fs.readFileSync(configPath))
-        if (config.name) nombreBot = config.name
         if (config.img) imgBot = config.img
       } catch (err) {
       }
@@ -26,7 +24,7 @@ const { data } = await axios.get(`https://api.starlights.uk/api/search/youtube?q
 const results = data?.result || []
 
 if (results.length > 0) {
-  let txt = `「 *• Searchs* 」 %botname`
+  let txt = `「 *• Searchs* 」`
 
   for (let i = 0; i < (results.length >= 15 ? 15 : results.length); i++) {
         const video = results[i]
