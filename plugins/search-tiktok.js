@@ -1,4 +1,6 @@
 import axios from 'axios'
+import { join } from 'path'
+import fs from 'fs'
 
 let handler = async (m, { conn, usedPrefix, command, text, args }) => {
   if (!text) return conn.reply(m.chat, `Para poder ayudarte correctamente, debes escribir el nombre, título o una descripción relacionada al contenido que estás buscando.`, m, rcanal)
