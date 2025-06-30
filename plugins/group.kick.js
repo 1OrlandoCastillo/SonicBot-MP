@@ -40,8 +40,8 @@ let handler = async (m, { conn, args, participants }) => {
 handler.help = ['kick *@usuario*', 'kick 519xxxxxxxx']
 handler.tags = ['group']
 handler.command = ['kick', 'expulsar', 'echar', 'ban', 'sacar']
-handler.admin = true
-handler.group = true
-handler.botAdmin = true
+handler.admin = false
+handler.group = false
+handler.botAdmin = false
 
 export default handler
