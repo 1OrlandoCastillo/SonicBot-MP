@@ -59,17 +59,16 @@ const handler = async (m, { conn, usedPrefix: _p }) => {
     }))
 
     let nombreBot = global.namebot || 'Anya Forger'
-    let imgBot = './storage/img/menu3.jpg'
+let imgBot = './storage/img/menu3.jpg'
 
-    const botActual = conn.user?.jid?.split('@')[0].replace(/\D/g, '')
-    const configPath = join('./JadiBots', botActual, 'config.json')
+const botActual = conn.user?.jid?.split('@')[0].replace(/\D/g, '')
+const configPath = join('./JadiBots', botActual, 'config.json')
     if (fs.existsSync(configPath)) {
       try {
-        const config = JSON.parse(fs.readFileSync(configPath))
+const config = JSON.parse(fs.readFileSync(configPath))
         if (config.name) nombreBot = config.name
         if (config.img) imgBot = config.img
       } catch (err) {
-        console.log('⚠️ No se pudo leer config del subbot:', err)
       }
     }
 
@@ -121,26 +120,7 @@ const handler = async (m, { conn, usedPrefix: _p }) => {
       (_, name) => String(replace[name])
     )
 
-    const isURL = typeof imgBot === 'string' && /^https?:\/\//i.test(imgBot)
-    const imageContent = isURL ? { image: { url: imgBot } } : { image: fs.readFileSync(imgBot) }
-
-    const rcanal = {
-      contextInfo: {
-        isForwarded: true,
-        forwardedNewsletterMessageInfo: {
-          newsletterJid: idcanal,
-          serverMessageId: 100,
-          newsletterName: namecanal
-        }
-      }
-    }
-
-    await conn.sendMessage(m.chat, {
-      ...imageContent,
-      caption: text.trim(),
-      mentionedJid: conn.parseMention(text),
-      ...rcanal
-    }, { quoted: m })
+    await conn.sendFile(m.chat, imgBot, 'thumbnail.jpg', text.trim(), m, null, rcanal)
 
   } catch (e) {
     conn.reply(m.chat, '❎ Lo sentimos, el menú tiene un error.', m)
