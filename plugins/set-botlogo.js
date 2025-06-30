@@ -7,19 +7,19 @@ const handler = async (m, { conn, usedPrefix, command }) => {
   const configPath = path.join(botPath, 'config.json')
 
   if (!fs.existsSync(botPath)) {
-    return m.reply('❌ No encontré tu sub bot activo.')
+    return conn.reply(m.chat, 'Parece que no hay ninguna sesión activa vinculada a tu número en este momento.', m, rcanal)
   }
 
   const q = m.quoted || m
   const mime = (q.msg || q).mimetype || ''
 
   if (!/image\/(jpe?g|png|webp)/.test(mime)) {
-    return m.reply(`> 📸 Usa así:\n*${usedPrefix + command} https://example.com/banner.jpg*, osea sube la imagen a un hosting de imágenes como catbox.moe`)
+    return conn.reply(m.chat, `Necesitas responder directamente a una imagen enviada en el chat para que el bot la reconozca y la utilice como nuevo logo.`, m, rcanal)
   }
 
   try {
     const imgBuffer = await q.download?.()
-    if (!imgBuffer) return m.reply('❌ No pude descargar la imagen.')
+    if (!imgBuffer) return
 
     const fileName = `logo_${Date.now()}.jpg`
     const filePath = path.join(botPath, fileName)
@@ -29,18 +29,17 @@ const handler = async (m, { conn, usedPrefix, command }) => {
       ? JSON.parse(fs.readFileSync(configPath))
       : {}
 
-    config.banner = filePath // guarda la ruta local
+    config.logo = filePath
 
     fs.writeFileSync(configPath, JSON.stringify(config, null, 2))
-    m.reply('✅ Logo actualizado correctamente.')
+    return conn.reply(m.chat, 'Tu sub bot ahora tiene una nueva imagen que se mostrará para todos los usuarios.', m, rcanal)
   } catch (e) {
     console.error(e)
-    m.reply('❌ Error al guardar el logo.')
   }
 }
 
 handler.help = ['setlogo']
 handler.tags = ['serbot']
 handler.command = /^setlogo$/i
-handler.owner = false
+
 export default handler
