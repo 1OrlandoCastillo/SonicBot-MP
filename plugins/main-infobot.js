@@ -89,9 +89,12 @@ const config = JSON.parse(fs.readFileSync(configPath))
       }
     }
     
-const replace = {
+    const replace = {
+      '%': '%',
+      p: _p,
       botname: nombreBot,
-      }
+    }
+    
 await conn.sendFile(m.chat, imgBot, 'thumbnail.jpg', txt, m, null, rcanal)
 }
 handler.help = ['info']
