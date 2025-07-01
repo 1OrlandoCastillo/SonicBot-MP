@@ -28,6 +28,9 @@ global.ch = {
 ch1: '120363403143798163@newsletter',
 }
 
+global.mods = []
+global.prems = []
+
 let file = fileURLToPath(import.meta.url)
 watchFile(file, () => {
   unwatchFile(file)
