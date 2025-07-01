@@ -4,12 +4,9 @@ import { fileURLToPath } from 'url'
 
 
 global.owner = [
-  ['51928303585', 'Samsit', true],
+  ['51942501966', 'Sung', true],
+  ['51928303585', 'Sung', true],
 ]
-
-
-global.mods = []
-global.prems = []
 
 global.libreria = 'Baileys'
 global.baileys = 'V 6.7.16' 
@@ -22,7 +19,7 @@ global.yukiJadibts = true
 
 global.packname = 'LOVELLOUD'
 global.namebot = 'Anya Forger'
-global.author = 'Samsit'
+global.author = 'Sung'
 
 
 global.namecanal = 'LOVELLOUD'
@@ -32,10 +29,6 @@ global.idcanal = '120363403143798163@newsletter'
 global.ch = {
 ch1: '120363403143798163@newsletter',
 }
-
-global.multiplier = 69 
-global.maxwarn = '2'
-
 
 let file = fileURLToPath(import.meta.url)
 watchFile(file, () => {
