@@ -69,7 +69,7 @@ let handler = async (m, { conn, usedPrefix }) => {
    let timestamp = speed()
    let latensi = speed() - timestamp
    let txt = '\n'
-       txt += `Nombre :: %botname\n`
+       txt += `Nombre :: %namebot\n`
        txt += `Prefijo :: ${usedPrefix}\n`
        txt += `Plugins :: ${totalf}\n`
        txt += `Speed :: ${latensi.toFixed(4)}\n`
