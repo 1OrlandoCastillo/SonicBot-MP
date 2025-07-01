@@ -24,7 +24,7 @@ Tiempo :: %uptime
 
 > Registered users :: 958261
 
-Puedes usar .setbotname para cambiar el nombre y .setlogo para cambiar la foto
+Puedes usar .setbotname para cambiar el nombre y .setbotimg para cambiar la foto
 
 > Aquí está mi menú
 
