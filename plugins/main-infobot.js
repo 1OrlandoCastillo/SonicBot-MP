@@ -90,8 +90,6 @@ const config = JSON.parse(fs.readFileSync(configPath))
     }
     
     const replace = {
-      '%': '%',
-      p: _p,
       botname: nombreBot,
     }
     
