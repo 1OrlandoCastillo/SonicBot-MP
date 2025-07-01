@@ -31,6 +31,9 @@ ch1: '120363403143798163@newsletter',
 global.mods = []
 global.prems = []
 
+global.multiplier = 69 
+global.maxwarn = '2'
+
 let file = fileURLToPath(import.meta.url)
 watchFile(file, () => {
   unwatchFile(file)
