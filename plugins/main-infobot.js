@@ -69,7 +69,7 @@ let handler = async (m, { conn, usedPrefix }) => {
    let timestamp = speed()
    let latensi = speed() - timestamp
    let txt = '\n'
-       txt += `Nombre :: %namebot\n`
+       txt += `Nombre :: %botname\n`
        txt += `Prefijo :: ${usedPrefix}\n`
        txt += `Plugins :: ${totalf}\n`
        txt += `Speed :: ${latensi.toFixed(4)}\n`
@@ -88,6 +88,10 @@ const config = JSON.parse(fs.readFileSync(configPath))
       } catch (err) {
       }
     }
+    
+const replace = {
+      botname: nombreBot,
+      }
 await conn.sendFile(m.chat, imgBot, 'thumbnail.jpg', txt, m, null, rcanal)
 }
 handler.help = ['info']
