@@ -27,8 +27,7 @@ global.canal = 'https://whatsapp.com/channel/0029VbAZUQ3002T9KZfx2O1M'
 global.idcanal = '120363403143798163@newsletter'
 
 global.ch = {
-ch1: '120363403143798163@newsletter',
-}
+ch1: '120363403143798163@newsletter'
 
 let file = fileURLToPath(import.meta.url)
 watchFile(file, () => {
