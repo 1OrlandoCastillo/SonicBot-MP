@@ -31,7 +31,7 @@ Puedes usar .setbotname para cambiar el nombre y .setbotimg para cambiar la foto
 %readmore`.trimStart(),
 
   header: '%category',
-  body: '𔖲𔖰𔖭  𔘓꯭፝𔘓  📓 ᩨ ︳%cmd %islimit %isPremium\n',
+  body: '𔖲𔖰𔖭  𔘓꯭፝𔘓  仚 ᩨ ︳%cmd %islimit %isPremium\n',
   footer: '',
   after: '',
 }
