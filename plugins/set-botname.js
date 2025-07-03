@@ -2,14 +2,14 @@ import fs from 'fs'
 import path from 'path'
 
 const handler = async (m, { conn, text, usedPrefix, command }) => {
-  if (!text) return conn.reply(m.chat, `Debes escribir el nombre que deseas asignar junto al comando, sin dejarlo vacío.`, m, rcanal)
+  if (!text) return conn.reply(m.chat, `Este comando requiere que escribas un nombre para continuar.`, m, rcanal)
 
   const senderNumber = m.sender.replace(/[^0-9]/g, '')
   const botPath = path.join('./JadiBots', senderNumber)
   const configPath = path.join(botPath, 'config.json')
 
   if (!fs.existsSync(botPath)) {
-    return conn.reply(m.chat, 'Parece que no tienes ningún sub bot conectado actualmente o tu sesión ha expirado.', m, rcanal)
+    return conn.reply(m.chat, 'No tienes ningún sub bot activo o tu sesión ha expirado.', m, rcanal)
   }
 
   let config = {}
@@ -24,7 +24,7 @@ const handler = async (m, { conn, text, usedPrefix, command }) => {
 
   try {
     fs.writeFileSync(configPath, JSON.stringify(config, null, 2))
-    return conn.reply(m.chat, `Este será el nombre ${text.trim()} visible en los menús y respuestas del bot a partir de ahora.`, m, rcanal)
+    return conn.reply(m.chat, `El nombre **${text.trim()}** será visible en menús y respuestas del bot desde ahora.`, m, rcanal)
   } catch {}
 }
 
