@@ -68,31 +68,30 @@ let handler = async (m, { conn, usedPrefix }) => {
     let muptime = clockString(_muptime)
    let timestamp = speed()
    let latensi = speed() - timestamp
-   let txt = '\n'
-       txt += `Nombre :: %botname\n`
-       txt += `Prefijo :: ${usedPrefix}\n`
-       txt += `Plugins :: ${totalf}\n`
-       txt += `Speed :: ${latensi.toFixed(4)}\n`
-       txt += `\n`
+   let txt = `🪷 : Nombre largo :: ${nombreBot}`
+   txt += `🎀 : Nombre corto :: ${nombreBot}`
+   txt += `Prefijo :: ${usedPrefix}\n`
+   txt += `🍥 : Plugins :: ${totalf}`
+   txt += `🌸 : Speed :: ${latensi.toFixed(4)}`
+   txt += `💮 : Host :: Akirax`
+   txt += `🌼 : Conectad@ :: Akirax_1`
+   txt += `🍓 : Dueño :: Oculto por seguridad`
+   txt += `\n\n`
+   txt += `> LOVELLOUD Official`
 
 let nombreBot = global.namebot || 'Anya Forger'
 let imgBot = './storage/img/menu3.jpg'
 
 const botActual = conn.user?.jid?.split('@')[0].replace(/\D/g, '')
 const configPath = join('./JadiBots', botActual, 'config.json')
-    if (fs.existsSync(configPath)) {
-      try {
+if (fs.existsSync(configPath)) {
+try {
 const config = JSON.parse(fs.readFileSync(configPath))
-        if (config.name) nombreBot = config.name
-        if (config.img) imgBot = config.img
-      } catch (err) {
-      }
-    }
-    
-    const replace = {
-      botname: nombreBot,
-    }
-    
+if (config.name) nombreBot = config.name
+if (config.img) imgBot = config.img
+} catch (err) {
+}
+}
 await conn.sendFile(m.chat, imgBot, 'thumbnail.jpg', txt, m, null, rcanal)
 }
 handler.help = ['info']
