@@ -24,7 +24,7 @@ let handler = async (m, { conn, args }) => {
       buffer = await res.buffer()
 
     } else {
-      return conn.reply(m.chat, 'Debes responder a una imagen, sticker, video, webm o tgs para que funcione correctamente.', m, rcanal)
+      return conn.reply(m.chat, 'Este comando requiere que respondas a una imagen, sticker, video, webm o tgs.', m, rcanal)
     }
 
     await m.react('🕓')
