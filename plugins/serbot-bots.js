@@ -43,7 +43,7 @@ if (config.img) imgBot = config.img
 }
 }
 
-  await conn.reply(m.chat, imgBot, txt, m, rcanal)
+await conn.sendFile(m.chat, imgBot, 'thumbnail.jpg', txt, m, null, rcanal)
 }
 
 handler.command = ['listjadibot', 'bots']
