@@ -1,11 +1,11 @@
 let handler = async (m, { conn, args, participants }) => {
-  if (!m.isGroup) return conn.reply(m.chat,'Parece que estás intentando usar una función que está limitada únicamente a chats grupales.', m, rcanal)
+  if (!m.isGroup) return conn.reply(m.chat,'Esta función solo está disponible en grupos.', m, rcanal)
 
   const groupMetadata = await conn.groupMetadata(m.chat)
   const userParticipant = groupMetadata.participants.find(p => p.id === m.sender)
   const isUserAdmin = userParticipant?.admin === 'admin' || userParticipant?.admin === 'superadmin' || m.sender === groupMetadata.owner
 
-  if (!isUserAdmin) return conn.reply(m.chat,'Esta función está reservada para quienes tienen permisos especiales dentro del grupo.', m, rcanal)
+  if (!isUserAdmin) return conn.reply(m.chat,'Solo los miembros con permisos especiales pueden usar esto.', m, rcanal)
 
   let user
   if (m.mentionedJid?.[0]) {
@@ -16,22 +16,22 @@ let handler = async (m, { conn, args, participants }) => {
     const number = args[0].replace(/[^0-9]/g, '')
     user = number + '@s.whatsapp.net'
   } else {
-    const kickMsg = `Para que el bot pueda procesar la expulsión correctamente, necesitas identificar al usuario.`
+    const kickMsg = `Debes identificar a la persona para poder expulsarl@..`
     return m.reply(kickMsg, m.chat, { mentions: conn.parseMention(kickMsg) })
   }
 
   const ownerGroup = groupMetadata.owner || m.chat.split`-`[0] + '@s.whatsapp.net'
   const ownerBot = global.owner?.[0]?.[0] + '@s.whatsapp.net'
 
-  if (user === conn.user.jid) return conn.reply(m.chat,`Parece que intentaste usar el comando para eliminarte del grupo, pero eso no está permitido.`, m, rcanal)
-  if (user === ownerGroup) return conn.reply(m.chat,`El propietario del grupo tiene permisos especiales y no puede ser removido por el bot ni por otros administradores.`, m, rcanal)
-  if (user === ownerBot) return conn.reply(m.chat,`El propietario principal del bot tiene permisos especiales y está protegido contra este tipo de comandos.`, m, rcanal)
+  if (user === conn.user.jid) return conn.reply(m.chat,`No puedes usar el comando para eliminarte del grupo.`, m, rcanal)
+  if (user === ownerGroup) return conn.reply(m.chat,`El dueño del grupo no puede ser eliminado por el bot ni por otros admins.`, m, rcanal)
+  if (user === ownerBot) return conn.reply(m.chat,`El dueño del bot está protegido contra este comando.`, m, rcanal)
 
   try {
     await conn.groupParticipantsUpdate(m.chat, [user], 'remove')
-    return conn.reply(m.chat,`La persona mencionada ha sido expulsada correctamente del grupo por solicitud de un administrador.`, m, rcanal)
+    return conn.reply(m.chat,`La persona fue expulsad@ del grupo por un administrador.`, m, rcanal)
   } catch (e) {
-    return conn.reply(m.chat,`Parece que no tengo los permisos necesarios para realizar esta acción.`, m, rcanal)
+    return conn.reply(m.chat,`No tengo permisos para hacer esta acción.`, m, rcanal)
   }
 }
 
