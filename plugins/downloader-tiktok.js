@@ -1,7 +1,7 @@
 import fetch from 'node-fetch'
 
 let handler = async (m, { conn, args, usedPrefix, command }) => {
-if (!args || !args[0]) return conn.reply(m.chat, 'Para poder procesar tu solicitud, necesitas copiar y pegar el link directo del video de TikTok que deseas descargar.', m, rcanal)
+if (!args || !args[0]) return conn.reply(m.chat, 'Pega el enlace directo del TikTok que quieres descargar.', m, rcanal)
   await m.react('🕓')
 try {
 const res = await fetch(`https://g-mini-ia.vercel.app/api/tiktok?url=${encodeURIComponent(args[0])}`)
