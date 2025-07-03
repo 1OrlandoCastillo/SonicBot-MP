@@ -1,7 +1,7 @@
 import fetch from 'node-fetch'
 
 let handler = async (m, { conn, text, usedPrefix, command }) => {
-  if (!text) return conn.reply(m.chat, `Este comando requiere que escribas una consulta o pregunta para continuar.`, m, rcanal)
+  if (!text) return conn.reply(m.chat, `Ingresa una consulta o pregunta para continuar.`, m, rcanal)
 
   await m.react('💬')
 
