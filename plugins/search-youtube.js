@@ -3,7 +3,7 @@ import { join } from 'path'
 import fs from 'fs'
 
 let handler = async (m, { conn, usedPrefix, command, text, args }) => {
-  if (!text) return conn.reply(m.chat, `Para poder ayudarte correctamente, debes escribir el nombre, título, o una descripción relacionada al contenido que estás buscando en YouTube.`, m, rcanal)
+  if (!text) return conn.reply(m.chat, `Indica qué quieres buscar en YouTube con un nombre, título o descripción.`, m, rcanal)
 
 await m.react('🕓')
 let imgBot = './storage/img/menu3.jpg'
