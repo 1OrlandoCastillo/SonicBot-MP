@@ -70,7 +70,7 @@ let handler = async (m, { conn, usedPrefix }) => {
    let latensi = speed() - timestamp
    let txt = `🪷 : Nombre largo :: ${nombreBot}`
    txt += `🎀 : Nombre corto :: ${nombreBot}`
-   txt += `Prefijo :: ${usedPrefix}\n`
+   txt += `Prefijo :: ${usedPrefix}`
    txt += `🍥 : Plugins :: ${totalf}`
    txt += `🌸 : Speed :: ${latensi.toFixed(4)}`
    txt += `💮 : Host :: Akirax`
@@ -79,19 +79,21 @@ let handler = async (m, { conn, usedPrefix }) => {
    txt += `\n\n`
    txt += `> LOVELLOUD Official`
 
+const botActual = conn.user?.jid?.split('@')[0].replace(/\D/g, '')
+  const configPath = path.join('./JadiBots', botActual, 'config.json')
+
 let nombreBot = global.namebot || 'Anya Forger'
 let imgBot = './storage/img/menu3.jpg'
 
-const botActual = conn.user?.jid?.split('@')[0].replace(/\D/g, '')
-const configPath = join('./JadiBots', botActual, 'config.json')
 if (fs.existsSync(configPath)) {
 try {
-const config = JSON.parse(fs.readFileSync(configPath))
+const config = JSON.parse(fs.readFileSync(configPath, 'utf-8'))
 if (config.name) nombreBot = config.name
 if (config.img) imgBot = config.img
 } catch (err) {
 }
 }
+
 await conn.sendFile(m.chat, imgBot, 'thumbnail.jpg', txt, m, null, rcanal)
 }
 handler.help = ['info']
