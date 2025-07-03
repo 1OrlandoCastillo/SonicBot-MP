@@ -1,6 +1,6 @@
 import fetch from 'node-fetch'
 let handler = async (m, { conn, command, args }) => {
-if (!args[0]) return conn.reply(m.chat,'Este comando requiere que proporciones una URL válida para poder continuar.', m, rcanal)
+if (!args[0]) return conn.reply(m.chat,'Necesitas proporcionar una URL válida para continuar.', m, rcanal)
 await m.react('🕓')
 try {
     const res = await fetch(`https://image.thum.io/get/fullpage/${args[0]}`)
