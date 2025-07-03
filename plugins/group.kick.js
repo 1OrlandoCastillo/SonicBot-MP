@@ -16,7 +16,7 @@ let handler = async (m, { conn, args, participants }) => {
     const number = args[0].replace(/[^0-9]/g, '')
     user = number + '@s.whatsapp.net'
   } else {
-    const kickMsg = `Debes identificar a la persona para poder expulsarl@..`
+    const kickMsg = `Debes identificar a la persona para poder expulsarl@.`
     return m.reply(kickMsg, m.chat, { mentions: conn.parseMention(kickMsg) })
   }
 
