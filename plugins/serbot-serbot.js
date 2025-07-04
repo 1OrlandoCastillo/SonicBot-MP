@@ -1,5 +1,5 @@
 import { useMultiFileAuthState, DisconnectReason, fetchLatestBaileysVersion, makeCacheableSignalKeyStore } from '@whiskeysockets/baileys'
-import { makeWASocket } from '../lib/simple.js'
+import { makeWASocket, protoType, serialize } from '../lib/simple.js'
 import qrcode from 'qrcode'
 import fs from 'fs'
 import path from 'path'
@@ -8,6 +8,9 @@ import pino from 'pino'
 import chalk from 'chalk'
 import * as ws from 'ws'
 import { fileURLToPath } from 'url'
+
+protoType()
+serialize()
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
@@ -127,11 +130,9 @@ async function startSubBot(m, sessionPath, method) {
     }
 
     sock.handler = handlerModule.handler.bind(sock)
-    sock.connectionUpdate = (u) => sock.ev.on('connection.update', u)
     sock.credsUpdate = saveCreds.bind(sock, true)
 
     sock.ev.on('messages.upsert', sock.handler)
-    sock.ev.on('connection.update', sock.connectionUpdate)
     sock.ev.on('creds.update', sock.credsUpdate)
 
     return true
