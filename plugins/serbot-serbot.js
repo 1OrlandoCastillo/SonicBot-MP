@@ -70,23 +70,22 @@ export async function yukiJadiBot(options) {
   sock.isInit = false
   let isInit = true
 
+  if (mcode) {
+    try {
+      let code = await sock.requestPairingCode(m.sender.split("@")[0])
+      code = code.match(/.{1,4}/g)?.join("-") || "ERROR"
+      let txtCode = await conn.sendMessage(m.chat, { text: rtx2 }, { quoted: m })
+      let codeBot = await m.reply(code)
+
+      setTimeout(() => { if (txtCode?.key) conn.sendMessage(m.chat, { delete: txtCode.key }) }, 30000)
+      setTimeout(() => { if (codeBot?.key) conn.sendMessage(m.chat, { delete: codeBot.key }) }, 30000)
+    } catch (err) {
+      console.log("Error al generar el código:", err)
+    }
+  }
+
   async function connectionUpdate(update) {
     const { connection, lastDisconnect } = update
-
-    if (update.qr && mcode) {
-      try {
-        let code = await sock.requestPairingCode(m.sender.split("@")[0])
-        code = code.match(/.{1,4}/g)?.join("-") || "ERROR"
-        let txtCode = await conn.sendMessage(m.chat, { text: rtx2 }, { quoted: m })
-        let codeBot = await m.reply(code)
-
-        setTimeout(() => { if (txtCode?.key) conn.sendMessage(m.chat, { delete: txtCode.key }) }, 30000)
-        setTimeout(() => { if (codeBot?.key) conn.sendMessage(m.chat, { delete: codeBot.key }) }, 30000)
-      } catch (err) {
-        console.log("Error al generar el código:", err)
-      }
-    }
-
     const reason = lastDisconnect?.error?.output?.statusCode || 0
 
     if (connection === "close") {
