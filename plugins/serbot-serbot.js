@@ -6,22 +6,12 @@ import path from 'path'
 import NodeCache from 'node-cache'
 import pino from 'pino'
 import chalk from 'chalk'
-import * as ws from 'ws'
 import { fileURLToPath } from 'url'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 
 global.conns = global.conns || []
-
-global.loadDatabase = global.loadDatabase || (async function loadDatabase() {
-  let { Low, JSONFile } = await import('lowdb')
-  let { default: lodash } = await import('lodash')
-  global.db = new Low(new JSONFile('./storage/databases/database.json'))
-  await global.db.read()
-  global.db.data ||= { users: {}, chats: {}, stats: {}, msgs: {}, sticker: {}, settings: {} }
-  global.db.chain = lodash.chain(global.db.data)
-})
 
 let handler = async (m, { conn, args, usedPrefix, command }) => {
   const who = m.sender.split('@')[0]
@@ -53,7 +43,7 @@ async function startSubBot(m, sessionPath, method) {
   const { version } = await fetchLatestBaileysVersion()
   const { state, saveCreds } = await useMultiFileAuthState(sessionPath)
 
-  const connectionOptions = {
+  let sock = makeWASocket({
     version,
     logger: pino({ level: 'silent' }),
     printQRInTerminal: false,
@@ -65,11 +55,9 @@ async function startSubBot(m, sessionPath, method) {
     msgRetryCache: new NodeCache(),
     generateHighQualityLinkPreview: true,
     getMessage: async () => ({})
-  }
+  })
 
-  let sock = makeWASocket(connectionOptions)
   sock.isInit = false
-
   sock.ev.on('creds.update', saveCreds)
 
   sock.ev.on('connection.update', async (update) => {
@@ -123,13 +111,22 @@ async function startSubBot(m, sessionPath, method) {
     if (reconnect) {
       try { sock.ws.close() } catch {}
       sock.ev.removeAllListeners()
-      sock = makeWASocket(connectionOptions)
+      sock = makeWASocket({
+        version,
+        logger: pino({ level: 'silent' }),
+        printQRInTerminal: false,
+        auth: {
+          creds: state.creds,
+          keys: makeCacheableSignalKeyStore(state.keys, pino({ level: 'silent' })),
+        },
+        browser: ['SubBot-Yuki', 'Chrome', '110.0'],
+        msgRetryCache: new NodeCache(),
+        generateHighQualityLinkPreview: true,
+        getMessage: async () => ({})
+      })
     }
 
     sock.handler = handlerModule.handler.bind(sock)
-    sock.connectionUpdate = (u) => sock.ev.on('connection.update', u)
-    sock.credsUpdate = saveCreds.bind(sock, true)
-
     sock.ev.on('messages.upsert', sock.handler)
     sock.ev.on('connection.update', sock.connectionUpdate)
     sock.ev.on('creds.update', sock.credsUpdate)
@@ -137,7 +134,13 @@ async function startSubBot(m, sessionPath, method) {
     return true
   }
 
-  reloadHandler(false)
+  sock.connectionUpdate = async update => {}
+  sock.credsUpdate = saveCreds.bind(sock, true)
+
+  sock.handler = handlerModule.handler.bind(sock)
+  sock.ev.on('messages.upsert', sock.handler)
+  sock.ev.on('connection.update', sock.connectionUpdate)
+  sock.ev.on('creds.update', sock.credsUpdate)
 
   setInterval(() => {
     if (!sock.user) {
