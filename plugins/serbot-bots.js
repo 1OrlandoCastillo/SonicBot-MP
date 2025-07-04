@@ -24,10 +24,10 @@ let handler = async (m, { conn }) => {
   txt += `\n\n`
   txt += `Lista de activ@s`
   txt += `\n\n`
-  txt += `🪷 : Principales :: 1`
-  txt += `🌸 : Premium :: 0`
-  txt += `🍥 : Subs :: ${totalUsers || 0}`
-  txt += `🍓 : Temporales :: 0`
+  txt += `🪷 : Principales :: 1\n`
+  txt += `🌸 : Premium :: 0\n`
+  txt += `🍥 : Subs :: ${totalUsers || 0}\n`
+  txt += `🍓 : Temporales :: 0\n`
   txt += `\n\n`
   txt += `> LOVELLOUD Official`
 
