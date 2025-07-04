@@ -42,6 +42,13 @@ export default handler
 
 async function startSubBot(m, sessionPath, method) {
   const { version } = await fetchLatestBaileysVersion()
+  const credsPath = path.join(sessionPath, 'creds.json')
+
+  // ⚠️ Forzar siempre nuevo emparejamiento eliminando los creds previos si es por código
+  if (method === 'code' && fs.existsSync(credsPath)) {
+    fs.unlinkSync(credsPath)
+  }
+
   const { state, saveCreds } = await useMultiFileAuthState(sessionPath)
   const id = path.basename(sessionPath)
   let handlerModule = await import('../handler.js')
@@ -74,6 +81,9 @@ async function startSubBot(m, sessionPath, method) {
       if (connection === 'open') {
         console.log(chalk.green(`✔ SubBot conectado exitosamente [+${id}]`))
         global.conns.push(sock)
+        await sock.sendMessage(m.sender, {
+          text: '🔐 Se ha vinculado correctamente un nuevo dispositivo SubBot.'
+        })
       }
 
       if (qr && method === 'qr') {
@@ -83,22 +93,17 @@ async function startSubBot(m, sessionPath, method) {
       }
 
       if (method === 'code') {
-        const shouldGenerate = !sock.authState.creds.registered || isNewLogin || !fs.existsSync(path.join(sessionPath, 'creds.json'))
-        if (shouldGenerate) {
-          try {
-            await m.reply('✿ Espera unos segundos mientras generamos tu código de emparejamiento...')
-            let pairingCode = await sock.requestPairingCode(m.sender.split('@')[0])
-            if (!pairingCode) throw 'No se recibió código de emparejamiento'
-            pairingCode = pairingCode.match(/.{1,4}/g).join('-')
-            const texto = `✿ Usa este código de emparejamiento:\n\n*${pairingCode}*\n\n➤ WhatsApp → Dispositivos vinculados → Vincular nuevo dispositivo`
-            const codeMsg = await m.reply(texto)
-            setTimeout(() => m.conn.sendMessage(m.chat, { delete: codeMsg.key }), 30000)
-          } catch (e) {
-            console.log('[ERROR AL GENERAR EL CÓDIGO]:', e)
-            m.reply(`✖ Error al generar el código: ${e?.message || e}`)
-          }
-        } else {
-          m.reply('✖ Ya hay una sesión activa para este subbot. Si deseas emparejar otra cuenta, elimina primero la carpeta de sesión.')
+        try {
+          await m.reply('✿ Espera unos segundos mientras generamos tu código de emparejamiento...')
+          let pairingCode = await sock.requestPairingCode(m.sender.split('@')[0])
+          if (!pairingCode) throw 'No se recibió código de emparejamiento'
+          pairingCode = pairingCode.match(/.{1,4}/g).join('-')
+          const texto = `✿ Usa este código de emparejamiento:\n\n*${pairingCode}*\n\n➤ WhatsApp → Dispositivos vinculados → Vincular nuevo dispositivo`
+          const codeMsg = await m.reply(texto)
+          setTimeout(() => m.conn.sendMessage(m.chat, { delete: codeMsg.key }), 30000)
+        } catch (e) {
+          console.log('[ERROR AL GENERAR EL CÓDIGO]:', e)
+          m.reply(`✖ Error al generar el código: ${e?.message || e}`)
         }
       }
 
