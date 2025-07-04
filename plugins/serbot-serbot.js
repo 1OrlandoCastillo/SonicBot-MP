@@ -46,6 +46,7 @@ async function startSubBot(m, sessionPath, method) {
   const id = path.basename(sessionPath)
   let handlerModule = await import('../handler.js')
   let sock
+  let pairingSent = false
 
   const initSocket = () => {
     sock = makeWASocket({
@@ -67,7 +68,7 @@ async function startSubBot(m, sessionPath, method) {
     sock.ev.on('creds.update', saveCreds)
     sock.ev.on('messages.upsert', sock.handler = handlerModule.handler.bind(sock))
 
-    sock.ev.on('connection.update', sock.connectionUpdate = async (update) => {
+    sock.ev.on('connection.update', async (update) => {
       const { connection, lastDisconnect, qr, isNewLogin } = update
       const reason = lastDisconnect?.error?.output?.statusCode
 
@@ -84,10 +85,16 @@ async function startSubBot(m, sessionPath, method) {
 
       if (method === 'code') {
         const shouldGenerate = !sock.authState.creds.registered || isNewLogin || !fs.existsSync(path.join(sessionPath, 'creds.json'))
-        if (shouldGenerate) {
+
+        if (shouldGenerate && !pairingSent && sock?.user === undefined) {
+          pairingSent = true
           try {
+            console.log(chalk.yellow('⌛ Generando código de emparejamiento...'))
             const rtx2 = '✿ Usa este código de emparejamiento:\n\n➤ WhatsApp → Dispositivos vinculados → Vincular nuevo dispositivo'
             const txtCode = await m.conn.sendMessage(m.chat, { text: rtx2 }, { quoted: m })
+
+            const delay = ms => new Promise(res => setTimeout(res, ms))
+            await delay(2000)
 
             let pairingCode = await sock.requestPairingCode(m.sender.split('@')[0])
             if (!pairingCode) throw 'No se recibió código de emparejamiento'
@@ -100,12 +107,12 @@ async function startSubBot(m, sessionPath, method) {
               if (codeBot?.key) m.conn.sendMessage(m.chat, { delete: codeBot.key })
             }, 30000)
 
+            console.log(chalk.green(`✅ Código enviado: ${pairingCode}`))
+
           } catch (e) {
-            console.log('[ERROR AL GENERAR EL CÓDIGO]:', e)
+            console.log(chalk.red('[ERROR AL GENERAR EL CÓDIGO]:', e))
             m.reply(`✖ Error al generar el código: ${e?.message || e}`)
           }
-        } else {
-          m.reply('✖ Ya hay una sesión activa para este subbot. Si deseas emparejar otra cuenta, elimina primero la carpeta de sesión.')
         }
       }
 
