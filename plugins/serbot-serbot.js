@@ -1,5 +1,5 @@
 import { useMultiFileAuthState, DisconnectReason, fetchLatestBaileysVersion, makeCacheableSignalKeyStore } from '@whiskeysockets/baileys'
-import { makeWASocket, protoType, serialize } from '../lib/simple.js'
+import { makeWASocket } from '../lib/simple.js'
 import qrcode from 'qrcode'
 import fs from 'fs'
 import path from 'path'
@@ -9,15 +9,11 @@ import chalk from 'chalk'
 import * as ws from 'ws'
 import { fileURLToPath } from 'url'
 
-protoType()
-serialize()
-
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 
 global.conns = global.conns || []
 
-// Base de datos
 global.loadDatabase = global.loadDatabase || (async function loadDatabase() {
   let { Low, JSONFile } = await import('lowdb')
   let { default: lodash } = await import('lodash')
@@ -92,7 +88,7 @@ async function startSubBot(m, sessionPath, method) {
       setTimeout(() => m.conn.sendMessage(m.chat, { delete: msg.key }), 30000)
     }
 
-    if (method === 'code' && !sock.authState.creds.registered) {
+    if (method === 'code' && !state.creds.registered) {
       try {
         let pairing = await sock.requestPairingCode(`${m.sender.split('@')[0]}`)
         pairing = pairing.match(/.{1,4}/g).join('-')
