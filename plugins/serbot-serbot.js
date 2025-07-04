@@ -42,63 +42,73 @@ export default handler
 async function startSubBot(m, sessionPath, method) {
   const { version } = await fetchLatestBaileysVersion()
   const { state, saveCreds } = await useMultiFileAuthState(sessionPath)
-
-  let sock = makeWASocket({
-    version,
-    logger: pino({ level: 'silent' }),
-    printQRInTerminal: false,
-    auth: {
-      creds: state.creds,
-      keys: makeCacheableSignalKeyStore(state.keys, pino({ level: 'silent' })),
-    },
-    browser: ['SubBot-Yuki', 'Chrome', '110.0'],
-    msgRetryCache: new NodeCache(),
-    generateHighQualityLinkPreview: true,
-    getMessage: async () => ({})
-  })
-
-  sock.isInit = false
-  sock.ev.on('creds.update', saveCreds)
-
-  sock.ev.on('connection.update', async (update) => {
-    const { connection, lastDisconnect, qr, isNewLogin } = update
-    const reason = lastDisconnect?.error?.output?.statusCode
-    const id = path.basename(sessionPath)
-
-    if (connection === 'open') {
-      console.log(chalk.green(`✔ SubBot conectado exitosamente [+${id}]`))
-      global.conns.push(sock)
-    }
-
-    if (qr && method === 'qr') {
-      let buffer = await qrcode.toBuffer(qr, { scale: 8 })
-      let msg = await m.conn.sendFile(m.chat, buffer, 'qr.png', '✿ Escanea este código QR para vincular tu SubBot.', m)
-      setTimeout(() => m.conn.sendMessage(m.chat, { delete: msg.key }), 30000)
-    }
-
-    if (method === 'code' && isNewLogin) {
-      try {
-        let pairing = await sock.requestPairingCode(`${m.sender.split('@')[0]}`)
-        pairing = pairing.match(/.{1,4}/g).join('-')
-        let codeMsg = await m.reply(`✿ Usa este código de emparejamiento:\n\n*${pairing}*\n\n➤ WhatsApp → Dispositivos vinculados → Vincular nuevo dispositivo`)
-        setTimeout(() => m.conn.sendMessage(m.chat, { delete: codeMsg.key }), 30000)
-      } catch {
-        return m.reply('✖ Error al generar código de emparejamiento. Intenta más tarde.')
-      }
-    }
-
-    if (connection === 'close') {
-      console.log(chalk.red(`✖ SubBot [+${id}] desconectado → Reintentando...`))
-      if ([428, 408, 500, DisconnectReason.connectionLost, DisconnectReason.restartRequired].includes(reason)) {
-        return reloadHandler(true)
-      }
-      if ([401, 405, DisconnectReason.loggedOut].includes(reason)) {
-        if (fs.existsSync(sessionPath)) fs.rmSync(sessionPath, { recursive: true, force: true })
-      }
-    }
-  })
-
+  let sock
+  const id = path.basename(sessionPath)
   let handlerModule = await import('../handler.js')
+
+  const initSocket = () => {
+    sock = makeWASocket({
+      version,
+      logger: pino({ level: 'silent' }),
+      printQRInTerminal: false,
+      auth: {
+        creds: state.creds,
+        keys: makeCacheableSignalKeyStore(state.keys, pino({ level: 'silent' })),
+      },
+      browser: ['SubBot-Yuki', 'Chrome', '110.0'],
+      msgRetryCache: new NodeCache(),
+      generateHighQualityLinkPreview: true,
+      getMessage: async () => ({})
+    })
+
+    sock.isInit = false
+    sock.ev.on('creds.update', saveCreds)
+
+    sock.handler = handlerModule.handler.bind(sock)
+    sock.connectionUpdate = async update => {}
+    sock.credsUpdate = saveCreds.bind(sock, true)
+
+    sock.ev.on('messages.upsert', sock.handler)
+    sock.ev.on('connection.update', sock.connectionUpdate)
+    sock.ev.on('creds.update', sock.credsUpdate)
+
+    sock.ev.on('connection.update', async (update) => {
+      const { connection, lastDisconnect, qr, isNewLogin } = update
+      const reason = lastDisconnect?.error?.output?.statusCode
+
+      if (connection === 'open') {
+        console.log(chalk.green(`✔ SubBot conectado exitosamente [+${id}]`))
+        global.conns.push(sock)
+      }
+
+      if (qr && method === 'qr') {
+        let buffer = await qrcode.toBuffer(qr, { scale: 8 })
+        let msg = await m.conn.sendFile(m.chat, buffer, 'qr.png', '✿ Escanea este código QR para vincular tu SubBot.', m)
+        setTimeout(() => m.conn.sendMessage(m.chat, { delete: msg.key }), 30000)
+      }
+
+      if (method === 'code' && isNewLogin) {
+        try {
+          let pairing = await sock.requestPairingCode(`${m.sender.split('@')[0]}`)
+          pairing = pairing.match(/.{1,4}/g).join('-')
+          let codeMsg = await m.reply(`✿ Usa este código de emparejamiento:\n\n*${pairing}*\n\n➤ WhatsApp → Dispositivos vinculados → Vincular nuevo dispositivo`)
+          setTimeout(() => m.conn.sendMessage(m.chat, { delete: codeMsg.key }), 30000)
+        } catch {
+          return m.reply('✖ Error al generar código de emparejamiento. Intenta más tarde.')
+        }
+      }
+
+      if (connection === 'close') {
+        console.log(chalk.red(`✖ SubBot [+${id}] desconectado → Reintentando...`))
+        if ([428, 408, 500, DisconnectReason.connectionLost, DisconnectReason.restartRequired].includes(reason)) {
+          return reloadHandler(true)
+        }
+        if ([401, 405, DisconnectReason.loggedOut].includes(reason)) {
+          if (fs.existsSync(sessionPath)) fs.rmSync(sessionPath, { recursive: true, force: true })
+        }
+      }
+    })
+  }
 
   async function reloadHandler(reconnect = false) {
     try {
@@ -111,36 +121,13 @@ async function startSubBot(m, sessionPath, method) {
     if (reconnect) {
       try { sock.ws.close() } catch {}
       sock.ev.removeAllListeners()
-      sock = makeWASocket({
-        version,
-        logger: pino({ level: 'silent' }),
-        printQRInTerminal: false,
-        auth: {
-          creds: state.creds,
-          keys: makeCacheableSignalKeyStore(state.keys, pino({ level: 'silent' })),
-        },
-        browser: ['SubBot-Yuki', 'Chrome', '110.0'],
-        msgRetryCache: new NodeCache(),
-        generateHighQualityLinkPreview: true,
-        getMessage: async () => ({})
-      })
+      initSocket()
     }
-
-    sock.handler = handlerModule.handler.bind(sock)
-    sock.ev.on('messages.upsert', sock.handler)
-    sock.ev.on('connection.update', sock.connectionUpdate)
-    sock.ev.on('creds.update', sock.credsUpdate)
 
     return true
   }
 
-  sock.connectionUpdate = async update => {}
-  sock.credsUpdate = saveCreds.bind(sock, true)
-
-  sock.handler = handlerModule.handler.bind(sock)
-  sock.ev.on('messages.upsert', sock.handler)
-  sock.ev.on('connection.update', sock.connectionUpdate)
-  sock.ev.on('creds.update', sock.credsUpdate)
+  initSocket()
 
   setInterval(() => {
     if (!sock.user) {
