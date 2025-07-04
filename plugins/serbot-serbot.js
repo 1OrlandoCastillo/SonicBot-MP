@@ -1,10 +1,15 @@
-import { useMultiFileAuthState, DisconnectReason, fetchLatestBaileysVersion, makeCacheableSignalKeyStore } from '@whiskeysockets/baileys'
+import {
+  useMultiFileAuthState,
+  DisconnectReason,
+  fetchLatestBaileysVersion,
+  makeCacheableSignalKeyStore
+} from '@whiskeysockets/baileys'
+
 import { makeWASocket } from '../lib/simple.js'
-import qrcode from 'qrcode'
 import fs from 'fs'
 import path from 'path'
-import NodeCache from 'node-cache'
 import pino from 'pino'
+import NodeCache from 'node-cache'
 import chalk from 'chalk'
 import { fileURLToPath } from 'url'
 
@@ -13,38 +18,25 @@ const __dirname = path.dirname(__filename)
 
 global.conns = global.conns || []
 
-let handler = async (m, { conn, args, usedPrefix, command }) => {
+let handler = async (m, { conn }) => {
   const who = m.sender.split('@')[0]
   const sessionPath = path.join('./subbots/', who)
 
   if (!fs.existsSync(sessionPath)) fs.mkdirSync(sessionPath, { recursive: true })
 
-  const method = command === 'code' ? 'code' : 'qr'
-  const base64 = method === 'code' && args[0] ? args[0] : null
-
-  if (base64) {
-    try {
-      const creds = JSON.parse(Buffer.from(base64, 'base64').toString())
-      fs.writeFileSync(path.join(sessionPath, 'creds.json'), JSON.stringify(creds, null, 2))
-    } catch {
-      return m.reply(`✖ El código es inválido. Usa correctamente: ${usedPrefix + command} code`)
-    }
-  }
-
-  startSubBot(m, sessionPath, method)
+  startSubBot(m, sessionPath)
 }
 
-handler.help = ['qr', 'code']
+handler.help = ['code']
 handler.tags = ['serbot']
-handler.command = ['qr', 'code']
+handler.command = ['code']
 export default handler
 
-async function startSubBot(m, sessionPath, method) {
+async function startSubBot(m, sessionPath) {
   const { version } = await fetchLatestBaileysVersion()
   const { state, saveCreds } = await useMultiFileAuthState(sessionPath)
   let sock
   const id = path.basename(sessionPath)
-  let handlerModule = await import('../handler.js')
   let codeSent = false
 
   const initSocket = () => {
@@ -56,50 +48,38 @@ async function startSubBot(m, sessionPath, method) {
         creds: state.creds,
         keys: makeCacheableSignalKeyStore(state.keys, pino({ level: 'silent' })),
       },
-      browser: ['SubBot-Yuki', 'Chrome', '110.0'],
+      browser: ['SubBot-Code', 'Chrome', '110.0'],
       msgRetryCache: new NodeCache(),
       generateHighQualityLinkPreview: true,
       getMessage: async () => ({})
     })
 
-    sock.isInit = false
     sock.ev.on('creds.update', saveCreds)
 
-    sock.handler = handlerModule.handler.bind(sock)
-    sock.connectionUpdate = async update => {}
-    sock.credsUpdate = saveCreds.bind(sock, true)
-
-    sock.ev.on('messages.upsert', sock.handler)
-    sock.ev.on('connection.update', sock.connectionUpdate)
-    sock.ev.on('creds.update', sock.credsUpdate)
-
     sock.ev.on('connection.update', async (update) => {
-      const { connection, lastDisconnect, qr } = update
+      const { connection, lastDisconnect } = update
       const reason = lastDisconnect?.error?.output?.statusCode
+
+      console.log('[DEBUG] connection update:', update)
 
       if (connection === 'open') {
         console.log(chalk.green(`✔ SubBot conectado exitosamente [+${id}]`))
         global.conns.push(sock)
 
-        if (method === 'code' && !codeSent) {
+        if (!codeSent) {
           try {
-            await m.reply('✿ Espera unos segundos mientras generamos tu código...')
-            let pairing = await sock.requestPairingCode(m.sender.split('@')[0])
-            pairing = pairing.match(/.{1,4}/g).join('-')
-            let texto = `✿ Usa este código de emparejamiento:\n\n*${pairing}*\n\n➤ WhatsApp → Dispositivos vinculados → Vincular nuevo dispositivo`
-            let codeMsg = await m.reply(texto)
-            setTimeout(() => m.conn.sendMessage(m.chat, { delete: codeMsg.key }), 30000)
+            await m.reply('✿ Generando tu código de emparejamiento...')
+            const pairing = await sock.requestPairingCode(m.sender.split('@')[0])
+            const pairingFormatted = pairing.match(/.{1,4}/g).join('-')
+            const texto = `✿ Usa este código de emparejamiento:\n\n*${pairingFormatted}*\n\n➤ WhatsApp → Dispositivos vinculados → Vincular nuevo dispositivo`
+            const msg = await m.reply(texto)
+            setTimeout(() => m.conn.sendMessage(m.chat, { delete: msg.key }), 30000)
             codeSent = true
           } catch (e) {
-            console.log('[ERROR AL GENERAR CODE]:', e)
+            console.log('[ERROR] Al generar pairing code:', e)
+            await m.reply('✖ No se pudo generar el código de emparejamiento.')
           }
         }
-      }
-
-      if (qr && method === 'qr') {
-        let buffer = await qrcode.toBuffer(qr, { scale: 8 })
-        let msg = await m.conn.sendFile(m.chat, buffer, 'qr.png', '✿ Escanea este código QR para vincular tu SubBot.', m)
-        setTimeout(() => m.conn.sendMessage(m.chat, { delete: msg.key }), 30000)
       }
 
       if (connection === 'close') {
@@ -115,19 +95,11 @@ async function startSubBot(m, sessionPath, method) {
   }
 
   async function reloadHandler(reconnect = false) {
-    try {
-      const updated = await import(`../handler.js?update=${Date.now()}`)
-      if (Object.keys(updated).length) handlerModule = updated
-    } catch (e) {
-      console.error(e)
-    }
-
     if (reconnect) {
       try { sock.ws.close() } catch {}
       sock.ev.removeAllListeners()
       initSocket()
     }
-
     return true
   }
 
