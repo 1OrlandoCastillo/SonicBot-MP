@@ -1,9 +1,4 @@
-import {
-  useMultiFileAuthState,
-  DisconnectReason,
-  fetchLatestBaileysVersion,
-  makeCacheableSignalKeyStore
-} from '@whiskeysockets/baileys'
+import { useMultiFileAuthState, DisconnectReason, fetchLatestBaileysVersion, makeCacheableSignalKeyStore } from '@whiskeysockets/baileys'
 import { makeWASocket } from '../lib/simple.js'
 import qrcode from 'qrcode'
 import fs from 'fs'
@@ -34,11 +29,6 @@ let handler = async (m, { conn, args, usedPrefix, command }) => {
     } catch {
       return m.reply(`✖ El código es inválido. Usa correctamente: ${usedPrefix + command} code`)
     }
-  }
-
-  // 🔥 FORZAR ELIMINACIÓN DE CREDS PARA QUE SE GENERE VINCULACIÓN REAL
-  if (method === 'code' && fs.existsSync(path.join(sessionPath, 'creds.json'))) {
-    fs.unlinkSync(path.join(sessionPath, 'creds.json'))
   }
 
   startSubBot(m, sessionPath, method)
@@ -84,29 +74,38 @@ async function startSubBot(m, sessionPath, method) {
       if (connection === 'open') {
         console.log(chalk.green(`✔ SubBot conectado exitosamente [+${id}]`))
         global.conns.push(sock)
-        await sock.sendMessage(m.sender, {
-          text: '🔐 Se ha vinculado correctamente un nuevo SubBot.'
-        })
       }
 
       if (qr && method === 'qr') {
         const buffer = await qrcode.toBuffer(qr, { scale: 8 })
-        const msg = await m.conn.sendFile(m.chat, buffer, 'qr.png', '✿ Escanea este QR para vincular tu SubBot.', m)
+        const msg = await m.conn.sendFile(m.chat, buffer, 'qr.png', '✿ Escanea este código QR para vincular tu SubBot.', m)
         setTimeout(() => m.conn.sendMessage(m.chat, { delete: msg.key }), 30000)
       }
 
       if (method === 'code') {
-        try {
-          await m.reply('✿ Espera unos segundos mientras generamos tu código de emparejamiento...')
-          let pairingCode = await sock.requestPairingCode(m.sender.split('@')[0])
-          if (!pairingCode) throw 'No se recibió código de emparejamiento'
-          pairingCode = pairingCode.match(/.{1,4}/g).join('-')
-          const texto = `✿ Usa este código de emparejamiento:\n\n*${pairingCode}*\n\n➤ WhatsApp → Dispositivos vinculados → Vincular nuevo dispositivo`
-          const codeMsg = await m.reply(texto)
-          setTimeout(() => m.conn.sendMessage(m.chat, { delete: codeMsg.key }), 30000)
-        } catch (e) {
-          console.log('[ERROR AL GENERAR EL CÓDIGO]:', e)
-          m.reply(`✖ Error al generar el código: ${e?.message || e}`)
+        const shouldGenerate = !sock.authState.creds.registered || isNewLogin || !fs.existsSync(path.join(sessionPath, 'creds.json'))
+        if (shouldGenerate) {
+          try {
+            const rtx2 = '✿ Usa este código de emparejamiento:\n\n➤ WhatsApp → Dispositivos vinculados → Vincular nuevo dispositivo'
+            const txtCode = await m.conn.sendMessage(m.chat, { text: rtx2 }, { quoted: m })
+
+            let pairingCode = await sock.requestPairingCode(m.sender.split('@')[0])
+            if (!pairingCode) throw 'No se recibió código de emparejamiento'
+            pairingCode = pairingCode.match(/.{1,4}/g).join('-')
+
+            const codeBot = await m.reply(`*${pairingCode}*`)
+
+            setTimeout(() => {
+              if (txtCode?.key) m.conn.sendMessage(m.chat, { delete: txtCode.key })
+              if (codeBot?.key) m.conn.sendMessage(m.chat, { delete: codeBot.key })
+            }, 30000)
+
+          } catch (e) {
+            console.log('[ERROR AL GENERAR EL CÓDIGO]:', e)
+            m.reply(`✖ Error al generar el código: ${e?.message || e}`)
+          }
+        } else {
+          m.reply('✖ Ya hay una sesión activa para este subbot. Si deseas emparejar otra cuenta, elimina primero la carpeta de sesión.')
         }
       }
 
