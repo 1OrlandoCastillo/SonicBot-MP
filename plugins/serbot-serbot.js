@@ -89,12 +89,14 @@ async function startSubBot(m, sessionPath, method) {
 
       if (method === 'code' && isNewLogin) {
         try {
-          let pairing = await sock.requestPairingCode(`${m.sender.split('@')[0]}`)
+          await m.reply('✿ Espera unos segundos mientras generamos tu código...')
+          let pairing = await sock.requestPairingCode(m.sender.split('@')[0])
           pairing = pairing.match(/.{1,4}/g).join('-')
-          let codeMsg = await m.reply(`✿ Usa este código de emparejamiento:\n\n*${pairing}*\n\n➤ WhatsApp → Dispositivos vinculados → Vincular nuevo dispositivo`)
+          let texto = `✿ Usa este código de emparejamiento:\n\n*${pairing}*\n\n➤ WhatsApp → Dispositivos vinculados → Vincular nuevo dispositivo`
+          let codeMsg = await m.reply(texto)
           setTimeout(() => m.conn.sendMessage(m.chat, { delete: codeMsg.key }), 30000)
-        } catch {
-          return m.reply('✖ Error al generar código de emparejamiento. Intenta más tarde.')
+        } catch (e) {
+          console.log('[ERROR AL GENERAR CODE]:', e)
         }
       }
 
