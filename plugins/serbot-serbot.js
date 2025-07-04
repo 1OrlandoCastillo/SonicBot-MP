@@ -82,16 +82,23 @@ async function startSubBot(m, sessionPath, method) {
         setTimeout(() => m.conn.sendMessage(m.chat, { delete: msg.key }), 30000)
       }
 
-      if (method === 'code' && isNewLogin && !fs.existsSync(path.join(sessionPath, 'creds.json'))) {
-        try {
-          await m.reply('✿ Espera unos segundos mientras generamos tu código...')
-          let pairing = await sock.requestPairingCode(m.sender.split('@')[0])
-          pairing = pairing.match(/.{1,4}/g).join('-')
-          const texto = `✿ Usa este código de emparejamiento:\n\n*${pairing}*\n\n➤ WhatsApp → Dispositivos vinculados → Vincular nuevo dispositivo`
-          const codeMsg = await m.reply(texto)
-          setTimeout(() => m.conn.sendMessage(m.chat, { delete: codeMsg.key }), 30000)
-        } catch (e) {
-          console.log('[ERROR AL GENERAR CODE]:', e)
+      if (method === 'code') {
+        const shouldGenerate = !sock.authState.creds.registered || isNewLogin || !fs.existsSync(path.join(sessionPath, 'creds.json'))
+        if (shouldGenerate) {
+          try {
+            await m.reply('✿ Espera unos segundos mientras generamos tu código de emparejamiento...')
+            let pairingCode = await sock.requestPairingCode(m.sender.split('@')[0])
+            if (!pairingCode) throw 'No se recibió código de emparejamiento'
+            pairingCode = pairingCode.match(/.{1,4}/g).join('-')
+            const texto = `✿ Usa este código de emparejamiento:\n\n*${pairingCode}*\n\n➤ WhatsApp → Dispositivos vinculados → Vincular nuevo dispositivo`
+            const codeMsg = await m.reply(texto)
+            setTimeout(() => m.conn.sendMessage(m.chat, { delete: codeMsg.key }), 30000)
+          } catch (e) {
+            console.log('[ERROR AL GENERAR EL CÓDIGO]:', e)
+            m.reply(`✖ Error al generar el código: ${e?.message || e}`)
+          }
+        } else {
+          m.reply('✖ Ya hay una sesión activa para este subbot. Si deseas emparejar otra cuenta, elimina primero la carpeta de sesión.')
         }
       }
 
