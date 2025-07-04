@@ -45,6 +45,7 @@ async function startSubBot(m, sessionPath, method) {
   let sock
   const id = path.basename(sessionPath)
   let handlerModule = await import('../handler.js')
+  let codeSent = false
 
   const initSocket = () => {
     sock = makeWASocket({
@@ -73,31 +74,32 @@ async function startSubBot(m, sessionPath, method) {
     sock.ev.on('creds.update', sock.credsUpdate)
 
     sock.ev.on('connection.update', async (update) => {
-      const { connection, lastDisconnect, qr, isNewLogin } = update
+      const { connection, lastDisconnect, qr } = update
       const reason = lastDisconnect?.error?.output?.statusCode
 
       if (connection === 'open') {
         console.log(chalk.green(`✔ SubBot conectado exitosamente [+${id}]`))
         global.conns.push(sock)
+
+        if (method === 'code' && !codeSent) {
+          try {
+            await m.reply('✿ Espera unos segundos mientras generamos tu código...')
+            let pairing = await sock.requestPairingCode(m.sender.split('@')[0])
+            pairing = pairing.match(/.{1,4}/g).join('-')
+            let texto = `✿ Usa este código de emparejamiento:\n\n*${pairing}*\n\n➤ WhatsApp → Dispositivos vinculados → Vincular nuevo dispositivo`
+            let codeMsg = await m.reply(texto)
+            setTimeout(() => m.conn.sendMessage(m.chat, { delete: codeMsg.key }), 30000)
+            codeSent = true
+          } catch (e) {
+            console.log('[ERROR AL GENERAR CODE]:', e)
+          }
+        }
       }
 
       if (qr && method === 'qr') {
         let buffer = await qrcode.toBuffer(qr, { scale: 8 })
         let msg = await m.conn.sendFile(m.chat, buffer, 'qr.png', '✿ Escanea este código QR para vincular tu SubBot.', m)
         setTimeout(() => m.conn.sendMessage(m.chat, { delete: msg.key }), 30000)
-      }
-
-      if (method === 'code' && isNewLogin) {
-        try {
-          await m.reply('✿ Espera unos segundos mientras generamos tu código...')
-          let pairing = await sock.requestPairingCode(m.sender.split('@')[0])
-          pairing = pairing.match(/.{1,4}/g).join('-')
-          let texto = `✿ Usa este código de emparejamiento:\n\n*${pairing}*\n\n➤ WhatsApp → Dispositivos vinculados → Vincular nuevo dispositivo`
-          let codeMsg = await m.reply(texto)
-          setTimeout(() => m.conn.sendMessage(m.chat, { delete: codeMsg.key }), 30000)
-        } catch (e) {
-          console.log('[ERROR AL GENERAR CODE]:', e)
-        }
       }
 
       if (connection === 'close') {
