@@ -1,4 +1,9 @@
-import { useMultiFileAuthState, DisconnectReason, fetchLatestBaileysVersion, makeCacheableSignalKeyStore } from '@whiskeysockets/baileys'
+import {
+  useMultiFileAuthState,
+  DisconnectReason,
+  fetchLatestBaileysVersion,
+  makeCacheableSignalKeyStore
+} from '@whiskeysockets/baileys'
 import { makeWASocket } from '../lib/simple.js'
 import qrcode from 'qrcode'
 import fs from 'fs'
@@ -31,6 +36,11 @@ let handler = async (m, { conn, args, usedPrefix, command }) => {
     }
   }
 
+  // 🔥 FORZAR ELIMINACIÓN DE CREDS PARA QUE SE GENERE VINCULACIÓN REAL
+  if (method === 'code' && fs.existsSync(path.join(sessionPath, 'creds.json'))) {
+    fs.unlinkSync(path.join(sessionPath, 'creds.json'))
+  }
+
   startSubBot(m, sessionPath, method)
 }
 
@@ -42,13 +52,6 @@ export default handler
 
 async function startSubBot(m, sessionPath, method) {
   const { version } = await fetchLatestBaileysVersion()
-  const credsPath = path.join(sessionPath, 'creds.json')
-
-  // ⚠️ Forzar siempre nuevo emparejamiento eliminando los creds previos si es por código
-  if (method === 'code' && fs.existsSync(credsPath)) {
-    fs.unlinkSync(credsPath)
-  }
-
   const { state, saveCreds } = await useMultiFileAuthState(sessionPath)
   const id = path.basename(sessionPath)
   let handlerModule = await import('../handler.js')
@@ -82,13 +85,13 @@ async function startSubBot(m, sessionPath, method) {
         console.log(chalk.green(`✔ SubBot conectado exitosamente [+${id}]`))
         global.conns.push(sock)
         await sock.sendMessage(m.sender, {
-          text: '🔐 Se ha vinculado correctamente un nuevo dispositivo SubBot.'
+          text: '🔐 Se ha vinculado correctamente un nuevo SubBot.'
         })
       }
 
       if (qr && method === 'qr') {
         const buffer = await qrcode.toBuffer(qr, { scale: 8 })
-        const msg = await m.conn.sendFile(m.chat, buffer, 'qr.png', '✿ Escanea este código QR para vincular tu SubBot.', m)
+        const msg = await m.conn.sendFile(m.chat, buffer, 'qr.png', '✿ Escanea este QR para vincular tu SubBot.', m)
         setTimeout(() => m.conn.sendMessage(m.chat, { delete: msg.key }), 30000)
       }
 
