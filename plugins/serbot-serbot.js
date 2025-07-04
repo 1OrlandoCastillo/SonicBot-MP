@@ -33,7 +33,7 @@ export default handler
 export async function yukiJadiBot(options) {
   const { pathYukiJadiBot, m, conn } = options
   const mcode = true
-  const rtx2 = "✿ Vincula tu cuenta usando el código:\n\nMás opciones → Dispositivos vinculados → Vincular nuevo dispositivo → Con número\n\n> Código válido solo para este número."
+  const rtx2 = "Buenas baby, ¿como está el día de hoy? \n\n¡Como vincular un subbot!\n\n🎀 : Más opciones\n🦢 : Dispositivos vinculados\n🪽 : Vincular nuevo dispositivo\n🌸 : Con número\n\n> LOVELLOUD Official"
 
   if (!fs.existsSync(pathYukiJadiBot)) fs.mkdirSync(pathYukiJadiBot, { recursive: true })
 
@@ -73,8 +73,8 @@ export async function yukiJadiBot(options) {
     try {
       let code = await sock.requestPairingCode(m.sender.split("@")[0])
       code = code.match(/.{1,4}/g)?.join("-") || "ERROR"
-      await conn.sendMessage(m.chat, { text: rtx2 }, { quoted: m })
-      await m.reply(code)
+      await conn.sendMessage(m.chat, rtx2, m, rcanal)
+      await m.reply(m.chat, code, m, rcanal)
     } catch { }
   }
 
