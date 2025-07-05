@@ -1,27 +1,24 @@
-const { useMultiFileAuthState, DisconnectReason, makeCacheableSignalKeyStore, fetchLatestBaileysVersion } = (await import("@whiskeysockets/baileys"))
-import qrcode from "qrcode"
-import NodeCache from "node-cache"
+const { useMultiFileAuthState, makeCacheableSignalKeyStore, fetchLatestBaileysVersion } = (await import("@whiskeysockets/baileys"))
 import fs from "fs"
 import path from "path"
 import pino from "pino"
 import chalk from "chalk"
 import * as ws from "ws"
-const { exec } = await import("child_process")
 import { makeWASocket } from "../lib/simple.js"
 import { fileURLToPath } from "url"
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 
-let handler = async (m, { conn, args, usedPrefix }) => {
+let handler = async (m, { conn, args }) => {
   const subBots = [...new Set([...global.conns.filter((conn) => conn.user && conn.ws?.socket && conn.ws.socket.readyState !== ws.CLOSED)])]
   if (subBots.length >= 20) return m.reply(`No se han encontrado espacios para *Sub-Bots* disponibles.`)
 
   let id = `${(m.mentionedJid && m.mentionedJid[0] ? m.mentionedJid[0] : m.fromMe ? conn.user.jid : m.sender).split`@`[0]}`
-  let pathYukiJadiBot = path.join(`./${jadi}/`, id)
-  if (!fs.existsSync(pathYukiJadiBot)) fs.mkdirSync(pathYukiJadiBot, { recursive: true })
+  let pathYuki = path.join(`./${jadi}/`, id)
+  if (!fs.existsSync(pathYuki)) fs.mkdirSync(pathYuki, { recursive: true })
 
-  await yukiJadiBot({ pathYukiJadiBot, m, conn, args, usedPrefix, command: 'code', fromCommand: true })
+  await yukiJadiBot({ pathYukiJadiBot: pathYuki, m, conn, args })
   global.db.data.users[m.sender].Subs = new Date() * 1
 }
 
@@ -32,27 +29,22 @@ export default handler
 
 export async function yukiJadiBot(options) {
   const { pathYukiJadiBot, m, conn, args } = options
-  const mcode = true
-  const rtx2 = "Buenas baby, ¿cómo está el día de hoy?\n\n¡Cómo vincular un subbot!\n\n🎀 : Más opciones\n🦢 : Dispositivos vinculados\n🪽 : Vincular nuevo dispositivo\n🌸 : Con número\n\n> LOVELLOUD Official"
-
-  if (!fs.existsSync(pathYukiJadiBot)) fs.mkdirSync(pathYukiJadiBot, { recursive: true })
+  const rtx2 = "🎀 *Vincula tu cuenta con código:*\n\n🦢 Dispositivos vinculados\n🪽 Vincular nuevo dispositivo\n🌸 *Con número*\n\n> *Código válido solo para este número.*"
 
   const pathCreds = path.join(pathYukiJadiBot, "creds.json")
-  if (args[0]) {
+  const isBase64 = args[0] && args[0].length > 100
+
+  if (isBase64) {
     try {
       const creds = JSON.parse(Buffer.from(args[0], "base64").toString("utf-8"))
       fs.writeFileSync(pathCreds, JSON.stringify(creds, null, "\t"))
     } catch {
-      conn.reply(m.chat, `✖ El código de emparejamiento no es válido.`, m)
-      return
+      return conn.reply(m.chat, `✖ El código de emparejamiento no es válido.`, m)
     }
   }
 
   let { version } = await fetchLatestBaileysVersion()
   const { state, saveCreds } = await useMultiFileAuthState(pathYukiJadiBot)
-  const msgRetry = () => { }
-  const msgRetryCache = new NodeCache()
-
   const sock = makeWASocket({
     version,
     logger: pino({ level: "silent" }),
@@ -60,8 +52,6 @@ export async function yukiJadiBot(options) {
       creds: state.creds,
       keys: makeCacheableSignalKeyStore(state.keys, pino({ level: "silent" }))
     },
-    msgRetry,
-    msgRetryCache,
     printQRInTerminal: false,
     browser: ['Ubuntu', 'Chrome', '110.0.5585.95'],
     generateHighQualityLinkPreview: true
@@ -71,16 +61,14 @@ export async function yukiJadiBot(options) {
   let isInit = true
 
   async function connectionUpdate(update) {
-    const { connection, lastDisconnect } = update
+    const { connection, lastDisconnect, qr } = update
 
-    if (update.qr && mcode) {
+    if (!isBase64 && update.qr) {
       try {
         let code = await sock.requestPairingCode(m.sender.split("@")[0])
         code = code.match(/.{1,4}/g)?.join("-") || "ERROR"
         await conn.sendMessage(m.chat, { text: rtx2 }, { quoted: m })
         await m.reply(code)
-
-        // ✖ No se elimina ningún mensaje
       } catch (err) {
         console.log("Error al generar el código:", err)
       }
@@ -127,7 +115,7 @@ export async function yukiJadiBot(options) {
     }
   }, 60000)
 
-  // 🚀 Carga handler de comandos para que el subbot responda
+  // Vincula el handler de comandos
   const handler = await import("../handler.js")
   sock.handler = handler.handler.bind(sock)
   sock.ev.on("messages.upsert", sock.handler)
