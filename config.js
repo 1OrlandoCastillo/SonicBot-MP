@@ -13,8 +13,8 @@ global.vs = '2.2.0'
 global.nameqr = 'Anya Forger'
 global.namebot = 'Anya Forger'
 global.sessions = 'Sessions'
-global.jadi = 'JadiBots' 
-global.ForgerJadibts = true
+global.bot = 'SubsBots' 
+global.AFBots = true
 
 global.packname = 'LOVELLOUD'
 global.namebot = 'Anya Forger'
