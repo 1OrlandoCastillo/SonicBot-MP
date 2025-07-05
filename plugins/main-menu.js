@@ -33,7 +33,7 @@ Hola soy %botname
 %readmore`.trimStart(),
 
   header: '%category',
-  body: '> *✿𝆬%cmd %islimit %isPremium*\n',
+  body: '> *✿𝆬%cmd %islimit* %isPremium\n',
   footer: '',
   after: '',
 }
