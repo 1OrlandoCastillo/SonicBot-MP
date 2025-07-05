@@ -20,18 +20,20 @@ const defaultMenu = {
   before: `
 Hola soy %botname
 
-Tiempo :: %uptime
+¿Como le va su día?
 
-> Registered users :: 958261
+🪷 : Tiempo :: %uptime
+📚 : Baileys :: Multi Device
+💮 : Modo :: Privado
 
-Puedes usar .setbotname para cambiar el nombre y .setbotimg para cambiar la foto
-
-> Aquí está mi menú
+> *Puedes usar:*
+.setbotname para cambiar el nombre 
+.setbotimg para cambiar la foto
 
 %readmore`.trimStart(),
 
   header: '%category',
-  body: '𔖲𔖰𔖭  𔘓꯭፝𔘓  仚 ᩨ ︳%cmd %islimit %isPremium\n',
+  body: '> *✿𝆬%cmd %islimit %isPremium*\n',
   footer: '',
   after: '',
 }
