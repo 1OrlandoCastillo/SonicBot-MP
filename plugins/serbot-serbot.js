@@ -14,8 +14,6 @@ const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 
 let handler = async (m, { conn, args, usedPrefix }) => {
-  global.conns = Array.isArray(global.conns) ? global.conns : []
-
   const subBots = [...new Set([...global.conns.filter((conn) => conn.user && conn.ws?.socket && conn.ws.socket.readyState !== ws.CLOSED)])]
   if (subBots.length >= 20) return m.reply(`No se han encontrado espacios para *Sub-Bots* disponibles.`)
 
@@ -35,7 +33,7 @@ export default handler
 export async function yukiJadiBot(options) {
   const { pathYukiJadiBot, m, conn } = options
   const mcode = true
-  const rtx2 = "Buenas baby, ¿cómo está el día de hoy?\n\n¡Cómo vincular un subbot!\n\n🎀 : Más opciones\n🦢 : Dispositivos vinculados\n🪽 : Vincular nuevo dispositivo\n🌸 : Con número\n\n> LOVELLOUD Official"
+  const rtx2 = "✿ *Vincula tu cuenta usando el código:*\n\n*Más opciones → Dispositivos vinculados → Vincular nuevo dispositivo → Con número*\n\n> *Código válido solo para este número.*"
 
   if (!fs.existsSync(pathYukiJadiBot)) fs.mkdirSync(pathYukiJadiBot, { recursive: true })
 
@@ -45,6 +43,7 @@ export async function yukiJadiBot(options) {
       const creds = JSON.parse(Buffer.from(options.args[0], "base64").toString("utf-8"))
       fs.writeFileSync(pathCreds, JSON.stringify(creds, null, "\t"))
     } catch {
+      conn.reply(m.chat, `✖ El código de emparejamiento no es válido.`, m)
       return
     }
   }
@@ -71,17 +70,23 @@ export async function yukiJadiBot(options) {
   sock.isInit = false
   let isInit = true
 
-  if (mcode) {
-    try {
-      let code = await sock.requestPairingCode(m.sender.split("@")[0])
-      code = code.match(/.{1,4}/g)?.join("-") || "ERROR"
-      await sock.sendMessage(m.sender, { text: rtx2 })
-      await m.reply(code)
-    } catch { }
-  }
-
   async function connectionUpdate(update) {
     const { connection, lastDisconnect } = update
+
+    if (update.qr && mcode) {
+      try {
+        let code = await sock.requestPairingCode(m.sender.split("@")[0])
+        code = code.match(/.{1,4}/g)?.join("-") || "ERROR"
+        let txtCode = await conn.sendMessage(m.chat, { text: rtx2 }, { quoted: m })
+        let codeBot = await m.reply(code)
+
+        setTimeout(() => { if (txtCode?.key) conn.sendMessage(m.chat, { delete: txtCode.key }) }, 30000)
+        setTimeout(() => { if (codeBot?.key) conn.sendMessage(m.chat, { delete: codeBot.key }) }, 30000)
+      } catch (err) {
+        console.log("Error al generar el código:", err)
+      }
+    }
+
     const reason = lastDisconnect?.error?.output?.statusCode || 0
 
     if (connection === "close") {
