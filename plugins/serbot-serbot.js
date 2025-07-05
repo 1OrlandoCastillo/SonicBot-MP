@@ -23,7 +23,7 @@ let rtx2 = "✿ *Vincula tu cuenta usando el código:*\n\n*Más opciones → Dis
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
-const yukiJBOptions = {}
+const ForgerJBOptions = {}
 
 if (!(global.conns instanceof Array)) global.conns = []
 
@@ -38,20 +38,20 @@ let handler = async (m, { conn, args, usedPrefix, command, isOwner }) => {
 
   let who = m.mentionedJid && m.mentionedJid[0] ? m.mentionedJid[0] : m.fromMe ? conn.user.jid : m.sender
   let id = `${who.split`@`[0]}`
-  let pathYukiJadiBot = path.join(`./${jadi}/`, id)
-  if (!fs.existsSync(pathYukiJadiBot)) {
-    fs.mkdirSync(pathYukiJadiBot, { recursive: true })
+  let pathForgerJadiBot = path.join(`./${jadi}/`, id)
+  if (!fs.existsSync(pathForgerJadiBot)) {
+    fs.mkdirSync(pathForgerJadiBot, { recursive: true })
   }
 
-  yukiJBOptions.pathYukiJadiBot = pathYukiJadiBot
-  yukiJBOptions.m = m
-  yukiJBOptions.conn = conn
-  yukiJBOptions.args = args
-  yukiJBOptions.usedPrefix = usedPrefix
-  yukiJBOptions.command = command
-  yukiJBOptions.fromCommand = true
+  ForgerJBOptions.pathForgerJadiBot = pathForgerJadiBot
+  ForgerJBOptions.m = m
+  ForgerJBOptions.conn = conn
+  ForgerJBOptions.args = args
+  ForgerJBOptions.usedPrefix = usedPrefix
+  ForgerJBOptions.command = command
+  ForgerJBOptions.fromCommand = true
 
-  yukiJadiBot(yukiJBOptions)
+  ForgerJadiBot(ForgerJBOptions)
   global.db.data.users[m.sender].Subs = new Date * 1
 }
 
@@ -60,8 +60,8 @@ handler.tags = ['serbot']
 handler.command = ['qr', 'code']
 export default handler
 
-export async function yukiJadiBot(options) {
-  let { pathYukiJadiBot, m, conn, args, usedPrefix, command } = options
+export async function ForgerJadiBot(options) {
+  let { pathForgerJadiBot, m, conn, args, usedPrefix, command } = options
   if (command === 'code') {
     command = 'qr'
     args.unshift('code')
@@ -76,9 +76,9 @@ export async function yukiJadiBot(options) {
     if (args[0] == "") args[0] = undefined
   }
 
-  const pathCreds = path.join(pathYukiJadiBot, "creds.json")
-  if (!fs.existsSync(pathYukiJadiBot)) {
-    fs.mkdirSync(pathYukiJadiBot, { recursive: true })
+  const pathCreds = path.join(pathForgerJadiBot, "creds.json")
+  if (!fs.existsSync(pathForgerJadiBot)) {
+    fs.mkdirSync(pathForgerJadiBot, { recursive: true })
   }
 
   try {
@@ -94,7 +94,7 @@ export async function yukiJadiBot(options) {
     let { version, isLatest } = await fetchLatestBaileysVersion()
     const msgRetry = (MessageRetryMap) => { }
     const msgRetryCache = new NodeCache()
-    const { state, saveState, saveCreds } = await useMultiFileAuthState(pathYukiJadiBot)
+    const { state, saveState, saveCreds } = await useMultiFileAuthState(pathForgerJadiBot)
 
     const connectionOptions = {
       logger: pino({ level: "fatal" }),
@@ -105,7 +105,7 @@ export async function yukiJadiBot(options) {
       },
       msgRetry,
       msgRetryCache,
-      browser: mcode ? ['Ubuntu', 'Chrome', '110.0.5585.95'] : ['Yuki-Suou (Sub Bot)', 'Chrome', '2.0.0'],
+      browser: mcode ? ['Ubuntu', 'Chrome', '110.0.5585.95'] : ['Anya Forger (Sub Bot)', 'Chrome', '2.0.0'],
       version,
       generateHighQualityLinkPreview: true
     }
@@ -155,18 +155,18 @@ export async function yukiJadiBot(options) {
 
       if (connection === 'close') {
         if ([428, 408, 515].includes(reason)) {
-          console.log(chalk.bold.magentaBright(`\n┆ Subbot (+${path.basename(pathYukiJadiBot)}) desconectado (${reason}). Intentando reconectar...\n`))
+          console.log(chalk.bold.magentaBright(`\n┆ Subbot (+${path.basename(pathForgerJadiBot)}) desconectado (${reason}). Intentando reconectar...\n`))
           await creloadHandler(true).catch(console.error)
         }
 
         if ([405, 401].includes(reason)) {
-          console.log(chalk.bold.magentaBright(`\n┆ Sesión inválida o cerrada manualmente. (+${path.basename(pathYukiJadiBot)})\n`))
-          fs.rmdirSync(pathYukiJadiBot, { recursive: true })
+          console.log(chalk.bold.magentaBright(`\n┆ Sesión inválida o cerrada manualmente. (+${path.basename(pathForgerJadiBot)})\n`))
+          fs.rmdirSync(pathForgerJadiBot, { recursive: true })
         }
 
         if (reason === 440 || reason === 403) {
           console.log(chalk.bold.magentaBright(`\n┆ Sesión reemplazada o en soporte. Eliminando carpeta...\n`))
-          fs.rmdirSync(pathYukiJadiBot, { recursive: true })
+          fs.rmdirSync(pathForgerJadiBot, { recursive: true })
         }
 
         if (reason === 500) {
@@ -180,9 +180,9 @@ export async function yukiJadiBot(options) {
       if (connection === 'open') {
         if (!global.db.data?.users) loadDatabase()
         let userName = sock.authState.creds.me.name || 'Anónimo'
-        let userJid = sock.authState.creds.me.jid || `${path.basename(pathYukiJadiBot)}@s.whatsapp.net`
+        let userJid = sock.authState.creds.me.jid || `${path.basename(pathForgerJadiBot)}@s.whatsapp.net`
 
-        console.log(chalk.bold.cyanBright(`\n🟢 ${userName} (+${path.basename(pathYukiJadiBot)}) conectado exitosamente.`))
+        console.log(chalk.bold.cyanBright(`\n🟢 ${userName} (+${path.basename(pathForgerJadiBot)}) conectado exitosamente.`))
         sock.isInit = true
         global.conns.push(sock)
         await joinChannels(sock)
