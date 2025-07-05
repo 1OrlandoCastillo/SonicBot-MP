@@ -6,7 +6,6 @@ import path from "path"
 import pino from "pino"
 import chalk from "chalk"
 import * as ws from "ws"
-const { exec } = await import("child_process")
 import { makeWASocket } from "../lib/simple.js"
 import { fileURLToPath } from "url"
 
@@ -31,37 +30,35 @@ handler.command = ['code']
 export default handler
 
 export async function yukiJadiBot(options) {
-  const { pathYukiJadiBot, m, conn } = options
-  const mcode = true
-  const rtx2 = "Buenas baby, ¿como está el día de hoy?\n\n¡Como vincular un subbot!\n\n🎀 : Más opciones\n🦢 : Dispositivos vinculados\n🪽 : Vincular nuevo dispositivo\n🌸 : Con número\n\n> LOVELLOUD Official"
+  const { pathYukiJadiBot, m, conn, args } = options
+  const rtx2 = "✿ *Vincula tu cuenta usando el código:*\n\n*Más opciones → Dispositivos vinculados → Vincular nuevo dispositivo → Con número*\n\n> *Código válido solo para este número.*"
 
   if (!fs.existsSync(pathYukiJadiBot)) fs.mkdirSync(pathYukiJadiBot, { recursive: true })
-
   const pathCreds = path.join(pathYukiJadiBot, "creds.json")
-  if (options.args[0]) {
+
+  if (args[0]) {
     try {
-      const creds = JSON.parse(Buffer.from(options.args[0], "base64").toString("utf-8"))
+      const creds = JSON.parse(Buffer.from(args[0], "base64").toString("utf-8"))
       fs.writeFileSync(pathCreds, JSON.stringify(creds, null, "\t"))
     } catch {
-      return
+      return m.reply("❌ Código inválido. Usa correctamente: `.code` o `.code <base64>`")
     }
   }
 
   let { version } = await fetchLatestBaileysVersion()
   const { state, saveCreds } = await useMultiFileAuthState(pathYukiJadiBot)
-  const msgRetry = () => { }
   const msgRetryCache = new NodeCache()
 
-  const sock = makeWASocket({
+  let sock = makeWASocket({
     version,
     logger: pino({ level: "silent" }),
+    printQRInTerminal: false,
     auth: {
       creds: state.creds,
       keys: makeCacheableSignalKeyStore(state.keys, pino({ level: "silent" }))
     },
-    msgRetry,
+    msgRetry: () => { },
     msgRetryCache,
-    printQRInTerminal: false,
     browser: ['Ubuntu', 'Chrome', '110.0.5585.95'],
     generateHighQualityLinkPreview: true
   })
@@ -69,13 +66,14 @@ export async function yukiJadiBot(options) {
   sock.isInit = false
   let isInit = true
 
-  if (mcode) {
-    try {
-      let code = await sock.requestPairingCode(m.sender.split("@")[0])
-      code = code.match(/.{1,4}/g)?.join("-") || "ERROR"
-      await conn.sendMessage(m.chat, { text: rtx2 }, { quoted: m })
-      await m.reply(code)
-    } catch { }
+  try {
+    let code = await sock.requestPairingCode(m.sender.split("@")[0])
+    code = code.match(/.{1,4}/g)?.join("-") || "ERROR"
+    await conn.reply(m.chat, rtx2, m)
+    await m.reply(code)
+    console.log(`[SUB-BOT] Código generado: ${code}`)
+  } catch (e) {
+    console.error("[ERROR] No se pudo generar código de emparejamiento:", e)
   }
 
   async function connectionUpdate(update) {
