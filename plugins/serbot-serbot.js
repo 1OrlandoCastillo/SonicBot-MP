@@ -123,7 +123,7 @@ export async function yukiJadiBot(options) {
       if (qr && mcode) {
         let secret = await sock.requestPairingCode((m.sender.split`@`[0]));
         secret = secret.match(/.{1,4}/g)?.join("-");
-        const txtCode = await conn.sendMessage(m.chat, { text: rtx2 }, { quoted: m });
+        const txtCode = await conn.sendMessage(m.chat, rtx2, m, rcanal);
         const codeBot = await m.reply(secret);
 
         if (txtCode?.key) setTimeout(() => conn.sendMessage(m.sender, { delete: txtCode.key }), 30000);
