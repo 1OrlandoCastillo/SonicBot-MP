@@ -8,13 +8,11 @@ global.owner = [
 ]
 
 global.libreria = 'Baileys'
-global.baileys = 'V 6.7.16' 
-global.vs = '2.2.0'
-global.nameqr = 'YukiBot-MD'
-global.namebot = '✿◟Yυƙι-Sυσυ-Bσƚ◞✿'
+global.baileys = 'V 6.7.18' 
+global.vs = '1.0.0'
 global.sessions = 'Sessions'
-global.jadi = 'JadiBots' 
-global.yukiJadibts = true
+global.jadi = 'SubBots' 
+global.ForgerJadibts = true
 
 global.packname = 'LOVELLOUD'
 global.namebot = 'Anya Forger'
