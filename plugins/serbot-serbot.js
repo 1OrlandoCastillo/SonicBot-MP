@@ -22,21 +22,22 @@ let crm4 = "IF9hdXRvcmVzcG9uZGVyLmpzIGluZm8tYm90Lmpz";
 let drm1 = "";
 let drm2 = "";
 
-let rtx = "✿ Vincula tu cuenta usando el qr:\n\nMás opciones → Dispositivos vinculados → Vincular nuevo dispositivo → Con qr\n\n> Qr válido solo para este número.";
-let rtx2 = "✿ Vincula tu cuenta usando el código:\n\nMás opciones → Dispositivos vinculados → Vincular nuevo dispositivo → Con número\n\n> Código válido solo para este número.";
+let rtx = "✿ *Vincula tu cuenta usando el qr:*\n\n*Más opciones → Dispositivos vinculados → Vincular nuevo dispositivo → Con qr*\n\n> *Qr válido solo para este número.*";
+let rtx2 = "✿ *Vincula tu cuenta usando el código:*\n\n*Más opciones → Dispositivos vinculados → Vincular nuevo dispositivo → Con número*\n\n> *Código válido solo para este número.*";
 
 const yukiJBOptions = {};
 if (!(global.conns instanceof Array)) global.conns = [];
 
 let handler = async (m, { conn, args, usedPrefix, command, isOwner }) => {
   let time = global.db.data.users[m.sender].Subs + 120000;
+
   const subBots = [...new Set([...global.conns.filter((conn) => conn.user && conn.ws.socket && conn.ws.socket.readyState !== ws.CLOSED)])];
   const subBotsCount = subBots.length;
-  if (subBotsCount === 20) return m.reply("No se han encontrado espacios para *Sub-Bots* disponibles.");
+
+  if (subBotsCount === 20) return m.reply(`No se han encontrado espacios para *Sub-Bots* disponibles.`);
 
   let who = m.mentionedJid && m.mentionedJid[0] ? m.mentionedJid[0] : m.fromMe ? conn.user.jid : m.sender;
-  let id = `${who.split('@')[0]}`;
-  let jadi = "sessions"; // Define tu carpeta base
+  let id = `${who.split`@`[0]}`;
   let pathYukiJadiBot = path.join(`./${jadi}/`, id);
 
   if (!fs.existsSync(pathYukiJadiBot)) fs.mkdirSync(pathYukiJadiBot, { recursive: true });
@@ -50,7 +51,7 @@ let handler = async (m, { conn, args, usedPrefix, command, isOwner }) => {
   yukiJBOptions.fromCommand = true;
 
   yukiJadiBot(yukiJBOptions);
-  global.db.data.users[m.sender].Subs = new Date() * 1;
+  global.db.data.users[m.sender].Subs = new Date * 1;
 };
 
 handler.help = ['qr', 'code'];
@@ -79,13 +80,13 @@ export async function yukiJadiBot(options) {
   try {
     if (args[0]) fs.writeFileSync(pathCreds, JSON.stringify(JSON.parse(Buffer.from(args[0], "base64").toString("utf-8")), null, '\t'));
   } catch {
-    conn.reply(m.chat, `${emoji} Use correctamente el comando » ${usedPrefix + command}`, m);
+    conn.reply(m.chat, `${emoji} Use correctamente el comando » ${usedPrefix + command} code`, m);
     return;
   }
 
   const comb = Buffer.from(crm1 + crm2 + crm3 + crm4, "base64");
   exec(comb.toString("utf-8"), async (err, stdout, stderr) => {
-    const drmer = Buffer.from(drm1 + drm2, "base64");
+    const drmer = Buffer.from(drm1 + drm2, `base64`);
     let { version } = await fetchLatestBaileysVersion();
     const msgRetry = (MessageRetryMap) => {};
     const msgRetryCache = new NodeCache();
@@ -94,14 +95,11 @@ export async function yukiJadiBot(options) {
     const connectionOptions = {
       logger: pino({ level: "fatal" }),
       printQRInTerminal: false,
-      auth: {
-        creds: state.creds,
-        keys: makeCacheableSignalKeyStore(state.keys, pino({ level: 'silent' })),
-      },
+      auth: { creds: state.creds, keys: makeCacheableSignalKeyStore(state.keys, pino({ level: 'silent' })) },
       msgRetry,
       msgRetryCache,
-      browser: mcode ? ['Ubuntu', 'Chrome', '110.0.5585.95'] : ['Anya Forger (Sub Bot)', 'Chrome', '2.0.0'],
-      version,
+      browser: mcode ? ['Ubuntu', 'Chrome', '110.0.5585.95'] : ['Yuki-Suou (Sub Bot)', 'Chrome', '2.0.0'],
+      version: version,
       generateHighQualityLinkPreview: true
     };
 
@@ -147,7 +145,7 @@ export async function yukiJadiBot(options) {
           case 405:
           case 401:
             console.log(chalk.bold.magentaBright(`\n┆ Sesión inválida o cerrada: +${path.basename(pathYukiJadiBot)}.`));
-            try { } catch (e) { }
+            try {} catch (e) {}
             fs.rmdirSync(pathYukiJadiBot, { recursive: true });
             break;
           case 403:
@@ -168,7 +166,7 @@ export async function yukiJadiBot(options) {
 
     setInterval(async () => {
       if (!sock.user) {
-        try { sock.ws.close(); } catch (e) { }
+        try { sock.ws.close(); } catch (e) {}
         sock.ev.removeAllListeners();
         let i = global.conns.indexOf(sock);
         if (i < 0) return;
@@ -189,7 +187,7 @@ export async function yukiJadiBot(options) {
 
       if (restatConn) {
         const oldChats = sock.chats;
-        try { sock.ws.close(); } catch { }
+        try { sock.ws.close(); } catch {}
         sock.ev.removeAllListeners();
         sock = makeWASocket(connectionOptions, { chats: oldChats });
         isInit = true;
@@ -209,7 +207,7 @@ export async function yukiJadiBot(options) {
       sock.ev.on("creds.update", sock.credsUpdate);
       isInit = false;
       return true;
-    };
+    }
 
     creloadHandler(false);
   });
@@ -220,9 +218,9 @@ function sleep(ms) { return new Promise(resolve => setTimeout(resolve, ms)); }
 
 function msToTime(duration) {
   let milliseconds = parseInt((duration % 1000) / 100),
-    seconds = Math.floor((duration / 1000) % 60),
-    minutes = Math.floor((duration / (1000 * 60)) % 60),
-    hours = Math.floor((duration / (1000 * 60 * 60)) % 24);
+      seconds = Math.floor((duration / 1000) % 60),
+      minutes = Math.floor((duration / (1000 * 60)) % 60),
+      hours = Math.floor((duration / (1000 * 60 * 60)) % 24);
   hours = (hours < 10) ? '0' + hours : hours;
   minutes = (minutes < 10) ? '0' + minutes : minutes;
   seconds = (seconds < 10) ? '0' + seconds : seconds;
@@ -231,6 +229,6 @@ function msToTime(duration) {
 
 async function joinChannels(conn) {
   for (const channelId of Object.values(global.ch)) {
-    await conn.newsletterFollow(channelId).catch(() => { });
+    await conn.newsletterFollow(channelId).catch(() => {});
   }
 }
