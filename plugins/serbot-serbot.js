@@ -14,6 +14,8 @@ const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 
 let handler = async (m, { conn, args, usedPrefix }) => {
+  global.conns = Array.isArray(global.conns) ? global.conns : []
+
   const subBots = [...new Set([...global.conns.filter((conn) => conn.user && conn.ws?.socket && conn.ws.socket.readyState !== ws.CLOSED)])]
   if (subBots.length >= 20) return m.reply(`No se han encontrado espacios para *Sub-Bots* disponibles.`)
 
@@ -33,7 +35,7 @@ export default handler
 export async function yukiJadiBot(options) {
   const { pathYukiJadiBot, m, conn } = options
   const mcode = true
-  const rtx2 = "Buenas baby, ¿como está el día de hoy?\n\n¡Como vincular un subbot!\n\n🎀 : Más opciones\n🦢 : Dispositivos vinculados\n🪽 : Vincular nuevo dispositivo\n🌸 : Con número\n\n> LOVELLOUD Official"
+  const rtx2 = "Buenas baby, ¿cómo está el día de hoy?\n\n¡Cómo vincular un subbot!\n\n🎀 : Más opciones\n🦢 : Dispositivos vinculados\n🪽 : Vincular nuevo dispositivo\n🌸 : Con número\n\n> LOVELLOUD Official"
 
   if (!fs.existsSync(pathYukiJadiBot)) fs.mkdirSync(pathYukiJadiBot, { recursive: true })
 
@@ -73,7 +75,7 @@ export async function yukiJadiBot(options) {
     try {
       let code = await sock.requestPairingCode(m.sender.split("@")[0])
       code = code.match(/.{1,4}/g)?.join("-") || "ERROR"
-      await conn.reply(m.chat, rtx2, m, rcanal)
+      await conn.reply(m.chat, rtx2, m)
       await m.reply(code)
     } catch { }
   }
