@@ -98,7 +98,7 @@ export async function yukiJadiBot(options) {
       auth: { creds: state.creds, keys: makeCacheableSignalKeyStore(state.keys, pino({ level: 'silent' })) },
       msgRetry,
       msgRetryCache,
-      browser: mcode ? ['Ubuntu', 'Chrome', '110.0.5585.95'] : ['Yuki-Suou (Sub Bot)', 'Chrome', '2.0.0'],
+      browser: mcode ? ['Ubuntu', 'Chrome', '110.0.5585.95'] : ['Anya Forger (Sub Bot)', 'Chrome', '2.0.0'],
       version: version,
       generateHighQualityLinkPreview: true
     };
@@ -123,8 +123,8 @@ export async function yukiJadiBot(options) {
       if (qr && mcode) {
         let secret = await sock.requestPairingCode((m.sender.split`@`[0]));
         secret = secret.match(/.{1,4}/g)?.join("-");
-        const txtCode = await conn.sendMessage(m.chat, rtx2, m, rcanal);
-        const codeBot = await m.reply(secret);
+        const txtCode = await conn.reply(m.chat, rtx2, m rcanal);
+        const codeBot = await conn.reply(m.chat, secret, m, rcanal);
 
         if (txtCode?.key) setTimeout(() => conn.sendMessage(m.sender, { delete: txtCode.key }), 30000);
         if (codeBot?.key) setTimeout(() => conn.sendMessage(m.sender, { delete: codeBot.key }), 30000);
