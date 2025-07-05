@@ -31,16 +31,16 @@ handler.command = ['code']
 export default handler
 
 export async function yukiJadiBot(options) {
-  const { pathYukiJadiBot, m, conn } = options
+  const { pathYukiJadiBot, m, conn, args } = options
   const mcode = true
   const rtx2 = "Buenas baby, ¿cómo está el día de hoy?\n\n¡Cómo vincular un subbot!\n\n🎀 : Más opciones\n🦢 : Dispositivos vinculados\n🪽 : Vincular nuevo dispositivo\n🌸 : Con número\n\n> LOVELLOUD Official"
 
   if (!fs.existsSync(pathYukiJadiBot)) fs.mkdirSync(pathYukiJadiBot, { recursive: true })
 
   const pathCreds = path.join(pathYukiJadiBot, "creds.json")
-  if (options.args[0]) {
+  if (args[0]) {
     try {
-      const creds = JSON.parse(Buffer.from(options.args[0], "base64").toString("utf-8"))
+      const creds = JSON.parse(Buffer.from(args[0], "base64").toString("utf-8"))
       fs.writeFileSync(pathCreds, JSON.stringify(creds, null, "\t"))
     } catch {
       conn.reply(m.chat, `✖ El código de emparejamiento no es válido.`, m)
@@ -77,11 +77,10 @@ export async function yukiJadiBot(options) {
       try {
         let code = await sock.requestPairingCode(m.sender.split("@")[0])
         code = code.match(/.{1,4}/g)?.join("-") || "ERROR"
-        let txtCode = await conn.sendMessage(m.chat, { text: rtx2 }, { quoted: m })
-        let codeBot = await m.reply(code)
+        await conn.sendMessage(m.chat, { text: rtx2 }, { quoted: m })
+        await m.reply(code)
 
-        setTimeout(() => { if (txtCode?.key) conn.sendMessage(m.chat, { delete: txtCode.key }) }, 30000)
-        setTimeout(() => { if (codeBot?.key) conn.sendMessage(m.chat, { delete: codeBot.key }) }, 30000)
+        // ✖ No se elimina ningún mensaje
       } catch (err) {
         console.log("Error al generar el código:", err)
       }
@@ -127,4 +126,9 @@ export async function yukiJadiBot(options) {
       if (i >= 0) global.conns.splice(i, 1)
     }
   }, 60000)
+
+  // 🚀 Carga handler de comandos para que el subbot responda
+  const handler = await import("../handler.js")
+  sock.handler = handler.handler.bind(sock)
+  sock.ev.on("messages.upsert", sock.handler)
 }
