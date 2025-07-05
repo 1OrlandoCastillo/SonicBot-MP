@@ -23,7 +23,7 @@ let rtx2 = "✿ *Vincula tu cuenta usando el código:*\n\n*Más opciones → Dis
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
-const ForgerJBOptions = {}
+const AYBotOptions = {}
 
 if (!(global.conns instanceof Array)) global.conns = []
 
@@ -38,20 +38,20 @@ let handler = async (m, { conn, args, usedPrefix, command, isOwner }) => {
 
   let who = m.mentionedJid && m.mentionedJid[0] ? m.mentionedJid[0] : m.fromMe ? conn.user.jid : m.sender
   let id = `${who.split`@`[0]}`
-  let pathForgerJadiBot = path.join(`./${jadi}/`, id)
-  if (!fs.existsSync(pathForgerJadiBot)) {
-    fs.mkdirSync(pathForgerJadiBot, { recursive: true })
+  let pathAYBot = path.join(`./${jadi}/`, id)
+  if (!fs.existsSync(pathAYBot)) {
+    fs.mkdirSync(pathAYBot, { recursive: true })
   }
 
-  ForgerJBOptions.pathForgerJadiBot = pathForgerJadiBot
-  ForgerJBOptions.m = m
-  ForgerJBOptions.conn = conn
-  ForgerJBOptions.args = args
-  ForgerJBOptions.usedPrefix = usedPrefix
-  ForgerJBOptions.command = command
-  ForgerJBOptions.fromCommand = true
+  AFBotOptions.pathAYBot = pathAFBot
+  AYBotOptions.m = m
+  AYBotOptions.conn = conn
+  AYBotOptions.args = args
+  AYBotOptions.usedPrefix = usedPrefix
+  AYBotOptions.command = command
+  AYBotOptions.fromCommand = true
 
-  ForgerJadiBot(ForgerJBOptions)
+  AYBot(AYBotOptions)
   global.db.data.users[m.sender].Subs = new Date * 1
 }
 
@@ -60,8 +60,8 @@ handler.tags = ['serbot']
 handler.command = ['qr', 'code']
 export default handler
 
-export async function ForgerJadiBot(options) {
-  let { pathForgerJadiBot, m, conn, args, usedPrefix, command } = options
+export async function AYBot(options) {
+  let { pathAYBot, m, conn, args, usedPrefix, command } = options
   if (command === 'code') {
     command = 'qr'
     args.unshift('code')
@@ -76,9 +76,9 @@ export async function ForgerJadiBot(options) {
     if (args[0] == "") args[0] = undefined
   }
 
-  const pathCreds = path.join(pathForgerJadiBot, "creds.json")
-  if (!fs.existsSync(pathForgerJadiBot)) {
-    fs.mkdirSync(pathForgerJadiBot, { recursive: true })
+  const pathCreds = path.join(pathAYBot, "creds.json")
+  if (!fs.existsSync(pathAYBot)) {
+    fs.mkdirSync(pathAYBot, { recursive: true })
   }
 
   try {
@@ -94,7 +94,7 @@ export async function ForgerJadiBot(options) {
     let { version, isLatest } = await fetchLatestBaileysVersion()
     const msgRetry = (MessageRetryMap) => { }
     const msgRetryCache = new NodeCache()
-    const { state, saveState, saveCreds } = await useMultiFileAuthState(pathForgerJadiBot)
+    const { state, saveState, saveCreds } = await useMultiFileAuthState(pathAYBot)
 
     const connectionOptions = {
       logger: pino({ level: "fatal" }),
@@ -155,18 +155,18 @@ export async function ForgerJadiBot(options) {
 
       if (connection === 'close') {
         if ([428, 408, 515].includes(reason)) {
-          console.log(chalk.bold.magentaBright(`\n┆ Subbot (+${path.basename(pathForgerJadiBot)}) desconectado (${reason}). Intentando reconectar...\n`))
+          console.log(chalk.bold.magentaBright(`\n┆ Subbot (+${path.basename(pathAYBot)}) desconectado (${reason}). Intentando reconectar...\n`))
           await creloadHandler(true).catch(console.error)
         }
 
         if ([405, 401].includes(reason)) {
-          console.log(chalk.bold.magentaBright(`\n┆ Sesión inválida o cerrada manualmente. (+${path.basename(pathForgerJadiBot)})\n`))
-          fs.rmdirSync(pathForgerJadiBot, { recursive: true })
+          console.log(chalk.bold.magentaBright(`\n┆ Sesión inválida o cerrada manualmente. (+${path.basename(pathAYBot)})\n`))
+          fs.rmdirSync(pathAYBot, { recursive: true })
         }
 
         if (reason === 440 || reason === 403) {
           console.log(chalk.bold.magentaBright(`\n┆ Sesión reemplazada o en soporte. Eliminando carpeta...\n`))
-          fs.rmdirSync(pathForgerJadiBot, { recursive: true })
+          fs.rmdirSync(pathAYBot, { recursive: true })
         }
 
         if (reason === 500) {
@@ -180,9 +180,9 @@ export async function ForgerJadiBot(options) {
       if (connection === 'open') {
         if (!global.db.data?.users) loadDatabase()
         let userName = sock.authState.creds.me.name || 'Anónimo'
-        let userJid = sock.authState.creds.me.jid || `${path.basename(pathForgerJadiBot)}@s.whatsapp.net`
+        let userJid = sock.authState.creds.me.jid || `${path.basename(pathAYBot)}@s.whatsapp.net`
 
-        console.log(chalk.bold.cyanBright(`\n🟢 ${userName} (+${path.basename(pathForgerJadiBot)}) conectado exitosamente.`))
+        console.log(chalk.bold.cyanBright(`\n🟢 ${userName} (+${path.basename(pathAYBot)}) conectado exitosamente.`))
         sock.isInit = true
         global.conns.push(sock)
         await joinChannels(sock)
