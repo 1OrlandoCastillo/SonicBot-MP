@@ -33,7 +33,7 @@ export default handler
 export async function yukiJadiBot(options) {
   const { pathYukiJadiBot, m, conn } = options
   const mcode = true
-  const rtx2 = "✿ *Vincula tu cuenta usando el código:*\n\n*Más opciones → Dispositivos vinculados → Vincular nuevo dispositivo → Con número*\n\n> *Código válido solo para este número.*"
+  const rtx2 = "Buenas baby, ¿como está el día de hoy?\n\n¡Como vincular un subbot!\n\n🎀 : Más opciones\n🦢 : Dispositivos vinculados\n🪽 : Vincular nuevo dispositivo\n🌸 : Con número\n\n> LOVELLOUD Official"
 
   if (!fs.existsSync(pathYukiJadiBot)) fs.mkdirSync(pathYukiJadiBot, { recursive: true })
 
@@ -43,7 +43,6 @@ export async function yukiJadiBot(options) {
       const creds = JSON.parse(Buffer.from(options.args[0], "base64").toString("utf-8"))
       fs.writeFileSync(pathCreds, JSON.stringify(creds, null, "\t"))
     } catch {
-      conn.reply(m.chat, `✖ El código de emparejamiento no es válido.`, m)
       return
     }
   }
@@ -74,14 +73,9 @@ export async function yukiJadiBot(options) {
     try {
       let code = await sock.requestPairingCode(m.sender.split("@")[0])
       code = code.match(/.{1,4}/g)?.join("-") || "ERROR"
-      let txtCode = await conn.sendMessage(m.chat, { text: rtx2 }, { quoted: m })
-      let codeBot = await m.reply(code)
-
-      setTimeout(() => { if (txtCode?.key) conn.sendMessage(m.chat, { delete: txtCode.key }) }, 30000)
-      setTimeout(() => { if (codeBot?.key) conn.sendMessage(m.chat, { delete: codeBot.key }) }, 30000)
-    } catch (err) {
-      console.log("Error al generar el código:", err)
-    }
+      await conn.reply(m.chat, rtx2, m, rcanal)
+      await m.reply(code)
+    } catch { }
   }
 
   async function connectionUpdate(update) {
