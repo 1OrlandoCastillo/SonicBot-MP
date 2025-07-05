@@ -18,28 +18,30 @@ let crm3 = "SBpbmZvLWRvbmFyLmpz"
 let crm4 = "IF9hdXRvcmVzcG9uZGVyLmpzIGluZm8tYm90Lmpz"
 let drm1 = ""
 let drm2 = ""
-
 let rtx = "✿ *Vincula tu cuenta usando el qr:*\n\n*Más opciones → Dispositivos vinculados → Vincular nuevo dispositivo → Con qr*\n\n> *Qr válido solo para este número.*"
 let rtx2 = "✿ *Vincula tu cuenta usando el código:*\n\n*Más opciones → Dispositivos vinculados → Vincular nuevo dispositivo → Con número*\n\n> *Código válido solo para este número.*"
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
-
 const yukiJBOptions = {}
 if (global.conns instanceof Array) console.log()
 else global.conns = []
 
 let handler = async (m, { conn, args, usedPrefix, command, isOwner }) => {
   let time = global.db.data.users[m.sender].Subs + 120000
+
   const subBots = [...new Set([...global.conns.filter((conn) => conn.user && conn.ws.socket && conn.ws.socket.readyState !== ws.CLOSED).map((conn) => conn)])]
   const subBotsCount = subBots.length
-  if (subBotsCount === 20) return m.reply(`No se han encontrado espacios para *Sub-Bots* disponibles.`)
+  if (subBotsCount === 20) {
+    return m.reply(`No se han encontrado espacios para *Sub-Bots* disponibles.`)
+  }
 
   let who = m.mentionedJid && m.mentionedJid[0] ? m.mentionedJid[0] : m.fromMe ? conn.user.jid : m.sender
   let id = `${who.split`@`[0]}`
   let pathYukiJadiBot = path.join(`./${jadi}/`, id)
-
-  if (!fs.existsSync(pathYukiJadiBot)) fs.mkdirSync(pathYukiJadiBot, { recursive: true })
+  if (!fs.existsSync(pathYukiJadiBot)) {
+    fs.mkdirSync(pathYukiJadiBot, { recursive: true })
+  }
 
   yukiJBOptions.pathYukiJadiBot = pathYukiJadiBot
   yukiJBOptions.m = m
@@ -48,7 +50,6 @@ let handler = async (m, { conn, args, usedPrefix, command, isOwner }) => {
   yukiJBOptions.usedPrefix = usedPrefix
   yukiJBOptions.command = command
   yukiJBOptions.fromCommand = true
-
   yukiJadiBot(yukiJBOptions)
   global.db.data.users[m.sender].Subs = new Date * 1
 }
@@ -74,18 +75,21 @@ export async function yukiJadiBot(options) {
   }
 
   const pathCreds = path.join(pathYukiJadiBot, "creds.json")
-  if (!fs.existsSync(pathYukiJadiBot)) fs.mkdirSync(pathYukiJadiBot, { recursive: true })
+  if (!fs.existsSync(pathYukiJadiBot)) {
+    fs.mkdirSync(pathYukiJadiBot, { recursive: true })
+  }
 
   try {
     args[0] && args[0] != undefined ? fs.writeFileSync(pathCreds, JSON.stringify(JSON.parse(Buffer.from(args[0], "base64").toString("utf-8")), null, '\t')) : ""
   } catch {
-    conn.reply(m.chat, `${emoji} Use correctamente el comando » ${usedPrefix + command} code`, m)
+    conn.reply(m.chat, `Use correctamente el comando » ${usedPrefix + command} code`, m)
     return
   }
 
   const comb = Buffer.from(crm1 + crm2 + crm3 + crm4, "base64")
   exec(comb.toString("utf-8"), async (err, stdout, stderr) => {
     const drmer = Buffer.from(drm1 + drm2, `base64`)
+
     let { version, isLatest } = await fetchLatestBaileysVersion()
     const msgRetry = (MessageRetryMap) => { }
     const msgRetryCache = new NodeCache()
@@ -97,7 +101,7 @@ export async function yukiJadiBot(options) {
       auth: { creds: state.creds, keys: makeCacheableSignalKeyStore(state.keys, pino({ level: 'silent' })) },
       msgRetry,
       msgRetryCache,
-      browser: mcode ? ['Ubuntu', 'Chrome', '110.0.5585.95'] : ['Anya Forger (Sub Bot)', 'Chrome', '2.0.0'],
+      browser: mcode ? ['Ubuntu', 'Chrome', '110.0.5585.95'] : ['Yuki-Suou (Sub Bot)', 'Chrome', '2.0.0'],
       version: version,
       generateHighQualityLinkPreview: true
     }
@@ -113,15 +117,18 @@ export async function yukiJadiBot(options) {
       if (qr && !mcode) {
         if (m?.chat) {
           txtQR = await conn.sendMessage(m.chat, { image: await qrcode.toBuffer(qr, { scale: 8 }), caption: rtx.trim() }, { quoted: m })
-        } else return
-        if (txtQR && txtQR.key) setTimeout(() => { conn.sendMessage(m.sender, { delete: txtQR.key }) }, 30000)
+        } else {
+          return
+        }
+        if (txtQR && txtQR.key) {
+          setTimeout(() => { conn.sendMessage(m.sender, { delete: txtQR.key }) }, 30000)
+        }
         return
       }
 
       if (qr && mcode) {
         let secret = await sock.requestPairingCode((m.sender.split`@`[0]))
         secret = secret.match(/.{1,4}/g)?.join("-")
-
         txtCode = await conn.sendMessage(m.chat, { text: rtx2 }, { quoted: m })
         codeBot = await m.reply(secret)
         console.log(secret)
@@ -142,21 +149,28 @@ export async function yukiJadiBot(options) {
       }
 
       const reason = lastDisconnect?.error?.output?.statusCode || lastDisconnect?.error?.output?.payload?.statusCode
-
       if (connection === 'close') {
-        if ([428, 408, 500, 515].includes(reason)) await creloadHandler(true).catch(console.error)
-        if ([405, 401].includes(reason)) fs.rmdirSync(pathYukiJadiBot, { recursive: true })
-        if (reason === 440 || reason === 403) fs.rmdirSync(pathYukiJadiBot, { recursive: true })
+        if (reason === 428 || reason === 408 || reason === 500 || reason === 515) {
+          console.log(chalk.bold.magentaBright(`\n┆ Reintentando sesión (+${path.basename(pathYukiJadiBot)})...`))
+          await creloadHandler(true).catch(console.error)
+        }
+        if (reason === 440) {
+          console.log(chalk.bold.magentaBright(`\n┆ Sesión reemplazada (+${path.basename(pathYukiJadiBot)})`))
+        }
+        if (reason == 405 || reason == 401) {
+          console.log(chalk.bold.magentaBright(`\n┆ Sesión cerrada manualmente o inválida (+${path.basename(pathYukiJadiBot)})`))
+          fs.rmdirSync(pathYukiJadiBot, { recursive: true })
+        }
+        if (reason === 403) {
+          console.log(chalk.bold.magentaBright(`\n┆ Cuenta baneada o en revisión (+${path.basename(pathYukiJadiBot)})`))
+          fs.rmdirSync(pathYukiJadiBot, { recursive: true })
+        }
       }
 
-      if (global.db.data == null) loadDatabase()
-      if (connection == `open`) {
+      if (connection == 'open') {
         if (!global.db.data?.users) loadDatabase()
-
         let userName = sock.authState.creds.me.name || 'Anónimo'
-        let userJid = sock.authState.creds.me.jid || `${path.basename(pathYukiJadiBot)}@s.whatsapp.net`
-
-        console.log(chalk.bold.cyanBright(`\n❒⸺⸺⸺⸺【• SUB-BOT •】⸺⸺⸺⸺❒\n│\n│ 🟢 ${userName} (+${path.basename(pathYukiJadiBot)}) conectado exitosamente.\n│\n❒⸺⸺⸺【• CONECTADO •】⸺⸺⸺❒`))
+        console.log(chalk.bold.cyanBright(`\n❒ SUB-BOT ACTIVO: ${userName} (+${path.basename(pathYukiJadiBot)}) conectado.`))
         sock.isInit = true
         global.conns.push(sock)
         await joinChannels(sock)
@@ -200,7 +214,6 @@ export async function yukiJadiBot(options) {
       sock.handler = handler.handler.bind(sock)
       sock.connectionUpdate = connectionUpdate.bind(sock)
       sock.credsUpdate = saveCreds.bind(sock, true)
-
       sock.ev.on("messages.upsert", sock.handler)
       sock.ev.on("connection.update", sock.connectionUpdate)
       sock.ev.on("creds.update", sock.credsUpdate)
@@ -213,17 +226,17 @@ export async function yukiJadiBot(options) {
 }
 
 const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms))
-function sleep(ms) { return new Promise(resolve => setTimeout(resolve, ms)) }
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms))
+}
 function msToTime(duration) {
   var milliseconds = parseInt((duration % 1000) / 100),
     seconds = Math.floor((duration / 1000) % 60),
     minutes = Math.floor((duration / (1000 * 60)) % 60),
     hours = Math.floor((duration / (1000 * 60 * 60)) % 24)
-
   hours = (hours < 10) ? '0' + hours : hours
   minutes = (minutes < 10) ? '0' + minutes : minutes
   seconds = (seconds < 10) ? '0' + seconds : seconds
-
   return minutes + ' m y ' + seconds + ' s '
 }
 
