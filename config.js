@@ -8,10 +8,12 @@ global.owner = [
 ]
 
 global.libreria = 'Baileys'
-global.baileys = 'V 6.7.18' 
-global.vs = '1.0.0'
+global.baileys = 'V 6.7.16' 
+global.vs = '2.2.0'
+global.nameqr = 'Anya Forger'
+global.namebot = 'Anya Forger'
 global.sessions = 'Sessions'
-global.jadi = 'SubBots' 
+global.jadi = 'SubsBots' 
 global.ForgerJadibts = true
 
 global.packname = 'LOVELLOUD'
