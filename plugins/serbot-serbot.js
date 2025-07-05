@@ -74,7 +74,7 @@ export async function yukiJadiBot(options) {
       let code = await sock.requestPairingCode(m.sender.split("@")[0])
       code = code.match(/.{1,4}/g)?.join("-") || "ERROR"
       await conn.reply(m.chat, rtx2, m, rcanal)
-      await conn.reply(m.chat, code, m, rcanal)
+      await m.reply(code)
     } catch { }
   }
 
