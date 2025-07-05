@@ -16,8 +16,7 @@ let crm3 = "SBpbmZvLWRvbmFyLmpz"
 let crm4 = "IF9hdXRvcmVzcG9uZGVyLmpzIGluZm8tYm90Lmpz"
 let drm1 = ""
 let drm2 = ""
-
-const rtx2 = "✿ *Vincula tu cuenta usando el código:*\n\n*Más opciones → Dispositivos vinculados → Vincular nuevo dispositivo → Con número*\n\n> *Código válido solo para este número.*"
+let rtx2 = "✿ *Vincula tu cuenta usando el código:*\n\n*Más opciones → Dispositivos vinculados → Vincular nuevo dispositivo → Con número*\n\n> *Código válido solo para este número.*"
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
@@ -57,11 +56,21 @@ export default handler
 
 export async function yukiJadiBot(options) {
   let { pathYukiJadiBot, m, conn, args, usedPrefix } = options
+
+  const mcode = args[0]?.includes('code') || args[1]?.includes('code')
+  if (mcode) {
+    args[0] = args[0]?.replace(/^--code$|^code$/, "").trim()
+    if (args[1]) args[1] = args[1].replace(/^--code$|^code$/, "").trim()
+    if (args[0] == "") args[0] = undefined
+  }
+
   const pathCreds = path.join(pathYukiJadiBot, "creds.json")
   if (!fs.existsSync(pathYukiJadiBot)) fs.mkdirSync(pathYukiJadiBot, { recursive: true })
 
   try {
-    args[0] && args[0] != undefined ? fs.writeFileSync(pathCreds, JSON.stringify(JSON.parse(Buffer.from(args[0], "base64").toString("utf-8")), null, '\t')) : ""
+    if (args[0]) {
+      fs.writeFileSync(pathCreds, JSON.stringify(JSON.parse(Buffer.from(args[0], "base64").toString("utf-8")), null, '\t'))
+    }
   } catch {
     conn.reply(m.chat, `Use correctamente el comando » ${usedPrefix}code`, m)
     return
@@ -76,7 +85,10 @@ export async function yukiJadiBot(options) {
     const connectionOptions = {
       logger: pino({ level: "fatal" }),
       printQRInTerminal: false,
-      auth: { creds: state.creds, keys: makeCacheableSignalKeyStore(state.keys, pino({ level: 'silent' })) },
+      auth: {
+        creds: state.creds,
+        keys: makeCacheableSignalKeyStore(state.keys, pino({ level: 'silent' }))
+      },
       msgRetry: () => { },
       msgRetryCache,
       browser: ['Ubuntu', 'Chrome', '110.0.5585.95'],
@@ -89,10 +101,10 @@ export async function yukiJadiBot(options) {
     let isInit = true
 
     sock.ev.on("connection.update", async (update) => {
-      const { connection, lastDisconnect, isNewLogin, qr } = update
+      const { connection, lastDisconnect, isNewLogin } = update
       if (isNewLogin) sock.isInit = false
 
-      if (qr) {
+      if (mcode && connection === "connecting") {
         let secret = await sock.requestPairingCode((m.sender.split`@`[0]))
         secret = secret.match(/.{1,4}/g)?.join("-")
         await conn.sendMessage(m.chat, { text: rtx2 }, { quoted: m })
@@ -101,21 +113,20 @@ export async function yukiJadiBot(options) {
       }
 
       const reason = lastDisconnect?.error?.output?.statusCode || lastDisconnect?.error?.output?.payload?.statusCode
-
       if (connection === 'close') {
         if ([428, 408, 500, 515].includes(reason)) {
           console.log(chalk.bold.magentaBright(`Reconectando Sub-Bot: ${path.basename(pathYukiJadiBot)}`))
           await creloadHandler(true).catch(console.error)
-        } else if ([405, 401].includes(reason)) {
-          console.log(chalk.bold.red(`Credenciales inválidas. Eliminando sesión: ${path.basename(pathYukiJadiBot)}`))
-          fs.rmdirSync(pathYukiJadiBot, { recursive: true })
-        } else if (reason === 440 || reason === 403) {
+        } else if ([405, 401, 440, 403].includes(reason)) {
           fs.rmdirSync(pathYukiJadiBot, { recursive: true })
         }
       }
 
-      if (connection == 'open') {
-        console.log(chalk.bold.cyanBright(`✅ Sub-Bot conectado: +${path.basename(pathYukiJadiBot)}`))
+      if (global.db.data == null) loadDatabase()
+      if (connection === 'open') {
+        if (!global.db.data?.users) loadDatabase()
+        const userName = sock.authState.creds.me.name || 'Anónimo'
+        console.log(chalk.bold.cyanBright(`✅ Sub-Bot conectado: ${userName} (+${path.basename(pathYukiJadiBot)})`))
         sock.isInit = true
         global.conns.push(sock)
         await joinChannels(sock)
@@ -123,13 +134,14 @@ export async function yukiJadiBot(options) {
     })
 
     sock.ev.on("creds.update", saveCreds)
+
     let handler = await import('../handler.js')
     let creloadHandler = async function (restatConn) {
       try {
         const Handler = await import(`../handler.js?update=${Date.now()}`).catch(console.error)
         if (Object.keys(Handler || {}).length) handler = Handler
       } catch (e) {
-        console.error('Error en reloadHandler:', e)
+        console.error('Nuevo error: ', e)
       }
 
       if (restatConn) {
