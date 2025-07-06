@@ -3,10 +3,7 @@ import { join } from 'path'
 import fs from 'fs'
 
 let handler = async (m, { conn, usedPrefix, command, text, args }) => {
-  if (!text) return conn.reply(m.chat, `🪷 : Acción :: Búsqueda en YouTube\n🎀 : Instrucción :: Escriba un nombre, título o descripción\n⛩️ : Comando :: .yts\n🍥 : Ejemplo 1 :: .yts BLACKPINK – Pink Venom\n🌸 : Ejemplo 2 :: .yts Documental sobre el té\n💮 : Ejemplo 3 :: .yts Canción suave para estudiar\n🌼 : Estado :: Esperando solicitud\n🍓 : Asistente :: ${nombreBot}\n\n> LOVELLOUD Official`, m, rcanal)
-
-await m.react('🕓')
-const botActual = conn.user?.jid?.split('@')[0].replace(/\D/g, '')
+  const botActual = conn.user?.jid?.split('@')[0].replace(/\D/g, '')
   const configPath = join('./Serbot', botActual, 'config.json')
 
   let nombreBot = global.namebot || 'Anya Forger'
@@ -20,28 +17,31 @@ const botActual = conn.user?.jid?.split('@')[0].replace(/\D/g, '')
     } catch (err) { }
   }
 
-try {
-const { data } = await axios.get(`https://api.starlights.uk/api/search/youtube?q=q=${encodeURIComponent(text)}`)
+  if (!text) return conn.reply(m.chat, `🪷 : Acción :: Búsqueda en YouTube\n🎀 : Instrucción :: Escriba un nombre, título o descripción\n⛩️ : Comando :: .yts\n🍥 : Ejemplo 1 :: .yts BLACKPINK – Pink Venom\n🌸 : Ejemplo 2 :: .yts Documental sobre el té\n💮 : Ejemplo 3 :: .yts Canción suave para estudiar\n🌼 : Estado :: Esperando solicitud\n🍓 : Asistente :: ${nombreBot}\n\n> LOVELLOUD Official`, m, rcanal)
 
-const results = data?.result || []
+  await m.react('🕓')
 
-if (results.length > 0) {
-  let txt = `「 *• Searchs* 」`
+  try {
+    const { data } = await axios.get(`https://api.starlights.uk/api/search/youtube?q=q=${encodeURIComponent(text)}`)
+    const results = data?.result || []
 
-  for (let i = 0; i < (results.length >= 15 ? 15 : results.length); i++) {
+    if (results.length > 0) {
+      let txt = `「 *• Searchs* 」`
+
+      for (let i = 0; i < (results.length >= 15 ? 15 : results.length); i++) {
         const video = results[i]
-     txt += `\n\n`
-     txt += `*◦Nro →* ${i + 1}\n`
-     txt += `*◦Título →* ${video.title || 'Sin título'}\n`
-     txt += `*◦Duración →* ${video.duration || 'Desconocida'}\n`
-     txt += `*◦Canal →* ${video.uploader || 'Desconocido'}\n`
-     txt += `*◦Url →* ${video.link}`
+        txt += `\n\n`
+        txt += `*◦Nro →* ${i + 1}\n`
+        txt += `*◦Título →* ${video.title || 'Sin título'}\n`
+        txt += `*◦Duración →* ${video.duration || 'Desconocida'}\n`
+        txt += `*◦Canal →* ${video.uploader || 'Desconocido'}\n`
+        txt += `*◦Url →* ${video.link}`
       }
 
-await conn.sendFile(m.chat, imgBot, 'thumbnail.jpg', txt, m, null, rcanal)
-await m.react('✅')
+      await conn.sendFile(m.chat, imgBot, 'thumbnail.jpg', txt, m, null, rcanal)
+      await m.react('✅')
     } else {
-      await conn.react('✖️')
+      await m.react('✖️')
     }
   } catch {
     await m.react('✖️')
@@ -53,4 +53,3 @@ handler.help = ['youtubesearch']
 handler.command = ['youtubesearch', 'youtubes', 'yts']
 
 export default handler
-
