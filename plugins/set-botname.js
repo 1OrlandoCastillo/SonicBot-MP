@@ -1,4 +1,4 @@
-³import fs from 'fs'
+import fs from 'fs'
 import path from 'path'
 
 const handler = async (m, { conn, text, usedPrefix, command }) => {
