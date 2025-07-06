@@ -43,7 +43,7 @@ let handler = async (m, { conn, args, usedPrefix, command, isOwner }) => {
     fs.mkdirSync(pathAYBot, { recursive: true })
   }
 
-  AYBotOptions.pathAYSub = pathAYSub
+  AYBotOptions.pathAYBot = pathAYBot
   AYBotOptions.m = m
   AYBotOptions.conn = conn
   AYBotOptions.args = args
