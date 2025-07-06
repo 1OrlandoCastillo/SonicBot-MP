@@ -7,13 +7,8 @@ global.owner = [
   ['51928303585', 'Sung', true],
 ]
 
-global.libreria = 'Baileys'
-global.baileys = 'V 6.7.16' 
-global.vs = '2.2.0'
-global.nameqr = 'Anya Forger'
-global.namebot = 'Anya Forger'
 global.sessions = 'Sessions'
-global.bot = 'SubsBots' 
+global.bot = 'Serbot' 
 global.AFBots = true
 
 global.packname = 'LOVELLOUD'
