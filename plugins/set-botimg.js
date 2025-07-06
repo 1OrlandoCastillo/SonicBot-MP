@@ -3,7 +3,7 @@ import path from 'path'
 
 const handler = async (m, { conn, usedPrefix, command }) => {
   const senderNumber = m.sender.replace(/[^0-9]/g, '')
-  const botPath = path.join('./JadiBots', senderNumber)
+  const botPath = path.join('./Serbot', senderNumber)
   const configPath = path.join(botPath, 'config.json')
 
   if (!fs.existsSync(botPath)) {
