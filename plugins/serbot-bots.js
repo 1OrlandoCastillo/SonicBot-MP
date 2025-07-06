@@ -28,7 +28,7 @@ let handler = async (m, { conn }) => {
   txt += `🌸 : Premium :: 0\n`
   txt += `🍥 : Subs :: ${totalUsers || 0}\n`
   txt += `🍓 : Temporales :: 0\n`
-  txt += `\n\n`
+  txt += `\n`
   txt += `> LOVELLOUD Official`
 
 let imgBot = './storage/img/menu3.jpg'
