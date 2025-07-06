@@ -3,20 +3,22 @@ import { join } from 'path'
 import fs from 'fs'
 
 let handler = async (m, { conn, usedPrefix, command, text, args }) => {
-  if (!text) return conn.reply(m.chat, `Indica qué quieres buscar en YouTube con un nombre, título o descripción.`, m, rcanal)
+  if (!text) return conn.reply(m.chat, `🪷 : Acción :: Búsqueda en YouTube\n🎀 : Instrucción :: Escriba un nombre, título o descripción\n⛩️ : Comando :: .yts\n🍥 : Ejemplo 1 :: .yts BLACKPINK – Pink Venom\n🌸 : Ejemplo 2 :: .yts Documental sobre el té\n💮 : Ejemplo 3 :: .yts Canción suave para estudiar\n🌼 : Estado :: Esperando solicitud\n🍓 : Asistente :: ${nombrebot}\n\n> LOVELLOUD Official`, m, rcanal)
 
 await m.react('🕓')
-let imgBot = './storage/img/menu3.jpg'
-
 const botActual = conn.user?.jid?.split('@')[0].replace(/\D/g, '')
-const configPath = join('./Serbot', botActual, 'config.json')
-    if (fs.existsSync(configPath)) {
-      try {
-const config = JSON.parse(fs.readFileSync(configPath))
-        if (config.img) imgBot = config.img
-      } catch (err) {
-      }
-    }
+  const configPath = join('./Serbot', botActual, 'config.json')
+
+  let nombreBot = global.namebot || 'Anya Forger'
+  let imgBot = './storage/img/menu3.jpg'
+
+  if (fs.existsSync(configPath)) {
+    try {
+      const config = JSON.parse(fs.readFileSync(configPath, 'utf-8'))
+      if (config.name) nombreBot = config.name
+      if (config.img) imgBot = config.img
+    } catch (err) { }
+  }
 
 try {
 const { data } = await axios.get(`https://api.starlights.uk/api/search/youtube?q=q=${encodeURIComponent(text)}`)
@@ -51,3 +53,4 @@ handler.help = ['youtubesearch']
 handler.command = ['youtubesearch', 'youtubes', 'yts']
 
 export default handler
+
