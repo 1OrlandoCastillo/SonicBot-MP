@@ -65,7 +65,7 @@ const handler = async (m, { conn, usedPrefix: _p }) => {
 let imgBot = './storage/img/menu3.jpg'
 
 const botActual = conn.user?.jid?.split('@')[0].replace(/\D/g, '')
-const configPath = join('./JadiBots', botActual, 'config.json')
+const configPath = join('./Serbot', botActual, 'config.json')
     if (fs.existsSync(configPath)) {
       try {
 const config = JSON.parse(fs.readFileSync(configPath))
