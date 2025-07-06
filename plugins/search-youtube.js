@@ -3,7 +3,7 @@ import { join } from 'path'
 import fs from 'fs'
 
 let handler = async (m, { conn, usedPrefix, command, text, args }) => {
-  if (!text) return conn.reply(m.chat, `🪷 : Acción :: Búsqueda en YouTube\n🎀 : Instrucción :: Escriba un nombre, título o descripción\n⛩️ : Comando :: .yts\n🍥 : Ejemplo 1 :: .yts BLACKPINK – Pink Venom\n🌸 : Ejemplo 2 :: .yts Documental sobre el té\n💮 : Ejemplo 3 :: .yts Canción suave para estudiar\n🌼 : Estado :: Esperando solicitud\n🍓 : Asistente :: ${nombrebot}\n\n> LOVELLOUD Official`, m, rcanal)
+  if (!text) return conn.reply(m.chat, `🪷 : Acción :: Búsqueda en YouTube\n🎀 : Instrucción :: Escriba un nombre, título o descripción\n⛩️ : Comando :: .yts\n🍥 : Ejemplo 1 :: .yts BLACKPINK – Pink Venom\n🌸 : Ejemplo 2 :: .yts Documental sobre el té\n💮 : Ejemplo 3 :: .yts Canción suave para estudiar\n🌼 : Estado :: Esperando solicitud\n🍓 : Asistente :: ${nombreBot}\n\n> LOVELLOUD Official`, m, rcanal)
 
 await m.react('🕓')
 const botActual = conn.user?.jid?.split('@')[0].replace(/\D/g, '')
