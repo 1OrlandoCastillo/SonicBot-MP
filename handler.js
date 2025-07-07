@@ -26,6 +26,8 @@ export async function handler(chatUpdate) {
     if (!m) return
     m.exp = 0
     m.limit = false
+    m.mentionedJid = m.message?.extendedTextMessage?.contextInfo?.mentionedJid || []
+    m.mentionedJid.push(m.sender)
 
     try {
       let user = global.db.data.users[m.sender]
@@ -108,12 +110,12 @@ export async function handler(chatUpdate) {
     if (opts['swonly'] && m.chat !== 'status@broadcast') return
     if (typeof m.text !== 'string') m.text = ''
 
-    let _user = global.db.data && global.db.data.users && global.db.data.users[m.sender]
+    let _user = global.db.data?.users?.[m.sender]
 
     const isROwner = [conn.decodeJid(global.conn.user.id), ...global.owner.map(([number]) => number)].map(v => v.replace(/[^0-9]/g, '') + '@s.whatsapp.net').includes(m.sender)
     const isOwner = isROwner || m.fromMe
     const isMods = isOwner || global.mods.map(v => v.replace(/[^0-9]/g, '') + '@s.whatsapp.net').includes(m.sender)
-    const isPrems = isROwner || global.prems.map(v => v.replace(/[^0-9]/g, '') + '@s.whatsapp.net').includes(m.sender) || _user.prem == true
+    const isPrems = isROwner || global.prems.map(v => v.replace(/[^0-9]/g, '') + '@s.whatsapp.net').includes(m.sender) || _user?.prem == true
 
     if (opts['queque'] && m.text && !(isMods || isPrems)) {
       let queque = this.msgqueque, time = 1000 * 5
@@ -134,6 +136,17 @@ export async function handler(chatUpdate) {
     const participants = (m.isGroup ? groupMetadata.participants : []) || []
     const user = (m.isGroup ? participants.find(u => conn.decodeJid(u.id) === m.sender) : {}) || {}
     const bot = (m.isGroup ? participants.find(u => conn.decodeJid(u.id) == this.user.jid) : {}) || {}
+
+    const mentionedJid = m.mentionedJid || []
+    const isMentioned = mentionedJid.includes(this.user.jid)
+    const isMentionAdmin = m.isGroup ? mentionedJid.some(jid => {
+      const u = participants.find(p => conn.decodeJid(p.id) === conn.decodeJid(jid))
+      return u?.admin
+    }) : false
+    const isMentionOwner = m.isGroup ? mentionedJid.some(jid => {
+      return [conn.decodeJid(global.conn.user.id), ...global.owner.map(([number]) => number + '@s.whatsapp.net')].includes(jid)
+    }) : false
+
     const isRAdmin = user?.admin == 'superadmin' || false
     const isAdmin = isRAdmin || user?.admin == 'admin' || false
     const isBotAdmin = bot?.admin || false
@@ -142,8 +155,7 @@ export async function handler(chatUpdate) {
 
     for (let name in global.plugins) {
       let plugin = global.plugins[name]
-      if (!plugin) continue
-      if (plugin.disabled) continue
+      if (!plugin || plugin.disabled) continue
 
       const __filename = join(___dirname, name)
 
@@ -159,9 +171,7 @@ export async function handler(chatUpdate) {
         }
       }
 
-      if (!opts['restrict']) {
-        if (plugin.tags && plugin.tags.includes('admin')) continue
-      }
+      if (!opts['restrict'] && plugin.tags?.includes('admin')) continue
 
       const str2Regex = str => str.replace(/[|\\{}()[\]^$+*?.]/g, '\\$&')
       let _prefix = plugin.customPrefix ? plugin.customPrefix : conn.prefix ? conn.prefix : global.prefix
@@ -247,7 +257,7 @@ export async function handler(chatUpdate) {
         else m.exp += xp
 
         if (!isPrems && plugin.limit && global.db.data.users[m.sender].limit < plugin.limit * 1) {
-          conn.reply(m.chat, `Se agotaron tus *✿ Lovelloud*`, m, rcanal)
+          conn.reply(m.chat, `Se agotaron tus *✿ Lovelloud*`, m)
           continue
         }
 
@@ -255,7 +265,8 @@ export async function handler(chatUpdate) {
           match, usedPrefix, noPrefix, _args, args, command, text,
           conn: this, participants, groupMetadata, user, bot,
           isROwner, isOwner, isRAdmin, isAdmin, isBotAdmin,
-          isPrems, chatUpdate, __dirname: ___dirname, __filename
+          isPrems, chatUpdate, __dirname: ___dirname, __filename,
+          isMentioned, isMentionAdmin, isMentionOwner, mentionedJid
         }
 
         try {
@@ -279,7 +290,7 @@ export async function handler(chatUpdate) {
             }
           }
           if (m.limit)
-            conn.reply(m.chat, `Utilizaste *${+m.limit}* ✿`, m, rcanal)
+            conn.reply(m.chat, `Utilizaste *${+m.limit}* ✿`, m)
         }
         break
       }
@@ -287,16 +298,16 @@ export async function handler(chatUpdate) {
 
     global.dfail = (type, m, conn, usedPrefix) => {
       let msg = {
-        rowner: `✤ Hola, este comando solo puede ser utilizado por el *Creador* de la Bot.`,
-        owner: `✤ Hola, este comando solo puede ser utilizado por el *Creador* de la Bot y *Sub Bots*.`,
-        mods: `✤ Hola, este comando solo puede ser utilizado por los *Moderadores* de la Bot.`,
-        premium: `✤ Hola, este comando solo puede ser utilizado por Usuarios *Premium*.`,
-        group: `✤ Hola, este comando solo puede ser utilizado en *Grupos*.`,
-        private: `✤ Hola, este comando solo puede ser utilizado en mi Chat *Privado*.`,
-        admin: `✤ Hola, este comando solo puede ser utilizado por los *Administradores* del Grupo.`,
-        botAdmin: `✤ Hola, la bot debe ser *Administradora* para ejecutar este Comando.`,
-        unreg: `✤ Hola, para usar este comando debes estar *Registrado.*`,
-        restrict: `✤ Hola, esta característica está *deshabilitada.*`
+        rowner: `✤ Este comando solo lo puede usar el *Creador* del Bot.`,
+        owner: `✤ Este comando solo lo puede usar el *Owner* o *Sub-Bots*.`,
+        mods: `✤ Este comando solo lo puede usar un *Moderador*.`,
+        premium: `✤ Este comando es solo para *Usuarios Premium*.`,
+        group: `✤ Este comando solo funciona en *Grupos*.`,
+        private: `✤ Este comando solo funciona en *Privado*.`,
+        admin: `✤ Este comando requiere permisos de *Administrador*.`,
+        botAdmin: `✤ El bot necesita ser *Administrador*.`,
+        unreg: `✤ Debes *registrarte* para usar este comando.`,
+        restrict: `✤ Esta función está *restringida* por el Owner.`
       }[type]
       if (msg) return conn.reply(m.chat, msg, m, rcanal).then(_ => m.react('✖️'))
     }
@@ -355,6 +366,6 @@ export async function handler(chatUpdate) {
 let file = global.__filename(import.meta.url, true)
 watchFile(file, async () => {
   unwatchFile(file)
-  console.log(chalk.magenta("Se actualizo 'handler.js'"))
+  console.log(chalk.magenta("Se actualizó 'handler.js'"))
   if (global.reloadHandler) console.log(await global.reloadHandler())
 })
