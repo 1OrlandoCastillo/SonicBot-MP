@@ -24,6 +24,7 @@ export async function handler(chatUpdate) {
   try {
     m = smsg(this, m) || m
     if (!m) return
+    if (m.messageStubType) return
     m.exp = 0
     m.limit = false
 
