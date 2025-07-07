@@ -1,4 +1,6 @@
 import fetch from 'node-fetch'
+import { join } from 'path'
+import fs from 'fs'
 
 let handler = async (m, { conn, usedPrefix, command, text, args }) => {
   const botActual = conn.user?.jid?.split('@')[0].replace(/\D/g, '')
