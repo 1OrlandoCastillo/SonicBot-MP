@@ -14,6 +14,8 @@ const delay = ms => isNumber(ms) && new Promise(resolve => setTimeout(function (
 }, ms))
 
 export async function handler(chatUpdate) {
+  const conn = this
+
   this.msgqueque = this.msgqueque || []
   if (!chatUpdate) return
   this.pushMessage(chatUpdate.messages).catch(console.error)
@@ -21,12 +23,12 @@ export async function handler(chatUpdate) {
   if (!m) return
 
   if ([27, 28, 32].includes(m.messageStubType) && m.messageStubParameters?.[0]) {
-  let rawJid = m.messageStubParameters[0].replace('@lid', '@s.whatsapp.net')
-  let number = rawJid.replace(/\D/g, '')
-  let jid = number + '@s.whatsapp.net'
-  let name = await this.getName(jid).catch(() => null) || 'Desconocido'
-  console.log(name)
-  return
+    let rawJid = m.messageStubParameters[0].replace('@lid', '@s.whatsapp.net')
+    let number = rawJid.replace(/\D/g, '')
+    let jid = number + '@s.whatsapp.net'
+    let name = await conn.getName(jid).catch(() => 'Desconocido')
+    console.log(name)
+    return
   }
 
   if (global.db.data == null) await global.loadDatabase()
@@ -97,10 +99,10 @@ export async function handler(chatUpdate) {
     m.exp += Math.ceil(Math.random() * 10)
 
     let usedPrefix
-    const groupMetadata = (m.isGroup ? ((conn.chats[m.chat] || {}).metadata || await this.groupMetadata(m.chat).catch(_ => null)) : {}) || {}
+    const groupMetadata = (m.isGroup ? ((conn.chats[m.chat] || {}).metadata || await conn.groupMetadata(m.chat).catch(_ => null)) : {}) || {}
     const participants = (m.isGroup ? groupMetadata.participants : []) || []
     const user = (m.isGroup ? participants.find(u => conn.decodeJid(u.id) === m.sender) : {}) || {}
-    const bot = (m.isGroup ? participants.find(u => conn.decodeJid(u.id) == this.user.jid) : {}) || {}
+    const bot = (m.isGroup ? participants.find(u => conn.decodeJid(u.id) == conn.user.jid) : {}) || {}
     const isRAdmin = user?.admin == 'superadmin' || false
     const isAdmin = isRAdmin || user?.admin == 'admin' || false
     const isBotAdmin = bot?.admin || false
@@ -109,14 +111,13 @@ export async function handler(chatUpdate) {
 
     for (let name in global.plugins) {
       let plugin = global.plugins[name]
-      if (!plugin) continue
-      if (plugin.disabled) continue
+      if (!plugin || plugin.disabled) continue
 
       const __filename = join(___dirname, name)
 
       if (typeof plugin.all === 'function') {
         try {
-          await plugin.all.call(this, m, {
+          await plugin.all.call(conn, m, {
             chatUpdate,
             __dirname: ___dirname,
             __filename
@@ -145,9 +146,9 @@ export async function handler(chatUpdate) {
       ).find(p => p[1])
 
       if (typeof plugin.before === 'function') {
-        if (await plugin.before.call(this, m, {
+        if (await plugin.before.call(conn, m, {
           match,
-          conn: this,
+          conn,
           participants,
           groupMetadata,
           user,
@@ -191,22 +192,22 @@ export async function handler(chatUpdate) {
         if (m.chat in global.db.data.chats || m.sender in global.db.data.users) {
           let chat = global.db.data.chats[m.chat]
           let user = global.db.data.users[m.sender]
-          let setting = global.db.data.settings[this.user.jid]
+          let setting = global.db.data.settings[conn.user.jid]
           if (name != 'group-unbanchat.js' && chat?.isBanned) return
           if (name != 'owner-unbanuser.js' && user?.banned) return
           if (name != 'owner-unbanbot.js' && setting?.banned) return
         }
 
-        if (plugin.rowner && plugin.owner && !(isROwner || isOwner)) { fail('owner', m, this); continue }
-        if (plugin.rowner && !isROwner) { fail('rowner', m, this); continue }
-        if (plugin.owner && !isOwner) { fail('owner', m, this); continue }
-        if (plugin.mods && !isMods) { fail('mods', m, this); continue }
-        if (plugin.premium && !isPrems) { fail('premium', m, this); continue }
-        if (plugin.group && !m.isGroup) { fail('group', m, this); continue }
-        if (plugin.botAdmin && !isBotAdmin) { fail('botAdmin', m, this); continue }
-        if (plugin.admin && !isAdmin) { fail('admin', m, this); continue }
-        if (plugin.private && m.isGroup) { fail('private', m, this); continue }
-        if (plugin.register == true && _user.registered == false) { fail('unreg', m, this); continue }
+        if (plugin.rowner && plugin.owner && !(isROwner || isOwner)) { fail('owner', m, conn); continue }
+        if (plugin.rowner && !isROwner) { fail('rowner', m, conn); continue }
+        if (plugin.owner && !isOwner) { fail('owner', m, conn); continue }
+        if (plugin.mods && !isMods) { fail('mods', m, conn); continue }
+        if (plugin.premium && !isPrems) { fail('premium', m, conn); continue }
+        if (plugin.group && !m.isGroup) { fail('group', m, conn); continue }
+        if (plugin.botAdmin && !isBotAdmin) { fail('botAdmin', m, conn); continue }
+        if (plugin.admin && !isAdmin) { fail('admin', m, conn); continue }
+        if (plugin.private && m.isGroup) { fail('private', m, conn); continue }
+        if (plugin.register == true && _user.registered == false) { fail('unreg', m, conn); continue }
 
         m.isCommand = true
         let xp = 'exp' in plugin ? parseInt(plugin.exp) : 17
@@ -214,19 +215,19 @@ export async function handler(chatUpdate) {
         else m.exp += xp
 
         if (!isPrems && plugin.limit && global.db.data.users[m.sender].limit < plugin.limit * 1) {
-          conn.reply(m.chat, `Se agotaron tus *✿ Lovelloud*`, m, rcanal)
+          conn.reply(m.chat, `Se agotaron tus *✿ Lovelloud*`, m)
           continue
         }
 
         let extra = {
           match, usedPrefix, noPrefix, _args, args, command, text,
-          conn: this, participants, groupMetadata, user, bot,
+          conn, participants, groupMetadata, user, bot,
           isROwner, isOwner, isRAdmin, isAdmin, isBotAdmin,
           isPrems, chatUpdate, __dirname: ___dirname, __filename
         }
 
         try {
-          await plugin.call(this, m, extra)
+          await plugin.call(conn, m, extra)
           if (!isPrems) m.limit = m.limit || plugin.limit || false
         } catch (e) {
           m.error = e
@@ -240,13 +241,13 @@ export async function handler(chatUpdate) {
         } finally {
           if (typeof plugin.after === 'function') {
             try {
-              await plugin.after.call(this, m, extra)
+              await plugin.after.call(conn, m, extra)
             } catch (e) {
               console.error(e)
             }
           }
           if (m.limit)
-            conn.reply(m.chat, `Utilizaste *${+m.limit}* ✿`, m, rcanal)
+            conn.reply(m.chat, `Utilizaste *${+m.limit}* ✿`, m)
         }
         break
       }
@@ -265,7 +266,7 @@ export async function handler(chatUpdate) {
         unreg: `✤ Hola, para usar este comando debes estar *Registrado.*`,
         restrict: `✤ Hola, esta característica está *deshabilitada.*`
       }[type]
-      if (msg) return conn.reply(m.chat, msg, m, rcanal).then(() => m.react('✖️'))
+      if (msg) return conn.reply(m.chat, msg, m).then(() => m.react('✖️'))
     }
 
   } catch (e) {
