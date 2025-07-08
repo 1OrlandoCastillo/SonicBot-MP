@@ -4,17 +4,17 @@ import { join } from 'path'
 
 let handler = async (m, { conn, usedPrefix, command, text, args }) => {
   const botActual = conn.user?.jid?.split('@')[0].replace(/\D/g, '')
-  const configPath = join('./Serbot', botActual, 'config.json')
+  const currentBotConfigPath = join('./Serbot', botActual, 'config.json')
 
   let nombreBot = global.namebot || 'Anya Forger'
 
-  if (fs.existsSync(configPath)) {
+  if (fs.existsSync(currentBotConfigPath)) {
     try {
-      const config = JSON.parse(fs.readFileSync(configPath, 'utf-8'))
+      const config = JSON.parse(fs.readFileSync(currentBotConfigPath, 'utf-8'))
       if (config.name) nombreBot = config.name
-    } catch (err) { }
+    } catch (err) {}
   }
-  
+
   if (!text) return conn.reply(m.chat, `🎀 Necesito un nombre para continuar, cielo.\n¿Podrías decírmelo con dulzura? 🌸\n\n𝟏 :: Ejemplo :: .setbotname BLACKPINK\n𝟐 :: Ejemplo :: .setbotname Gatitos\n𝟑 :: Ejemplo :: .setbotname LaLisa\n\n🍓 Asistente :: ${nombreBot}\n\n> LOVELLOUD Official`, m, rcanal)
 
   const senderNumber = m.sender.replace(/[^0-9]/g, '')
