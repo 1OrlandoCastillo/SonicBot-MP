@@ -4,18 +4,13 @@ import { fileURLToPath } from 'url'
 import path, { join } from 'path'
 import { unwatchFile, watchFile } from 'fs'
 import chalk from 'chalk'
-import fetch from 'node-fetch'
 
 const { proto } = (await import('@whiskeysockets/baileys')).default
 const isNumber = x => typeof x === 'number' && !isNaN(x)
-const delay = ms => isNumber(ms) && new Promise(resolve => setTimeout(function () {
-  clearTimeout(this)
-  resolve()
-}, ms))
+const delay = ms => isNumber(ms) && new Promise(resolve => setTimeout(() => resolve(), ms))
 
 export async function handler(chatUpdate) {
   const conn = this
-
   this.msgqueque = this.msgqueque || []
   if (!chatUpdate) return
   this.pushMessage(chatUpdate.messages).catch(console.error)
@@ -29,7 +24,7 @@ export async function handler(chatUpdate) {
     let name = 'Desconocido'
     try {
       name = await conn.getName(jid)
-    } catch {}
+    } catch { }
 
     let msgTipo = {
       27: `✿ @${number} se ha *unido* al grupo.`,
@@ -37,10 +32,13 @@ export async function handler(chatUpdate) {
       32: `✿ @${number} fue *removido* del grupo.`
     }[m.messageStubType] || `✿ @${number} ha hecho algo.`
 
-    if (m.key) await conn.readMessages([m.key])
-    await conn.reply(m.chat, msgTipo, m, {
-      mentions: [jid]
-    })
+    if (m?.key?.remoteJid) await conn.readMessages([m.key])
+
+    if (m?.chat && jid) {
+      await conn.reply(m.chat, msgTipo, m, {
+        mentions: [jid]
+      })
+    }
 
     return
   }
@@ -131,11 +129,7 @@ export async function handler(chatUpdate) {
 
       if (typeof plugin.all === 'function') {
         try {
-          await plugin.all.call(conn, m, {
-            chatUpdate,
-            __dirname: ___dirname,
-            __filename
-          })
+          await plugin.all.call(conn, m, { chatUpdate, __dirname: ___dirname, __filename })
         } catch (e) {
           console.error(e)
         }
@@ -161,21 +155,9 @@ export async function handler(chatUpdate) {
 
       if (typeof plugin.before === 'function') {
         if (await plugin.before.call(conn, m, {
-          match,
-          conn,
-          participants,
-          groupMetadata,
-          user,
-          bot,
-          isROwner,
-          isOwner,
-          isRAdmin,
-          isAdmin,
-          isBotAdmin,
-          isPrems,
-          chatUpdate,
-          __dirname: ___dirname,
-          __filename
+          match, conn, participants, groupMetadata, user, bot,
+          isROwner, isOwner, isRAdmin, isAdmin, isBotAdmin, isPrems,
+          chatUpdate, __dirname: ___dirname, __filename
         })) continue
       }
 
@@ -194,11 +176,9 @@ export async function handler(chatUpdate) {
           plugin.command.test(command) :
           Array.isArray(plugin.command) ?
             plugin.command.some(cmd => cmd instanceof RegExp ?
-              cmd.test(command) :
-              cmd === command) :
+              cmd.test(command) : cmd === command) :
             typeof plugin.command === 'string' ?
-              plugin.command === command :
-              false
+              plugin.command === command : false
 
         if (!isAccept) continue
         m.plugin = name
@@ -248,7 +228,7 @@ export async function handler(chatUpdate) {
           console.error(e)
           if (e) {
             let text = format(e)
-            for (let key of Object.values(global.APIKeys))
+            for (let key of Object.values(global.APIKeys || {}))
               text = text.replace(new RegExp(key, 'g'), '#HIDDEN#')
             m.reply(text)
           }
@@ -269,25 +249,25 @@ export async function handler(chatUpdate) {
 
     global.dfail = (type, m, conn) => {
       const msg = {
-        rowner: `✤ Hola, este comando solo puede ser utilizado por el *Creador* de la Bot.`,
-        owner: `✤ Hola, este comando solo puede ser utilizado por el *Creador* de la Bot y *Sub Bots*.`,
-        mods: `✤ Hola, este comando solo puede ser utilizado por los *Moderadores* de la Bot.`,
-        premium: `✤ Hola, este comando solo puede ser utilizado por Usuarios *Premium*.`,
-        group: `✤ Hola, este comando solo puede ser utilizado en *Grupos*.`,
-        private: `✤ Hola, este comando solo puede ser utilizado en mi Chat *Privado*.`,
-        admin: `✤ Hola, este comando solo puede ser utilizado por los *Administradores* del Grupo.`,
-        botAdmin: `✤ Hola, la bot debe ser *Administradora* para ejecutar este Comando.`,
-        unreg: `✤ Hola, para usar este comando debes estar *Registrado.*`,
-        restrict: `✤ Hola, esta característica está *deshabilitada.*`
+        rowner: `✤ Este comando solo puede ser usado por el *Creador*.`,
+        owner: `✤ Solo el *Creador/Sub Bots* puede usar este comando.`,
+        mods: `✤ Solo *Moderadores* pueden usar este comando.`,
+        premium: `✤ Este comando es solo para usuarios *Premium*.`,
+        group: `✤ Este comando solo funciona en *Grupos*.`,
+        private: `✤ Este comando solo funciona en *Privado*.`,
+        admin: `✤ Debes ser *Administrador* para usar este comando.`,
+        botAdmin: `✤ La bot debe ser *Administrador* para ejecutar esto.`,
+        unreg: `✤ Debes *registrarte* para usar este comando.`,
+        restrict: `✤ Esta función está *desactivada*.`
       }[type]
-      if (msg) return conn.reply(m.chat, msg, m).then(() => m.react('✖️'))
+      if (msg) return conn.reply(m.chat, msg, m).then(() => m.react?.('✖️'))
     }
 
   } catch (e) {
     console.error(e)
   } finally {
-    if (opts['queque'] && m.text) {
-      const quequeIndex = this.msgqueque.indexOf(m.id || m.key.id)
+    if (opts['queque'] && m?.text) {
+      const quequeIndex = this.msgqueque.indexOf(m.id || m.key?.id)
       if (quequeIndex !== -1) this.msgqueque.splice(quequeIndex, 1)
     }
 
@@ -298,18 +278,12 @@ export async function handler(chatUpdate) {
         user.limit -= m.limit * 1
       }
 
-      let stat
       if (m.plugin) {
         let now = +new Date
-        stat = stats[m.plugin] ||= {
-          total: 0,
-          success: 0,
-          last: 0,
-          lastSuccess: 0
-        }
+        let stat = stats[m.plugin] ||= { total: 0, success: 0, last: 0, lastSuccess: 0 }
         stat.total += 1
         stat.last = now
-        if (m.error == null) {
+        if (!m.error) {
           stat.success += 1
           stat.lastSuccess = now
         }
