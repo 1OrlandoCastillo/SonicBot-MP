@@ -1,5 +1,6 @@
 import fs from 'fs'
 import path from 'path'
+import { join } from 'path'
 
 let handler = async (m, { conn, usedPrefix, command, text, args }) => {
   const botActual = conn.user?.jid?.split('@')[0].replace(/\D/g, '')
