@@ -20,13 +20,13 @@ export async function handler(chatUpdate) {
   let m = chatUpdate.messages[chatUpdate.messages.length - 1]
   if (!m) return
 
-  if ([27, 32].includes(m.messageStubType) && m.messageStubParameters?.[0]) {
-    let rawJid = m.messageStubParameters[0]
-    let number = rawJid.replace(/\D/g, '')
-    let jid = number + '@s.whatsapp.net'
-    let name = await this.getName(jid).catch(() => null) || 'Desconocido'
-    console.log(name)
-    return
+  if ([27, 28, 32].includes(m.messageStubType) && m.messageStubParameters?.[0]) {
+  let rawJid = m.messageStubParameters[0].replace('@lid', '@s.whatsapp.net')
+  let number = rawJid.replace(/\D/g, '')
+  let jid = number + '@s.whatsapp.net'
+  let name = await this.getName(jid).catch(() => null) || 'Desconocido'
+  console.log(name)
+  return
   }
 
   if (global.db.data == null) await global.loadDatabase()
