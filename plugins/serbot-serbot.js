@@ -21,7 +21,7 @@ let rtx2 = "✿ *Vincula tu cuenta usando el código:*\n\n*Más opciones → Dis
 
 if (!(global.conns instanceof Array)) global.conns = []
 
-const handler = async (m, { conn, args, usedPrefix, command }) => {
+let handler = async (m, { conn, args, usedPrefix, command }) => {
   const subBots = [...new Set([...global.conns.filter((conn) => conn.user && conn.ws && conn.ws.readyState !== ws.CLOSED)])]
   if (subBots.length >= 20) return m.reply('No hay espacio disponible para Sub-Bots.')
 
@@ -114,13 +114,20 @@ export async function AYBot(options) {
         sock.ev.off('creds.update', sock.credsUpdate)
       }
 
-      sock.handler = handler.handler.bind(sock)
-      sock.connectionUpdate = connectionUpdate.bind(sock)
-      sock.credsUpdate = saveCreds.bind(sock, true)
+      if (typeof handler?.handler === 'function') {
+        sock.handler = handler.handler.bind(sock)
+        sock.ev.on('messages.upsert', sock.handler)
+      }
 
-      sock.ev.on('messages.upsert', sock.handler)
-      sock.ev.on('connection.update', sock.connectionUpdate)
-      sock.ev.on('creds.update', sock.credsUpdate)
+      if (typeof connectionUpdate === 'function') {
+        sock.connectionUpdate = connectionUpdate.bind(sock)
+        sock.ev.on('connection.update', sock.connectionUpdate)
+      }
+
+      if (typeof saveCreds === 'function') {
+        sock.credsUpdate = saveCreds.bind(sock, true)
+        sock.ev.on('creds.update', sock.credsUpdate)
+      }
 
       isInit = false
     }
