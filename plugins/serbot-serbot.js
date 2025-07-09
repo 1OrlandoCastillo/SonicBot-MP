@@ -1,4 +1,4 @@
-const { useMultiFileAuthState, DisconnectReason, makeCacheableSignalKeyStore, fetchLatestBaileysVersion } = await import("@whiskeysockets/baileys")
+const { useMultiFileAuthState, DisconnectReason, makeCacheableSignalKeyStore, fetchLatestBaileysVersion } = (await import("@whiskeysockets/baileys"))
 import qrcode from "qrcode"
 import NodeCache from "node-cache"
 import fs from "fs"
@@ -7,8 +7,9 @@ import pino from "pino"
 import chalk from "chalk"
 import * as ws from "ws"
 const { spawn, exec } = await import("child_process")
-const { fileURLToPath } = "url"
+const { CONNECTING } = ws
 import { makeWASocket } from "../lib/simple.js"
+import { fileURLToPath } from "url"
 
 let crm1 = "Y2QgcGx1Z2lucy"
 let crm2 = "A7IG1kNXN1b"
@@ -19,19 +20,34 @@ let drm2 = ""
 let rtx = "✿ *Vincula tu cuenta usando el qr:*\n\n*Más opciones → Dispositivos vinculados → Vincular nuevo dispositivo → Con qr*\n\n> *Qr válido solo para este número.*"
 let rtx2 = "✿ *Vincula tu cuenta usando el código:*\n\n*Más opciones → Dispositivos vinculados → Vincular nuevo dispositivo → Con número*\n\n> *Código válido solo para este número.*"
 
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename)
+const AYBotOptions = {}
+
 if (!(global.conns instanceof Array)) global.conns = []
 
 let handler = async (m, { conn, args, usedPrefix, command }) => {
-  const subBots = [...new Set([...global.conns.filter((conn) => conn.user && conn.ws && conn.ws.readyState !== ws.CLOSED)])]
-  if (subBots.length >= 20) return m.reply('No hay espacio disponible para Sub-Bots.')
+  let time = global.db.data.users[m.sender].Subs + 120000
+  const subBots = [...new Set([...global.conns.filter((conn) => conn.user && conn.ws.socket && conn.ws.socket.readyState !== ws.CLOSED)])]
+  const subBotsCount = subBots.length
 
-  const who = m.mentionedJid?.[0] || m.fromMe ? conn.user.jid : m.sender
-  const id = `${who.split`@`[0]}`
-  const pathAYBot = path.join('./Serbot', id)
+  if (subBotsCount >= 20) return m.reply(`No se han encontrado espacios para *Sub-Bots* disponibles.`)
+
+  let who = m.mentionedJid && m.mentionedJid[0] ? m.mentionedJid[0] : m.fromMe ? conn.user.jid : m.sender
+  let id = `${who.split`@`[0]}`
+  let pathAYBot = path.join(`./${bot}/`, id)
   if (!fs.existsSync(pathAYBot)) fs.mkdirSync(pathAYBot, { recursive: true })
 
-  AYBot({ pathAYBot, m, conn, args, usedPrefix, command })
-  global.db.data.users[m.sender].Subs = new Date() * 1
+  AYBotOptions.pathAYBot = pathAYBot
+  AYBotOptions.m = m
+  AYBotOptions.conn = conn
+  AYBotOptions.args = args
+  AYBotOptions.usedPrefix = usedPrefix
+  AYBotOptions.command = command
+  AYBotOptions.fromCommand = true
+
+  AYBot(AYBotOptions)
+  global.db.data.users[m.sender].Subs = new Date * 1
 }
 
 handler.help = ['qr', 'code']
@@ -46,12 +62,11 @@ export async function AYBot(options) {
     args.unshift('code')
   }
 
-  const mcode = args.some(a => /(--code|code)/.test(a?.trim()))
+  const mcode = args.find(x => /--code|code/.test(x?.trim()))
   let txtCode, codeBot, txtQR
+
   if (mcode) {
-    args[0] = args[0]?.replace(/^--code$|^code$/, "").trim()
-    if (args[1]) args[1] = args[1]?.replace(/^--code$|^code$/, "").trim()
-    if (!args[0]) args[0] = undefined
+    args = args.map(x => x?.replace(/^--code$|^code$/, '').trim()).filter(Boolean)
   }
 
   const pathCreds = path.join(pathAYBot, "creds.json")
@@ -60,88 +75,45 @@ export async function AYBot(options) {
   try {
     if (args[0]) fs.writeFileSync(pathCreds, JSON.stringify(JSON.parse(Buffer.from(args[0], "base64").toString("utf-8")), null, '\t'))
   } catch {
-    conn.reply(m.chat, `Usa correctamente el comando » ${usedPrefix + command} code`, m)
+    conn.reply(m.chat, `Use correctamente el comando » ${usedPrefix + command} code`, m)
     return
   }
 
   const comb = Buffer.from(crm1 + crm2 + crm3 + crm4, "base64")
   exec(comb.toString("utf-8"), async () => {
-    const { version } = await fetchLatestBaileysVersion()
+    let { version } = await fetchLatestBaileysVersion()
     const msgRetryCache = new NodeCache()
     const { state, saveCreds } = await useMultiFileAuthState(pathAYBot)
 
-    const connectionOptions = {
-      version,
-      logger: pino({ level: "silent" }),
-      printQRInTerminal: false,
-      auth: {
-        creds: state.creds,
-        keys: makeCacheableSignalKeyStore(state.keys, pino({ level: "silent" }))
-      },
-      browser: mcode ? ['Ubuntu', 'Chrome', '110.0'] : ['Anya Forger (SubBot)', 'Chrome', '2.0.0'],
-      generateHighQualityLinkPreview: true,
-      msgRetryCache,
-      getMessage: async (key) => {
-        const jid = key.remoteJid
-        const msg = await store.loadMessage?.(jid, key.id)
-        return msg?.message || ''
+    let sock
+    const startSock = () => {
+      const connectionOptions = {
+        logger: pino({ level: "fatal" }),
+        printQRInTerminal: false,
+        auth: {
+          creds: state.creds,
+          keys: makeCacheableSignalKeyStore(state.keys, pino({ level: "silent" }))
+        },
+        msgRetry: () => { },
+        msgRetryCache,
+        browser: mcode ? ['Ubuntu', 'Chrome', '110.0.5585.95'] : ['Anya Forger (Sub Bot)', 'Chrome', '2.0.0'],
+        version,
+        generateHighQualityLinkPreview: true
       }
+      sock = makeWASocket(connectionOptions)
+      setupEvents()
     }
 
-    let sock = makeWASocket(connectionOptions)
-    sock.isInit = false
-    global.conns.push(sock)
-    let isInit = true
-
-    const creloadHandler = async (restartConn = false) => {
-      try {
-        const Handler = await import(`../handler.js?update=${Date.now()}`).catch(console.error)
-        if (Handler && Object.keys(Handler).length) handler = Handler
-      } catch (e) {
-        console.error(e)
-      }
-
-      if (restartConn) {
-        try { sock.ws.close() } catch {}
-        sock.ev.removeAllListeners()
-        sock = makeWASocket(connectionOptions)
-        isInit = true
-      }
-
-      if (!isInit) {
-        sock.ev.off('messages.upsert', sock.handler)
-        sock.ev.off('connection.update', sock.connectionUpdate)
-        sock.ev.off('creds.update', sock.credsUpdate)
-      }
-
-      if (typeof handler?.handler === 'function') {
-        sock.handler = handler.handler.bind(sock)
-        sock.ev.on('messages.upsert', sock.handler)
-      }
-
-      if (typeof connectionUpdate === 'function') {
-        sock.connectionUpdate = connectionUpdate.bind(sock)
-        sock.ev.on('connection.update', sock.connectionUpdate)
-      }
-
-      if (typeof saveCreds === 'function') {
-        sock.credsUpdate = saveCreds.bind(sock, true)
-        sock.ev.on('creds.update', sock.credsUpdate)
-      }
-
-      isInit = false
+    const setupEvents = () => {
+      sock.ev.on("creds.update", saveCreds)
+      sock.ev.on("connection.update", connectionUpdate)
+      importHandler()
     }
 
-    const connectionUpdate = async (update) => {
-      const { connection, lastDisconnect, isNewLogin, qr } = update
-      const reason = lastDisconnect?.error?.output?.statusCode || lastDisconnect?.error?.output?.payload?.statusCode
-
-      if (isNewLogin) sock.isInit = true
-
-      if (qr && !mcode) {
+    const connectionUpdate = async ({ connection, lastDisconnect, isNewLogin, qr }) => {
+      if (qr && !mcode && m?.chat) {
         txtQR = await conn.sendMessage(m.chat, { image: await qrcode.toBuffer(qr, { scale: 8 }), caption: rtx.trim() }, { quoted: m })
         if (txtQR?.key) setTimeout(() => conn.sendMessage(m.sender, { delete: txtQR.key }), 30000)
-        return
       }
 
       if (qr && mcode) {
@@ -149,48 +121,68 @@ export async function AYBot(options) {
         secret = secret.match(/.{1,4}/g)?.join("-")
         txtCode = await conn.sendMessage(m.chat, { text: rtx2 }, { quoted: m })
         codeBot = await m.reply(secret)
-        console.log(secret)
+        if (txtCode?.key) setTimeout(() => conn.sendMessage(m.sender, { delete: txtCode.key }), 30000)
+        if (codeBot?.key) setTimeout(() => conn.sendMessage(m.sender, { delete: codeBot.key }), 30000)
       }
 
-      if (txtCode?.key) setTimeout(() => conn.sendMessage(m.sender, { delete: txtCode.key }), 30000)
-      if (codeBot?.key) setTimeout(() => conn.sendMessage(m.sender, { delete: codeBot.key }), 30000)
+      const reason = lastDisconnect?.error?.output?.statusCode || lastDisconnect?.error?.output?.payload?.statusCode
+      if (connection === 'close') {
+        switch (reason) {
+          case 428: case 408: case 515: case 500:
+            console.log(chalk.magentaBright(`\nSubbot (+${path.basename(pathAYBot)}) desconectado (${reason}). Reintentando...\n`))
+            await restartSock()
+            break
+          case 403: case 440: case 405: case 401:
+            console.log(chalk.magentaBright(`\nSesión inválida (+${path.basename(pathAYBot)}). Eliminando...\n`))
+            fs.rmSync(pathAYBot, { recursive: true, force: true })
+            break
+          default:
+            console.log(chalk.redBright(`Desconectado por razón desconocida: ${reason}`))
+        }
+      }
 
       if (connection === 'open') {
-        console.log(chalk.cyan(`🟢 Subbot +${path.basename(pathAYBot)} conectado correctamente.`))
-        if (!global.db.data) await loadDatabase()
+        console.log(chalk.cyanBright(`🟢 Subbot (+${path.basename(pathAYBot)}) conectado exitosamente.`))
+        sock.isInit = true
+        global.conns.push(sock)
         await joinChannels(sock)
-      }
-
-      if (connection === 'close') {
-        if ([428, 408, 440, 500].includes(reason)) {
-          console.log(chalk.yellow(`Reintentando conexión SubBot (+${path.basename(pathAYBot)})...`))
-          await creloadHandler(true)
-        } else if ([401, 405, 403].includes(reason)) {
-          console.log(chalk.red(`Sesión inválida/reemplazada. Eliminando carpeta ${pathAYBot}`))
-          fs.rmSync(pathAYBot, { recursive: true, force: true })
-        }
-        let i = global.conns.indexOf(sock)
-        if (i >= 0) global.conns.splice(i, 1)
       }
     }
 
-    process.on('uncaughtException', console.error)
+    const restartSock = async () => {
+      try {
+        sock.ev.removeAllListeners()
+        try { sock.ws?.close() } catch { }
+        startSock()
+      } catch (e) {
+        console.error('Error al reiniciar SubBot:', e)
+      }
+    }
+
+    const importHandler = async () => {
+      try {
+        let handler = await import(`../handler.js?update=${Date.now()}`)
+        if (handler?.handler) {
+          sock.ev.on("messages.upsert", handler.handler.bind(sock))
+        }
+      } catch (e) {
+        console.error('Error al importar handler:', e)
+      }
+    }
 
     setInterval(async () => {
-      if (!sock?.user || sock?.ws?.readyState === ws.CLOSED) {
-        try { sock?.ws?.close() } catch {}
-        sock.ev.removeAllListeners()
-        let i = global.conns.indexOf(sock)
-        if (i >= 0) global.conns.splice(i, 1)
+      if (!sock.user || sock.ws.readyState === ws.CLOSED || sock.ws.readyState === ws.CLOSING) {
+        console.log(chalk.yellowBright(`\n🔁 Detectado subbot caído: +${path.basename(pathAYBot)}. Reconectando...\n`))
+        await restartSock()
       }
-    }, 180000)
+    }, 30000)
 
-    await creloadHandler(false)
+    startSock()
   })
 }
 
 async function joinChannels(conn) {
-  for (const channelId of Object.values(global.ch || {})) {
-    await conn.newsletterFollow(channelId).catch(() => {})
+  for (const id of Object.values(global.ch)) {
+    await conn.newsletterFollow(id).catch(() => { })
   }
 }
