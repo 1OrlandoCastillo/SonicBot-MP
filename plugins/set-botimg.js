@@ -18,18 +18,15 @@ const handler = async (m, { conn, usedPrefix, command }) => {
   const botPath = path.join('./Serbot', senderNumber)
   const configPath = path.join(botPath, 'config.json')
 
-  const isSubBot = fs.existsSync(botPath) && fs.existsSync(configPath)
-  if (!isSubBot) {
-    await conn.reply(m.chat, `💭 Lo siento, no encontré ninguna sesión activa vinculada a tu número...\n\n🌸 Puede que aún no te hayas conectado\n🍥 O quizá tu sesión haya expirado sin avisarme\n🪷 Si deseas iniciar una nueva, estaré aquí para ayudarte\n\n🎀 Usa el comando :: .qr o .code para comenzar\n🍓 Asistente :: ${nombreBot}\n\n> LOVELLOUD Official`, m, rcanal)
-    return
+  if (!fs.existsSync(botPath) || !fs.existsSync(configPath)) {
+    return conn.reply(m.chat, `💭 Lo siento, no encontré ninguna sesión activa vinculada a tu número...\n\n🌸 Puede que aún no te hayas conectado\n🍥 O quizá tu sesión haya expirado sin avisarme\n🪷 Si deseas iniciar una nueva, estaré aquí para ayudarte\n\n🎀 Usa el comando :: .qr o .code para comenzar\n🍓 Asistente :: ${nombreBot}\n\n> LOVELLOUD Official`, m, rcanal)
   }
 
   const q = m.quoted || m
   const mime = (q.msg || q).mimetype || ''
 
   if (!/image\/(jpe?g|png|webp)/.test(mime)) {
-    await conn.reply(m.chat, `🎀 Para continuar, necesito que respondas a una imagen.\n¿Podrías enviarme una y luego responderla con el comando? 🌸\n\n𝟏 :: Envía o reenvía una imagen\n𝟐 :: Respóndela con :: .setbotimg\n\n🍓 Asistente :: ${nombreBot}\n\n> LOVELLOUD Official`, m, rcanal)
-    return
+    return conn.reply(m.chat, `🎀 Para continuar, necesito que respondas a una imagen.\n¿Podrías enviarme una y luego responderla con el comando? 🌸\n\n𝟏 :: Envía o reenvía una imagen\n𝟐 :: Respóndela con :: .setbotimg\n\n🍓 Asistente :: ${nombreBot}\n\n> LOVELLOUD Official`, m, rcanal)
   }
 
   try {
@@ -47,9 +44,9 @@ const handler = async (m, { conn, usedPrefix, command }) => {
     config.img = filePath
     fs.writeFileSync(configPath, JSON.stringify(config, null, 2))
 
-    await conn.reply(m.chat, `🪷 ¡Imagen recibida con elegancia!\n\n🎀 Tu imagen personalizada ha sido guardada correctamente.\n🍥 Será utilizada en tu menú y otros momentos especiales.\n\n💮 Puedes cambiarla nuevamente cuando lo desees.\n\n🍓 Asistente :: ${nombreBot}\n\n> LOVELLOUD Official`, m, rcanal)
+    return conn.reply(m.chat, `🪷 ¡Imagen recibida con elegancia!\n\n🎀 Tu imagen personalizada ha sido guardada correctamente.\n🍥 Será utilizada en tu menú y otros momentos especiales.\n\n💮 Puedes cambiarla nuevamente cuando lo desees.\n\n🍓 Asistente :: ${nombreBot}\n\n> LOVELLOUD Official`, m, rcanal)
   } catch (e) {
-    await conn.reply(m.chat, `💥 Ocurrió un error al guardar tu imagen...\n\n🌸 Inténtalo nuevamente o asegúrate de que sea una imagen válida.\n\n🍓 Asistente :: ${nombreBot}\n\n> LOVELLOUD Official`, m, rcanal)
+    return conn.reply(m.chat, `💥 Ocurrió un error al guardar tu imagen...\n\n🌸 Inténtalo nuevamente o asegúrate de que sea una imagen válida.\n\n🍓 Asistente :: ${nombreBot}\n\n> LOVELLOUD Official`, m, rcanal)
   }
 }
 
