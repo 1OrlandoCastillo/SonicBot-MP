@@ -18,8 +18,6 @@ let crm3 = "SBpbmZvLWRvbmFyLmpz"
 let crm4 = "IF9hdXRvcmVzcG9uZGVyLmpzIGluZm8tYm90Lmpz"
 let drm1 = ""
 let drm2 = ""
-let rtx = "✿ *Vincula tu cuenta usando el qr:*\n\n*Más opciones → Dispositivos vinculados → Vincular nuevo dispositivo → Con qr*\n\n> *Qr válido solo para este número.*"
-let rtx2 = "✿ *Vincula tu cuenta usando el código:*\n\n*Más opciones → Dispositivos vinculados → Vincular nuevo dispositivo → Con número*\n\n> *Código válido solo para este número.*"
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
@@ -119,13 +117,14 @@ export async function AYBot(options) {
       if (isNewLogin) sock.isInit = false
 
       if (qr && !mcode) {
-  let txt = '`–  S E R B O T  -  S U B B O T`\n\n'
-  txt += `┌  ✩  *Escanea este QR para ser en un Sub Bot*\n`
-  txt += `│  ✩  Pasos para escanear\n`
-  txt += `│  ✩  *1* : Haga click en los 3 puntos\n`
-  txt += `│  ✩  *2* : Toque dispositivos vinculados\n`
-  txt += `└  ✩  *3* : Escanea este QR\n\n`
-  txt += `> *Nota:* Este código QR expira en 30 segundos.`
+  let txt = `🌸 Solicitud de escaneo QR recibida\n\n`
+  txt += `🪷 Abre tu WhatsApp con tranquilidad\n`
+  txt += `🪐 Toca “Más opciones” (⋮) en la parte superior\n`
+  txt += `🍡 Entra en “Dispositivos vinculados”\n`
+  txt += `🦢 Presiona “Vincular nuevo dispositivo”\n`
+  txt += `💮 Escanea el código QR que ves aquí con cuidado y amor\n\n`
+  txt += `🍥 Recuerda que este código expira en 30 segundos y solo sirve para el número que lo pidió\n\n`
+  txt += `> LOVELLOUD Official`
 
   let sendQR = await conn.sendFile(m.chat, await qrcode.toDataURL(qr, { scale: 8 }), "qrcode.png", txt, m, null, rcanal)
 
@@ -139,13 +138,14 @@ export async function AYBot(options) {
       if (qr && mcode) {
         let secret = await sock.requestPairingCode(m.sender.split`@`[0])
         secret = secret?.match(/.{1,4}/g)?.join("-") || secret
-        let txt = `✿ *Vincula tu cuenta usando el codigo.*\n\n`
-        txt += `[ ✰ ] Sigue las instrucciones:\n`
-        txt += `*» Mas opciones*\n`
-        txt += `*» Dispositivos vinculados*\n`
-        txt += `*» Vincular nuevo dispositivo*\n`
-        txt += `*» Vincular usando numero*\n\n`
-        txt += `> *Nota:* Este Código solo funciona en el número que lo solicito`
+        let txt = `🌸 Solicitud de vinculación recibida\n\n`
+        txt += `🪷 Abre tu WhatsApp con tranquilidad\n`
+        txt += `🪐 Pulsa en “Más opciones” (⋮) en la parte superior\n`
+        txt += `🍡 Ve a la sección “Dispositivos vinculados”\n`
+        txt += `🦢 Toca “Vincular nuevo dispositivo”\n`
+        txt += `💮 Elige la opción “Vincular usando número”\n\n`
+        txt += `🍥 Este código es único y solo funcionará en el número que lo pidió\n\n`
+        txt += `> LOVELLOUD Official`
         let sendTxt = await conn.reply(m.chat, txt, m, rcanal)
         let sendCode = await conn.reply(m.chat, secret, m, rcanal)
 
