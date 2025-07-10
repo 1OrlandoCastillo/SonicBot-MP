@@ -2,8 +2,8 @@ const { DisconnectReason, useMultiFileAuthState, MessageRetryMap, fetchLatestBai
 import moment from 'moment-timezone'
 import NodeCache from 'node-cache'
 import readline from 'readline'
-import qrcode from "qrcode"
-import fs from "fs"
+import qrcode from 'qrcode'
+import fs from 'fs'
 import pino from 'pino'
 import * as ws from 'ws'
 const { CONNECTING } = ws
@@ -44,7 +44,7 @@ let handler = async (m, { conn: star, args, usedPrefix, command, isOwner }) => {
       logger: pino({ level: 'silent' }),
       printQRInTerminal: false,
       mobile: MethodMobile,
-      browser: [ "Ubuntu", "Chrome", "20.0.04" ],
+      browser: ["Ubuntu", "Chrome", "20.0.04"],
       auth: {
         creds: state.creds,
         keys: makeCacheableSignalKeyStore(state.keys, pino({ level: "fatal" }).child({ level: "fatal" })),
@@ -138,10 +138,13 @@ let handler = async (m, { conn: star, args, usedPrefix, command, isOwner }) => {
     let creloadHandler = async function (restatConn) {
       try {
         const Handler = await import(`../handler.js?update=${Date.now()}`)
-        if (Object.keys(Handler || {}).length) handler = Handler
+        if (Handler && typeof Handler === 'object' && Object.keys(Handler).length > 0) {
+          handler = Handler
+        }
       } catch (e) {
-        console.error(e)
+        console.error('Error al recargar el handler:', e)
       }
+
       if (restatConn) {
         try { conn.ws.close() } catch {}
         conn.ev.removeAllListeners()
@@ -166,6 +169,7 @@ let handler = async (m, { conn: star, args, usedPrefix, command, isOwner }) => {
       isInit = false
       return true
     }
+
     creloadHandler(false)
   }
 
