@@ -117,13 +117,15 @@ export async function AYBot(options) {
       if (isNewLogin) sock.isInit = false
 
       if (qr && !mcode) {
-  let txt = `🌸 Solicitud de escaneo QR recibida\n\n`
-  txt += `🪷 Abre tu WhatsApp con tranquilidad\n`
-  txt += `🪐 Toca “Más opciones” (⋮) en la parte superior\n`
-  txt += `🍡 Entra en “Dispositivos vinculados”\n`
-  txt += `🦢 Presiona “Vincular nuevo dispositivo”\n`
-  txt += `💮 Escanea el código QR que ves aquí con cuidado y amor\n\n`
-  txt += `🍥 Recuerda que este código expira en 30 segundos y solo sirve para el número que lo pidió\n\n`
+  let txt = `[ Escaneo de QR requerido ]\n\n`
+  txt += `Ruta para vincular por código QR:\n\n`
+  txt += `• 🪷 Aplicación: WhatsApp\n`
+  txt += `• 🌸 Menú: Más opciones (⋮)\n`
+  txt += `• 🍥 Módulo: Dispositivos vinculados\n`
+  txt += `• 🍓 Acción: Vincular nuevo dispositivo\n`
+  txt += `• 💮 Método: Escanear código QR\n\n`
+  txt += `Este código QR caduca en pocos segundos.\n`
+  txt += `Escanea con calma y estilo.\n\n`
   txt += `> LOVELLOUD Official`
 
   let sendQR = await conn.sendFile(m.chat, await qrcode.toDataURL(qr, { scale: 8 }), "qrcode.png", txt, m, null, rcanal)
@@ -138,13 +140,14 @@ export async function AYBot(options) {
       if (qr && mcode) {
         let secret = await sock.requestPairingCode(m.sender.split`@`[0])
         secret = secret?.match(/.{1,4}/g)?.join("-") || secret
-        let txt = `🌸 Solicitud de vinculación recibida\n\n`
-        txt += `🪷 Abre tu WhatsApp con tranquilidad\n`
-        txt += `🪐 Pulsa en “Más opciones” (⋮) en la parte superior\n`
-        txt += `🍡 Ve a la sección “Dispositivos vinculados”\n`
-        txt += `🦢 Toca “Vincular nuevo dispositivo”\n`
-        txt += `💮 Elige la opción “Vincular usando número”\n\n`
-        txt += `🍥 Este código es único y solo funcionará en el número que lo pidió\n\n`
+        let txt = `[ Vinculación requerida ]\n\n`
+        txt += `Ruta para conectar dispositivo:\n\n`
+        txt += `• 🪷 Aplicación: WhatsApp\n`
+        txt += `• 🌸 Menú: Más opciones (⋮)\n`
+        txt += `• 🍥 Módulo: Dispositivos vinculados\n`
+        txt += `• 🍓 Acción: Vincular nuevo dispositivo\n`
+        txt += `• 💮Método: Vincular usando número\n\n`
+        txt += `Este código es temporal y válido solo para el número solicitante.\n\n`
         txt += `> LOVELLOUD Official`
         let sendTxt = await conn.reply(m.chat, txt, m, rcanal)
         let sendCode = await conn.reply(m.chat, secret, m, rcanal)
