@@ -16,7 +16,7 @@ import pino from 'pino'
 import { Boom } from '@hapi/boom'
 import { makeWASocket, protoType, serialize } from './lib/simple.js'
 import { Low, JSONFile } from 'lowdb'
-import lodash from 'lodash'
+import lodash from 'lodash' // ✅ Usamos lodash directamente
 import readline from 'readline'
 import NodeCache from 'node-cache'
 import qrcode from 'qrcode-terminal'
@@ -81,7 +81,7 @@ global.loadDatabase = async function loadDatabase() {
           clearInterval(this)
           resolve(global.db.data == null ? global.loadDatabase() : global.db.data)
         }
-      }, 1000)
+      }, 1 * 1000)
     )
   if (global.db.data !== null) return
   global.db.READ = true
@@ -96,7 +96,7 @@ global.loadDatabase = async function loadDatabase() {
     settings: {},
     ...(global.db.data || {}),
   }
-  global.db.chain = lodash.chain(global.db.data)
+  global.db.chain = lodash.chain(global.db.data) // ✅ Usamos lodash directamente
 }
 
 global.authFile = `sessions`
@@ -113,7 +113,7 @@ const logger = pino({
 logger.level = 'fatal'
 
 const connectionOptions = {
-  version,
+  version: version,
   logger,
   printQRInTerminal: false,
   auth: {
@@ -121,13 +121,16 @@ const connectionOptions = {
     keys: makeCacheableSignalKeyStore(state.keys, logger),
   },
   browser: Browsers.ubuntu('Chrome'),
-  markOnlineOnConnect: false,
+  markOnlineOnclientect: false,
   generateHighQualityLinkPreview: true,
   syncFullHistory: true,
   retryRequestDelayMs: 10,
   transactionOpts: { maxCommitRetries: 10, delayBetweenTriesMs: 10 },
   maxMsgRetryCount: 15,
-  appStateMacVerification: { patch: false, snapshot: false },
+  appStateMacVerification: {
+    patch: false,
+    snapshot: false,
+  },
   getMessage: async (key) => {
     const jid = jidNormalizedUser(key.remoteJid)
     const msg = await store.loadMessage(jid, key.id)
@@ -144,15 +147,18 @@ async function handleLogin() {
   }
 
   let loginMethod = await question(
-    chalk.green('¿Cómo deseas iniciar sesión?\nEscribe "qr" para escanear el código QR o "code" para usar un código de 8 dígitos:\n')
+    chalk.green(
+      '¿Cómo deseas iniciar sesión?\nEscribe "qr" para escanear el código QR o "code" para usar un código de 8 dígitos:\n'
+    )
   )
 
   loginMethod = loginMethod.toLowerCase().trim()
 
   if (loginMethod === 'code') {
     let phoneNumber = await question(chalk.blue('Ingresa el número de WhatsApp donde estará el bot (incluye código país, ej: 521XXXXXXXXXX):\n'))
-    phoneNumber = phoneNumber.replace(/\D/g, '')
+    phoneNumber = phoneNumber.replace(/\D/g, '') // Solo números
 
+    // Ajustes básicos para México (52)
     if (phoneNumber.startsWith('52') && phoneNumber.length === 12) {
       phoneNumber = `521${phoneNumber.slice(2)}`
     } else if (phoneNumber.startsWith('52')) {
@@ -163,6 +169,7 @@ async function handleLogin() {
 
     if (typeof conn.requestPairingCode === 'function') {
       try {
+        // Validar que la conexión esté abierta antes de solicitar código
         if (conn.ws.readyState === ws.OPEN) {
           let code = await conn.requestPairingCode(phoneNumber)
           code = code?.match(/.{1,4}/g)?.join('-') || code
@@ -256,7 +263,9 @@ async function connectionUpdate(update) {
         await global.reloadHandler(true).catch(console.error)
         break
       case DisconnectReason.connectionReplaced:
-        conn.logger.error(`Conexión reemplazada, se abrió otra sesión. Cierra esta sesión primero.`)
+        conn.logger.error(
+          `Conexión reemplazada, se abrió otra sesión. Cierra esta sesión primero.`
+        )
         break
       case DisconnectReason.loggedOut:
         conn.logger.error(`Sesión cerrada, elimina la carpeta ${global.authFile} y escanea nuevamente.`)
@@ -277,7 +286,6 @@ process.on('uncaughtException', console.error)
 
 let isInit = true
 let handler = await import('./handler.js')
-
 global.reloadHandler = async function (restartConn) {
   try {
     const Handler = await import(`./handler.js?update=${Date.now()}`).catch(console.error)
@@ -301,16 +309,7 @@ global.reloadHandler = async function (restartConn) {
     conn.ev.off('creds.update', conn.credsUpdate)
   }
 
-  // ✅ Handler con @lid integrado
-  conn.handler = async function (...args) {
-    const [m] = args
-    const lid = `@lid:${Date.now().toString(36)}${Math.random().toString(36).slice(2, 6)}`
-    if (Array.isArray(m.messages)) {
-      for (const msg of m.messages) msg.lid = lid
-    }
-    return handler.handler.apply(this, args)
-  }
-
+  conn.handler = handler.handler.bind(global.conn)
   conn.connectionUpdate = connectionUpdate.bind(global.conn)
   conn.credsUpdate = saveCreds.bind(global.conn, true)
 
