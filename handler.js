@@ -28,7 +28,6 @@ export async function handler(chatUpdate) {
     m.exp = 0
     m.limit = false
 
-    // ✅ @lid generador único
     m.lid = m.lid || chatUpdate?.messages?.[0]?.lid || `@lid:${Date.now().toString(36)}${Math.random().toString(36).slice(2, 6)}`
 
     let user = global.db.data.users[m.sender] ||= {}
@@ -88,10 +87,10 @@ export async function handler(chatUpdate) {
     let usedPrefix
     const groupMetadata = (m.isGroup ? ((conn.chats[m.chat] || {}).metadata || await this.groupMetadata(m.chat).catch(_ => null)) : {}) || {}
     const participants = (m.isGroup ? groupMetadata.participants : []) || []
-    const user = (m.isGroup ? participants.find(u => conn.decodeJid(u.id) === m.sender) : {}) || {}
+    const participantUser = (m.isGroup ? participants.find(u => conn.decodeJid(u.id) === m.sender) : {}) || {}
     const bot = (m.isGroup ? participants.find(u => conn.decodeJid(u.id) == this.user.jid) : {}) || {}
-    const isRAdmin = user?.admin == 'superadmin' || false
-    const isAdmin = isRAdmin || user?.admin == 'admin' || false
+    const isRAdmin = participantUser?.admin == 'superadmin' || false
+    const isAdmin = isRAdmin || participantUser?.admin == 'admin' || false
     const isBotAdmin = bot?.admin || false
 
     const ___dirname = path.join(path.dirname(fileURLToPath(import.meta.url)), './plugins')
@@ -133,7 +132,7 @@ export async function handler(chatUpdate) {
       if (typeof plugin.before === 'function') {
         if (await plugin.before.call(this, m, {
           match, conn: this, participants, groupMetadata,
-          user, bot, isROwner, isOwner, isRAdmin, isAdmin,
+          user: participantUser, bot, isROwner, isOwner, isRAdmin, isAdmin,
           isBotAdmin, isPrems, chatUpdate,
           __dirname: ___dirname, __filename
         })) continue
@@ -193,7 +192,7 @@ export async function handler(chatUpdate) {
 
         let extra = {
           match, usedPrefix, noPrefix, _args, args, command, text,
-          conn: this, participants, groupMetadata, user, bot,
+          conn: this, participants, groupMetadata, user: participantUser, bot,
           isROwner, isOwner, isRAdmin, isAdmin, isBotAdmin,
           isPrems, chatUpdate, __dirname: ___dirname, __filename
         }
