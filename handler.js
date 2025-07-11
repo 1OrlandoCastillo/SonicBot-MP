@@ -4,7 +4,6 @@ import { fileURLToPath } from 'url'
 import path, { join } from 'path'
 import { unwatchFile, watchFile } from 'fs'
 import chalk from 'chalk'
-import fetch from 'node-fetch'
 
 const { proto } = (await import('@whiskeysockets/baileys')).default
 const isNumber = x => typeof x === 'number' && !isNaN(x)
@@ -66,12 +65,9 @@ export async function handler(chatUpdate) {
 
     let _user = global.db.data?.users?.[m.sender]
     const detectwhat = m.sender.includes('@lid') ? '@lid' : '@s.whatsapp.net'
+    const ownerJids = global.owner.map(([n]) => n.replace(/[^0-9]/g, '') + detectwhat)
 
-    const isROwner = [
-      ...global.owner.map(([n]) => n.replace(/[^0-9]/g, '') + '@s.whatsapp.net'),
-      ...global.owner.map(([n]) => n.replace(/[^0-9]/g, '') + '@lid')
-    ].includes(m.sender)
-
+    const isROwner = ownerJids.includes(m.sender)
     const isOwner = isROwner || m.fromMe
     const isMods = isOwner || global.mods.map(n => n.replace(/[^0-9]/g, '') + detectwhat).includes(m.sender)
     const isPrems = isROwner || global.prems.map(n => n.replace(/[^0-9]/g, '') + detectwhat).includes(m.sender) || _user?.prem == true
