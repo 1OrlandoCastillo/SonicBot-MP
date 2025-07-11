@@ -28,6 +28,7 @@ export async function handler(chatUpdate) {
 
     let user = global.db.data.users[m.sender]
     if (typeof user !== 'object') global.db.data.users[m.sender] = {}
+    user = global.db.data.users[m.sender]
 
     if (user) {
       if (!isNumber(user.exp)) user.exp = 0
@@ -69,6 +70,8 @@ export async function handler(chatUpdate) {
 
     let chat = global.db.data.chats[m.chat]
     if (typeof chat !== 'object') global.db.data.chats[m.chat] = {}
+    chat = global.db.data.chats[m.chat]
+
     if (chat) {
       if (!('isBanned' in chat)) chat.isBanned = false
       if (!('sAutoresponder' in chat)) chat.sAutoresponder = ''
@@ -93,40 +96,33 @@ export async function handler(chatUpdate) {
 
     let settings = global.db.data.settings[this.user.jid]
     if (typeof settings !== 'object') global.db.data.settings[this.user.jid] = {}
+    settings = global.db.data.settings[this.user.jid]
+
     if (settings) {
       if (!('self' in settings)) settings.self = false
       if (!('restrict' in settings)) settings.restrict = true
       if (!('jadibotmd' in settings)) settings.jadibotmd = true
       if (!('antiPrivate' in settings)) settings.antiPrivate = false
       if (!('autoread' in settings)) settings.autoread = false
-    } else {
-      global.db.data.settings[this.user.jid] = {
-        self: false,
-        restrict: true,
-        jadibotmd: true,
-        antiPrivate: false,
-        autoread: false,
-        status: 0
-      }
     }
 
   } catch (e) {
     console.error(e)
   }
 
-  if (opts['nyimak']) return
-  if (!m.fromMe && opts['self']) return
-  if (opts['swonly'] && m.chat !== 'status@broadcast') return
+  if (opts.nyimak) return
+  if (!m.fromMe && opts.self) return
+  if (opts.swonly && m.chat !== 'status@broadcast') return
   if (typeof m.text !== 'string') m.text = ''
 
   const detectwhat = m.sender.includes('@lid') ? '@lid' : '@s.whatsapp.net'
-  const isROwner = [...global.owner.map(([n]) => n)].map(v => v.replace(/[^0-9]/g, '') + detectwhat).includes(m.sender)
+  const isROwner = [...global.owner.map(([n]) => n.replace(/\D/g, '') + detectwhat)].includes(m.sender)
   const isOwner = isROwner || m.fromMe
-  const isMods = isOwner || global.mods.map(v => v.replace(/[^0-9]/g, '') + detectwhat).includes(m.sender)
+  const isMods = isOwner || global.mods.map(v => v.replace(/\D/g, '') + detectwhat).includes(m.sender)
   const isPrems = isROwner || global.db.data.users[m.sender].premiumTime > 0
   if (m.isBaileys) return
 
-  if (opts['queque'] && m.text && !(isMods || isPrems)) {
+  if (opts.queque && m.text && !(isMods || isPrems)) {
     let queque = this.msgqueque, time = 5000
     const previousID = queque[queque.length - 1]
     queque.push(m.id || m.key.id)
@@ -139,12 +135,12 @@ export async function handler(chatUpdate) {
   m.exp += Math.ceil(Math.random() * 10)
 
   let usedPrefix
-  const groupMetadata = m.isGroup ? ((conn.chats[m.chat] || {}).metadata || await this.groupMetadata(m.chat).catch(_ => null)) : {}
+  const groupMetadata = m.isGroup ? ((this.chats[m.chat] || {}).metadata || await this.groupMetadata(m.chat).catch(_ => null)) : {}
   const participants = m.isGroup ? groupMetadata?.participants || [] : []
-  const numBot = conn.user?.lid ? conn.user.lid.replace(/:.*/, '') : ''
-  const detectwhat2 = m.sender.includes('@lid') ? `${numBot}@lid` : conn.user.jid
-  const user = m.isGroup ? participants.find(u => conn.decodeJid(u.id) === m.sender) : {}
-  const bot = m.isGroup ? participants.find(u => conn.decodeJid(u.id) === detectwhat2) : {}
+  const numBot = this.user?.lid ? this.user.lid.replace(/:.*/, '') : ''
+  const detectwhat2 = m.sender.includes('@lid') ? `${numBot}@lid` : this.user.jid
+  const user = m.isGroup ? participants.find(u => this.decodeJid(u.id) === m.sender) : {}
+  const bot = m.isGroup ? participants.find(u => this.decodeJid(u.id) === detectwhat2) : {}
   const isRAdmin = user?.admin === 'superadmin'
   const isAdmin = isRAdmin || user?.admin === 'admin'
   const isBotAdmin = bot?.admin
@@ -162,13 +158,15 @@ export async function handler(chatUpdate) {
     if (typeof plugin.all === 'function') {
       try {
         await plugin.all.call(this, m, { chatUpdate, __dirname: ___dirname, __filename })
-      } catch (e) { console.error(e) }
+      } catch (e) {
+        console.error(e)
+      }
     }
 
-    if (!opts['restrict'] && plugin.tags?.includes('admin')) continue
+    if (!opts.restrict && plugin.tags?.includes('admin')) continue
 
     const str2Regex = str => str.replace(/[|\\{}()[\]^$+*?.⚡]/g, '\\$&')
-    let _prefix = plugin.customPrefix ? plugin.customPrefix : conn.prefix || global.prefix
+    let _prefix = plugin.customPrefix || this.prefix || global.prefix
     let match = (_prefix instanceof RegExp ? [[_prefix.exec(m.text), _prefix]] :
       Array.isArray(_prefix) ? _prefix.map(p => [new RegExp(str2Regex(p)).exec(m.text), new RegExp(str2Regex(p))]) :
         typeof _prefix === 'string' ? [[new RegExp(str2Regex(_prefix)).exec(m.text), new RegExp(str2Regex(_prefix))]] :
@@ -197,36 +195,26 @@ export async function handler(chatUpdate) {
         Array.isArray(plugin.command) ? plugin.command.some(cmd => cmd instanceof RegExp ? cmd.test(command) : cmd === command) :
           typeof plugin.command === 'string' ? plugin.command === command : false
 
-      if ((m.id.startsWith('NJX-') || m.id.startsWith('BAE5') && m.id.length === 16 || m.id.startsWith('B24E') && m.id.length === 20)) return
-
       if (!isAccept) continue
 
       m.plugin = name
 
-      if (m.chat in global.db.data.chats || m.sender in global.db.data.users) {
-        let chat = global.db.data.chats[m.chat]
-        let user = global.db.data.users[m.sender]
+      let chat = global.db.data.chats[m.chat]
+      let userData = global.db.data.users[m.sender]
 
-        if (!['grupo-unbanchat.js'].includes(name) && chat?.isBanned && !isROwner) return
-        if (name != 'grupo-unbanchat.js' && name != 'owner-exec.js' && name != 'owner-exec2.js' && name != 'grupo-delete.js' && chat?.isBanned && !isROwner) return
-        if (m.text && user.banned && !isROwner) {
-          m.reply(`《✦》Estas baneado/a, no puedes usar comandos en este bot!\n\n${user.bannedReason ? `✰ *Motivo:* ${user.bannedReason}` : '✰ *Motivo:* Sin Especificar'}\n\n> ✧ Si este Bot es cuenta oficial y tiene evidencia que respalde que este mensaje es un error, puedes exponer tu caso con un moderador.`)
-          user.antispam++
-          return
-        }
-
-        if (user.antispam2 && isROwner) return
-        let time = global.db.data.users[m.sender].spam + 3000
-        if (new Date - global.db.data.users[m.sender].spam < 3000) return console.log(`[ SPAM ]`)
-        global.db.data.users[m.sender].spam = new Date * 1
-
-        let setting = global.db.data.settings[this.user.jid]
-        if (name != 'grupo-unbanchat.js' && chat?.isBanned) return
-        if (name != 'owner-unbanuser.js' && user?.banned) return
+      if (chat?.isBanned && !['grupo-unbanchat.js'].includes(name) && !isROwner) return
+      if (userData?.banned && name !== 'owner-unbanuser.js' && !isROwner) {
+        m.reply(`《✦》Estás baneado, no puedes usar comandos.\n\n${userData.bannedReason ? `✰ Motivo: ${userData.bannedReason}` : '✰ Motivo: Sin especificar'}`)
+        userData.antispam++
+        return
       }
 
-      let hl = _prefix
-      let adminMode = global.db.data.chats[m.chat]?.modoadmin
+      if (userData.antispam2 && isROwner) return
+      let time = userData.spam + 3000
+      if (new Date - userData.spam < 3000) return console.log(`[ SPAM ]`)
+      userData.spam = new Date * 1
+
+      let adminMode = chat?.modoadmin
       if (adminMode && !isOwner && !isROwner && m.isGroup && !isAdmin) return
 
       if (plugin.rowner && !isROwner) return fail('rowner', m, this)
@@ -239,8 +227,7 @@ export async function handler(chatUpdate) {
       if (plugin.private && m.isGroup) return fail('private', m, this)
 
       m.isCommand = true
-      let xp = 'exp' in plugin ? parseInt(plugin.exp) : 17
-      m.exp += xp
+      m.exp += 'exp' in plugin ? parseInt(plugin.exp) : 17
 
       try {
         await plugin.call(this, m, {
@@ -253,9 +240,9 @@ export async function handler(chatUpdate) {
       } catch (e) {
         m.error = e
         console.error(e)
-        let text = format(e)
-        for (let key of Object.values(global.APIKeys)) text = text.replace(new RegExp(key, 'g'), 'Administrador')
-        m.reply(text)
+        let errMsg = format(e)
+        for (let key of Object.values(global.APIKeys)) errMsg = errMsg.replace(new RegExp(key, 'g'), 'Administrador')
+        m.reply(errMsg)
       }
 
       if (typeof plugin.after === 'function') {
@@ -271,17 +258,13 @@ export async function handler(chatUpdate) {
         }
       }
 
-      if (m.coin) conn.reply(m.chat, `❮✦❯ Utilizaste ${+m.coin} ${moneda}`, m)
+      if (m.coin) this.reply(m.chat, `❮✦❯ Utilizaste ${+m.coin} ${global.moneda || '💰'}`, m)
       break
     }
   }
-
-  } catch (e) {
-    console.error(e)
-  }
 }
 
-global.dfail = (type, m, conn, comando = '') => {
+global.dfail = (type, m, conn) => {
   const msg = {
     rowner: `✤ Este comando es solo para el *Creador del Bot*.`,
     owner: `✤ Este comando es solo para el *Owner/SubBots*.`,
@@ -297,8 +280,8 @@ global.dfail = (type, m, conn, comando = '') => {
   if (msg) return conn.reply(m.chat, msg, m).then(() => m.react?.('✖️'))
 }
 
-let file = global.__filename(import.meta.url, true)
-watchFile(file, async () => {
+let file = fileURLToPath(import.meta.url)
+watchFile(file, () => {
   unwatchFile(file)
   console.log(chalk.magenta("Se actualizó 'handler.js'"))
   if (global.conns?.length > 0) {
