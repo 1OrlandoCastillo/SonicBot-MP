@@ -4,10 +4,14 @@ import { fileURLToPath } from 'url'
 import path, { join } from 'path'
 import { unwatchFile, watchFile } from 'fs'
 import chalk from 'chalk'
+import fetch from 'node-fetch'
 
 const { proto } = (await import('@whiskeysockets/baileys')).default
 const isNumber = x => typeof x === 'number' && !isNaN(x)
-const delay = ms => isNumber(ms) && new Promise(resolve => setTimeout(() => resolve(), ms))
+const delay = ms => isNumber(ms) && new Promise(resolve => setTimeout(function () {
+  clearTimeout(this)
+  resolve()
+}, ms))
 
 export async function handler(chatUpdate) {
   this.msgqueque = this.msgqueque || []
@@ -64,13 +68,10 @@ export async function handler(chatUpdate) {
     if (typeof m.text !== 'string') m.text = ''
 
     let _user = global.db.data?.users?.[m.sender]
-    const detectwhat = m.sender.includes('@lid') ? '@lid' : '@s.whatsapp.net'
-    const ownerJids = global.owner.map(([n]) => n.replace(/[^0-9]/g, '') + detectwhat)
-
-    const isROwner = ownerJids.includes(m.sender)
+    const isROwner = [conn.decodeJid(global.conn.user.id), ...global.owner.map(([number]) => number)].map(v => v.replace(/[^0-9]/g, '') + '@s.whatsapp.net').includes(m.sender)
     const isOwner = isROwner || m.fromMe
-    const isMods = isOwner || global.mods.map(n => n.replace(/[^0-9]/g, '') + detectwhat).includes(m.sender)
-    const isPrems = isROwner || global.prems.map(n => n.replace(/[^0-9]/g, '') + detectwhat).includes(m.sender) || _user?.prem == true
+    const isMods = isOwner || global.mods.map(v => v.replace(/[^0-9]/g, '') + '@s.whatsapp.net').includes(m.sender)
+    const isPrems = isROwner || global.prems.map(v => v.replace(/[^0-9]/g, '') + '@s.whatsapp.net').includes(m.sender) || _user?.prem == true
 
     if (opts['queque'] && m.text && !(isMods || isPrems)) {
       let queque = this.msgqueque, time = 1000 * 5
@@ -86,34 +87,41 @@ export async function handler(chatUpdate) {
     m.exp += Math.ceil(Math.random() * 10)
 
     let usedPrefix
-    const groupMetadata = m.isGroup ? ((conn.chats[m.chat] || {}).metadata || await this.groupMetadata(m.chat).catch(_ => null)) || {} : {}
-    const participants = m.isGroup ? groupMetadata.participants || [] : []
-    const user = m.isGroup ? participants.find(u => conn.decodeJid(u.id) === m.sender) || {} : {}
-    const bot = m.isGroup ? participants.find(u => conn.decodeJid(u.id) == this.user.jid) || {} : {}
-    const isRAdmin = user?.admin == 'superadmin'
-    const isAdmin = isRAdmin || user?.admin == 'admin'
-    const isBotAdmin = bot?.admin
+    const groupMetadata = (m.isGroup ? ((conn.chats[m.chat] || {}).metadata || await this.groupMetadata(m.chat).catch(_ => null)) : {}) || {}
+    const participants = (m.isGroup ? groupMetadata.participants : []) || []
+    const user = (m.isGroup ? participants.find(u => conn.decodeJid(u.id) === m.sender) : {}) || {}
+    const bot = (m.isGroup ? participants.find(u => conn.decodeJid(u.id) == this.user.jid) : {}) || {}
+    const isRAdmin = user?.admin == 'superadmin' || false
+    const isAdmin = isRAdmin || user?.admin == 'admin' || false
+    const isBotAdmin = bot?.admin || false
 
     const ___dirname = path.join(path.dirname(fileURLToPath(import.meta.url)), './plugins')
 
     for (let name in global.plugins) {
       let plugin = global.plugins[name]
-      if (!plugin || plugin.disabled) continue
+      if (!plugin) continue
+      if (plugin.disabled) continue
 
       const __filename = join(___dirname, name)
 
       if (typeof plugin.all === 'function') {
         try {
-          await plugin.all.call(this, m, { chatUpdate, __dirname: ___dirname, __filename })
+          await plugin.all.call(this, m, {
+            chatUpdate,
+            __dirname: ___dirname,
+            __filename
+          })
         } catch (e) {
           console.error(e)
         }
       }
 
-      if (!opts['restrict'] && plugin.tags?.includes('admin')) continue
+      if (!opts['restrict']) {
+        if (plugin.tags && plugin.tags.includes('admin')) continue
+      }
 
       const str2Regex = str => str.replace(/[|\\{}()[\]^$+*?.]/g, '\\$&')
-      let _prefix = plugin.customPrefix || conn.prefix || global.prefix
+      let _prefix = plugin.customPrefix ? plugin.customPrefix : conn.prefix ? conn.prefix : global.prefix
       let match = (_prefix instanceof RegExp ?
         [[_prefix.exec(m.text), _prefix]] :
         Array.isArray(_prefix) ?
@@ -128,9 +136,21 @@ export async function handler(chatUpdate) {
 
       if (typeof plugin.before === 'function') {
         if (await plugin.before.call(this, m, {
-          match, conn: this, participants, groupMetadata, user, bot,
-          isROwner, isOwner, isRAdmin, isAdmin, isBotAdmin, isPrems,
-          chatUpdate, __dirname: ___dirname, __filename
+          match,
+          conn: this,
+          participants,
+          groupMetadata,
+          user,
+          bot,
+          isROwner,
+          isOwner,
+          isRAdmin,
+          isAdmin,
+          isBotAdmin,
+          isPrems,
+          chatUpdate,
+          __dirname: ___dirname,
+          __filename
         })) continue
       }
 
@@ -148,8 +168,12 @@ export async function handler(chatUpdate) {
         let isAccept = plugin.command instanceof RegExp ?
           plugin.command.test(command) :
           Array.isArray(plugin.command) ?
-            plugin.command.some(cmd => cmd instanceof RegExp ? cmd.test(command) : cmd === command) :
-            typeof plugin.command === 'string' ? plugin.command === command : false
+            plugin.command.some(cmd => cmd instanceof RegExp ?
+              cmd.test(command) :
+              cmd === command) :
+            typeof plugin.command === 'string' ?
+              plugin.command === command :
+              false
 
         if (!isAccept) continue
         m.plugin = name
@@ -172,15 +196,15 @@ export async function handler(chatUpdate) {
         if (plugin.botAdmin && !isBotAdmin) { fail('botAdmin', m, this); continue }
         if (plugin.admin && !isAdmin) { fail('admin', m, this); continue }
         if (plugin.private && m.isGroup) { fail('private', m, this); continue }
-        if (plugin.register && !_user.registered) { fail('unreg', m, this); continue }
+        if (plugin.register == true && _user.registered == false) { fail('unreg', m, this); continue }
 
         m.isCommand = true
         let xp = 'exp' in plugin ? parseInt(plugin.exp) : 17
         if (xp > 200) m.reply('chirrido -_-')
         else m.exp += xp
 
-        if (!isPrems && plugin.limit && global.db.data.users[m.sender].limit < plugin.limit) {
-          conn.reply(m.chat, `Se agotaron tus *✿ Lovelloud*`, m)
+        if (!isPrems && plugin.limit && global.db.data.users[m.sender].limit < plugin.limit * 1) {
+          conn.reply(m.chat, `Se agotaron tus *✿ Lovelloud*`, m, rcanal)
           continue
         }
 
@@ -199,7 +223,7 @@ export async function handler(chatUpdate) {
           console.error(e)
           if (e) {
             let text = format(e)
-            for (let key of Object.values(global.APIKeys || {}))
+            for (let key of Object.values(global.APIKeys))
               text = text.replace(new RegExp(key, 'g'), '#HIDDEN#')
             m.reply(text)
           }
@@ -211,7 +235,8 @@ export async function handler(chatUpdate) {
               console.error(e)
             }
           }
-          if (m.limit) conn.reply(m.chat, `Utilizaste *${+m.limit}* ✿`, m)
+          if (m.limit)
+            conn.reply(m.chat, `Utilizaste *${+m.limit}* ✿`, m, rcanal)
         }
         break
       }
@@ -230,7 +255,7 @@ export async function handler(chatUpdate) {
         unreg: `✤ Hola, para usar este comando debes estar *Registrado.*`,
         restrict: `✤ Hola, esta característica está *deshabilitada.*`
       }[type]
-      if (msg) return conn.reply(m.chat, msg, m).then(() => m.react('✖️'))
+      if (msg) return conn.reply(m.chat, msg, m, rcanal).then(() => m.react('✖️'))
     }
 
   } catch (e) {
@@ -248,12 +273,18 @@ export async function handler(chatUpdate) {
         user.limit -= m.limit * 1
       }
 
+      let stat
       if (m.plugin) {
-        let stat = stats[m.plugin] ||= { total: 0, success: 0, last: 0, lastSuccess: 0 }
         let now = +new Date
+        stat = stats[m.plugin] ||= {
+          total: 0,
+          success: 0,
+          last: 0,
+          lastSuccess: 0
+        }
         stat.total += 1
         stat.last = now
-        if (!m.error) {
+        if (m.error == null) {
           stat.success += 1
           stat.lastSuccess = now
         }
@@ -273,8 +304,8 @@ export async function handler(chatUpdate) {
 }
 
 let file = global.__filename(import.meta.url, true)
-watchFile(file, () => {
+watchFile(file, async () => {
   unwatchFile(file)
-  console.log(chalk.redBright("Se actualizó 'handler.js'"))
-  import(`${file}?update=${Date.now()}`)
+  console.log(chalk.magenta("Se actualizó 'handler.js'"))
+  if (global.reloadHandler) console.log(await global.reloadHandler())
 })
