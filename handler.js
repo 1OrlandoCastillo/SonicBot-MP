@@ -536,30 +536,31 @@ function pickRandom(list) { return list[Math.floor(Math.random() * list.length)]
 }}
 
 global.dfail = (type, m, conn, comando = '') => {
-  let mensajes = getMensajeSistema(comando)
-
   const msg = {
-        rowner: `✤ Hola, este comando solo puede ser utilizado por el *Creador* de la Bot.`,
-        owner: `✤ Hola, este comando solo puede ser utilizado por el *Creador* de la Bot y *Sub Bots*.`,
-        mods: `✤ Hola, este comando solo puede ser utilizado por los *Moderadores* de la Bot.`,
-        premium: `✤ Hola, este comando solo puede ser utilizado por Usuarios *Premium*.`,
-        group: `✤ Hola, este comando solo puede ser utilizado en *Grupos*.`,
-        private: `✤ Hola, este comando solo puede ser utilizado en mi Chat *Privado*.`,
-        admin: `✤ Hola, este comando solo puede ser utilizado por los *Administradores* del Grupo.`,
-        botAdmin: `✤ Hola, la bot debe ser *Administradora* para ejecutar este Comando.`,
-        unreg: `✤ Hola, para usar este comando debes estar *Registrado.*`,
-        restrict: `✤ Hola, esta característica está *deshabilitada.*`
-      }[type]
-      if (msg) return conn.reply(m.chat, msg, m, rcanal).then(() => m.react('✖️'))
-    }
+    rowner: `✤ Hola, este comando solo puede ser utilizado por el *Creador* de la Bot.`,
+    owner: `✤ Hola, este comando solo puede ser utilizado por el *Creador* de la Bot y *Sub Bots*.`,
+    mods: `✤ Hola, este comando solo puede ser utilizado por los *Moderadores* de la Bot.`,
+    premium: `✤ Hola, este comando solo puede ser utilizado por Usuarios *Premium*.`,
+    group: `✤ Hola, este comando solo puede ser utilizado en *Grupos*.`,
+    private: `✤ Hola, este comando solo puede ser utilizado en mi Chat *Privado*.`,
+    admin: `✤ Hola, este comando solo puede ser utilizado por los *Administradores* del Grupo.`,
+    botAdmin: `✤ Hola, la bot debe ser *Administradora* para ejecutar este Comando.`,
+    unreg: `✤ Hola, para usar este comando debes estar *Registrado.*`,
+    restrict: `✤ Hola, esta característica está *deshabilitada.*`
+  }[type]
+
+  if (msg) return conn.reply(m.chat, msg, m, rcanal).then(() => m.react('✖️'))
+}
 
 let file = global.__filename(import.meta.url, true)
 watchFile(file, async () => {
-unwatchFile(file)
-console.log(chalk.magenta("Se actualizo 'handler.js'"))
+  unwatchFile(file)
+  console.log(chalk.magenta("Se actualizó 'handler.js'"))
 
-if (global.conns && global.conns.length > 0 ) {
-const users = [...new Set([...global.conns.filter((conn) => conn.user && conn.ws.socket && conn.ws.socket.readyState !== ws.CLOSED).map((conn) => conn)])];
-for (const userr of users) {
-userr.subreloadHandler(false)
-}}});
+  if (global.conns && global.conns.length > 0) {
+    const users = [...new Set([...global.conns.filter((conn) => conn.user && conn.ws.socket && conn.ws.socket.readyState !== ws.CLOSED).map((conn) => conn)])]
+    for (const userr of users) {
+      userr.subreloadHandler(false)
+    }
+  }
+})
