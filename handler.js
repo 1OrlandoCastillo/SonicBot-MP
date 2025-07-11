@@ -8,10 +8,7 @@ import fetch from 'node-fetch'
 
 const { proto } = (await import('@whiskeysockets/baileys')).default
 const isNumber = x => typeof x === 'number' && !isNaN(x)
-const delay = ms => isNumber(ms) && new Promise(resolve => setTimeout(function () {
-  clearTimeout(this)
-  resolve()
-}, ms))
+const delay = ms => isNumber(ms) && new Promise(resolve => setTimeout(() => resolve(), ms))
 
 export async function handler(chatUpdate) {
   this.msgqueque = this.msgqueque || []
