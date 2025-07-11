@@ -8,17 +8,20 @@ import fetch from 'node-fetch'
 
 const { proto } = (await import('@whiskeysockets/baileys')).default
 const isNumber = x => typeof x === 'number' && !isNaN(x)
-const delay = ms => isNumber(ms) && new Promise(resolve => setTimeout(function () {
-  clearTimeout(this)
-  resolve()
-}, ms))
+const delay = ms => isNumber(ms) && new Promise(resolve => setTimeout(() => resolve(), ms))
 
 export async function handler(chatUpdate) {
   this.msgqueque = this.msgqueque || []
   if (!chatUpdate) return
+
   this.pushMessage(chatUpdate.messages).catch(console.error)
+
   let m = chatUpdate.messages[chatUpdate.messages.length - 1]
   if (!m) return
+
+  // 🟢 INTEGRACIÓN DE @lid
+  m.lid = m.lid || chatUpdate?.messages?.[0]?.lid || `@lid:${Date.now().toString(36)}${Math.random().toString(36).slice(2, 6)}`
+
   if (global.db.data == null) await global.loadDatabase()
 
   try {
@@ -99,8 +102,7 @@ export async function handler(chatUpdate) {
 
     for (let name in global.plugins) {
       let plugin = global.plugins[name]
-      if (!plugin) continue
-      if (plugin.disabled) continue
+      if (!plugin || plugin.disabled) continue
 
       const __filename = join(___dirname, name)
 
@@ -158,10 +160,10 @@ export async function handler(chatUpdate) {
 
       if ((usedPrefix = (match[0] || '')[0])) {
         let noPrefix = m.text.replace(usedPrefix, '')
-        let [command, ...args] = noPrefix.trim().split` `.filter(v => v)
+        let [command, ...args] = noPrefix.trim().split(/\s+/g)
         args = args || []
-        let _args = noPrefix.trim().split` `.slice(1)
-        let text = _args.join` `
+        let _args = noPrefix.trim().split(/\s+/g).slice(1)
+        let text = _args.join(' ')
         command = (command || '').toLowerCase()
         let fail = plugin.fail || global.dfail
 
@@ -200,11 +202,10 @@ export async function handler(chatUpdate) {
 
         m.isCommand = true
         let xp = 'exp' in plugin ? parseInt(plugin.exp) : 17
-        if (xp > 200) m.reply('chirrido -_-')
-        else m.exp += xp
+        m.exp += xp
 
         if (!isPrems && plugin.limit && global.db.data.users[m.sender].limit < plugin.limit * 1) {
-          conn.reply(m.chat, `Se agotaron tus *✿ Lovelloud*`, m, rcanal)
+          conn.reply(m.chat, `Se agotaron tus *✿ Lovelloud*`, m)
           continue
         }
 
@@ -236,7 +237,7 @@ export async function handler(chatUpdate) {
             }
           }
           if (m.limit)
-            conn.reply(m.chat, `Utilizaste *${+m.limit}* ✿`, m, rcanal)
+            conn.reply(m.chat, `Utilizaste *${+m.limit}* ✿`, m)
         }
         break
       }
@@ -255,7 +256,7 @@ export async function handler(chatUpdate) {
         unreg: `✤ Hola, para usar este comando debes estar *Registrado.*`,
         restrict: `✤ Hola, esta característica está *deshabilitada.*`
       }[type]
-      if (msg) return conn.reply(m.chat, msg, m, rcanal).then(() => m.react('✖️'))
+      if (msg) return conn.reply(m.chat, msg, m).then(() => m.react('✖️'))
     }
 
   } catch (e) {
