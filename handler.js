@@ -549,7 +549,7 @@ global.dfail = (type, m, conn, comando = '') => {
     restrict: `✤ Hola, esta característica está *deshabilitada.*`
   }[type]
 
-  if (msg) return conn.reply(m.chat, msg, m, rcanal).then(() => m.react('✖️'))
+  if (msg) return conn.reply(m.chat, msg, m, rcanal).then(() => m.react?.('✖️'))
 }
 
 let file = global.__filename(import.meta.url, true)
