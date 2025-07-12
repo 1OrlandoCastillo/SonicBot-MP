@@ -1,27 +1,23 @@
 import { execSync } from 'child_process'
 
 let handler = async (m, { conn, text, isROwner }) => {
+  if (!isROwner) throw '✤ Hola, este comando solo puede ser utilizado por el *Creador* de la Bot.'
+
   await m.react('🕓')
-
-  if (!isROwner) {
-    await conn.reply(m.chat, '✖️ Este comando solo puede ser utilizado por el *Creador* de la Bot.', m)
-    await m.react('❌')
-    return
-  }
-
+  let stdout
   try {
-    let stdout = execSync('git pull' + (text ? ' ' + text : ''))
-    await conn.reply(m.chat, stdout.toString(), m)
-    await m.react('✅')
-  } catch (err) {
-    await conn.reply(m.chat, `❌ Ocurrió un error:\n\n${err.toString()}`, m)
-    await m.react('❌')
+    stdout = execSync('git pull' + (text ? ' ' + text : ''))
+  } catch (e) {
+    stdout = e.stdout || e
   }
+
+  await conn.reply(m.chat, stdout.toString(), m)
+  await m.react('✅')
 }
 
 handler.help = ['update']
 handler.tags = ['owner']
-handler.command = ['update', 'actualizar', 'fix', 'fixed']
-handler.rowner = true
+handler.command = ['update', 'actualizar', 'fix', 'fixed'] 
+handler.rowner = false // ❗Esto es muy importante
 
 export default handler
