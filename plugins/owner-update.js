@@ -1,7 +1,7 @@
 import { execSync } from 'child_process'
 
 let handler = async (m, { conn, text, isROwner }) => {
-  if (!isROwner) throw '✤ Hola, este comando solo puede ser utilizado por el *Creador* de la Bot.'
+  if (!isROwner) throw '✤ ola, este comando solo puede ser utilizado por el *Creador* de la Bot.'
 
   await m.react('🕓')
   let stdout
