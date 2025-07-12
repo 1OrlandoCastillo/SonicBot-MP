@@ -68,11 +68,10 @@ export async function handler(chatUpdate) {
     if (typeof m.text !== 'string') m.text = ''
 
     let _user = global.db.data?.users?.[m.sender]
-    const senderNum = m.sender.replace(/[^0-9]/g, '')
-    const isROwner = global.owner.some(([num]) => senderNum === num.replace(/[^0-9]/g, ''))
+    const isROwner = [conn.decodeJid(global.conn.user.id), ...global.owner.map(([number]) => number)].map(v => v.replace(/[^0-9]/g, '') + '@s.whatsapp.net').includes(m.sender)
     const isOwner = isROwner || m.fromMe
-    const isMods = isOwner || global.mods.map(v => v.replace(/[^0-9]/g, '')).includes(senderNum)
-    const isPrems = isROwner || global.prems.map(v => v.replace(/[^0-9]/g, '')).includes(senderNum) || _user?.prem == true
+    const isMods = isOwner || global.mods.map(v => v.replace(/[^0-9]/g, '') + '@s.whatsapp.net').includes(m.sender)
+    const isPrems = isROwner || global.prems.map(v => v.replace(/[^0-9]/g, '') + '@s.whatsapp.net').includes(m.sender) || _user?.prem == true
 
     if (opts['queque'] && m.text && !(isMods || isPrems)) {
       let queque = this.msgqueque, time = 1000 * 5
@@ -90,13 +89,8 @@ export async function handler(chatUpdate) {
     let usedPrefix
     const groupMetadata = (m.isGroup ? ((conn.chats[m.chat] || {}).metadata || await this.groupMetadata(m.chat).catch(_ => null)) : {}) || {}
     const participants = (m.isGroup ? groupMetadata.participants : []) || []
-    let numBot = false
-    if (conn.user && conn.user.lid) {
-    numBot = conn.user.lid.replace(/:.*/, '')
-    }
-    const detectwhat2 = m.sender.includes('@lid') ? `${numBot}@lid` : conn.user.jid
     const user = (m.isGroup ? participants.find(u => conn.decodeJid(u.id) === m.sender) : {}) || {}
-    const bot = (m.isGroup ? participants.find(u => conn.decodeJid(u.id) == detectwhat2) : {}) || {}
+    const bot = (m.isGroup ? participants.find(u => conn.decodeJid(u.id) == this.user.jid) : {}) || {}
     const isRAdmin = user?.admin == 'superadmin' || false
     const isAdmin = isRAdmin || user?.admin == 'admin' || false
     const isBotAdmin = bot?.admin || false
