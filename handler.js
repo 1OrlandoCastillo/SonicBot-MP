@@ -191,6 +191,27 @@ export async function handler(chatUpdate) {
         }
       }
     }
+    
+    if (typeof plugin !== 'function') continue
+
+      if ((usedPrefix = (match[0] || '')[0])) {
+        let noPrefix = m.text.replace(usedPrefix, '')
+        let [command, ...args] = noPrefix.trim().split` `.filter(v => v)
+        args = args || []
+        let _args = noPrefix.trim().split` `.slice(1)
+        let text = _args.join` `
+        command = (command || '').toLowerCase()
+        let fail = plugin.fail || global.dfail
+
+        let isAccept = plugin.command instanceof RegExp ?
+          plugin.command.test(command) :
+          Array.isArray(plugin.command) ?
+            plugin.command.some(cmd => cmd instanceof RegExp ?
+              cmd.test(command) :
+              cmd === command) :
+            typeof plugin.command === 'string' ?
+              plugin.command === command :
+              false
 
     global.dfail = (type, m, conn) => {
       const msg = {
