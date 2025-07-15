@@ -14,9 +14,7 @@ global.packname = 'LOVELLOUD'
 global.namebot = 'Anya Forger'
 global.author = 'Sung'
 
-global.namecanal = 'LOVELLOUD'
 global.canal = 'https://whatsapp.com/channel/0029VbAZUQ3002T9KZfx2O1M'
-global.idcanal = '120363403143798163@newsletter'
 
 global.ch = {
 ch1: '120363403143798163@newsletter',
