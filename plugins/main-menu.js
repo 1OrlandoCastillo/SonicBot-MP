@@ -14,8 +14,7 @@ const tags = {
 }
 
 const defaultMenu = {
-  before: `
-Hola soy %botname
+  before: `Hola soy %botname
 
 ¿Como le va su día?
 
@@ -23,10 +22,9 @@ Hola soy %botname
 📚 : Baileys :: Multi Device
 💮 : Modo :: Privado
 
-> Puedes usar:
+Puedes usar:
 .setbotname para cambiar el nombre
 .setbotimg para cambiar la foto
-
 %readmore`.trimStart(),
   header: '%category',
   body: '𝆬🍄ㅤ◌ㅤ%cmd %islimit %isPremium\n',
@@ -57,7 +55,7 @@ const handler = async (m, { conn, usedPrefix: _p }) => {
       premium: plugin.premium
     }))
 
-    let nombreBot = global.namebot || 'Anya Forger'
+    let nombreBot = global.namebot || 'Bot'
     let imgBot = './storage/img/menu3.jpg'
 
     const botActual = conn.user?.jid?.split('@')[0].replace(/\D/g, '')
@@ -67,11 +65,26 @@ const handler = async (m, { conn, usedPrefix: _p }) => {
         const config = JSON.parse(fs.readFileSync(configPath))
         if (config.name) nombreBot = config.name
         if (config.img) imgBot = config.img
-      } catch (err) {}
+      } catch { }
     }
 
+    const ase = new Date()
+    const hour = ase.getHours()
+    const greetingMap = {
+      0: 'una linda noche 🌙', 1: 'una linda noche 💤', 2: 'una linda noche 🦉',
+      3: 'una linda mañana ✨', 4: 'una linda mañana 💫', 5: 'una linda mañana 🌅',
+      6: 'una linda mañana 🌄', 7: 'una linda mañana 🌅', 8: 'una linda mañana 💫',
+      9: 'una linda mañana ✨', 10: 'un lindo día 🌞', 11: 'un lindo día 🌨',
+      12: 'un lindo día ❄', 13: 'un lindo día 🌤', 14: 'una linda tarde 🌇',
+      15: 'una linda tarde 🥀', 16: 'una linda tarde 🌹', 17: 'una linda tarde 🌆',
+      18: 'una linda noche 🌙', 19: 'una linda noche 🌃', 20: 'una linda noche 🌌',
+      21: 'una linda noche 🌃', 22: 'una linda noche 🌙', 23: 'una linda noche 🌃',
+    }
+    const greeting = 'espero que tengas ' + (greetingMap[hour] || 'un buen día')
+
     const menuConfig = conn.menu || defaultMenu
-    const _text = [
+
+    let menuText = [
       menuConfig.before,
       ...Object.keys(tags).map(tag => {
         return [
@@ -113,13 +126,12 @@ const handler = async (m, { conn, usedPrefix: _p }) => {
       uptime: clockString(process.uptime() * 1000),
     }
 
-    const text = _text.replace(
+    menuText = menuText.replace(
       new RegExp(`%(${Object.keys(replace).sort((a, b) => b.length - a.length).join('|')})`, 'g'),
       (_, name) => String(replace[name])
     )
 
-    await conn.sendFile(m.chat, imgBot, 'thumbnail.jpg', text.trim(), m, null, rcanal)
-
+    await conn.sendFile(m.chat, imgBot, 'menu.jpg', menuText.trim(), m, null, rcanal)
   } catch (e) {
     conn.reply(m.chat, '❎ Lo sentimos, el menú tiene un error.', m)
     throw e
@@ -138,34 +150,3 @@ function clockString(ms) {
   let s = isNaN(ms) ? '--' : Math.floor(ms / 1000) % 60
   return [h, m, s].map(v => v.toString().padStart(2, '0')).join(':')
 }
-
-const ase = new Date()
-let hour = ase.getHours()
-const greetingMap = {
-  0: 'una linda noche 🌙',
-  1: 'una linda noche 💤',
-  2: 'una linda noche 🦉',
-  3: 'una linda mañana ✨',
-  4: 'una linda mañana 💫',
-  5: 'una linda mañana 🌅',
-  6: 'una linda mañana 🌄',
-  7: 'una linda mañana 🌅',
-  8: 'una linda mañana 💫',
-  9: 'una linda mañana ✨',
-  10: 'un lindo día 🌞',
-  11: 'un lindo día 🌨',
-  12: 'un lindo día ❄',
-  13: 'un lindo día 🌤',
-  14: 'una linda tarde 🌇',
-  15: 'una linda tarde 🥀',
-  16: 'una linda tarde 🌹',
-  17: 'una linda tarde 🌆',
-  18: 'una linda noche 🌙',
-  19: 'una linda noche 🌃',
-  20: 'una linda noche 🌌',
-  21: 'una linda noche 🌃',
-  22: 'una linda noche 🌙',
-  23: 'una linda noche 🌃',
-}
-
-var greeting = 'espero que tengas ' + (greetingMap[hour] || 'un buen día')
