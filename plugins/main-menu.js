@@ -22,9 +22,9 @@ const defaultMenu = {
 📚 : Baileys :: Multi Device
 💮 : Modo :: Privado
 
-Puedes usar:
-.setbotname para cambiar el nombre
+Puedes usar: .setbotname para cambiar el nombre
 .setbotimg para cambiar la foto
+
 %readmore`.trimStart(),
   header: '%category',
   body: '𝆬🍄ㅤ◌ㅤ%cmd %islimit %isPremium\n',
@@ -65,11 +65,10 @@ const handler = async (m, { conn, usedPrefix: _p }) => {
         const config = JSON.parse(fs.readFileSync(configPath))
         if (config.name) nombreBot = config.name
         if (config.img) imgBot = config.img
-      } catch { }
+      } catch {}
     }
 
-    const ase = new Date()
-    const hour = ase.getHours()
+    const hour = new Date().getHours()
     const greetingMap = {
       0: 'una linda noche 🌙', 1: 'una linda noche 💤', 2: 'una linda noche 🦉',
       3: 'una linda mañana ✨', 4: 'una linda mañana 💫', 5: 'una linda mañana 🌅',
@@ -87,22 +86,24 @@ const handler = async (m, { conn, usedPrefix: _p }) => {
     let menuText = [
       menuConfig.before,
       ...Object.keys(tags).map(tag => {
+        const comandos = help.filter(menu => menu.tags?.includes(tag))
+        if (comandos.length === 0) return ''
         return [
           menuConfig.header.replace(/%category/g, tags[tag]),
-          help.filter(menu => menu.tags?.includes(tag)).map(menu => {
-            return menu.help.map(helpText => {
-              return menuConfig.body
+          comandos.map(menu =>
+            menu.help.map(helpText =>
+              menuConfig.body
                 .replace(/%cmd/g, typeof menu.prefix === 'string' ? `${menu.prefix}${helpText}` : `${_p}${helpText}`)
                 .replace(/%islimit/g, menu.limit ? '◜⭐◞' : '')
                 .replace(/%isPremium/g, menu.premium ? '◜🪪◞' : '')
                 .trim()
-            }).join('\n')
-          }).join('\n'),
+            ).join('\n')
+          ).join('\n'),
           menuConfig.footer
         ].join('\n')
       }),
       menuConfig.after
-    ].join('\n')
+    ].filter(Boolean).join('\n')
 
     const replace = {
       '%': '%',
@@ -127,8 +128,8 @@ const handler = async (m, { conn, usedPrefix: _p }) => {
     }
 
     menuText = menuText.replace(
-      new RegExp(`%(${Object.keys(replace).sort((a, b) => b.length - a.length).join('|')})`, 'g'),
-      (_, name) => String(replace[name])
+      /%(\w+)/g,
+      (_, key) => (replace[key] !== undefined ? replace[key] : '')
     )
 
     await conn.sendFile(m.chat, imgBot, 'menu.jpg', menuText.trim(), m, null, rcanal)
@@ -145,8 +146,8 @@ const more = String.fromCharCode(8206)
 const readMore = more.repeat(4001)
 
 function clockString(ms) {
-  let h = isNaN(ms) ? '--' : Math.floor(ms / 3600000)
-  let m = isNaN(ms) ? '--' : Math.floor(ms / 60000) % 60
-  let s = isNaN(ms) ? '--' : Math.floor(ms / 1000) % 60
+  const h = Math.floor(ms / 3600000)
+  const m = Math.floor(ms / 60000) % 60
+  const s = Math.floor(ms / 1000) % 60
   return [h, m, s].map(v => v.toString().padStart(2, '0')).join(':')
 }
