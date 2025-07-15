@@ -86,7 +86,6 @@ export async function handler(chatUpdate) {
     if (m.isBaileys) return
     m.exp += Math.ceil(Math.random() * 10)
 
-    let usedPrefix
     const groupMetadata = (m.isGroup ? ((conn.chats[m.chat] || {}).metadata || await this.groupMetadata(m.chat).catch(_ => null)) : {}) || {}
     const participants = (m.isGroup ? groupMetadata.participants : []) || []
     const user = (m.isGroup ? participants.find(u => conn.decodeJid(u.id) === m.sender) : {}) || {}
@@ -96,6 +95,19 @@ export async function handler(chatUpdate) {
     const isBotAdmin = bot?.admin || false
 
     const ___dirname = path.join(path.dirname(fileURLToPath(import.meta.url)), './plugins')
+
+    global.idcanal = '120363403143798163@newsletter'
+    global.namecanal = 'LOVELLOUD Official'
+    global.rcanal = {
+      contextInfo: {
+        isForwarded: true,
+        forwardedNewsletterMessageInfo: {
+          newsletterJid: global.idcanal,
+          serverMessageId: 100,
+          newsletterName: global.namecanal
+        }
+      }
+    }
 
     for (let name in global.plugins) {
       let plugin = global.plugins[name]
