@@ -1,5 +1,4 @@
 import fs from 'fs'
-import { promises as fsp } from 'fs'
 import { join } from 'path'
 import fetch from 'node-fetch'
 import { xpRange } from '../lib/levelling.js'
@@ -24,8 +23,8 @@ Hola soy %botname
 📚 : Baileys :: Multi Device
 💮 : Modo :: Privado
 
-> *Puedes usar:*
-.setbotname para cambiar el nombre 
+> Puedes usar:
+.setbotname para cambiar el nombre
 .setbotimg para cambiar la foto
 
 %readmore`.trimStart(),
@@ -53,16 +52,16 @@ const handler = async (m, { conn, usedPrefix: _p }) => {
     const help = Object.values(global.plugins).filter(p => !p.disabled).map(plugin => ({
       help: Array.isArray(plugin.help) ? plugin.help : [plugin.help],
       tags: Array.isArray(plugin.tags) ? plugin.tags : [plugin.tags],
-      prefix: plugin.customPrefix,
+      prefix: plugin.customPrefix || false,
       limit: plugin.limit,
       premium: plugin.premium
     }))
 
     let nombreBot = global.namebot || 'Anya Forger'
     let imgBot = './storage/img/menu3.jpg'
+
     const botActual = conn.user?.jid?.split('@')[0].replace(/\D/g, '')
     const configPath = join('./Serbot', botActual, 'config.json')
-
     if (fs.existsSync(configPath)) {
       try {
         const config = JSON.parse(fs.readFileSync(configPath))
@@ -79,9 +78,8 @@ const handler = async (m, { conn, usedPrefix: _p }) => {
           menuConfig.header.replace(/%category/g, tags[tag]),
           help.filter(menu => menu.tags?.includes(tag)).map(menu => {
             return menu.help.map(helpText => {
-              const command = (typeof menu.prefix === 'string') ? `${menu.prefix}${helpText}` : `${_p}${helpText}`
               return menuConfig.body
-                .replace(/%cmd/g, command)
+                .replace(/%cmd/g, typeof menu.prefix === 'string' ? `${menu.prefix}${helpText}` : `${_p}${helpText}`)
                 .replace(/%islimit/g, menu.limit ? '◜⭐◞' : '')
                 .replace(/%isPremium/g, menu.premium ? '◜🪪◞' : '')
                 .trim()
