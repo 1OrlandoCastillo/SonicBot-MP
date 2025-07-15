@@ -7,13 +7,13 @@ import fetch from 'node-fetch'
 import { xpRange } from '../lib/levelling.js'
 
 const tags = {
-  serbot: 'ᗝ̵      ִ       ꯭ ꯭s꯭u꯭bb꯭o꯭t꯭s ꯭ ꯭        ֹ     𓋲',
-  search: 'ᗝ̵      ִ       ꯭ ꯭s꯭ea꯭rc꯭h꯭s ꯭ ꯭        ֹ     𓋲',
-  downloader: 'ᗝ̵      ִ       ꯭ ꯭do꯭w꯭nl꯭o꯭ae꯭r ꯭ ꯭        ֹ     𓋲',
-  group: 'ᗝ̵      ִ       ꯭ ꯭g꯭r꯭ou꯭p꯭ ꯭ ꯭        ֹ     𓋲',
-  tools: 'ᗝ̵      ִ       ꯭ ꯭to꯭ol꯭s꯭ ꯭ ꯭        ֹ     𓋲',
-  sticker: 'ᗝ̵      ִ       ꯭ ꯭s꯭ti꯭ck꯭e꯭rs꯭ ꯭ ꯭        ֹ     𓋲',
-  owner: 'ᗝ̵      ִ       ꯭ ꯭o꯭w꯭ne꯭r꯭ ꯭ ꯭        ֹ     𓋲',
+  serbot: 'ㅤㅤㅤㅤ꒰ 🪷 ꒱ㅤㅤSubbots',
+  search: 'ㅤㅤㅤㅤ꒰ 🍨 ꒱ㅤㅤSearchs',
+  downloader: 'ㅤㅤㅤㅤ꒰ 🍓 ꒱ㅤㅤDownloaders',
+  group: 'ㅤㅤㅤㅤ꒰ 🍥 ꒱ㅤㅤGroups',
+  tools: 'ㅤㅤㅤㅤ꒰ 🩰 ꒱ㅤㅤTools',
+  sticker: 'ㅤㅤㅤㅤ꒰ 🌸 ꒱ㅤㅤStickers',
+  owner: 'ㅤㅤㅤㅤ꒰ 🍈 ꒱ㅤㅤOwner',
 }
 
 const defaultMenu = {
@@ -33,7 +33,7 @@ Hola soy %botname
 %readmore`.trimStart(),
 
   header: '%category',
-  body: '> *✿𝆬%cmd* %islimit %isPremium\n',
+  body: '𝆬🍄ㅤ◌ㅤ%cmd %islimit %isPremium\n',
   footer: '',
   after: '',
 }
