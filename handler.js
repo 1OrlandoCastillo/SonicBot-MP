@@ -205,7 +205,7 @@ export async function handler(chatUpdate) {
         unreg: `✤ Hola, para usar este comando debes estar *Registrado.*`,
         restrict: `✤ Hola, esta característica está *deshabilitada.*`
       }[type]
-      if (msg) return conn.reply(m.chat, msg, m, rcanal).then(() => m.react('✖️'))
+      if (msg) return conn.reply(m.chat, msg, m, rcanal)
     }
 
   } catch (e) {
@@ -258,4 +258,4 @@ watchFile(file, async () => {
   unwatchFile(file)
   console.log(chalk.magenta("Se actualizó 'handler.js'"))
   if (global.reloadHandler) console.log(await global.reloadHandler())
-})
+}
