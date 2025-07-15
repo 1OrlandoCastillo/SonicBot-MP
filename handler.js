@@ -170,7 +170,7 @@ export async function handler(chatUpdate) {
 
       if (typeof plugin !== 'function') continue
 
-      if ((usedPrefix = (match[0] || '')[0])) {
+      if (match && (usedPrefix = (match[0] || '')[0])) {
         try {
           await plugin.call(this, m, {
             match,
