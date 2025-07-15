@@ -148,29 +148,23 @@ export async function handler(chatUpdate) {
             [[[], new RegExp]]
       ).find(p => p[1] && p[0])
 
-      if (typeof plugin.before === 'function') {
-        if (await plugin.before.call(this, m, {
-          match,
-          conn: this,
-          participants,
-          groupMetadata,
-          user,
-          bot,
-          isROwner,
-          isOwner,
-          isRAdmin,
-          isAdmin,
-          isBotAdmin,
-          isPrems,
-          chatUpdate,
-          __dirname: ___dirname,
-          __filename
-        })) continue
-      }
+      const commandText = match?.[0]?.input?.slice(match[0]?.[0]?.length).trim().split(/\s+/)[0]?.toLowerCase()
 
-      if (typeof plugin !== 'function') continue
+      const isMatchCommand = plugin.command && (
+        typeof plugin.command === 'string'
+          ? commandText === plugin.command
+          : plugin.command instanceof RegExp
+            ? plugin.command.test(commandText)
+            : Array.isArray(plugin.command)
+              ? plugin.command.includes(commandText)
+              : false
+      )
 
-      if (match && (usedPrefix = (match[0] || '')[0])) {
+      if (
+        match &&
+        (usedPrefix = (match[0] || '')[0]) &&
+        isMatchCommand
+      ) {
         try {
           await plugin.call(this, m, {
             match,
@@ -190,7 +184,7 @@ export async function handler(chatUpdate) {
             __filename
           })
           m.plugin = name
-          m.command = match[0].trim().split(/\s+/).shift().toLowerCase()
+          m.command = commandText
         } catch (e) {
           m.error = e
           console.error(e)
