@@ -1,5 +1,7 @@
-import fs from 'fs'
-import { promises as fsp } from 'fs'
+import fs from 'fs';
+import { promises as fsp } from 'fs';
+// fs.readFileSync(...) → para síncrona
+// fsp.readFile(...) → para async/await
 import { join } from 'path'
 import fetch from 'node-fetch'
 import { xpRange } from '../lib/levelling.js'
@@ -51,9 +53,7 @@ const handler = async (m, { conn, usedPrefix: _p }) => {
     const totalreg = Object.keys(global.db.data.users).length
     const rtotalreg = Object.values(global.db.data.users).filter(user => user.registered).length
 
-    const help = Object.values(global.plugins).filter(p =>
-      !p.disabled && p.help && (Array.isArray(p.help) ? p.help.length : true)
-    ).map(plugin => ({
+    const help = Object.values(global.plugins).filter(p => !p.disabled).map(plugin => ({
       help: Array.isArray(plugin.help) ? plugin.help : [plugin.help],
       tags: Array.isArray(plugin.tags) ? plugin.tags : [plugin.tags],
       prefix: 'customPrefix' in plugin,
@@ -62,16 +62,17 @@ const handler = async (m, { conn, usedPrefix: _p }) => {
     }))
 
     let nombreBot = global.namebot || 'Anya Forger'
-    let imgBot = './storage/img/menu3.jpg'
+let imgBot = './storage/img/menu3.jpg'
 
-    const botActual = conn.user?.jid?.split('@')[0].replace(/\D/g, '')
-    const configPath = join('./Serbot', botActual, 'config.json')
+const botActual = conn.user?.jid?.split('@')[0].replace(/\D/g, '')
+const configPath = join('./Serbot', botActual, 'config.json')
     if (fs.existsSync(configPath)) {
       try {
-        const config = JSON.parse(fs.readFileSync(configPath))
+const config = JSON.parse(fs.readFileSync(configPath))
         if (config.name) nombreBot = config.name
         if (config.img) imgBot = config.img
-      } catch (err) {}
+      } catch (err) {
+      }
     }
 
     const menuConfig = conn.menu || defaultMenu
@@ -81,9 +82,9 @@ const handler = async (m, { conn, usedPrefix: _p }) => {
         return [
           menuConfig.header.replace(/%category/g, tags[tag]),
           help.filter(menu => menu.tags?.includes(tag)).map(menu => {
-            return (menu.help || []).map(helpText => {
+            return menu.help.map(helpText => {
               return menuConfig.body
-                .replace(/%cmd/g, (menu.prefix ? helpText : `${_p}${helpText}`) || '')
+                .replace(/%cmd/g, menu.prefix ? helpText : `${_p}${helpText}`)
                 .replace(/%islimit/g, menu.limit ? '◜⭐◞' : '')
                 .replace(/%isPremium/g, menu.premium ? '◜🪪◞' : '')
                 .trim()
@@ -133,6 +134,7 @@ const handler = async (m, { conn, usedPrefix: _p }) => {
 handler.command = ['menu', 'help', 'menú']
 export default handler
 
+// Utilidades
 const more = String.fromCharCode(8206)
 const readMore = more.repeat(4001)
 
