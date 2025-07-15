@@ -1,4 +1,7 @@
-import fs from 'fs'
+import fs from 'fs';
+import { promises as fsp } from 'fs';
+// fs.readFileSync(...) → para síncrona
+// fsp.readFile(...) → para async/await
 import { join } from 'path'
 import fetch from 'node-fetch'
 import { xpRange } from '../lib/levelling.js'
@@ -14,7 +17,8 @@ const tags = {
 }
 
 const defaultMenu = {
-  before: `Hola soy %botname
+  before: `
+Hola soy %botname
 
 ¿Como le va su día?
 
@@ -22,10 +26,12 @@ const defaultMenu = {
 📚 : Baileys :: Multi Device
 💮 : Modo :: Privado
 
-Puedes usar: .setbotname para cambiar el nombre
+> *Puedes usar:*
+.setbotname para cambiar el nombre 
 .setbotimg para cambiar la foto
 
 %readmore`.trimStart(),
+
   header: '%category',
   body: '𝆬🍄ㅤ◌ㅤ%cmd %islimit %isPremium\n',
   footer: '',
@@ -50,60 +56,45 @@ const handler = async (m, { conn, usedPrefix: _p }) => {
     const help = Object.values(global.plugins).filter(p => !p.disabled).map(plugin => ({
       help: Array.isArray(plugin.help) ? plugin.help : [plugin.help],
       tags: Array.isArray(plugin.tags) ? plugin.tags : [plugin.tags],
-      prefix: plugin.customPrefix || false,
+      prefix: 'customPrefix' in plugin,
       limit: plugin.limit,
       premium: plugin.premium
     }))
 
-    let nombreBot = global.namebot || 'Bot'
-    let imgBot = './storage/img/menu3.jpg'
+    let nombreBot = global.namebot || 'Anya Forger'
+let imgBot = './storage/img/menu3.jpg'
 
-    const botActual = conn.user?.jid?.split('@')[0].replace(/\D/g, '')
-    const configPath = join('./Serbot', botActual, 'config.json')
+const botActual = conn.user?.jid?.split('@')[0].replace(/\D/g, '')
+const configPath = join('./Serbot', botActual, 'config.json')
     if (fs.existsSync(configPath)) {
       try {
-        const config = JSON.parse(fs.readFileSync(configPath))
+const config = JSON.parse(fs.readFileSync(configPath))
         if (config.name) nombreBot = config.name
         if (config.img) imgBot = config.img
-      } catch {}
+      } catch (err) {
+      }
     }
-
-    const hour = new Date().getHours()
-    const greetingMap = {
-      0: 'una linda noche 🌙', 1: 'una linda noche 💤', 2: 'una linda noche 🦉',
-      3: 'una linda mañana ✨', 4: 'una linda mañana 💫', 5: 'una linda mañana 🌅',
-      6: 'una linda mañana 🌄', 7: 'una linda mañana 🌅', 8: 'una linda mañana 💫',
-      9: 'una linda mañana ✨', 10: 'un lindo día 🌞', 11: 'un lindo día 🌨',
-      12: 'un lindo día ❄', 13: 'un lindo día 🌤', 14: 'una linda tarde 🌇',
-      15: 'una linda tarde 🥀', 16: 'una linda tarde 🌹', 17: 'una linda tarde 🌆',
-      18: 'una linda noche 🌙', 19: 'una linda noche 🌃', 20: 'una linda noche 🌌',
-      21: 'una linda noche 🌃', 22: 'una linda noche 🌙', 23: 'una linda noche 🌃',
-    }
-    const greeting = 'espero que tengas ' + (greetingMap[hour] || 'un buen día')
 
     const menuConfig = conn.menu || defaultMenu
-
-    let menuText = [
+    const _text = [
       menuConfig.before,
       ...Object.keys(tags).map(tag => {
-        const comandos = help.filter(menu => menu.tags?.includes(tag))
-        if (comandos.length === 0) return ''
         return [
           menuConfig.header.replace(/%category/g, tags[tag]),
-          comandos.map(menu =>
-            menu.help.map(helpText =>
-              menuConfig.body
-                .replace(/%cmd/g, `${(typeof menu.prefix === 'string' ? menu.prefix : _p) || _p}${helpText}`)
+          help.filter(menu => menu.tags?.includes(tag)).map(menu => {
+            return menu.help.map(helpText => {
+              return menuConfig.body
+                .replace(/%cmd/g, menu.prefix ? helpText : `${_p}${helpText}`)
                 .replace(/%islimit/g, menu.limit ? '◜⭐◞' : '')
                 .replace(/%isPremium/g, menu.premium ? '◜🪪◞' : '')
                 .trim()
-            ).join('\n')
-          ).join('\n'),
+            }).join('\n')
+          }).join('\n'),
           menuConfig.footer
         ].join('\n')
       }),
       menuConfig.after
-    ].filter(Boolean).join('\n')
+    ].join('\n')
 
     const replace = {
       '%': '%',
@@ -127,12 +118,13 @@ const handler = async (m, { conn, usedPrefix: _p }) => {
       uptime: clockString(process.uptime() * 1000),
     }
 
-    menuText = menuText.replace(
-      /%(\w+)/g,
-      (_, key) => (replace[key] !== undefined ? replace[key] : '')
+    const text = _text.replace(
+      new RegExp(`%(${Object.keys(replace).sort((a, b) => b.length - a.length).join('|')})`, 'g'),
+      (_, name) => String(replace[name])
     )
 
-    await conn.sendFile(m.chat, imgBot, 'menu.jpg', menuText.trim(), m, null, rcanal)
+    await conn.sendFile(m.chat, imgBot, 'thumbnail.jpg', text.trim(), m, null, rcanal)
+
   } catch (e) {
     conn.reply(m.chat, '❎ Lo sentimos, el menú tiene un error.', m)
     throw e
@@ -142,12 +134,44 @@ const handler = async (m, { conn, usedPrefix: _p }) => {
 handler.command = ['menu', 'help', 'menú']
 export default handler
 
+// Utilidades
 const more = String.fromCharCode(8206)
 const readMore = more.repeat(4001)
 
 function clockString(ms) {
-  const h = Math.floor(ms / 3600000)
-  const m = Math.floor(ms / 60000) % 60
-  const s = Math.floor(ms / 1000) % 60
+  let h = isNaN(ms) ? '--' : Math.floor(ms / 3600000)
+  let m = isNaN(ms) ? '--' : Math.floor(ms / 60000) % 60
+  let s = isNaN(ms) ? '--' : Math.floor(ms / 1000) % 60
   return [h, m, s].map(v => v.toString().padStart(2, '0')).join(':')
 }
+
+const ase = new Date()
+let hour = ase.getHours()
+const greetingMap = {
+  0: 'una linda noche 🌙',
+  1: 'una linda noche 💤',
+  2: 'una linda noche 🦉',
+  3: 'una linda mañana ✨',
+  4: 'una linda mañana 💫',
+  5: 'una linda mañana 🌅',
+  6: 'una linda mañana 🌄',
+  7: 'una linda mañana 🌅',
+  8: 'una linda mañana 💫',
+  9: 'una linda mañana ✨',
+  10: 'un lindo día 🌞',
+  11: 'un lindo día 🌨',
+  12: 'un lindo día ❄',
+  13: 'un lindo día 🌤',
+  14: 'una linda tarde 🌇',
+  15: 'una linda tarde 🥀',
+  16: 'una linda tarde 🌹',
+  17: 'una linda tarde 🌆',
+  18: 'una linda noche 🌙',
+  19: 'una linda noche 🌃',
+  20: 'una linda noche 🌌',
+  21: 'una linda noche 🌃',
+  22: 'una linda noche 🌙',
+  23: 'una linda noche 🌃',
+}
+
+var greeting = 'espero que tengas ' + (greetingMap[hour] || 'un buen día')
