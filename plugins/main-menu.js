@@ -1,7 +1,5 @@
-import fs from 'fs';
-import { promises as fsp } from 'fs';
-// fs.readFileSync(...) → para síncrona
-// fsp.readFile(...) → para async/await
+import fs from 'fs'
+import { promises as fsp } from 'fs'
 import { join } from 'path'
 import fetch from 'node-fetch'
 import { xpRange } from '../lib/levelling.js'
@@ -31,7 +29,6 @@ Hola soy %botname
 .setbotimg para cambiar la foto
 
 %readmore`.trimStart(),
-
   header: '%category',
   body: '𝆬🍄ㅤ◌ㅤ%cmd %islimit %isPremium\n',
   footer: '',
@@ -56,23 +53,22 @@ const handler = async (m, { conn, usedPrefix: _p }) => {
     const help = Object.values(global.plugins).filter(p => !p.disabled).map(plugin => ({
       help: Array.isArray(plugin.help) ? plugin.help : [plugin.help],
       tags: Array.isArray(plugin.tags) ? plugin.tags : [plugin.tags],
-      prefix: 'customPrefix' in plugin,
+      prefix: plugin.customPrefix,
       limit: plugin.limit,
       premium: plugin.premium
     }))
 
     let nombreBot = global.namebot || 'Anya Forger'
-let imgBot = './storage/img/menu3.jpg'
+    let imgBot = './storage/img/menu3.jpg'
+    const botActual = conn.user?.jid?.split('@')[0].replace(/\D/g, '')
+    const configPath = join('./Serbot', botActual, 'config.json')
 
-const botActual = conn.user?.jid?.split('@')[0].replace(/\D/g, '')
-const configPath = join('./Serbot', botActual, 'config.json')
     if (fs.existsSync(configPath)) {
       try {
-const config = JSON.parse(fs.readFileSync(configPath))
+        const config = JSON.parse(fs.readFileSync(configPath))
         if (config.name) nombreBot = config.name
         if (config.img) imgBot = config.img
-      } catch (err) {
-      }
+      } catch (err) {}
     }
 
     const menuConfig = conn.menu || defaultMenu
@@ -83,8 +79,9 @@ const config = JSON.parse(fs.readFileSync(configPath))
           menuConfig.header.replace(/%category/g, tags[tag]),
           help.filter(menu => menu.tags?.includes(tag)).map(menu => {
             return menu.help.map(helpText => {
+              const command = (typeof menu.prefix === 'string') ? `${menu.prefix}${helpText}` : `${_p}${helpText}`
               return menuConfig.body
-                .replace(/%cmd/g, menu.prefix ? helpText : `${_p}${helpText}`)
+                .replace(/%cmd/g, command)
                 .replace(/%islimit/g, menu.limit ? '◜⭐◞' : '')
                 .replace(/%isPremium/g, menu.premium ? '◜🪪◞' : '')
                 .trim()
@@ -134,7 +131,6 @@ const config = JSON.parse(fs.readFileSync(configPath))
 handler.command = ['menu', 'help', 'menú']
 export default handler
 
-// Utilidades
 const more = String.fromCharCode(8206)
 const readMore = more.repeat(4001)
 
