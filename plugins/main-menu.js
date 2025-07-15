@@ -93,7 +93,7 @@ const handler = async (m, { conn, usedPrefix: _p }) => {
           comandos.map(menu =>
             menu.help.map(helpText =>
               menuConfig.body
-                .replace(/%cmd/g, typeof menu.prefix === 'string' ? `${menu.prefix}${helpText}` : `${_p}${helpText}`)
+                .replace(/%cmd/g, `${(typeof menu.prefix === 'string' ? menu.prefix : _p) || _p}${helpText}`)
                 .replace(/%islimit/g, menu.limit ? '◜⭐◞' : '')
                 .replace(/%isPremium/g, menu.premium ? '◜🪪◞' : '')
                 .trim()
