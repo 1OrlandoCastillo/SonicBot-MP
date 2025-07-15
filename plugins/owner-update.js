@@ -1,23 +1,23 @@
 import { execSync } from 'child_process'
 
 let handler = async (m, { conn, text }) => {
-  await m.react('🕓')
+  await conn.sendMessage(m.chat, { react: { text: '🕓', key: m.key } })
 
   const isROwner = global.owner?.some(([id]) => m.sender === (id + '@s.whatsapp.net') || m.sender === id)
 
   if (!isROwner) {
     await conn.reply(m.chat, '🚫 Este comando es solo para los dueños del bot.', m)
-    await m.react('❌')
+    await conn.sendMessage(m.chat, { react: { text: '❌', key: m.key } })
     return
   }
 
   try {
     const stdout = execSync('git pull' + (m.fromMe && text ? ' ' + text : ''))
     await conn.reply(m.chat, `✅ Bot actualizado correctamente:\n\n${stdout.toString()}`, m)
-    await m.react('✅')
+    await conn.sendMessage(m.chat, { react: { text: '✅', key: m.key } })
   } catch (err) {
-    await conn.reply(m.chat, `⚠️ Comando ejecutado por un dueño, pero ocurrió un error:\n\n${err.message}`, m)
-    await m.react('⚠️')
+    await conn.reply(m.chat, `⚠️ El dueño ejecutó el comando pero ocurrió un error:\n\n${err.message}`, m)
+    await conn.sendMessage(m.chat, { react: { text: '⚠️', key: m.key } })
   }
 }
 
