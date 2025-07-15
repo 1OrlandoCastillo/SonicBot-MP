@@ -109,86 +109,88 @@ export async function handler(chatUpdate) {
       }
     }
 
-    let usedPrefix
+    let usedPrefix = ''
 
-    const ___dirname = path.join(path.dirname(fileURLToPath(import.meta.url)), './plugins')
-        for (let name in global.plugins) {
-            let plugin = global.plugins[name]
-            if (!plugin)
-                continue
-            if (plugin.disabled)
-                continue
-            const __filename = join(___dirname, name)
-            if (typeof plugin.all === 'function') {
-                try {
-                    await plugin.all.call(this, m, {
-                        chatUpdate,
-                        __dirname: ___dirname,
-                        __filename
-                    })
-                } catch (e) {
-                    console.error(e)
-                }
-            }
-            if (!opts['restrict'])
-                if (plugin.tags && plugin.tags.includes('admin')) {
-                    continue
-                }
-            const str2Regex = str => str.replace(/[|\\{}()[\]^$+*?.]/g, '\\$&')
-            let _prefix = plugin.customPrefix ? plugin.customPrefix : conn.prefix ? conn.prefix : global.prefix
-            let match = (_prefix instanceof RegExp ? 
-                [[_prefix.exec(m.text), _prefix]] :
-                Array.isArray(_prefix) ?
-                    _prefix.map(p => {
-                        let re = p instanceof RegExp ?
-                            p :
-                            new RegExp(str2Regex(p))
-                        return [re.exec(m.text), re]
-                    }) :
-                    typeof _prefix === 'string' ?
-                        [[new RegExp(str2Regex(_prefix)).exec(m.text), new RegExp(str2Regex(_prefix))]] :
-                        [[[], new RegExp]]
-            ).find(p => p[1])
-            if (typeof plugin.before === 'function') {
-                if (await plugin.before.call(this, m, {
-                    match,
-                    conn: this,
-                    participants,
-                    groupMetadata,
-                    user,
-                    bot,
-                    isROwner,
-                    isOwner,
-                    isRAdmin,
-                    isAdmin,
-                    isBotAdmin,
-                    isPrems,
-                    chatUpdate,
-                    __dirname: ___dirname,
-                    __filename
-                }))
-                    continue
-            }
-            if (typeof plugin !== 'function')
-                continue
-            if ((usedPrefix = (match[0] || '')[0])) {
-                let noPrefix = m.text.replace(usedPrefix, '')
-                let [command, ...args] = noPrefix.trim().split` `.filter(v => v)
-                args = args || []
-                let _args = noPrefix.trim().split` `.slice(1)
-                let text = _args.join` `
-                command = (command || '').toLowerCase()
-                let fail = plugin.fail || global.dfail
-                let isAccept = plugin.command instanceof RegExp ? 
-                    plugin.command.test(command) :
-                    Array.isArray(plugin.command) ?
-                        plugin.command.some(cmd => cmd instanceof RegExp ? 
-                            cmd.test(command) :
-                            cmd === command
-                        ) :
-                        typeof plugin.command === 'string' ? 
-                            plugin.command === command :
-                            false
+    for (let name in global.plugins) {
+      let plugin = global.plugins[name]
+      if (!plugin) continue
+      if (plugin.disabled) continue
+
+      const __filename = join(___dirname, name)
+
+      if (typeof plugin.all === 'function') {
+        try {
+          await plugin.all.call(this, m, {
+            chatUpdate,
+            __dirname: ___dirname,
+            __filename
+          })
+        } catch (e) {
+          console.error(e)
+        }
+      }
+
+      if (!opts['restrict']) {
+        if (plugin.tags && plugin.tags.includes('admin')) continue
+      }
+
+      const str2Regex = str => str.replace(/[|\\{}()[\]^$+*?.]/g, '\\$&')
+      let _prefix = plugin.customPrefix ? plugin.customPrefix : conn.prefix ? conn.prefix : global.prefix
+      let match = (_prefix instanceof RegExp ?
+        [[_prefix.exec(m.text), _prefix]] :
+        Array.isArray(_prefix) ?
+          _prefix.map(p => {
+            let re = p instanceof RegExp ? p : new RegExp(str2Regex(p))
+            return [re.exec(m.text), re]
+          }) :
+          typeof _prefix === 'string' ?
+            [[new RegExp(str2Regex(_prefix)).exec(m.text), new RegExp(str2Regex(_prefix))]] :
+            [[[], new RegExp]]
+      ).find(p => p[1] && p[0])
+
+      const commandText = match?.[0]?.input?.slice(match[0]?.[0]?.length).trim().split(/\s+/)[0]?.toLowerCase()
+
+      const isMatchCommand = plugin.command && (
+        typeof plugin.command === 'string'
+          ? commandText === plugin.command
+          : plugin.command instanceof RegExp
+            ? plugin.command.test(commandText)
+            : Array.isArray(plugin.command)
+              ? plugin.command.includes(commandText)
+              : false
+      )
+
+      if (
+        match &&
+        (usedPrefix = (match[0] || '')[0]) &&
+        isMatchCommand
+      ) {
+        try {
+          await plugin.call(this, m, {
+            match,
+            conn: this,
+            participants,
+            groupMetadata,
+            user,
+            bot,
+            isROwner,
+            isOwner,
+            isRAdmin,
+            isAdmin,
+            isBotAdmin,
+            isPrems,
+            chatUpdate,
+            __dirname: ___dirname,
+            __filename
+          })
+          m.plugin = name
+          m.command = commandText
+        } catch (e) {
+          m.error = e
+          console.error(e)
+        }
+      }
+    }
 
     global.dfail = (type, m, conn) => {
       const msg = {
