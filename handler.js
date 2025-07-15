@@ -146,7 +146,7 @@ export async function handler(chatUpdate) {
           typeof _prefix === 'string' ?
             [[new RegExp(str2Regex(_prefix)).exec(m.text), new RegExp(str2Regex(_prefix))]] :
             [[[], new RegExp]]
-      ).find(p => p[1])
+      ).find(p => p[1] && p[0])
 
       if (typeof plugin.before === 'function') {
         if (await plugin.before.call(this, m, {
@@ -171,6 +171,30 @@ export async function handler(chatUpdate) {
       if (typeof plugin !== 'function') continue
 
       if ((usedPrefix = (match[0] || '')[0])) {
+        try {
+          await plugin.call(this, m, {
+            match,
+            conn: this,
+            participants,
+            groupMetadata,
+            user,
+            bot,
+            isROwner,
+            isOwner,
+            isRAdmin,
+            isAdmin,
+            isBotAdmin,
+            isPrems,
+            chatUpdate,
+            __dirname: ___dirname,
+            __filename
+          })
+          m.plugin = name
+          m.command = match[0].trim().split(/\s+/).shift().toLowerCase()
+        } catch (e) {
+          m.error = e
+          console.error(e)
+        }
       }
     }
 
