@@ -30,7 +30,6 @@ ${conn.user.jid == global.conn.user.jid ? '(Principal Bot)' : '(Prem Bot)'}
 Comandos disponibles para subs:
 ㅤ   .setbotname ꒱ Cambia mi nombre  
 ㅤ   .setbotimg ꒱ Cambia mi imagen
-
 %readmore`.trimStart(),
 
   header: '%category',
