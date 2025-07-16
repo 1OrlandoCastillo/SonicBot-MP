@@ -16,7 +16,7 @@ const tags = {
 
 const defaultMenu = {
   before: `
-Hola soy %botname ${(conn.user.jid === global.conn.user.jid ? '(Principal Bot)' : '(Prem Bot)
+Hola soy %botname ${(conn.user.jid === global.conn.user.jid ? '(Principal Bot)' : '(Prem Bot)'
 
 ¿Como le va su día?
 
@@ -24,7 +24,7 @@ Hola soy %botname ${(conn.user.jid === global.conn.user.jid ? '(Principal Bot)' 
 📚 : Baileys :: Multi Device
 💮 : Modo :: Privado
 
-> *Puedes usar:*
+Puedes usar:
 .setbotname para cambiar el nombre 
 .setbotimg para cambiar la foto
 
