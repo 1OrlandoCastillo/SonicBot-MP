@@ -17,7 +17,7 @@ const tags = {
 const defaultMenu = {
   before: `
 Hola, soy %botname  
-ㅤㅤ                     ${{(conn.user.jid == global.conn.user.jid ? '(Principal Bot)' : '(Prem Bot)')}
+ㅤㅤ                                ${conn.user.jid == global.conn.user.jid ? '(Principal Bot)' : '(Prem Bot)'}
 
 
 ㅤ        ¿Cómo te encuentras hoy, cielo?
