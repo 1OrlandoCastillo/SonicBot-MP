@@ -16,18 +16,19 @@ const tags = {
 
 const defaultMenu = {
   before: `
-Hola soy %botname
-${(conn.user.jid == global.conn.user.jid ? '(Principal Bot)' : '(Prem Bot)')}
+Hola, soy %botname  
+ㅤㅤ                                  ${{(conn.user.jid == global.conn.user.jid ? '(Principal Bot)' : '(Prem Bot)')}
 
-¿Como le va su día?
 
-🪷 : Tiempo :: %uptime
-📚 : Baileys :: Multi Device
-💮 : Modo :: Privado
+ㅤ        ¿Cómo te encuentras hoy, cielo?
 
-Puedes usar:
-.setbotname para cambiar el nombre 
-.setbotimg para cambiar la foto
+ㅤ🪷 : Tiempo      :: %uptime  
+ㅤ📚 : Plataforma  :: Baileys MD  
+ㅤ💮 : Modo        :: Privado
+
+ㅤ     Comandos disponibles para subs:
+ㅤ     ꒰ .setbotname ꒱ Cambia mi nombre  
+ㅤ     ꒰ .setbotimg ꒱ Cambia mi imagen
 
 %readmore`.trimStart(),
 
@@ -153,7 +154,7 @@ const handler = async (m, { conn, usedPrefix: _p }) => {
       (_, name) => String(replace[name])
     )
 
-    await conn.sendFile(m.chat, imgBot, 'thumbnail.jpg', text.trim(), m, null, rcanal)
+    await conn.sendFile(m.chat, imgBot, 'thumbnail.jpg', text.trim(), m, rcanal)
 
   } catch (e) {
     conn.reply(m.chat, '❎ Lo sentimos, el menú tiene un error.', m)
