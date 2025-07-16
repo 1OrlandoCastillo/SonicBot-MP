@@ -26,10 +26,6 @@ ${conn.user.jid == global.conn.user.jid ? '(Principal Bot)' : '(Prem Bot)'}
 ㅤ📚 : Plataforma  :: Baileys MD  
 ㅤ💮 : Modo  :: Privado
 ︶‿︶‿୨♡୧‿︶‿︶
-
-Comandos disponibles para subs:
-ㅤ   .setbotname ꒱ Cambia mi nombre  
-ㅤ   .setbotimg ꒱ Cambia mi imagen
 %readmore`.trimStart(),
 
   header: '%category',
