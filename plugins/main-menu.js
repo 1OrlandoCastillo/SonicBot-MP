@@ -17,7 +17,7 @@ const tags = {
 const defaultMenu = {
   before: `
 Hola, soy %botname  
-ㅤㅤ                                ${conn.user.jid == global.conn.user.jid ? '(Principal Bot)' : '(Prem Bot)'}
+ㅤㅤ                         ${conn.user.jid == global.conn.user.jid ? '(Principal Bot)' : '(Prem Bot)'}
 
 
 ㅤ        ¿Cómo te encuentras hoy, cielo?
@@ -154,7 +154,7 @@ const handler = async (m, { conn, usedPrefix: _p }) => {
       (_, name) => String(replace[name])
     )
 
-    await conn.sendFile(m.chat, imgBot, 'thumbnail.jpg', text.trim(), m, rcanal)
+    await conn.sendFile(m.chat, imgBot, 'thumbnail.jpg', text.trim(), m, null, rcanal)
 
   } catch (e) {
     conn.reply(m.chat, '❎ Lo sentimos, el menú tiene un error.', m)
