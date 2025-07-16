@@ -115,20 +115,6 @@ export async function handler(chatUpdate) {
       if (!plugin) continue
       if (plugin.disabled) continue
 
-      const __filename = join(___dirname, name)
-
-      if (typeof plugin.all === 'function') {
-        try {
-          await plugin.all.call(this, m, {
-            chatUpdate,
-            __dirname: ___dirname,
-            __filename
-          })
-        } catch (e) {
-          console.error(e)
-        }
-      }
-
       if (!opts['restrict']) {
         if (plugin.tags && plugin.tags.includes('admin')) continue
       }
