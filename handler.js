@@ -168,6 +168,12 @@ export async function handler(chatUpdate) {
         try {
           await plugin.call(this, m, {
             match,
+            usedPrefix,
+            noPrefix: m.text.replace(usedPrefix, ''),
+            _args: m.text.trim().split` `.slice(1),
+            args: m.text.trim().split` `.slice(1),
+            command: commandText,
+            text: m.text.trim().split` `.slice(1).join` `,
             conn: this,
             participants,
             groupMetadata,
@@ -181,8 +187,7 @@ export async function handler(chatUpdate) {
             isPrems,
             chatUpdate,
             __dirname: ___dirname,
-            __filename,
-            usedPrefix
+            __filename
           })
           m.plugin = name
           m.command = commandText
