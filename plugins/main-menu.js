@@ -16,7 +16,7 @@ const tags = {
 
 const defaultMenu = {
   before: `
-Hola soy %botname ${(conn.user.jid === global.conn.user.jid ? '(Principal Bot)' : '(Prem Bot)'
+Hola soy %botname
 
 ¿Como le va su día?
 
