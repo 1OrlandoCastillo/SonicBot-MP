@@ -22,9 +22,9 @@ Hola, soy %botname
 
 ㅤ        ¿Cómo te encuentras hoy, cielo?
 
-ㅤ🪷 : Tiempo      :: %uptime  
-ㅤ📚 : Plataforma  :: Baileys MD  
-ㅤ💮 : Modo        :: Privado
+🪷 : Tiempo      :: %uptime  
+📚 : Plataforma  :: Baileys MD  
+💮 : Modo        :: Privado
 
 ㅤ     Comandos disponibles para subs:
 ㅤ     ꒰ .setbotname ꒱ Cambia mi nombre  
