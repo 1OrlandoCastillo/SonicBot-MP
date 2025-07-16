@@ -86,6 +86,7 @@ export async function handler(chatUpdate) {
     if (m.isBaileys) return
     m.exp += Math.ceil(Math.random() * 10)
 
+    let usedPrefix
     const groupMetadata = (m.isGroup ? ((conn.chats[m.chat] || {}).metadata || await this.groupMetadata(m.chat).catch(_ => null)) : {}) || {}
     const participants = (m.isGroup ? groupMetadata.participants : []) || []
     const user = (m.isGroup ? participants.find(u => conn.decodeJid(u.id) === m.sender) : {}) || {}
@@ -95,21 +96,6 @@ export async function handler(chatUpdate) {
     const isBotAdmin = bot?.admin || false
 
     const ___dirname = path.join(path.dirname(fileURLToPath(import.meta.url)), './plugins')
-
-    global.idcanal = '120363403143798163@newsletter'
-    global.namecanal = 'LOVELLOUD Official'
-    global.rcanal = {
-      contextInfo: {
-        isForwarded: true,
-        forwardedNewsletterMessageInfo: {
-          newsletterJid: global.idcanal,
-          serverMessageId: 100,
-          newsletterName: global.namecanal
-        }
-      }
-    }
-
-    let usedPrefix = ''
 
     for (let name in global.plugins) {
       let plugin = global.plugins[name]
@@ -128,10 +114,6 @@ export async function handler(chatUpdate) {
         } catch (e) {
           console.error(e)
         }
-      }
-
-      if (!opts['restrict']) {
-        if (plugin.tags && plugin.tags.includes('admin')) continue
       }
 
       const str2Regex = str => str.replace(/[|\\{}()[\]^$+*?.]/g, '\\$&')
@@ -160,20 +142,11 @@ export async function handler(chatUpdate) {
               : false
       )
 
-      if (
-        match &&
-        (usedPrefix = (match[0] || '')[0]) &&
-        isMatchCommand
-      ) {
+      if (match && (usedPrefix = (match[0] || '')[0]) && isMatchCommand) {
         try {
           await plugin.call(this, m, {
             match,
-            usedPrefix,
-            noPrefix: m.text.replace(usedPrefix, ''),
-            _args: m.text.trim().split` `.slice(1),
-            args: m.text.trim().split` `.slice(1),
-            command: commandText,
-            text: m.text.trim().split` `.slice(1).join` `,
+            usedPrefix, // ✅ SE PASA AQUI
             conn: this,
             participants,
             groupMetadata,
@@ -200,18 +173,18 @@ export async function handler(chatUpdate) {
 
     global.dfail = (type, m, conn) => {
       const msg = {
-        rowner: `✤ Hola, este comando solo puede ser utilizado por el *Creador* de la Bot.`,
-        owner: `✤ Hola, este comando solo puede ser utilizado por el *Creador* de la Bot y *Sub Bots*.`,
-        mods: `✤ Hola, este comando solo puede ser utilizado por los *Moderadores* de la Bot.`,
-        premium: `✤ Hola, este comando solo puede ser utilizado por Usuarios *Premium*.`,
-        group: `✤ Hola, este comando solo puede ser utilizado en *Grupos*.`,
-        private: `✤ Hola, este comando solo puede ser utilizado en mi Chat *Privado*.`,
-        admin: `✤ Hola, este comando solo puede ser utilizado por los *Administradores* del Grupo.`,
-        botAdmin: `✤ Hola, la bot debe ser *Administradora* para ejecutar este Comando.`,
-        unreg: `✤ Hola, para usar este comando debes estar *Registrado.*`,
-        restrict: `✤ Hola, esta característica está *deshabilitada.*`
+        rowner: `✤ Este comando es solo para el *Creador*.`,
+        owner: `✤ Solo puede usar este comando el *Owner/Sub-Bot*.`,
+        mods: `✤ Este comando es solo para *Moderadores*.`,
+        premium: `✤ Este comando es solo para *Premium*.`,
+        group: `✤ Este comando solo se puede usar en *grupos*.`,
+        private: `✤ Este comando solo se puede usar en *privado*.`,
+        admin: `✤ Este comando es solo para *Admins del grupo*.`,
+        botAdmin: `✤ El bot debe ser *Admin* para usar este comando.`,
+        unreg: `✤ Debes estar *registrado* para usar este comando.`,
+        restrict: `✤ Esta función está *restringida*.`
       }[type]
-      if (msg) return conn.reply(m.chat, msg, m, rcanal)
+      if (msg) return conn.reply(m.chat, msg, m, global.rcanal)
     }
 
   } catch (e) {
