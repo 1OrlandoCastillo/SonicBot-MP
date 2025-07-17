@@ -135,65 +135,67 @@ export async function handler(chatUpdate) {
       }
 
       const str2Regex = str => str.replace(/[|\\{}()[\]^$+*?.]/g, '\\$&')
-let _prefix = plugin.customPrefix ? plugin.customPrefix : conn.prefix ? conn.prefix : global.prefix
-let match = (_prefix instanceof RegExp ?
-  [[_prefix.exec(m.text), _prefix]] :
-  Array.isArray(_prefix) ?
-    _prefix.map(p => {
-      let re = p instanceof RegExp ? p : new RegExp(str2Regex(p))
-      return [re.exec(m.text), re]
-    }) :
-    typeof _prefix === 'string' ?
-      [[new RegExp(str2Regex(_prefix)).exec(m.text), new RegExp(str2Regex(_prefix))]] :
-      [[[], new RegExp]]
-).find(p => p[1] && p[0])
+      let _prefix = plugin.customPrefix ? plugin.customPrefix : conn.prefix ? conn.prefix : global.prefix
+      let match = (_prefix instanceof RegExp ?
+        [[_prefix.exec(m.text), _prefix]] :
+        Array.isArray(_prefix) ?
+          _prefix.map(p => {
+            let re = p instanceof RegExp ? p : new RegExp(str2Regex(p))
+            return [re.exec(m.text), re]
+          }) :
+          typeof _prefix === 'string' ?
+            [[new RegExp(str2Regex(_prefix)).exec(m.text), new RegExp(str2Regex(_prefix))]] :
+            [[[], new RegExp]]
+      ).find(p => p[1] && p[0])
 
-if (!match) continue
+      let text = m.text?.slice((match?.[0]?.[0] || '')?.length)?.trim() || ''
+      let args = text.length > 0 ? text.split(/\s+/) : []
+      let commandText = args[0]?.toLowerCase() || ''
 
-usedPrefix = (match[0] || '')[0] || usedPrefix
-let commandText = m.text?.slice((match?.[0]?.length || usedPrefix.length))?.split(/\s+/)?.[0]?.toLowerCase() || ''
-let args = m.text?.slice((match?.[0]?.length || usedPrefix.length))?.trim()?.split(/\s+/) || []
-let text = args.slice(1).join(' ')
+      const isMatchCommand = plugin.command && (
+        typeof plugin.command === 'string'
+          ? commandText === plugin.command
+          : plugin.command instanceof RegExp
+            ? plugin.command.test(commandText)
+            : Array.isArray(plugin.command)
+              ? plugin.command.includes(commandText)
+              : false
+      )
 
-const isMatchCommand = plugin.command && (
-  typeof plugin.command === 'string'
-    ? commandText === plugin.command
-    : plugin.command instanceof RegExp
-      ? plugin.command.test(commandText)
-      : Array.isArray(plugin.command)
-        ? plugin.command.includes(commandText)
-        : false
-)
-
-if (isMatchCommand) {
-  try {
-    await plugin.call(this, m, {
-      match,
-      text,
-      args,
-      conn: this,
-      participants,
-      groupMetadata,
-      user,
-      bot,
-      isROwner,
-      isOwner,
-      isRAdmin,
-      isAdmin,
-      isBotAdmin,
-      isPrems,
-      chatUpdate,
-      __dirname: ___dirname,
-      __filename,
-      usedPrefix
-    })
-    m.plugin = name
-    m.command = commandText
-  } catch (e) {
-    m.error = e
-    console.error(e)
-  }
-}
+      if (
+        match &&
+        (usedPrefix = (match[0] || '')[0]) &&
+        isMatchCommand
+      ) {
+        try {
+          await plugin.call(this, m, {
+            match,
+            text,
+            args,
+            conn: this,
+            participants,
+            groupMetadata,
+            user,
+            bot,
+            isROwner,
+            isOwner,
+            isRAdmin,
+            isAdmin,
+            isBotAdmin,
+            isPrems,
+            chatUpdate,
+            __dirname: ___dirname,
+            __filename,
+            usedPrefix
+          })
+          m.plugin = name
+          m.command = commandText
+        } catch (e) {
+          m.error = e
+          console.error(e)
+        }
+      }
+    }
 
     global.dfail = (type, m, conn) => {
       const msg = {
