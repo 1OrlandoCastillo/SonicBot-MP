@@ -1,3 +1,4 @@
+// ...importaciones
 import { smsg } from './lib/simple.js'
 import { format } from 'util'
 import { fileURLToPath } from 'url'
@@ -60,10 +61,13 @@ export async function handler(chatUpdate) {
     if (opts['nyimak']) return
     if (!m.fromMe && opts['self']) return
     if (opts['swonly'] && m.chat !== 'status@broadcast') return
-    if (typeof m.text !== 'string') m.text = ''
+    if (typeof m.text !== 'string') {
+      console.warn('Mensaje sin texto:', m)
+      m.text = ''
+    }
 
     let _user = global.db.data?.users?.[m.sender]
-    const isROwner = [this.decodeJid(global.conn.user.id), ...global.owner.map(([number]) => number)]
+    const isROwner = [this.decodeJid(global.conn.user.id), ...global.owner.map(([n]) => n)]
       .map(v => v.replace(/[^0-9]/g, '') + '@s.whatsapp.net')
       .includes(m.sender)
 
@@ -74,7 +78,7 @@ export async function handler(chatUpdate) {
     if (opts['queque'] && m.text && !(isMods || isPrems)) {
       let queque = this.msgqueque, time = 1000 * 5
       const previousID = queque[queque.length - 1]
-      queque.push(m.id || m.key.id)
+      queque.push(m.key.id)
       let interval = setInterval(async () => {
         if (queque.indexOf(previousID) === -1) clearInterval(interval)
         await delay(time)
@@ -84,7 +88,17 @@ export async function handler(chatUpdate) {
     if (m.isBaileys) return
     m.exp += Math.ceil(Math.random() * 10)
 
-    const groupMetadata = (m.isGroup ? ((this.chats[m.chat] || {}).metadata || await this.groupMetadata(m.chat).catch(_ => null)) : {}) || {}
+    // --- Cache groupMetadata
+    this._groupMetaCache = this._groupMetaCache || {}
+    if (m.isGroup) {
+      if (!this._groupMetaCache[m.chat] || (Date.now() - this._groupMetaCache[m.chat].fetchedAt) > 10_000) {
+        this._groupMetaCache[m.chat] = {
+          ...(await this.groupMetadata(m.chat).catch(_ => {})) || {},
+          fetchedAt: Date.now()
+        }
+      }
+    }
+    const groupMetadata = m.isGroup ? this._groupMetaCache[m.chat] : {}
     const participants = (m.isGroup ? groupMetadata.participants : []) || []
     const user = (m.isGroup ? participants.find(u => this.decodeJid(u.id) === m.sender) : {}) || {}
     const bot = (m.isGroup ? participants.find(u => this.decodeJid(u.id) == this.user.jid) : {}) || {}
@@ -93,7 +107,6 @@ export async function handler(chatUpdate) {
     const isBotAdmin = bot?.admin || false
 
     const ___dirname = path.join(path.dirname(fileURLToPath(import.meta.url)), './plugins')
-
     global.idcanal = '120363403143798163@newsletter'
     global.namecanal = 'LOVELLOUD Official Channel'
     global.rcanal = {
@@ -108,7 +121,6 @@ export async function handler(chatUpdate) {
     }
 
     let usedPrefix = ''
-
     for (let name in global.plugins) {
       let plugin = global.plugins[name]
       if (!plugin || plugin.disabled) continue
@@ -117,11 +129,7 @@ export async function handler(chatUpdate) {
 
       if (typeof plugin.all === 'function') {
         try {
-          await plugin.all.call(this, m, {
-            chatUpdate,
-            __dirname: ___dirname,
-            __filename
-          })
+          await plugin.all.call(this, m, { chatUpdate, __dirname: ___dirname, __filename })
         } catch (e) {
           console.error(e)
         }
@@ -132,57 +140,34 @@ export async function handler(chatUpdate) {
       }
 
       const str2Regex = str => str.replace(/[|\\{}()[\]^$+*?.]/g, '\\$&')
-      let _prefix = plugin.customPrefix ? plugin.customPrefix : this.prefix ? this.prefix : global.prefix
+      let _prefix = plugin.customPrefix || this.prefix || global.prefix
       let match = (_prefix instanceof RegExp ?
         [[_prefix.exec(m.text), _prefix]] :
         Array.isArray(_prefix) ?
-          _prefix.map(p => {
-            let re = p instanceof RegExp ? p : new RegExp(str2Regex(p))
-            return [re.exec(m.text), re]
-          }) :
-          typeof _prefix === 'string' ?
-            [[new RegExp(str2Regex(_prefix)).exec(m.text), new RegExp(str2Regex(_prefix))]] :
-            [[[], new RegExp]]
+          _prefix.map(p => [new RegExp(str2Regex(p)).exec(m.text), new RegExp(str2Regex(p))]) :
+          [[new RegExp(str2Regex(_prefix)).exec(m.text), new RegExp(str2Regex(_prefix))]]
       ).find(p => p[1])
 
       if (typeof plugin.before === 'function') {
         if (await plugin.before.call(this, m, {
-          match,
-          conn: this,
-          participants,
-          groupMetadata,
-          user,
-          bot,
-          isROwner,
-          isOwner,
-          isRAdmin,
-          isAdmin,
-          isBotAdmin,
-          isPrems,
-          chatUpdate,
-          __dirname: ___dirname,
-          __filename
+          match, conn: this, participants, groupMetadata, user, bot,
+          isROwner, isOwner, isRAdmin, isAdmin, isBotAdmin, isPrems,
+          chatUpdate, __dirname: ___dirname, __filename
         })) continue
       }
 
       if (typeof plugin !== 'function') continue
-
       if ((usedPrefix = (match[0] || '')[0])) {
         let noPrefix = m.text.replace(usedPrefix, '')
         let [command, ...args] = noPrefix.trim().split(/\s+/)
         let text = args.join(' ')
-        let _args = [...args]
         command = (command || '').toLowerCase()
         let fail = plugin.fail || global.dfail
 
         let isAccept = false
-        if (plugin.command instanceof RegExp) {
-          isAccept = plugin.command.test(command)
-        } else if (Array.isArray(plugin.command)) {
-          isAccept = plugin.command.some(cmd => cmd instanceof RegExp ? cmd.test(command) : cmd === command)
-        } else if (typeof plugin.command === 'string') {
-          isAccept = plugin.command === command
-        }
+        if (plugin.command instanceof RegExp) isAccept = plugin.command.test(command)
+        else if (Array.isArray(plugin.command)) isAccept = plugin.command.some(cmd => typeof cmd === 'string' ? cmd === command : cmd.test(command))
+        else if (typeof plugin.command === 'string') isAccept = plugin.command === command
 
         if (!isAccept) continue
         m.plugin = name
@@ -205,27 +190,24 @@ export async function handler(chatUpdate) {
         if (plugin.botAdmin && !isBotAdmin) { fail('botAdmin', m, this); continue }
         if (plugin.admin && !isAdmin) { fail('admin', m, this); continue }
         if (plugin.private && m.isGroup) { fail('private', m, this); continue }
-        if (plugin.register == true && _user.registered == false) { fail('unreg', m, this); continue }
+        if (plugin.register && !_user?.registered) { fail('unreg', m, this); continue }
 
         m.isCommand = true
         let xp = 'exp' in plugin ? parseInt(plugin.exp) : 17
-        if (xp > 200) m.reply('chirrido -_-')
-        else m.exp += xp
+        m.exp += xp
 
         if (!isPrems && plugin.limit && global.db.data.users[m.sender].limit < plugin.limit) {
           this.reply(m.chat, `Se agotaron tus *✿ Lovelloud*`, m, global.rcanal)
           continue
         }
 
-        let extra = {
-          match, usedPrefix, noPrefix, _args, args, command, text,
-          conn: this, participants, groupMetadata, user, bot,
-          isROwner, isOwner, isRAdmin, isAdmin, isBotAdmin,
-          isPrems, chatUpdate, __dirname: ___dirname, __filename
-        }
-
         try {
-          await plugin.call(this, m, extra)
+          await plugin.call(this, m, {
+            match, usedPrefix, noPrefix, args, command, text, conn: this,
+            participants, groupMetadata, user, bot, isROwner, isOwner,
+            isRAdmin, isAdmin, isBotAdmin, isPrems, chatUpdate,
+            __dirname: ___dirname, __filename
+          })
           if (!isPrems) m.limit = m.limit || plugin.limit || false
         } catch (e) {
           m.error = e
@@ -239,7 +221,7 @@ export async function handler(chatUpdate) {
         } finally {
           if (typeof plugin.after === 'function') {
             try {
-              await plugin.after.call(this, m, extra)
+              await plugin.after.call(this, m)
             } catch (e) {
               console.error(e)
             }
@@ -251,28 +233,39 @@ export async function handler(chatUpdate) {
       }
     }
 
-    global.dfail = (type, m, conn) => {
+    global.dfail = async (type, m, conn) => {
       const msg = {
-        rowner: `✤ Hola, este comando solo puede ser utilizado por el *Creador* de la Bot.`,
-        owner: `✤ Hola, este comando solo puede ser utilizado por el *Creador* de la Bot y *Sub Bots*.`,
-        mods: `✤ Hola, este comando solo puede ser utilizado por los *Moderadores* de la Bot.`,
-        premium: `✤ Hola, este comando solo puede ser utilizado por Usuarios *Premium*.`,
-        group: `✤ Hola, este comando solo puede ser utilizado en *Grupos*.`,
-        private: `✤ Hola, este comando solo puede ser utilizado en mi Chat *Privado*.`,
-        admin: `✤ Hola, este comando solo puede ser utilizado por los *Administradores* del Grupo.`,
-        botAdmin: `✤ Hola, la bot debe ser *Administradora* para ejecutar este Comando.`,
-        unreg: `✤ Hola, para usar este comando debes estar *Registrado.*`,
-        restrict: `✤ Hola, esta característica está *deshabilitada.*`
+        rowner: `✤ Este comando es solo para el *Creador*.`,
+        owner: `✤ Solo pueden usarlo el *Creador* y *SubBots*.`,
+        mods: `✤ Solo los *Moderadores* pueden usar esto.`,
+        premium: `✤ Comando exclusivo para *Usuarios Premium*.`,
+        group: `✤ Este comando solo funciona en *Grupos*.`,
+        private: `✤ Este comando solo funciona en *Privado*.`,
+        admin: `✤ Solo los *Administradores* del grupo pueden usarlo.`,
+        botAdmin: `✤ Necesito ser *Administrador* para ejecutar eso.`,
+        unreg: `✤ Debes estar *Registrado* para usar este comando.`,
+        restrict: `✤ Esta función está *restringida* en este bot.`
       }[type]
-      if (msg) return conn.reply(m.chat, msg, m, rcanal).then(() => m.react('✖️'))
+      if (msg) {
+        await conn.reply(m.chat, msg, m, global.rcanal)
+        await conn.sendMessage(m.chat, {
+          react: {
+            text: '✖️',
+            key: m.key
+          }
+        })
+      }
     }
 
   } catch (e) {
     console.error(e)
   } finally {
     if (opts['queque'] && m.text) {
-      const quequeIndex = this.msgqueque.indexOf(m.id || m.key.id)
-      if (quequeIndex !== -1) this.msgqueque.splice(quequeIndex, 1)
+      const msgID = m.key?.id
+      if (msgID) {
+        const i = this.msgqueque.indexOf(msgID)
+        if (i !== -1) this.msgqueque.splice(i, 1)
+      }
     }
 
     let user, stats = global.db.data.stats
@@ -282,18 +275,12 @@ export async function handler(chatUpdate) {
         user.limit -= m.limit * 1
       }
 
-      let stat
       if (m.plugin) {
         let now = +new Date
-        stat = stats[m.plugin] ||= {
-          total: 0,
-          success: 0,
-          last: 0,
-          lastSuccess: 0
-        }
+        let stat = stats[m.plugin] ||= { total: 0, success: 0, last: 0, lastSuccess: 0 }
         stat.total += 1
         stat.last = now
-        if (m.error == null) {
+        if (!m.error) {
           stat.success += 1
           stat.lastSuccess = now
         }
@@ -301,7 +288,7 @@ export async function handler(chatUpdate) {
     }
 
     try {
-      if (!opts['noprint']) await (await import(`./lib/print.js`)).default(m, this)
+      if (!opts['noprint']) await (await import('./lib/print.js')).default(m, this)
     } catch (e) {
       console.log(m, m.quoted, e)
     }
