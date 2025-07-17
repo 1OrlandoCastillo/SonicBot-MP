@@ -146,57 +146,71 @@ export async function handler(chatUpdate) {
           typeof _prefix === 'string' ?
             [[new RegExp(str2Regex(_prefix)).exec(m.text), new RegExp(str2Regex(_prefix))]] :
             [[[], new RegExp]]
-      ).find(p => p[1] && p[0])
+      ).find(p => p[1])
 
-      let commandText = ''
-  if ((usedPrefix = (match?.[0] || '')[0])) {
-  let noPrefix = m.text.replace(usedPrefix, '')
-  let [command, ...args] = noPrefix.trim().split(/\s+/)
-  commandText = (command || '').toLowerCase()
-  }
-
-      const isMatchCommand = plugin.command && (
-        typeof plugin.command === 'string'
-          ? commandText === plugin.command
-          : plugin.command instanceof RegExp
-            ? plugin.command.test(commandText)
-            : Array.isArray(plugin.command)
-              ? plugin.command.includes(commandText)
-              : false
-      )
-
-      if (
-        match &&
-        (usedPrefix = (match[0] || '')[0]) &&
-        isMatchCommand
-      ) {
-        try {
-          await plugin.call(this, m, {
-            match,
-            conn: this,
-            participants,
-            groupMetadata,
-            user,
-            bot,
-            isROwner,
-            isOwner,
-            isRAdmin,
-            isAdmin,
-            isBotAdmin,
-            isPrems,
-            chatUpdate,
-            __dirname: ___dirname,
-            __filename,
-            usedPrefix // SE PASA A LOS PLUGINS
-          })
-          m.plugin = name
-          m.command = commandText
-        } catch (e) {
-          m.error = e
-          console.error(e)
-        }
+      if (typeof plugin.before === 'function') {
+        if (await plugin.before.call(this, m, {
+          match,
+          conn: this,
+          participants,
+          groupMetadata,
+          user,
+          bot,
+          isROwner,
+          isOwner,
+          isRAdmin,
+          isAdmin,
+          isBotAdmin,
+          isPrems,
+          chatUpdate,
+          __dirname: ___dirname,
+          __filename
+        })) continue
       }
-    }
+
+      if (typeof plugin !== 'function') continue
+
+      if ((usedPrefix = (match[0] || '')[0])) {
+        let noPrefix = m.text.replace(usedPrefix, '')
+        let [command, ...args] = noPrefix.trim().split` `.filter(v => v)
+        args = args || []
+        let _args = noPrefix.trim().split` `.slice(1)
+        let text = _args.join` `
+        command = (command || '').toLowerCase()
+        let fail = plugin.fail || global.dfail
+
+        let isAccept = plugin.command instanceof RegExp ?
+          plugin.command.test(command) :
+          Array.isArray(plugin.command) ?
+            plugin.command.some(cmd => cmd instanceof RegExp ?
+              cmd.test(command) :
+              cmd === command) :
+            typeof plugin.command === 'string' ?
+              plugin.command === command :
+              false
+
+        if (!isAccept) continue
+        m.plugin = name
+
+        if (m.chat in global.db.data.chats || m.sender in global.db.data.users) {
+          let chat = global.db.data.chats[m.chat]
+          let user = global.db.data.users[m.sender]
+          let setting = global.db.data.settings[this.user.jid]
+          if (name != 'group-unbanchat.js' && chat?.isBanned) return
+          if (name != 'owner-unbanuser.js' && user?.banned) return
+          if (name != 'owner-unbanbot.js' && setting?.banned) return
+        }
+
+        if (plugin.rowner && plugin.owner && !(isROwner || isOwner)) { fail('owner', m, this); continue }
+        if (plugin.rowner && !isROwner) { fail('rowner', m, this); continue }
+        if (plugin.owner && !isOwner) { fail('owner', m, this); continue }
+        if (plugin.mods && !isMods) { fail('mods', m, this); continue }
+        if (plugin.premium && !isPrems) { fail('premium', m, this); continue }
+        if (plugin.group && !m.isGroup) { fail('group', m, this); continue }
+        if (plugin.botAdmin && !isBotAdmin) { fail('botAdmin', m, this); continue }
+        if (plugin.admin && !isAdmin) { fail('admin', m, this); continue }
+        if (plugin.private && m.isGroup) { fail('private', m, this); continue }
+        if (plugin.register == true && _user.registered == false) { fail('unreg', m, this); continue }
 
     global.dfail = (type, m, conn) => {
       const msg = {
