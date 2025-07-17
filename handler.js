@@ -4,14 +4,10 @@ import { fileURLToPath } from 'url'
 import path, { join } from 'path'
 import { unwatchFile, watchFile } from 'fs'
 import chalk from 'chalk'
-import fetch from 'node-fetch'
 
 const { proto } = (await import('@whiskeysockets/baileys')).default
 const isNumber = x => typeof x === 'number' && !isNaN(x)
-const delay = ms => isNumber(ms) && new Promise(resolve => setTimeout(function () {
-  clearTimeout(this)
-  resolve()
-}, ms))
+const delay = ms => isNumber(ms) && new Promise(resolve => setTimeout(resolve, ms))
 
 export async function handler(chatUpdate) {
   this.msgqueque = this.msgqueque || []
@@ -23,8 +19,7 @@ export async function handler(chatUpdate) {
 
   try {
     m = smsg(this, m) || m
-    if (!m) return
-    if (m.messageStubType) return
+    if (!m || m.messageStubType) return
     m.exp = 0
     m.limit = false
 
@@ -68,7 +63,10 @@ export async function handler(chatUpdate) {
     if (typeof m.text !== 'string') m.text = ''
 
     let _user = global.db.data?.users?.[m.sender]
-    const isROwner = [conn.decodeJid(global.conn.user.id), ...global.owner.map(([number]) => number)].map(v => v.replace(/[^0-9]/g, '') + '@s.whatsapp.net').includes(m.sender)
+    const isROwner = [this.decodeJid(global.conn.user.id), ...global.owner.map(([number]) => number)]
+      .map(v => v.replace(/[^0-9]/g, '') + '@s.whatsapp.net')
+      .includes(m.sender)
+
     const isOwner = isROwner || m.fromMe
     const isMods = isOwner || global.mods.map(v => v.replace(/[^0-9]/g, '') + '@s.whatsapp.net').includes(m.sender)
     const isPrems = isROwner || global.prems.map(v => v.replace(/[^0-9]/g, '') + '@s.whatsapp.net').includes(m.sender) || _user?.prem == true
@@ -77,8 +75,8 @@ export async function handler(chatUpdate) {
       let queque = this.msgqueque, time = 1000 * 5
       const previousID = queque[queque.length - 1]
       queque.push(m.id || m.key.id)
-      setInterval(async function () {
-        if (queque.indexOf(previousID) === -1) clearInterval(this)
+      let interval = setInterval(async () => {
+        if (queque.indexOf(previousID) === -1) clearInterval(interval)
         await delay(time)
       }, time)
     }
@@ -86,10 +84,10 @@ export async function handler(chatUpdate) {
     if (m.isBaileys) return
     m.exp += Math.ceil(Math.random() * 10)
 
-    const groupMetadata = (m.isGroup ? ((conn.chats[m.chat] || {}).metadata || await this.groupMetadata(m.chat).catch(_ => null)) : {}) || {}
+    const groupMetadata = (m.isGroup ? ((this.chats[m.chat] || {}).metadata || await this.groupMetadata(m.chat).catch(_ => null)) : {}) || {}
     const participants = (m.isGroup ? groupMetadata.participants : []) || []
-    const user = (m.isGroup ? participants.find(u => conn.decodeJid(u.id) === m.sender) : {}) || {}
-    const bot = (m.isGroup ? participants.find(u => conn.decodeJid(u.id) == this.user.jid) : {}) || {}
+    const user = (m.isGroup ? participants.find(u => this.decodeJid(u.id) === m.sender) : {}) || {}
+    const bot = (m.isGroup ? participants.find(u => this.decodeJid(u.id) == this.user.jid) : {}) || {}
     const isRAdmin = user?.admin == 'superadmin' || false
     const isAdmin = isRAdmin || user?.admin == 'admin' || false
     const isBotAdmin = bot?.admin || false
@@ -97,22 +95,23 @@ export async function handler(chatUpdate) {
     const ___dirname = path.join(path.dirname(fileURLToPath(import.meta.url)), './plugins')
 
     global.idcanal = '120363403143798163@newsletter'
-    global.namecanal = 'LOVELLOUD Official'
+    global.namecanal = 'LOVELLOUD Official Channel'
     global.rcanal = {
       contextInfo: {
         isForwarded: true,
         forwardedNewsletterMessageInfo: {
-          newsletterJid: global.idcanal,
+          newsletterJid: idcanal,
           serverMessageId: 100,
-          newsletterName: global.namecanal
+          newsletterName: namecanal
         }
       }
     }
 
+    let usedPrefix = ''
+
     for (let name in global.plugins) {
       let plugin = global.plugins[name]
-      if (!plugin) continue
-      if (plugin.disabled) continue
+      if (!plugin || plugin.disabled) continue
 
       const __filename = join(___dirname, name)
 
@@ -133,7 +132,7 @@ export async function handler(chatUpdate) {
       }
 
       const str2Regex = str => str.replace(/[|\\{}()[\]^$+*?.]/g, '\\$&')
-      let _prefix = plugin.customPrefix ? plugin.customPrefix : conn.prefix ? conn.prefix : global.prefix
+      let _prefix = plugin.customPrefix ? plugin.customPrefix : this.prefix ? this.prefix : global.prefix
       let match = (_prefix instanceof RegExp ?
         [[_prefix.exec(m.text), _prefix]] :
         Array.isArray(_prefix) ?
@@ -170,22 +169,20 @@ export async function handler(chatUpdate) {
 
       if ((usedPrefix = (match[0] || '')[0])) {
         let noPrefix = m.text.replace(usedPrefix, '')
-        let [command, ...args] = noPrefix.trim().split` `.filter(v => v)
-        args = args || []
-        let _args = noPrefix.trim().split` `.slice(1)
-        let text = _args.join` `
+        let [command, ...args] = noPrefix.trim().split(/\s+/)
+        let text = args.join(' ')
+        let _args = [...args]
         command = (command || '').toLowerCase()
         let fail = plugin.fail || global.dfail
 
-        let isAccept = plugin.command instanceof RegExp ?
-          plugin.command.test(command) :
-          Array.isArray(plugin.command) ?
-            plugin.command.some(cmd => cmd instanceof RegExp ?
-              cmd.test(command) :
-              cmd === command) :
-            typeof plugin.command === 'string' ?
-              plugin.command === command :
-              false
+        let isAccept = false
+        if (plugin.command instanceof RegExp) {
+          isAccept = plugin.command.test(command)
+        } else if (Array.isArray(plugin.command)) {
+          isAccept = plugin.command.some(cmd => cmd instanceof RegExp ? cmd.test(command) : cmd === command)
+        } else if (typeof plugin.command === 'string') {
+          isAccept = plugin.command === command
+        }
 
         if (!isAccept) continue
         m.plugin = name
@@ -215,8 +212,8 @@ export async function handler(chatUpdate) {
         if (xp > 200) m.reply('chirrido -_-')
         else m.exp += xp
 
-        if (!isPrems && plugin.limit && global.db.data.users[m.sender].limit < plugin.limit * 1) {
-          conn.reply(m.chat, `Se agotaron tus *✿ Lovelloud*`, m, rcanal)
+        if (!isPrems && plugin.limit && global.db.data.users[m.sender].limit < plugin.limit) {
+          this.reply(m.chat, `Se agotaron tus *✿ Lovelloud*`, m, global.rcanal)
           continue
         }
 
@@ -248,7 +245,7 @@ export async function handler(chatUpdate) {
             }
           }
           if (m.limit)
-            conn.reply(m.chat, `Utilizaste *${+m.limit}* ✿`, m, rcanal)
+            this.reply(m.chat, `Utilizaste *${+m.limit}* ✿`, m, global.rcanal)
         }
         break
       }
@@ -310,8 +307,7 @@ export async function handler(chatUpdate) {
     }
 
     const settingsREAD = global.db.data.settings[this.user.jid] || {}
-    if (opts['autoread']) await this.readMessages([m.key])
-    if (settingsREAD.autoread) await this.readMessages([m.key])
+    if (opts['autoread'] || settingsREAD.autoread) await this.readMessages([m.key])
   }
 }
 
