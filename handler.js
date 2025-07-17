@@ -97,14 +97,14 @@ export async function handler(chatUpdate) {
     const ___dirname = path.join(path.dirname(fileURLToPath(import.meta.url)), './plugins')
 
     global.idcanal = '120363403143798163@newsletter'
-    global.namecanal = 'LOVELLOUD Official'
+    global.namecanal = 'LOVELLOUD Official Channel'
     global.rcanal = {
       contextInfo: {
         isForwarded: true,
         forwardedNewsletterMessageInfo: {
-          newsletterJid: global.idcanal,
+          newsletterJid: idcanal,
           serverMessageId: 100,
-          newsletterName: global.namecanal
+          newsletterName: namecanal
         }
       }
     }
@@ -211,23 +211,8 @@ export async function handler(chatUpdate) {
         if (plugin.admin && !isAdmin) { fail('admin', m, this); continue }
         if (plugin.private && m.isGroup) { fail('private', m, this); continue }
         if (plugin.register == true && _user.registered == false) { fail('unreg', m, this); continue }
-
-    global.dfail = (type, m, conn) => {
-      const msg = {
-        rowner: `✤ Hola, este comando solo puede ser utilizado por el *Creador* de la Bot.`,
-        owner: `✤ Hola, este comando solo puede ser utilizado por el *Creador* de la Bot y *Sub Bots*.`,
-        mods: `✤ Hola, este comando solo puede ser utilizado por los *Moderadores* de la Bot.`,
-        premium: `✤ Hola, este comando solo puede ser utilizado por Usuarios *Premium*.`,
-        group: `✤ Hola, este comando solo puede ser utilizado en *Grupos*.`,
-        private: `✤ Hola, este comando solo puede ser utilizado en mi Chat *Privado*.`,
-        admin: `✤ Hola, este comando solo puede ser utilizado por los *Administradores* del Grupo.`,
-        botAdmin: `✤ Hola, la bot debe ser *Administradora* para ejecutar este Comando.`,
-        unreg: `✤ Hola, para usar este comando debes estar *Registrado.*`,
-        restrict: `✤ Hola, esta característica está *deshabilitada.*`
-      }[type]
-      if (msg) return conn.reply(m.chat, msg, m, rcanal)
+      }
     }
-
   } catch (e) {
     console.error(e)
   } finally {
@@ -271,6 +256,22 @@ export async function handler(chatUpdate) {
     if (opts['autoread']) await this.readMessages([m.key])
     if (settingsREAD.autoread) await this.readMessages([m.key])
   }
+}
+
+global.dfail = (type, m, conn) => {
+  const msg = {
+    rowner: `✤ Hola, este comando solo puede ser utilizado por el *Creador* de la Bot.`,
+    owner: `✤ Hola, este comando solo puede ser utilizado por el *Creador* de la Bot y *Sub Bots*.`,
+    mods: `✤ Hola, este comando solo puede ser utilizado por los *Moderadores* de la Bot.`,
+    premium: `✤ Hola, este comando solo puede ser utilizado por Usuarios *Premium*.`,
+    group: `✤ Hola, este comando solo puede ser utilizado en *Grupos*.`,
+    private: `✤ Hola, este comando solo puede ser utilizado en mi Chat *Privado*.`,
+    admin: `✤ Hola, este comando solo puede ser utilizado por los *Administradores* del Grupo.`,
+    botAdmin: `✤ Hola, la bot debe ser *Administradora* para ejecutar este Comando.`,
+    unreg: `✤ Hola, para usar este comando debes estar *Registrado.*`,
+    restrict: `✤ Hola, esta característica está *deshabilitada.*`
+  }[type]
+  if (msg) return conn.reply(m.chat, msg, m, rcanal)
 }
 
 let file = global.__filename(import.meta.url, true)
