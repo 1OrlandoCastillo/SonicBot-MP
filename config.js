@@ -7,10 +7,15 @@ global.owner = [
   ['51928303585', 'Sung', true],
 ]
 
-global.sessions = 'Sessions'
-global.bot = 'Serbot' 
-global.AFBots = true
 
+global.libreria = 'Baileys'
+global.baileys = 'V 6.7.17' 
+global.vs = '2.2.5'
+global.nameqr = 'YukiBot-MD'
+global.namebot = '✿◟Yυƙι-Sυσυ-Bσƚ◞✿'
+global.sessions = 'Sessions'
+global.jadi = 'JadiBots' 
+global.yukiJadibts = true
 global.packname = 'LOVELLOUD'
 global.namebot = 'Anya Forger'
 global.author = 'Sung'
