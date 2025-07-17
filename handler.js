@@ -148,17 +148,24 @@ export async function handler(chatUpdate) {
             [[[], new RegExp]]
       ).find(p => p[1] && p[0])
 
-      const commandText = match?.[0]?.input?.slice(match[0]?.[0]?.length).trim().split(/\s+/)[0]?.toLowerCase()
+      if ((usedPrefix = (match[0] || '')[0])) {
+        let noPrefix = m.text.replace(usedPrefix, '')
+        let [command, ...args] = noPrefix.trim().split` `.filter(v => v)
+        args = args || []
+        let _args = noPrefix.trim().split` `.slice(1)
+        let text = _args.join` `
+        command = (command || '').toLowerCase()
+        let fail = plugin.fail || global.dfail
 
-      const isMatchCommand = plugin.command && (
-        typeof plugin.command === 'string'
-          ? commandText === plugin.command
-          : plugin.command instanceof RegExp
-            ? plugin.command.test(commandText)
-            : Array.isArray(plugin.command)
-              ? plugin.command.includes(commandText)
-              : false
-      )
+        let isAccept = plugin.command instanceof RegExp ?
+          plugin.command.test(command) :
+          Array.isArray(plugin.command) ?
+            plugin.command.some(cmd => cmd instanceof RegExp ?
+              cmd.test(command) :
+              cmd === command) :
+            typeof plugin.command === 'string' ?
+              plugin.command === command :
+              false
 
       if (
         match &&
