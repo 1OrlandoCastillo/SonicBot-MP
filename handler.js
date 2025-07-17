@@ -109,7 +109,7 @@ export async function handler(chatUpdate) {
       }
     }
 
-    let usedPrefix = ''
+    let usedPrefix = '.'
 
     for (let name in global.plugins) {
       let plugin = global.plugins[name]
@@ -181,7 +181,8 @@ export async function handler(chatUpdate) {
             isPrems,
             chatUpdate,
             __dirname: ___dirname,
-            __filename
+            __filename,
+            usedPrefix // SE PASA A LOS PLUGINS
           })
           m.plugin = name
           m.command = commandText
