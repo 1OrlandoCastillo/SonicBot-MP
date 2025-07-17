@@ -67,7 +67,7 @@ export async function handler(chatUpdate) {
     }
 
     let _user = global.db.data?.users?.[m.sender]
-    const isROwner = [this.decodeJid(global.conn.user.id), ...global.owner.map(([n]) => n)]
+    const isROwner = [this.decodeJid(this.user.id), ...global.owner.map(([n]) => n)]
       .map(v => v.replace(/[^0-9]/g, '') + '@s.whatsapp.net')
       .includes(m.sender)
 
