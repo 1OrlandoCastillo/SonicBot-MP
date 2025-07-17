@@ -102,9 +102,9 @@ export async function handler(chatUpdate) {
       contextInfo: {
         isForwarded: true,
         forwardedNewsletterMessageInfo: {
-          newsletterJid: global.idcanal,
+          newsletterJid: idcanal,
           serverMessageId: 100,
-          newsletterName: global.namecanal
+          newsletterName: namecanal
         }
       }
     }
@@ -148,7 +148,9 @@ export async function handler(chatUpdate) {
             [[[], new RegExp]]
       ).find(p => p[1] && p[0])
 
-      const commandText = match?.[0]?.input?.slice(match[0]?.[0]?.length).trim().split(/\s+/)[0]?.toLowerCase()
+      let text = m.text?.slice((match?.[0]?.[0] || '')?.length)?.trim() || ''
+      let args = text.length > 0 ? text.split(/\s+/) : []
+      let commandText = args[0]?.toLowerCase() || ''
 
       const isMatchCommand = plugin.command && (
         typeof plugin.command === 'string'
@@ -168,6 +170,8 @@ export async function handler(chatUpdate) {
         try {
           await plugin.call(this, m, {
             match,
+            text,
+            args,
             conn: this,
             participants,
             groupMetadata,
@@ -182,7 +186,7 @@ export async function handler(chatUpdate) {
             chatUpdate,
             __dirname: ___dirname,
             __filename,
-            usedPrefix // SE PASA A LOS PLUGINS
+            usedPrefix
           })
           m.plugin = name
           m.command = commandText
