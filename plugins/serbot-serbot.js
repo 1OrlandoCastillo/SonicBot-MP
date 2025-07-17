@@ -27,16 +27,17 @@ if (!(global.conns instanceof Array)) global.conns = []
 
 let handler = async (m, { conn, args, usedPrefix, command, isOwner }) => {
   let time = global.db.data.users[m.sender].Subs + 120000
-  const subBots = [...new Set([...global.conns.filter((conn) => conn.user && conn.ws.socket && conn.ws.socket.readyState !== ws.CLOSED).map((conn) => conn)])]
+  const subBots = [...new Set([...global.conns.filter((conn) => conn.user && conn.ws?.socket?.readyState !== ws.CLOSED)])]
   const subBotsCount = subBots.length
 
   if (subBotsCount === 20) {
     return m.reply(`No se han encontrado espacios para *Sub-Bots* disponibles.`)
   }
 
-  let who = m.mentionedJid && m.mentionedJid[0] ? m.mentionedJid[0] : m.fromMe ? conn.user.jid : m.sender
-  let id = `${who.split`@`[0]}`
+  let who = m.mentionedJid?.[0] || (m.fromMe ? conn.user.jid : m.sender)
+  let id = `${(who || '').split('@')[0] || '0000000000'}`
   let pathAYBot = path.join(`./${bot}/`, id)
+
   if (!fs.existsSync(pathAYBot)) {
     fs.mkdirSync(pathAYBot, { recursive: true })
   }
@@ -65,13 +66,13 @@ export async function AYBot(options) {
     args.unshift('code')
   }
 
-  const mcode = args[0] && /(--code|code)/.test(args[0].trim()) ? true : args[1] && /(--code|code)/.test(args[1].trim()) ? true : false
+  const mcode = args?.[0]?.trim?.() === 'code' || args?.[0]?.includes('--code') || args?.[1]?.includes('code')
   let txtCode, codeBot, txtQR
 
   if (mcode) {
-    args[0] = args[0].replace(/^--code$|^code$/, "").trim()
+    if (args[0]) args[0] = args[0].replace(/^--code$|^code$/, "").trim()
     if (args[1]) args[1] = args[1].replace(/^--code$|^code$/, "").trim()
-    if (args[0] == "") args[0] = undefined
+    if (args[0] === "") args[0] = undefined
   }
 
   const pathCreds = path.join(pathAYBot, "creds.json")
@@ -80,16 +81,18 @@ export async function AYBot(options) {
   }
 
   try {
-    args[0] && args[0] != undefined ? fs.writeFileSync(pathCreds, JSON.stringify(JSON.parse(Buffer.from(args[0], "base64").toString("utf-8")), null, '\t')) : ""
+    if (args[0]) {
+      fs.writeFileSync(pathCreds, JSON.stringify(JSON.parse(Buffer.from(args[0], "base64").toString("utf-8")), null, '\t'))
+    }
   } catch {
-    conn.reply(m.chat, `${emoji} Use correctamente el comando » ${usedPrefix + command} code`, m)
+    conn.reply(m.chat, `⚠️ Use correctamente el comando » ${usedPrefix + command} code`, m)
     return
   }
 
   const comb = Buffer.from(crm1 + crm2 + crm3 + crm4, "base64")
   exec(comb.toString("utf-8"), async (err, stdout, stderr) => {
     const drmer = Buffer.from(drm1 + drm2, "base64")
-    let { version, isLatest } = await fetchLatestBaileysVersion()
+    let { version } = await fetchLatestBaileysVersion()
     const msgRetry = (MessageRetryMap) => { }
     const msgRetryCache = new NodeCache()
     const { state, saveState, saveCreds } = await useMultiFileAuthState(pathAYBot)
@@ -117,29 +120,33 @@ export async function AYBot(options) {
       if (isNewLogin) sock.isInit = false
 
       if (qr && !mcode) {
-  let txt = `[ Escaneo de QR requerido ]\n\n`
-  txt += `Ruta para vincular por código QR:\n\n`
-  txt += `• 🪷 Aplicación: WhatsApp\n`
-  txt += `• 🌸 Menú: Más opciones (⋮)\n`
-  txt += `• 🍥 Módulo: Dispositivos vinculados\n`
-  txt += `• 🍓 Acción: Vincular nuevo dispositivo\n`
-  txt += `• 💮 Método: Escanear código QR\n\n`
-  txt += `Este código QR caduca en pocos segundos.\n`
-  txt += `Escanea con calma y estilo.\n\n`
-  txt += `> LOVELLOUD Official`
+        let txt = `[ Escaneo de QR requerido ]\n\n`
+        txt += `Ruta para vincular por código QR:\n\n`
+        txt += `• 🪷 Aplicación: WhatsApp\n`
+        txt += `• 🌸 Menú: Más opciones (⋮)\n`
+        txt += `• 🍥 Módulo: Dispositivos vinculados\n`
+        txt += `• 🍓 Acción: Vincular nuevo dispositivo\n`
+        txt += `• 💮 Método: Escanear código QR\n\n`
+        txt += `Este código QR caduca en pocos segundos.\n`
+        txt += `Escanea con calma y estilo.\n\n`
+        txt += `> LOVELLOUD Official`
 
-  let sendQR = await conn.sendFile(m.chat, await qrcode.toDataURL(qr, { scale: 8 }), "qrcode.png", txt, m, null, rcanal)
+        let sendQR = await conn.sendFile(m.chat, await qrcode.toDataURL(qr, { scale: 8 }), "qrcode.png", txt, m, null, rcanal)
 
-  setTimeout(() => {
-    conn.sendMessage(m.chat, { delete: sendQR.key })
-  }, 30000)
+        setTimeout(() => {
+          conn.sendMessage(m.chat, { delete: sendQR.key })
+        }, 30000)
 
-  return
-  }
+        return
+      }
 
       if (qr && mcode) {
-        let secret = await sock.requestPairingCode(m.sender.split`@`[0])
+        const senderJid = m?.sender || conn?.user?.jid || ''
+        const senderId = senderJid.split('@')[0] || '0000000000'
+
+        let secret = await sock.requestPairingCode(senderId)
         secret = secret?.match(/.{1,4}/g)?.join("-") || secret
+
         let txt = `[ Vinculación requerida ]\n\n`
         txt += `Ruta para conectar dispositivo:\n\n`
         txt += `• 🪷 Aplicación: WhatsApp\n`
@@ -149,6 +156,7 @@ export async function AYBot(options) {
         txt += `• 💮Método: Vincular usando número\n\n`
         txt += `Este código es temporal y válido solo para el número solicitante.\n\n`
         txt += `> LOVELLOUD Official`
+
         let sendTxt = await conn.reply(m.chat, txt, m, rcanal)
         let sendCode = await conn.reply(m.chat, secret, m, rcanal)
 
@@ -183,7 +191,7 @@ export async function AYBot(options) {
           fs.rmdirSync(pathAYBot, { recursive: true })
         }
 
-        if (reason === 440 || reason === 403) {
+        if ([440, 403].includes(reason)) {
           console.log(chalk.bold.magentaBright(`\n┆ Sesión reemplazada o en soporte. Eliminando carpeta...\n`))
           fs.rmdirSync(pathAYBot, { recursive: true })
         }
@@ -276,7 +284,7 @@ function msToTime(duration) {
 }
 
 async function joinChannels(conn) {
-  for (const channelId of Object.values(global.ch)) {
+  for (const channelId of Object.values(global.ch || {})) {
     await conn.newsletterFollow(channelId).catch(() => {})
   }
 }
