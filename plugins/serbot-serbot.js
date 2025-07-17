@@ -37,7 +37,7 @@ let handler = async (m, { conn, args, usedPrefix, command, isOwner }) => {
   let who = (m.mentionedJid && m.mentionedJid[0]) || (m.fromMe && conn?.user?.jid) || m.sender
   if (typeof who !== 'string' || !who.includes('@')) return
   let id = `${who.split`@`[0]}`
-  let pathAYBot = path.join(`./${Serbot}/`, id)
+  let pathAYBot = path.join(`./${bot}/`, id)
   if (!fs.existsSync(pathAYBot)) {
     fs.mkdirSync(pathAYBot, { recursive: true })
   }
