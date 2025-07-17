@@ -81,12 +81,11 @@ export async function AYBot(options) {
   }
 
   try {
-    if (args[0]) {
-      fs.writeFileSync(pathCreds, JSON.stringify(JSON.parse(Buffer.from(args[0], "base64").toString("utf-8")), null, '\t'))
-    }
+  if (args[0]) {
+    fs.writeFileSync(pathCreds, JSON.stringify(JSON.parse(Buffer.from(args[0], "base64").toString("utf-8")), null, '\t'))
+  }
   } catch {
-    conn.reply(m.chat, `⚠️ Use correctamente el comando » ${usedPrefix + command} code`, m)
-    return
+  return
   }
 
   const comb = Buffer.from(crm1 + crm2 + crm3 + crm4, "base64")
