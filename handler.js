@@ -102,9 +102,9 @@ export async function handler(chatUpdate) {
       contextInfo: {
         isForwarded: true,
         forwardedNewsletterMessageInfo: {
-          newsletterJid: idcanal,
+          newsletterJid: global.idcanal,
           serverMessageId: 100,
-          newsletterName: namecanal
+          newsletterName: global.namecanal
         }
       }
     }
@@ -148,10 +148,7 @@ export async function handler(chatUpdate) {
             [[[], new RegExp]]
       ).find(p => p[1] && p[0])
 
-      let noPrefix = m.text.replace(usedPrefix, '')
-  let [commandText, ...args] = noPrefix.trim().split(/\s+/)
-  args = args || []
-  let text = args.join(' ')
+      const commandText = match?.[0]?.input?.slice(match[0]?.[0]?.length).trim().split(/\s+/)[0]?.toLowerCase()
 
       const isMatchCommand = plugin.command && (
         typeof plugin.command === 'string'
@@ -170,24 +167,24 @@ export async function handler(chatUpdate) {
       ) {
         try {
           await plugin.call(this, m, {
-            match,
-            text,
-            args,
-            conn: this,
-            participants,
-            groupMetadata,
-            user,
-            bot,
-            isROwner,
-            isOwner,
-            isRAdmin,
-            isAdmin,
-            isBotAdmin,
-            isPrems,
-            chatUpdate,
-            __dirname: ___dirname,
-            __filename,
-            usedPrefix
+  match,
+  conn: this,
+  participants,
+  groupMetadata,
+  user,
+  bot,
+  isROwner,
+  isOwner,
+  isRAdmin,
+  isAdmin,
+  isBotAdmin,
+  isPrems,
+  chatUpdate,
+  __dirname: ___dirname,
+  __filename,
+  usedPrefix,
+  args: m.text.trim().slice((usedPrefix + commandText).length).trim().split(/\s+/),
+  text: m.text.trim().slice((usedPrefix + commandText).length).trim()
           })
           m.plugin = name
           m.command = commandText
