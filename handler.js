@@ -97,14 +97,14 @@ export async function handler(chatUpdate) {
     const ___dirname = path.join(path.dirname(fileURLToPath(import.meta.url)), './plugins')
 
     global.idcanal = '120363403143798163@newsletter'
-    global.namecanal = 'LOVELLOUD Official'
+    global.namecanal = 'LOVELLOUD Official Channel'
     global.rcanal = {
       contextInfo: {
         isForwarded: true,
         forwardedNewsletterMessageInfo: {
-          newsletterJid: global.idcanal,
+          newsletterJid: idcanal,
           serverMessageId: 100,
-          newsletterName: global.namecanal
+          newsletterName: namecanal
         }
       }
     }
@@ -148,46 +148,48 @@ export async function handler(chatUpdate) {
             [[[], new RegExp]]
       ).find(p => p[1] && p[0])
 
-      const commandText = match?.[0]?.input?.slice(match[0]?.[0]?.length).trim().split(/\s+/)[0]?.toLowerCase()
+      if (!match) continue
+
+      const prefixMatch = match[0]
+      const noPrefix = m.text.slice(prefixMatch[0].length).trim()
+      const [commandText, ...args] = noPrefix.split(/\s+/)
+      const command = commandText?.toLowerCase()
 
       const isMatchCommand = plugin.command && (
         typeof plugin.command === 'string'
-          ? commandText === plugin.command
+          ? command === plugin.command
           : plugin.command instanceof RegExp
-            ? plugin.command.test(commandText)
+            ? plugin.command.test(command)
             : Array.isArray(plugin.command)
-              ? plugin.command.includes(commandText)
+              ? plugin.command.includes(command)
               : false
       )
 
-      if (
-        match &&
-        (usedPrefix = (match[0] || '')[0]) &&
-        isMatchCommand
-      ) {
+      if (isMatchCommand) {
         try {
           await plugin.call(this, m, {
-  match,
-  conn: this,
-  participants,
-  groupMetadata,
-  user,
-  bot,
-  isROwner,
-  isOwner,
-  isRAdmin,
-  isAdmin,
-  isBotAdmin,
-  isPrems,
-  chatUpdate,
-  __dirname: ___dirname,
-  __filename,
-  usedPrefix,
-  args: m.text.trim().slice((usedPrefix + commandText).length).trim().split(/\s+/),
-  text: m.text.trim().slice((usedPrefix + commandText).length).trim()
+            match,
+            conn: this,
+            participants,
+            groupMetadata,
+            user,
+            bot,
+            isROwner,
+            isOwner,
+            isRAdmin,
+            isAdmin,
+            isBotAdmin,
+            isPrems,
+            chatUpdate,
+            __dirname: ___dirname,
+            __filename,
+            usedPrefix: prefixMatch[0],
+            command,
+            args
           })
           m.plugin = name
-          m.command = commandText
+          m.command = command
+          m.args = args
         } catch (e) {
           m.error = e
           console.error(e)
