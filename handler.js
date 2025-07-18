@@ -148,9 +148,10 @@ export async function handler(chatUpdate) {
             [[[], new RegExp]]
       ).find(p => p[1] && p[0])
 
-      let text = m.text?.slice((match?.[0]?.[0] || '')?.length)?.trim() || ''
-      let args = text.length > 0 ? text.split(/\s+/) : []
-      let commandText = args[0]?.toLowerCase() || ''
+      let noPrefix = m.text.replace(usedPrefix, '')
+  let [commandText, ...args] = noPrefix.trim().split(/\s+/)
+  args = args || []
+  let text = args.join(' ')
 
       const isMatchCommand = plugin.command && (
         typeof plugin.command === 'string'
