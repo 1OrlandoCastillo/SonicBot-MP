@@ -186,7 +186,7 @@ for (let name in global.plugins) {
         usedPrefix: prefixMatch[0],  
         command,  
         args,  
-        text: noPrefix.trim()
+        text: args.join(' ').trim()
       })  
       m.plugin = name  
       m.command = command  
