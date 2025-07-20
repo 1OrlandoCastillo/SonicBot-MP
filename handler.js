@@ -260,70 +260,71 @@ global.rcanal = {
       }
     }
 
-    global.dfail = (type, m, conn) => {
-      const msg = {
-        rowner: `✤ Hola, este comando solo puede ser utilizado por el *Creador* de la Bot.`,
-        owner: `✤ Hola, este comando solo puede ser utilizado por el *Creador* de la Bot y *Sub Bots*.`,
-        mods: `✤ Hola, este comando solo puede ser utilizado por los *Moderadores* de la Bot.`,
-        premium: `✤ Hola, este comando solo puede ser utilizado por Usuarios *Premium*.`,
-        group: `✤ Hola, este comando solo puede ser utilizado en *Grupos*.`,
-        private: `✤ Hola, este comando solo puede ser utilizado en mi Chat *Privado*.`,
-        admin: `✤ Hola, este comando solo puede ser utilizado por los *Administradores* del Grupo.`,
-        botAdmin: `✤ Hola, la bot debe ser *Administradora* para ejecutar este Comando.`,
-        unreg: `✤ Hola, para usar este comando debes estar *Registrado.*`,
-        restrict: `✤ Hola, esta característica está *deshabilitada.*`
-      }[type]
-      if (msg) return conn.reply(m.chat, msg, m, rcanal).then(() => m.react('✖️'))
-    }
+    global.dfail = (type, m, conn) => {  
+  const msg = {  
+    rowner: `✤ Hola, este comando solo puede ser utilizado por el *Creador* de la Bot.`,  
+    owner: `✤ Hola, este comando solo puede ser utilizado por el *Creador* de la Bot y *Sub Bots*.`,  
+    mods: `✤ Hola, este comando solo puede ser utilizado por los *Moderadores* de la Bot.`,  
+    premium: `✤ Hola, este comando solo puede ser utilizado por Usuarios *Premium*.`,  
+    group: `✤ Hola, este comando solo puede ser utilizado en *Grupos*.`,  
+    private: `✤ Hola, este comando solo puede ser utilizado en mi Chat *Privado*.`,  
+    admin: `✤ Hola, este comando solo puede ser utilizado por los *Administradores* del Grupo.`,  
+    botAdmin: `✤ Hola, la bot debe ser *Administradora* para ejecutar este Comando.`,  
+    unreg: `✤ Hola, para usar este comando debes estar *Registrado.*`,  
+    restrict: `✤ Hola, esta característica está *deshabilitada.*`  
+  }[type]  
+  if (msg) return conn.reply(m.chat, msg, m, rcanal)  
+}
 
-  } catch (e) {
-    console.error(e)
-  } finally {
-    if (opts['queque'] && m.text) {
-      const quequeIndex = this.msgqueque.indexOf(m.id || m.key.id)
-      if (quequeIndex !== -1) this.msgqueque.splice(quequeIndex, 1)
-    }
+} catch (e) {
+console.error(e)
+} finally {
+if (opts['queque'] && m.text) {
+const quequeIndex = this.msgqueque.indexOf(m.id || m.key.id)
+if (quequeIndex !== -1) this.msgqueque.splice(quequeIndex, 1)
+}
 
-    let user, stats = global.db.data.stats
-    if (m) {
-      if (m.sender && (user = global.db.data.users[m.sender])) {
-        user.exp += m.exp
-        user.limit -= m.limit * 1
-      }
+let user, stats = global.db.data.stats  
+if (m) {  
+  if (m.sender && (user = global.db.data.users[m.sender])) {  
+    user.exp += m.exp  
+    user.limit -= m.limit * 1  
+  }  
 
-      let stat
-      if (m.plugin) {
-        let now = +new Date
-        stat = stats[m.plugin] ||= {
-          total: 0,
-          success: 0,
-          last: 0,
-          lastSuccess: 0
-        }
-        stat.total += 1
-        stat.last = now
-        if (m.error == null) {
-          stat.success += 1
-          stat.lastSuccess = now
-        }
-      }
-    }
+  let stat  
+  if (m.plugin) {  
+    let now = +new Date  
+    stat = stats[m.plugin] ||= {  
+      total: 0,  
+      success: 0,  
+      last: 0,  
+      lastSuccess: 0  
+    }  
+    stat.total += 1  
+    stat.last = now  
+    if (m.error == null) {  
+      stat.success += 1  
+      stat.lastSuccess = now  
+    }  
+  }  
+}  
 
-    try {
-      if (!opts['noprint']) await (await import(`./lib/print.js`)).default(m, this)
-    } catch (e) {
-      console.log(m, m.quoted, e)
-    }
+try {  
+  if (!opts['noprint']) await (await import(`./lib/print.js`)).default(m, this)  
+} catch (e) {  
+  console.log(m, m.quoted, e)  
+}  
 
-    const settingsREAD = global.db.data.settings[this.user.jid] || {}
-    if (opts['autoread']) await this.readMessages([m.key])
-    if (settingsREAD.autoread) await this.readMessages([m.key])
-  }
+const settingsREAD = global.db.data.settings[this.user.jid] || {}  
+if (opts['autoread']) await this.readMessages([m.key])  
+if (settingsREAD.autoread) await this.readMessages([m.key])
+
+}
 }
 
 let file = global.__filename(import.meta.url, true)
 watchFile(file, async () => {
-  unwatchFile(file)
-  console.log(chalk.magenta("Se actualizó 'handler.js'"))
-  if (global.reloadHandler) console.log(await global.reloadHandler())
+unwatchFile(file)
+console.log(chalk.magenta("Se actualizó 'handler.js'"))
+if (global.reloadHandler) console.log(await global.reloadHandler())
 })
