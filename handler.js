@@ -97,6 +97,19 @@ export async function handler(chatUpdate) {
 
     const ___dirname = path.join(path.dirname(fileURLToPath(import.meta.url)), './plugins')
 
+global.idcanal = '120363403143798163@newsletter'  
+global.namecanal = 'LOVELLOUD Official Channel'  
+global.rcanal = {  
+  contextInfo: {  
+    isForwarded: true,  
+    forwardedNewsletterMessageInfo: {  
+      newsletterJid: idcanal,  
+      serverMessageId: 100,  
+      newsletterName: namecanal  
+    }  
+  }  
+}  
+
     for (let name in global.plugins) {
       let plugin = global.plugins[name]
       if (!plugin) continue
