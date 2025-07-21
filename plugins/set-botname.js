@@ -12,11 +12,10 @@ let handler = async (m, { conn, usedPrefix, command, text, args }) => {
     try {
       const config = JSON.parse(fs.readFileSync(configPath, 'utf-8'))
       if (config.name) nombreBot = config.name
-    } catch (err) {}
+    } catch {}
   }
 
-  const senderNumber = m.sender.replace(/[^0-9]/g, '')
-  const botPath = path.join('./Serbot', senderNumber)
+  const botPath = path.join('./Serbot', botActual)
 
   if (!fs.existsSync(botPath)) {
     return conn.reply(m.chat, `💭 Lo siento, no encontré ninguna sesión activa vinculada a tu número...\n\n🌸 Puede que aún no te hayas conectado\n🍥 O quizá tu sesión haya expirado sin avisarme\n🪷 Si deseas iniciar una nueva, estaré aquí para ayudarte\n\n🎀 Usa el comando :: .qr o .code para comenzar\n🍓 Asistente :: ${nombreBot}\n\n> LOVELLOUD Official`, m, rcanal)
