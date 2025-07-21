@@ -19,7 +19,7 @@ const tags = {
 const defaultMenu = {
   before: `
 Hola, soy %botname  
-${conn.user.jid == global.conn.user.jid ? '(Principal Bot)' : '(Prem Bot)'}
+(%tipo)
 
 ¿Cómo te encuentras hoy, cielo?
 
@@ -73,6 +73,10 @@ const config = JSON.parse(fs.readFileSync(configPath))
       }
     }
 
+    const tipo = botActual === '+5363172635'.replace(/\D/g, '')
+      ? 'Principal Bot'
+      : 'Prem Bot'
+
     const menuConfig = conn.menu || defaultMenu
     const _text = [
       menuConfig.before,
@@ -111,6 +115,7 @@ const config = JSON.parse(fs.readFileSync(configPath))
       time,
       totalreg,
       rtotalreg,
+      tipo,
       readmore: readMore,
       greeting,
       uptime: clockString(process.uptime() * 1000),
