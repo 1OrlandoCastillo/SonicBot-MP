@@ -1,4 +1,4 @@
-import { smsg } from './lib/simple.js'
+.import { smsg } from './lib/simple.js'
 import { format } from 'util'
 import { fileURLToPath } from 'url'
 import path, { join } from 'path'
@@ -167,8 +167,7 @@ for (let name in global.plugins) {
 
   if (isMatchCommand) {  
     try {  
-      if (typeof plugin.before === 'function') {
-        if (await plugin.before.call(this, m, {
+      await plugin.call(this, m, {  
         match,  
         conn: this,  
         participants,  
