@@ -167,7 +167,8 @@ for (let name in global.plugins) {
 
   if (isMatchCommand) {  
     try {  
-      await plugin.call(this, m, {  
+      if (typeof plugin.before === 'function') {
+        if (await plugin.before.call(this, m, {
         match,  
         conn: this,  
         participants,  
