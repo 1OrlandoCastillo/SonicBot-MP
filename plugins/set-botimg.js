@@ -19,14 +19,14 @@ const handler = async (m, { conn, usedPrefix, command }) => {
   const configPath = path.join(botPath, 'config.json')
 
   if (!fs.existsSync(botPath) || !fs.existsSync(configPath)) {
-    return conn.reply(m.chat, `¿Hola, cómo te va?\n\nNo encontré sesión activa vinculada a tu número.\n\nPuede que aún no te hayas conectado\n\nSi deseas iniciar una nueva usa el comando:\n\n* ⪩݁   🩰̼ᩥ  ::   .qr\n* ⪩݁   🥛̼ᩥ  ::   .code\n\n> LOVELLOUD Official`, m, rcanal)
+    return conn.reply(m.chat, `¿Hola, cómo te va?\n\n* No encontré una sesión activa vinculada a tu número\n\n* Puede que aún no te hayas conectado\n\n* Si deseas iniciar una nueva, estaré aquí para ayudarte\n\n> LOVELLOUD Official`, m, rcanal)
   }
 
   const q = m.quoted || m
   const mime = (q.msg || q).mimetype || ''
 
   if (!/image\/(jpe?g|png|webp)/.test(mime)) {
-    return conn.reply(m.chat, `Para continuar, necesito que respondas a una imagen.\n\n¿Podrías enviarme una y luego responderla con el comando?\n\n꒰ 🪷 ꒱ Envía o reenvía una imagen\n꒰ 🍨 ꒱ Respóndela con .setbotimg\n\n> LOVELLOUD Official`, m, rcanal)
+    return conn.reply(m.chat, `Para continuar, necesito que respondas a una imagen.\n\n* ¿Podrías enviarme una y luego responderla con el comando?\n\n* Envía o reenvía una imagen respóndela con .setbotimg\n\n> LOVELLOUD Official`, m, rcanal)
   }
 
   try {
@@ -44,7 +44,7 @@ const handler = async (m, { conn, usedPrefix, command }) => {
     config.img = filePath
     fs.writeFileSync(configPath, JSON.stringify(config, null, 2))
 
-    return conn.reply(m.chat, `¡Imagen recibida con elegancia!\n\nTu imagen personalizada ha sido guardada correctamente.\n\nPuedes cambiarla nuevamente cuando lo desees\n\n🪷ㅤ◌ㅤ 🪴ㅤ◌ㅤ 🍄ㅤ◌ㅤ 🍁ㅤ◌ㅤ 🪵ㅤ◌ㅤ ☔ㅤ◌\n\n> LOVELLOUD Official`, m, rcanal)
+    return conn.reply(m.chat, `¡Imagen recibida con elegancia!\n\n* Tu imagen personalizada ha sido guardada correctamente\n\n* Puedes cambiarla nuevamente cuando lo desees\n\nLOVELLOUD Official`, m, rcanal)
   } catch (e) {
     return conn.reply(m.chat, `💥 Ocurrió un error al guardar tu imagen...\n\n🌸 Inténtalo nuevamente o asegúrate de que sea una imagen válida.\n\n🍓 Asistente :: ${nombreBot}\n\n> LOVELLOUD Official`, m, rcanal)
   }
