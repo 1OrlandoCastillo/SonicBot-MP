@@ -19,11 +19,11 @@ let handler = async (m, { conn, usedPrefix, command, text, args }) => {
   const botPath = path.join('./Serbot', senderNumber)
 
   if (!fs.existsSync(botPath)) {
-    return conn.reply(m.chat, `Hola, ¿cómo te va?\n\nNo encontré sesión activa vinculada a tu número.\n\n🍁ㅤ◌ㅤ.setbotname ${nombreBot}\n\nSi deseas comenzar una nueva, usa el comando .qr o .code para conectarte\n\n> LOVELLOUD Official`, m, rcanal)
+    return conn.reply(m.chat, `¿Hola, cómo te va?\n\n* No encontré una sesión activa vinculada a tu número\n\n* Puede que aún no te hayas conectado\n\n* Si deseas iniciar una nueva, estaré aquí para ayudarte\n\n> LOVELLOUD Official`, m, rcanal)
   }
 
   if (!text) return conn.reply(m.chat, `Necesito un nombre para continuar, cielo.
-¿Podrías decírmelo con dulzura?\n\n🪷ㅤ◌ㅤ.setbotname BLACKPINK\n🪴ㅤ◌ㅤ.setbotname ${nombreBot}\n🍄ㅤ◌ㅤ.setbotname LaLisa\n\n> LOVELLOUD Official`, m, rcanal)
+¿Podrías decírmelo con dulzura?\n\n* .setbotname BLACKPINK\n* .setbotname ${nombreBot}\n* .setbotname LaLisa\n\n> LOVELLOUD Official`, m, rcanal)
 
   const configPathUser = path.join(botPath, 'config.json')
   let config = {}
@@ -38,7 +38,7 @@ let handler = async (m, { conn, usedPrefix, command, text, args }) => {
 
   try {
     fs.writeFileSync(configPathUser, JSON.stringify(config, null, 2))
-    return conn.reply(m.chat, `¡Nuevo nombre recibido con gracia!\n\n🪷ㅤ◌ㅤNombre (${text.trim()})\n\nSi cambias de opinión, puedes volver a nombrarme cuando gustes\n\n> LOVELLOUD Official`, m, rcanal)
+    return conn.reply(m.chat, `¡Nuevo nombre recibido con gracia!\n\n* Nombre (${text.trim()})\n\n* Si cambias de opinión, puedes volver a nombrarme cuando gustes\n\n> LOVELLOUD Official`, m, rcanal)
   } catch {}
 }
 
