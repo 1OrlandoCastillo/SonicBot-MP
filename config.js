@@ -7,17 +7,6 @@ global.owner = [
   ['51928303585', 'Sung', true],
 ]
 
-global.libreria = 'MayBailyes'
-global.baileys = 'V 6.7.16'
-global.vs = '2.2.0'
-global.nameqr = 'SoyMaycol'
-global.namebotttt = 'MaycolAIUltraMD'
-global.namebot = '𝐌𝐚𝐲𝐜𝐨𝐥𝐀𝐈𝐔𝐥𝐭𝐫𝐚-𝐌𝐃'
-global.personaje = 'Hanako Kun'
-global.sessions = './MayBots/Principal'
-global.jadi = 'MayBots'
-global.yukiJadibts = true
-
 global.sessions = 'Sessions'
 global.bot = 'Serbot' 
 global.AFBots = true
