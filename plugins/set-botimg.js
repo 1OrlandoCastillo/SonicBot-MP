@@ -44,7 +44,7 @@ const handler = async (m, { conn, usedPrefix, command }) => {
     config.img = filePath
     fs.writeFileSync(configPath, JSON.stringify(config, null, 2))
 
-    return conn.reply(m.chat, `¡Imagen recibida con elegancia!\n\n* Tu imagen personalizada ha sido guardada correctamente\n\n* Puedes cambiarla nuevamente cuando lo desees\n\nLOVELLOUD Official`, m, rcanal)
+    return conn.reply(m.chat, `¡Imagen recibida con elegancia!\n\n* Tu imagen personalizada ha sido guardada correctamente\n\n* Puedes cambiarla nuevamente cuando lo desees\n\n> LOVELLOUD Official`, m, rcanal)
   } catch (e) {
     return conn.reply(m.chat, `💥 Ocurrió un error al guardar tu imagen...\n\n🌸 Inténtalo nuevamente o asegúrate de que sea una imagen válida.\n\n🍓 Asistente :: ${nombreBot}\n\n> LOVELLOUD Official`, m, rcanal)
   }
