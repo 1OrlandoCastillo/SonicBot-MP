@@ -7,6 +7,15 @@ global.owner = [
   ['51928303585', 'Sung', true],
 ]
 
+global.libreria = 'Baileys'
+global.baileys = 'V 6.7.8'
+global.vs = '2.0.0'
+global.languaje = 'Español'
+global.nameqr = 'black clover- Bot'
+global.sessions = 'blackSession'
+global.jadi = 'blackJadiBot'
+global.blackJadibts = true
+
 global.sessions = 'Sessions'
 global.bot = 'Serbot' 
 global.AFBots = true
