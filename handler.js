@@ -24,15 +24,6 @@ if (global.db.data == null) await global.loadDatabase()
 try {
 m = smsg(this, m) || m
 if (!m) return
-
-m.react = async (emoji) => {
-  return await this.sendMessage(m.chat, {
-    react: {
-      text: emoji,
-      key: m.key
-    }
-  })
-}
 if (m.messageStubType) return
 m.exp = 0
 m.limit = false
