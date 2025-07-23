@@ -14,12 +14,10 @@ let handler = async (m, { conn, usedPrefix, command, text, args }) => {
       const config = JSON.parse(fs.readFileSync(configPath, 'utf-8'))
       if (config.name) nombreBot = config.name
       if (config.img) imgBot = config.img
-    } catch (err) { }
+    } catch (err) {}
   }
 
   if (!text) return conn.reply(m.chat, `🪷 : Acción :: Búsqueda en YouTube\n🎀 : Instrucción :: Escriba un nombre, título o descripción\n⛩️ : Comando :: .yts\n🍥 : Ejemplo 1 :: .yts BLACKPINK – Pink Venom\n🌸 : Ejemplo 2 :: .yts Documental sobre el té\n💮 : Ejemplo 3 :: .yts Canción suave para estudiar\n🌼 : Estado :: Esperando solicitud\n🍓 : Asistente :: ${nombreBot}\n\n> LOVELLOUD Official`, m, rcanal)
-
-  await m.react('🕓')
 
   try {
     const { data } = await axios.get(`https://api.starlights.uk/api/search/youtube?q=q=${encodeURIComponent(text)}`)
@@ -39,13 +37,8 @@ let handler = async (m, { conn, usedPrefix, command, text, args }) => {
       }
 
       await conn.sendFile(m.chat, imgBot, 'thumbnail.jpg', txt, m, null, rcanal)
-      await m.react('✅')
-    } else {
-      await m.react('✖️')
     }
-  } catch {
-    await m.react('✖️')
-  }
+  } catch {}
 }
 
 handler.tags = ['search']
