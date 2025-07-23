@@ -23,7 +23,7 @@ let handler = async (m, { conn, usedPrefix, command, text, args }) => {
   }
 
   if (!text) return conn.reply(m.chat, `Necesito un nombre para continuar, cielo.
-¿Podrías decírmelo con dulzura?\n\n* .setbotname BLACKPINK\n* .setbotname ${nombreBot}\n* .setbotname LaLisa\n\n> LOVELLOUD Official`, m, rcanal)
+¿Podrías decírmelo con dulzura?\n\nEjemplo:\n\n* .setbotname BLACKPINK\n* .setbotname ${nombreBot}\n\n> LOVELLOUD Official`, m, rcanal)
 
   const configPathUser = path.join(botPath, 'config.json')
   let config = {}
