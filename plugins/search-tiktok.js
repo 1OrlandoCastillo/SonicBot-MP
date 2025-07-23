@@ -14,12 +14,10 @@ let handler = async (m, { conn, usedPrefix, command, text, args }) => {
       const config = JSON.parse(fs.readFileSync(configPath, 'utf-8'))
       if (config.name) nombreBot = config.name
       if (config.img) imgBot = config.img
-    } catch (err) { }
+    } catch (err) {}
   }
 
   if (!text) return conn.reply(m.chat, `🪷 : Acción :: Búsqueda en TikTok\n🎀 : Instrucción :: Escriba un nombre, título o descripción\n⛩️ : Comando :: .tts\n🍥 : Ejemplo 1 :: .tts Recetas fáciles\n🌸 : Ejemplo 2 :: .tts Trucos de estudio\n💮 : Ejemplo 3 :: .tts Moda coreana\n🌼 : Estado :: Esperando solicitud\n🍓 : Asistente :: ${nombreBot}\n\n> LOVELLOUD Official`, m, rcanal)
-
-  await m.react('🕓')
 
   try {
     const { data } = await axios.get(`https://apis-starlights-team.koyeb.app/starlight/tiktoksearch?text=${encodeURIComponent(text)}`)
@@ -37,13 +35,8 @@ let handler = async (m, { conn, usedPrefix, command, text, args }) => {
       }
 
       await conn.sendFile(m.chat, imgBot, 'thumbnail.jpg', txt, m, null, rcanal)
-      await m.react('✅')
-    } else {
-      await m.react('✖️')
     }
-  } catch {
-    await m.react('✖️')
-  }
+  } catch {}
 }
 
 handler.tags = ['search']
