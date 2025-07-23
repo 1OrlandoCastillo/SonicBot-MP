@@ -17,7 +17,8 @@ let handler = async (m, { conn, usedPrefix, command, text, args }) => {
     } catch (err) {}
   }
 
-  if (!text) return conn.reply(m.chat, `🪷 : Acción :: Búsqueda en TikTok\n🎀 : Instrucción :: Escriba un nombre, título o descripción\n⛩️ : Comando :: .tts\n🍥 : Ejemplo 1 :: .tts Recetas fáciles\n🌸 : Ejemplo 2 :: .tts Trucos de estudio\n💮 : Ejemplo 3 :: .tts Moda coreana\n🌼 : Estado :: Esperando solicitud\n🍓 : Asistente :: ${nombreBot}\n\n> LOVELLOUD Official`, m, rcanal)
+  if (!text) return conn.reply(m.chat, `¿Qué te gustaría ver en TikTok, cielo?\nSolo dime el nombre, y con dulzura te lo buscaré\n\nEjemplo:\n\n* .tts BLACKPINK\n
+* .tts Videos de gatos\n\nBuscaré con cariño y te mostraré los TikToks más populares y adorables.\n\n> LOVELLOUD Official`, m, rcanal)
 
   try {
     const { data } = await axios.get(`https://apis-starlights-team.koyeb.app/starlight/tiktoksearch?text=${encodeURIComponent(text)}`)
@@ -29,9 +30,9 @@ let handler = async (m, { conn, usedPrefix, command, text, args }) => {
       for (let i = 0; i < (results.length >= 15 ? 15 : results.length); i++) {
         const video = results[i]
         txt += `\n\n`
-        txt += `*◦Nro →* ${i + 1}\n`
-        txt += `*◦Título →* ${video.title || 'Sin título'}\n`
-        txt += `*◦Url →* ${video.url}`
+        txt += `* Nro → ${i + 1}\n`
+        txt += `* Título → ${video.title || 'Sin título'}\n`
+        txt += `* Url → ${video.url}`
       }
 
       await conn.sendFile(m.chat, imgBot, 'thumbnail.jpg', txt, m, null, rcanal)
