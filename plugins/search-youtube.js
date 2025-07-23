@@ -17,7 +17,7 @@ let handler = async (m, { conn, usedPrefix, command, text, args }) => {
     } catch (err) {}
   }
 
-  if (!text) return conn.reply(m.chat, `¿Qué te gustaría ver en YouTube, cielo?\nSolo dime el nombre, y con gusto te lo buscare\n\nEjemplo:\n\n* .yts BLACKPINK – Pink Venom\n* .yts Paulo Londra\n\nBuscaré con cariño y te mostraré lo más relevante que encuentre.\n\n> LOVELLOUD Official`, m, rcanal)
+  if (!text) return conn.reply(m.chat, `¿Qué te gustaría ver en YouTube, cielo?\nSolo dime el nombre, y con gusto te lo buscare\n\nEjemplo:\n\n* .yts BLACKPINK – Pink Venom\n\n* .yts Paulo Londra\n\nBuscaré con cariño y te mostraré lo más relevante que encuentre.\n\n> LOVELLOUD Official`, m, rcanal)
 
   try {
     const { data } = await axios.get(`https://api.starlights.uk/api/search/youtube?q=q=${encodeURIComponent(text)}`)
