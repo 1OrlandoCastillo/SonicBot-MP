@@ -14,7 +14,7 @@ let handler = async (m, { conn }) => {
   let user = global.db.data.users[who]
 
   let imgBot = './storage/img/menu3.jpg'
-  let coinName = 'Coins'
+  let moneyName = 'Money'
 
   const botActual = conn.user?.jid?.split('@')[0].replace(/\D/g, '')
   const configPath = join('./Serbot', botActual, 'config.json')
@@ -23,7 +23,7 @@ let handler = async (m, { conn }) => {
     try {
       const config = JSON.parse(fs.readFileSync(configPath))
       if (config.img) imgBot = config.img
-      if (config.coinName) coinName = config.coinName
+      if (config.moneyName) moneyName = config.moneyName
     } catch (err) {}
   }
 
@@ -43,13 +43,13 @@ let handler = async (m, { conn }) => {
   txt += `🌸 : Género :: Sin especificar\n\n`
   txt += `🍓 : Experiencia :: ${exp}\n`
   txt += `🍥 : Nivel :: ${level}\n\n`
-  txt += `🪷 : ${coinName} :: ${user.money?.toLocaleString() || 0}\n\n`
+  txt += `🪷 : ${moneyName} :: ${user.money?.toLocaleString() || 0}\n\n`
   txt += `> LOVELLOUD Official`
 
   await conn.sendFile(m.chat, img, 'perfil.jpg', txt, m, null, rcanal)
 }
 
-handler.help = ['perfil', 'profile']
+handler.help = ['profile']
 handler.tags = ['rg']
 handler.command = /^(perfil|profile)$/i
 
