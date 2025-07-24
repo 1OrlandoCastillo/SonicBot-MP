@@ -22,7 +22,7 @@ let handler = async (m, { conn }) => {
   if (fs.existsSync(configPath)) {
     try {
       const config = JSON.parse(fs.readFileSync(configPath))
-      if (config.coinName) coinName = config.coinName
+      if (config.coinName) moneyName = config.moneyName
     } catch (err) {}
   }
 
@@ -45,3 +45,4 @@ function segundosAHMS(segundos) {
   const minutos = Math.floor((segundos % 3600) / 60)
   const segundosRestantes = segundos % 60
   return `${minutos} minutos y ${segundosRestantes} segundos`
+}
