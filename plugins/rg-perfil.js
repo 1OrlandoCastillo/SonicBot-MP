@@ -24,7 +24,7 @@ let handler = async (m, { conn }) => {
     } catch (err) {}
   }
 
-  let { exp, limit, name, registered, age, level } = user
+  let { pts, limit, name, registered, age, level } = user
   let { min, xp } = xpRange(level, global.multiplier)
   let prem = global.prems.includes(who.split`@`[0])
   
@@ -36,8 +36,8 @@ let handler = async (m, { conn }) => {
     img = fs.readFileSync(imgBot)
   }
 
-   let txt = `🍥 XP :: ${exp} (${user.exp - min}/${xp})\n\n`
-   txt += `> LOVELLOUD Official`
+  let txt = `🍥 PTS :: ${pts} (${pts - min}/${xp})\n\n`
+  txt += `> LOVELLOUD Official`
 
   await conn.sendFile(m.chat, img, 'perfil.jpg', txt, m, null, rcanal)
 }
