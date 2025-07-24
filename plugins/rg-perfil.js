@@ -28,7 +28,7 @@ let handler = async (m, { conn }) => {
 
   let img = await (await fetch(`${pp}`)).buffer()
   let txt = `🍥 XP :: ${exp} (${user.exp - min}/${xp})\n`
-  await conn.sendFile(m.chat, img, 'thumbnail.jpg', txt, m, null rcanal)
+  await conn.sendFile(m.chat, img, 'thumbnail.jpg', txt, m, null, rcanal)
 }
 
 handler.help = ['profile']
