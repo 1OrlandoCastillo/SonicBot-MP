@@ -1,4 +1,4 @@
-const moneyValues = [1, 50, 100, 500, 1000, 2500, 5000, 10000, 15000, 20000, 25000, 50000, 75000, 100000]
+const moneyValues = [1, 3, 5, 6, 7, 9, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95, 99, 100, 110, 120, 130, 505, 1000, 1111]
 const cooldowns = {}
 
 let handler = async (m, { conn }) => {
@@ -7,19 +7,19 @@ let handler = async (m, { conn }) => {
 
   if (cooldowns[m.sender] && Date.now() - cooldowns[m.sender] < tiempoEspera * 1000) {
     const tiempoRestante = segundosAHMS(Math.ceil((cooldowns[m.sender] + tiempoEspera * 1000 - Date.now()) / 1000))
-    conn.reply(m.chat, `🚩 Ya reclamaste tu recompensa.\nEspera ⏱ *${tiempoRestante}* para volver a usar este comando.\n\n💰 *Posibles recompensas*: ${moneyValues.map(v => v.toLocaleString()).join(', ')}`, m, rcanal)
+    conn.reply(m.chat, `¿Hola estás bien, corazón?\nYa reclamaste tu recompensa.\n\nEspera:\n\n* ${tiempoRestante} para volver a usar este comando.\n\n* Posibles recompensas: ${moneyValues.map(v => v.toLocaleString()).join(', ')}\n\n> LOVELLOUD Official`, m, rcanal)
     return
   }
 
   const recompensa = moneyValues[Math.floor(Math.random() * moneyValues.length)]
   user.money = (user.money || 0) + recompensa
 
-  conn.reply(m.chat, `🎁 Recompensa reclamada:\nRecibiste *${recompensa.toLocaleString()} 💰 coins*.`, m, rcanal)
+  conn.reply(m.chat, `¡Recompensa reclamada con éxito, sigue así!\n\n* Coins (${recompensa.toLocaleString()})\n\n* Cada pequeña acción construye tu camino hacia la grandeza.\n\n> LOVELLOUD Official`, m, rcanal)
 
   cooldowns[m.sender] = Date.now()
 }
 
-handler.help = ['claim']
+handler.help = ['daily']
 handler.tags = ['rpg']
 handler.command = ['daily', 'claim']
 
