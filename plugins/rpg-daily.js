@@ -10,11 +10,23 @@ let handler = async (m, { conn }) => {
     conn.reply(m.chat, `¿Hola estás bien, corazón?\nYa reclamaste tu recompensa.\n\nEspera:\n\n* ${tiempoRestante} para volver a usar este comando.\n\n* Posibles recompensas: ${moneyValues.map(v => v.toLocaleString()).join(', ')}\n\n> LOVELLOUD Official`, m, rcanal)
     return
   }
+  
+  let coinName = 'Coins'
+
+  const botActual = conn.user?.jid?.split('@')[0].replace(/\D/g, '')
+  const configPath = join('./Serbot', botActual, 'config.json')
+
+  if (fs.existsSync(configPath)) {
+    try {
+      const config = JSON.parse(fs.readFileSync(configPath))
+      if (config.coinName) coinName = config.coinName
+    } catch (err) {}
+  }
 
   const recompensa = moneyValues[Math.floor(Math.random() * moneyValues.length)]
   user.money = (user.money || 0) + recompensa
 
-  conn.reply(m.chat, `¡Recompensa reclamada con éxito, sigue así!\n\n* Coins (${recompensa.toLocaleString()})\n\n* Cada pequeña acción construye tu camino hacia la grandeza.\n\n> LOVELLOUD Official`, m, rcanal)
+  conn.reply(m.chat, `¡Recompensa reclamada con éxito, sigue así!\n\n* ${coinName} (${recompensa.toLocaleString()})\n\n* Cada pequeña acción construye tu camino hacia la grandeza.\n\n> LOVELLOUD Official`, m, rcanal)
 
   cooldowns[m.sender] = Date.now()
 }
