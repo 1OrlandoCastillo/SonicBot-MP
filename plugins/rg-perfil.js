@@ -1,27 +1,37 @@
 import { xpRange } from '../lib/levelling.js'
 import PhoneNumber from 'awesome-phonenumber'
 import fetch from 'node-fetch'
+import fs from 'fs'
+import { join } from 'path'
 
 let handler = async (m, { conn }) => {
-let who = m.mentionedJid && m.mentionedJid[0] ? m.mentionedJid[0] : m.fromMe ? conn.user.jid : m.sender
+  let who = m.mentionedJid && m.mentionedJid[0] ? m.mentionedJid[0] : m.fromMe ? conn.user.jid : m.sender
 
   let user = global.db.data.users[who]
-  let pp = await conn.profilePictureUrl(who, 'image').catch(_ => 'https://i.pinimg.com/736x/e9/73/17/e97317c8d423564fbaed0d9fc5554355.jpg')
+
+  let imgBot = './storage/img/menu3.jpg'
+  const botActual = conn.user?.jid?.split('@')[0].replace(/\D/g, '')
+  const configPath = join('./Serbot', botActual, 'config.json')
+  if (fs.existsSync(configPath)) {
+    try {
+      const config = JSON.parse(fs.readFileSync(configPath))
+      if (config.img) imgBot = config.img
+    } catch (err) {}
+  }
+
+  let pp = await conn.profilePictureUrl(who, 'image').catch(_ => imgBot)
+
   let { exp, limit, name, registered, age, level } = global.db.data.users[who]
   let { min, xp } = xpRange(user.level, global.multiplier)
 
   let prem = global.prems.includes(who.split`@`[0])
 
   let img = await (await fetch(`${pp}`)).buffer()
-  let txt = ` –  *P E R F I L  -  U S E R*\n\n`
-      txt += `│  ✩  *Estrellas* : ${limit}\n`
-      txt += `│  ✩  *Nivel* : ${level}\n`
-      txt += `│  ✩  *XP* : Total ${exp} (${user.exp - min}/${xp})\n`
-      txt += `│  ✩  *Premium* : ${prem ? 'Si' : 'No'}`
-await conn.sendFile(m.chat, img, 'thumbnail.jpg', txt, m)
+  let txt = `🍥 XP :: ${exp} (${user.exp - min}/${xp})\n`
+  await conn.sendFile(m.chat, img, 'thumbnail.jpg', txt, m, null rcanal)
 }
 
-handler.help = ['perfil', 'perfil *@user*']
+handler.help = ['profile']
 handler.tags = ['rg']
 handler.command = /^(perfil|profile)$/i
 
