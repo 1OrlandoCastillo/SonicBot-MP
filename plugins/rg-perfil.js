@@ -36,9 +36,11 @@ let handler = async (m, { conn }) => {
     img = fs.readFileSync(imgBot)
   }
 
-  let txt = `* Experiencia :: ${exp}\n`
-  txt += `* Nivel :: ${level}\n\n`
-  txt += `* Coins :: ${user.money?.toLocaleString() || 0}\n\n`
+  let txt = `💮 : Cumpleaños :: Sin especificar\n`
+  txt += `🌸 : Género :: Sin especificar\n\n`
+  txt += `🍓 : Experiencia :: ${exp}\n`
+  txt += `🍥 : Nivel :: ${level}\n\n`
+  txt += `🪷 : Coins :: ${user.money?.toLocaleString() || 0}\n\n`
   txt += `> LOVELLOUD Official`
 
   await conn.sendFile(m.chat, img, 'perfil.jpg', txt, m, null, rcanal)
