@@ -1,4 +1,4 @@
-import fs from 'fs'
+.import fs from 'fs'
 import path from 'path'
 
 let handler = async (m, { conn, text }) => {
@@ -9,7 +9,7 @@ let handler = async (m, { conn, text }) => {
     return conn.reply(m.chat, `¿Hola, cómo te va?\n\n* No encontré una sesión activa vinculada a tu número\n\n* Puede que aún no te hayas conectado\n\n* Si deseas iniciar una nueva, estaré aquí para ayudarte\n\n> LOVELLOUD Official, m, rcanal)
   }
 
-  if (!text) return conn.reply(m.chat, `Indícame con qué nombre quieres llamar a la moneda, para continuar. cielo\n\nEjemplo:\n\n* .setcoinname Galletas\n* .setcoinname Corazones\n\n> LOVELLOUD Official`, m, rcanal)
+  if (!text) return conn.reply(m.chat, `Indícame con qué nombre quieres llamar a la moneda, para continuar. cielo\n\nEjemplo:\n\n* .setbotcoins Galletas\n\n* .setbotcoins Corazones\n\n> LOVELLOUD Official`, m, rcanal)
 
   const configPath = path.join(botPath, 'config.json')
   let config = {}
