@@ -18,7 +18,7 @@ let handler = async (m, { conn, usedPrefix, command, text, args }) => {
   if (!text) return conn.reply(m.chat, `¿Estás bien, corazón?\nSi algo pesa en tu alma, estoy aquí… para escucharte, sin juicios, con cariño.\n\n* A veces, las preguntas más silenciosas son las que más gritan por dentro\n\n* Hay silencios que duelen más que mil palabras no dichas\n\n> LOVELLOUD Official`, m, rcanal)
 
   try {
-    let api = await fetch(`https://api-pbt.onrender.com/api/ai/model/deepseek?texto=${encodeURIComponent(text)}&apikey=8jkh5icbf05`)
+    let api = await fetch(`https://www.bytebazz.store/api/ai/model/deepseek?texto=${encodeURIComponent(text)}&apikey=8jkh5icbf05`)
     let json = await api.json()
 
     if (json?.data) {
