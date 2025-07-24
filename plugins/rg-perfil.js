@@ -37,7 +37,7 @@ let handler = async (m, { conn }) => {
   }
 
    let txt = `🍥 XP :: ${exp} (${user.exp - min}/${xp})\n\n`
-       txt += `> LOVELLOUD Official
+   txt += `> LOVELLOUD Official`
 
   await conn.sendFile(m.chat, img, 'perfil.jpg', txt, m, null, rcanal)
 }
