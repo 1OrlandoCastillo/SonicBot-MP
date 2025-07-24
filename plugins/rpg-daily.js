@@ -14,7 +14,7 @@ let handler = async (m, { conn }) => {
     return
   }
   
-  let coinName = 'Coins'
+  let moneyName = 'Money'
 
   const botActual = conn.user?.jid?.split('@')[0].replace(/\D/g, '')
   const configPath = join('./Serbot', botActual, 'config.json')
@@ -29,7 +29,7 @@ let handler = async (m, { conn }) => {
   const recompensa = moneyValues[Math.floor(Math.random() * moneyValues.length)]
   user.money = (user.money || 0) + recompensa
 
-  conn.reply(m.chat, `¡Recompensa reclamada con éxito, sigue así!\n\n* ${coinName} (${recompensa.toLocaleString()})\n\n* Cada pequeña acción construye tu camino hacia la grandeza.\n\n> LOVELLOUD Official`, m, rcanal)
+  conn.reply(m.chat, `¡Recompensa reclamada con éxito, sigue así!\n\n* ${moneyName} (${recompensa.toLocaleString()})\n\n* Cada pequeña acción construye tu camino hacia la grandeza.\n\n> LOVELLOUD Official`, m, rcanal)
 
   cooldowns[m.sender] = Date.now()
 }
@@ -45,4 +45,3 @@ function segundosAHMS(segundos) {
   const minutos = Math.floor((segundos % 3600) / 60)
   const segundosRestantes = segundos % 60
   return `${minutos} minutos y ${segundosRestantes} segundos`
-}
