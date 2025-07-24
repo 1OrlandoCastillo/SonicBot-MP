@@ -33,7 +33,7 @@ let handler = async (m, { conn, usedPrefix, command, text, args }) => {
     } catch {}
   }
 
-  config.name = text.trim()
+  config.coinName = text.trim()
 
   try {
     fs.writeFileSync(configPathUser, JSON.stringify(config, null, 2))
