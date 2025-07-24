@@ -38,7 +38,7 @@ let handler = async (m, { conn }) => {
 
   let txt = `* Experiencia :: ${exp}\n`
   txt += `* Nivel :: ${level}\n\n`
-  txt += `* Coins :: 0\n\n`
+  txt += `* Coins :: ${user.money?.toLocaleString() || 0}\n\n`
   txt += `> LOVELLOUD Official`
 
   await conn.sendFile(m.chat, img, 'perfil.jpg', txt, m, null, rcanal)
