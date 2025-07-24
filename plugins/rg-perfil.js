@@ -36,7 +36,8 @@ let handler = async (m, { conn }) => {
     img = fs.readFileSync(imgBot)
   }
 
-   let txt = `🍥 XP :: ${exp} (${user.exp - min}/${xp})\n`
+   let txt = `🍥 XP :: ${exp} (${user.exp - min}/${xp})\n\n`
+       txt = `> LOVELLOUD Official
 
   await conn.sendFile(m.chat, img, 'perfil.jpg', txt, m, null, rcanal)
 }
