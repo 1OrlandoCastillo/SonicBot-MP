@@ -1,3 +1,4 @@
+
 import fs from 'fs';
 import { promises as fsp } from 'fs';
 // fs.readFileSync(...) → para síncrona
@@ -8,6 +9,8 @@ import { xpRange } from '../lib/levelling.js'
 
 const tags = {
   serbot: 'ㅤㅤㅤㅤ꒰ 🪷 ꒱ㅤㅤSubbots',
+  rpg: 'ㅤㅤㅤㅤ꒰ 💮 ꒱ㅤㅤGames',
+  rg: 'ㅤㅤㅤㅤ꒰ 🌼 ꒱ㅤㅤProfile',
   search: 'ㅤㅤㅤㅤ꒰ 🍨 ꒱ㅤㅤSearchs',
   downloader: 'ㅤㅤㅤㅤ꒰ 🍓 ꒱ㅤㅤDownloaders',
   group: 'ㅤㅤㅤㅤ꒰ 🍥 ꒱ㅤㅤGroups',
