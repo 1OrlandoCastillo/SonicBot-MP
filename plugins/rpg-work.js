@@ -1,3 +1,6 @@
+import fs from 'fs'
+import { join } from 'path'
+
 let cooldowns = {}
 
 let handler = async (m, { conn, isPrems }) => {
