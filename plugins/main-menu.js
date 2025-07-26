@@ -3,12 +3,12 @@ import { join } from 'path'
 import { xpRange } from '../lib/levelling.js'
 
 const tags = {
-  serbot: 'ㅤㅤㅤㅤ꒰ 🪷 ꒱ㅤㅤSubbots',
-  rpg: 'ㅤㅤㅤㅤ꒰ 💮 ꒱ㅤㅤGames',
-  rg: 'ㅤㅤㅤㅤ꒰ 🌼 ꒱ㅤㅤProfile',
+  serbot: '➺ 𖦹 ִֶָ𐀔 ₊˚ ༘⋆  *Sub-bots* 𖤓\n\n✧ Comandos para crear, enlazar y gestionar tu propio bot personal.',
+  rpg: '➺ 𖦹 ִֶָ𐀔 ₊˚ ༘⋆  *Economía* 𖤓\n\n✧ Comandos para trabajar, jugar y hacer dinero con estilo.',
+  rg: '➺ 𖦹 ִֶָ𐀔 ₊˚ ༘⋆  *Perfiles* 𖤓\n\n✧ Comandos para ver, personalizar y destacar tu perfil.',
   search: 'ㅤㅤㅤㅤ꒰ 🍨 ꒱ㅤㅤSearchs',
-  downloader: 'ㅤㅤㅤㅤ꒰ 🍓 ꒱ㅤㅤDownloaders',
-  group: 'ㅤㅤㅤㅤ꒰ 🍥 ꒱ㅤㅤGroups',
+  downloader: '➺ 𖦹 ִֶָ𐀔 ₊˚ ༘⋆  *Descargas* 𖤓\n\n✧ Comandos para obtener música, videos y más desde distintas fuentes.',
+  group: '➺ 𖦹 ִֶָ𐀔 ₊˚ ༘⋆  *Administración* 𖤓\n\n✧ Comandos exclusivos para gestionar y moderar grupos.',
   tools: 'ㅤㅤㅤㅤ꒰ 🩰 ꒱ㅤㅤTools',
   sticker: 'ㅤㅤㅤㅤ꒰ 🌸 ꒱ㅤㅤStickers',
   owner: 'ㅤㅤㅤㅤ꒰ 🍈 ꒱ㅤㅤOwner',
