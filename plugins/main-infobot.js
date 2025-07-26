@@ -72,8 +72,8 @@ let handler = async (m, { conn, usedPrefix }) => {
   await conn.sendFile(m.chat, imgBot, 'thumbnail.jpg', txt, m, null, rcanal)
 }
 
-handler.help = ['info']
-handler.tags = ['main']
+handler.help = ['botinfo', 'infobot' '\n\n→ Obtener información única y original del bot']
+handler.tags = ['subbots']
 handler.command = ['info', 'infobot']
 
 export default handler
