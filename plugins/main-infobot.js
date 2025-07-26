@@ -73,27 +73,40 @@ let handler = async (m, { conn, usedPrefix }) => {
   const configPath = join('./Serbot', botActual, 'config.json')
 
   let nombreBot = global.namebot || 'Anya Forger'
+  let moneyName = 'Money'
   let imgBot = './storage/img/menu3.jpg'
 
   if (fs.existsSync(configPath)) {
     try {
       const config = JSON.parse(fs.readFileSync(configPath, 'utf-8'))
       if (config.name) nombreBot = config.name
+      if (config.coinName) moneyName = config.moneyName
       if (config.img) imgBot = config.img
     } catch (err) { }
   }
+  
+  const tipo = botActual === '+5363172635'.replace(/\D/g, '')
+      ? 'Principal Bot'
+      : 'Prem Bot'
+      
+  const replace = {
+      '%': '%',
+      tipo,
+    }
 
   let timestamp = speed()
   let latensi = speed() - timestamp
 
-  let txt = `🪷 : Nombre largo :: ${nombreBot}\n`
-  txt += `🎀 : Nombre corto :: ${nombreBot}\n`
-  txt += `⛩️ : Prefijo :: ${usedPrefix}\n`
-  txt += `🍥 : Plugins :: ${totalf}\n`
-  txt += `🌸 : Speed :: ${latensi.toFixed(4)} ms\n`
-  txt += `💮 : Host :: Akirax\n`
-  txt += `🌼 : Conectad@ :: Akirax_1\n`
-  txt += `🍓 : Dueño :: Oculto por seguridad\n`
+  let txt = `Nombre largo : ${nombreBot}\n`
+  txt += `Nombre corto : ${nombreBot}\n`
+  txt += `Moneda oficial   : ${moneyName}\n\n`
+  txt += `Prefijo : ${usedPrefix}\n`
+  txt += `Plugins :: ${totalf}\n`
+  txt += `Speed :: ${latensi.toFixed(4)} ms\n\n`
+  txt += `Servidor host : Akirax\n`
+  txt += `Nodo conectado : Akirax_1\n`
+  txt += `Tipo de bot : %tipo\n`
+  txt += `Propietario : Oculto por seguridad\n`
   txt += `\n> LOVELLOUD Official`
 
   await conn.sendFile(m.chat, imgBot, 'thumbnail.jpg', txt, m, null, rcanal)
