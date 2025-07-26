@@ -101,7 +101,6 @@ let handler = async (m, { conn, usedPrefix }) => {
   txt += `Servidor host : Akirax\n`
   txt += `Nodo conectado : Akirax_1\n`
   txt += `Tipo de bot : ${tipo}\n`
-  txt += `Propietario : Oculto por seguridad\n`
   txt += `\n> LOVELLOUD Official`
 
   await conn.sendFile(m.chat, imgBot, 'thumbnail.jpg', txt, m, null, rcanal)
