@@ -88,11 +88,6 @@ let handler = async (m, { conn, usedPrefix }) => {
   const tipo = botActual === '+5363172635'.replace(/\D/g, '')
       ? 'Principal Bot'
       : 'Prem Bot'
-      
-  const replace = {
-      '%': '%',
-      tipo,
-    }
 
   let timestamp = speed()
   let latensi = speed() - timestamp
@@ -105,7 +100,7 @@ let handler = async (m, { conn, usedPrefix }) => {
   txt += `Speed :: ${latensi.toFixed(4)} ms\n\n`
   txt += `Servidor host : Akirax\n`
   txt += `Nodo conectado : Akirax_1\n`
-  txt += `Tipo de bot : %tipo\n`
+  txt += `Tipo de bot : ${tipo}\n`
   txt += `Propietario : Oculto por seguridad\n`
   txt += `\n> LOVELLOUD Official`
 
