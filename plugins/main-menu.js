@@ -1,10 +1,5 @@
-
-import fs from 'fs';
-import { promises as fsp } from 'fs';
-// fs.readFileSync(...) → para síncrona
-// fsp.readFile(...) → para async/await
+import fs from 'fs'
 import { join } from 'path'
-import fetch from 'node-fetch'
 import { xpRange } from '../lib/levelling.js'
 
 const tags = {
@@ -24,17 +19,17 @@ const defaultMenu = {
 Hola, soy %botname  
 (%tipo)
 
-¿Cómo te encuentras hoy, cielo?
+¿Cómo te encuentrass hoy, cielo?
 
 ︵‿︵‿୨♡୧‿︵‿︵
 🪷 : Tiempo    :: %uptime  
-ㅤ📚 : Plataforma  :: Baileys MD  
-ㅤ💮 : Modo  :: Privado
+📚 : Plataforma  :: Baileys MD  
+💮 : Modo        :: Privado
 ︶‿︶‿୨♡୧‿︶‿︶
 %readmore`.trimStart(),
 
   header: '%category',
-  body: '𝆬🍄ㅤ◌ㅤ%cmd %islimit %isPremium\n',
+  body: '𝆬🍄ㅤ◌ㅤ%cmd\n',
   footer: '',
   after: '',
 }
@@ -57,28 +52,23 @@ const handler = async (m, { conn, usedPrefix: _p }) => {
     const help = Object.values(global.plugins).filter(p => !p.disabled).map(plugin => ({
       help: Array.isArray(plugin.help) ? plugin.help : [plugin.help],
       tags: Array.isArray(plugin.tags) ? plugin.tags : [plugin.tags],
-      prefix: 'customPrefix' in plugin,
-      limit: plugin.limit,
-      premium: plugin.premium
+      prefix: 'customPrefix' in plugin
     }))
 
     let nombreBot = global.namebot || 'Anya Forger'
-let imgBot = './storage/img/menu3.jpg'
+    let imgBot = './storage/img/menu3.jpg'
+    const botActual = conn.user?.jid?.split('@')[0]?.replace(/\D/g, '')
+    const configPath = join('./Serbot', botActual, 'config.json')
 
-const botActual = conn.user?.jid?.split('@')[0].replace(/\D/g, '')
-const configPath = join('./Serbot', botActual, 'config.json')
     if (fs.existsSync(configPath)) {
       try {
-const config = JSON.parse(fs.readFileSync(configPath))
+        const config = JSON.parse(fs.readFileSync(configPath))
         if (config.name) nombreBot = config.name
         if (config.img) imgBot = config.img
-      } catch (err) {
-      }
+      } catch {}
     }
 
-    const tipo = botActual === '+5363172635'.replace(/\D/g, '')
-      ? 'Principal Bot'
-      : 'Prem Bot'
+    const tipo = botActual === '+5363172635'.replace(/\D/g, '') ? 'Principal Bot' : 'Prem Bot'
 
     const menuConfig = conn.menu || defaultMenu
     const _text = [
@@ -90,8 +80,6 @@ const config = JSON.parse(fs.readFileSync(configPath))
             return menu.help.map(helpText => {
               return menuConfig.body
                 .replace(/%cmd/g, menu.prefix ? helpText : `${_p}${helpText}`)
-                .replace(/%islimit/g, menu.limit ? '◜⭐◞' : '')
-                .replace(/%isPremium/g, menu.premium ? '◜🪪◞' : '')
                 .trim()
             }).join('\n')
           }).join('\n'),
@@ -130,7 +118,6 @@ const config = JSON.parse(fs.readFileSync(configPath))
     )
 
     await conn.sendFile(m.chat, imgBot, 'thumbnail.jpg', text.trim(), m, null, rcanal)
-
   } catch (e) {
     conn.reply(m.chat, '❎ Lo sentimos, el menú tiene un error.', m)
     throw e
@@ -140,7 +127,6 @@ const config = JSON.parse(fs.readFileSync(configPath))
 handler.command = ['menu', 'help', 'menú']
 export default handler
 
-// Utilidades
 const more = String.fromCharCode(8206)
 const readMore = more.repeat(4001)
 
@@ -151,8 +137,7 @@ function clockString(ms) {
   return [h, m, s].map(v => v.toString().padStart(2, '0')).join(':')
 }
 
-const ase = new Date()
-let hour = ase.getHours()
+const hour = new Date().getHours()
 const greetingMap = {
   0: 'una linda noche 🌙',
   1: 'una linda noche 💤',
@@ -179,5 +164,4 @@ const greetingMap = {
   22: 'una linda noche 🌙',
   23: 'una linda noche 🌃',
 }
-
-var greeting = 'espero que tengas ' + (greetingMap[hour] || 'un buen día')
+const greeting = 'espero que tengas ' + (greetingMap[hour] || 'un buen día')
