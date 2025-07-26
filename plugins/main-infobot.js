@@ -92,15 +92,15 @@ let handler = async (m, { conn, usedPrefix }) => {
   let timestamp = speed()
   let latensi = speed() - timestamp
 
-  let txt = `Nombre largo : ${nombreBot}\n`
-  txt += `Nombre corto : ${nombreBot}\n`
-  txt += `Moneda oficial   : ${moneyName}\n\n`
-  txt += `Prefijo : ${usedPrefix}\n`
-  txt += `Plugins :: ${totalf}\n`
-  txt += `Speed :: ${latensi.toFixed(4)} ms\n\n`
-  txt += `Servidor host : Akirax\n`
-  txt += `Nodo conectado : Akirax_1\n`
-  txt += `Tipo de bot : ${tipo}\n`
+  let txt = `Nombre largo: ${nombreBot}\n`
+  txt += `Nombre corto: ${nombreBot}\n`
+  txt += `Moneda: ${moneyName}\n\n`
+  txt += `Prefijo: ${usedPrefix}\n`
+  txt += `Plugins: ${totalf}\n`
+  txt += `Speed: ${latensi.toFixed(4)} ms\n\n`
+  txt += `Host: Akirax\n`
+  txt += `conectado a: Akirax_1\n`
+  txt += `Tipo: ${tipo}\n`
   txt += `\n> LOVELLOUD Official`
 
   await conn.sendFile(m.chat, imgBot, 'thumbnail.jpg', txt, m, null, rcanal)
