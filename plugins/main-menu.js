@@ -3,15 +3,12 @@ import { join } from 'path'
 import { xpRange } from '../lib/levelling.js'
 
 const tags = {
-  serbot: '➺ 𖦹 ִֶָ𐀔 ₊˚ ༘⋆  *Sub-bots* 𖤓\n\n✧ Comandos para crear, enlazar y gestionar tu propio bot personal.\n\n',
-  rpg: '➺ 𖦹 ִֶָ𐀔 ₊˚ ༘⋆  *Economía* 𖤓\n\n✧ Comandos para trabajar, jugar y hacer dinero con estilo.\n\n',
-  rg: '➺ 𖦹 ִֶָ𐀔 ₊˚ ༘⋆  *Perfiles* 𖤓\n\n✧ Comandos para ver, personalizar y destacar tu perfil.\n\n',
-  search: 'ㅤㅤㅤㅤ꒰ 🍨 ꒱ㅤㅤSearchs',
-  downloader: '➺ 𖦹 ִֶָ𐀔 ₊˚ ༘⋆  *Descargas* 𖤓\n\n✧ Comandos para obtener música, videos y más desde distintas fuentes.\n\n',
-  group: '➺ 𖦹 ִֶָ𐀔 ₊˚ ༘⋆  *Administración* 𖤓\n\n✧ Comandos exclusivos para gestionar y moderar grupos.\n\n',
-  tools: 'ㅤㅤㅤㅤ꒰ 🩰 ꒱ㅤㅤTools',
-  sticker: 'ㅤㅤㅤㅤ꒰ 🌸 ꒱ㅤㅤStickers',
-  owner: 'ㅤㅤㅤㅤ꒰ 🍈 ꒱ㅤㅤOwner',
+  subbots: '➺ 𖦹 ִֶָ𐀔 ₊˚ ༘⋆  *Sub-bots* 𖤓\n\n✧ Comandos para crear, enlazar y gestionar tu propio bot personal.\n\n',
+  economía: '➺ 𖦹 ִֶָ𐀔 ₊˚ ༘⋆  *Economía* 𖤓\n\n✧ Comandos para trabajar, jugar y hacer dinero con estilo.\n\n',
+  perfiles: '➺ 𖦹 ִֶָ𐀔 ₊˚ ༘⋆  *Perfiles* 𖤓\n\n✧ Comandos para ver, personalizar y destacar tu perfil.\n\n',
+  descargas: '➺ 𖦹 ִֶָ𐀔 ₊˚ ༘⋆  *Descargas* 𖤓\n\n✧ Comandos para obtener música, videos y más desde distintas fuentes.\n\n',
+  grupos: '➺ 𖦹 ִֶָ𐀔 ₊˚ ༘⋆  *Administración* 𖤓\n\n✧ Comandos exclusivos para gestionar y moderar grupos.\n\n',
+  stickers: '➺ 𖦹 ִֶָ𐀔 ₊˚ ༘⋆  *Stickers* 𖤓\n\n✧ Comandos para crear, editar y divertirte con tus stickers.\n\n',
 }
 
 const defaultMenu = {
@@ -29,7 +26,7 @@ Hola, soy %botname
 %readmore`.trimStart(),
 
   header: '%category',
-  body: '𝆬🍄ㅤ◌ㅤ%cmd\n',
+  body: '𝆬✦%cmd\n',
   footer: '',
   after: '',
 }
