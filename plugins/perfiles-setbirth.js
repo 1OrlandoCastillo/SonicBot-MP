@@ -6,10 +6,10 @@ let handler = async (m, { conn }) => {
 📎 Ejemplo 2 » #setbirth 01/01 (mes/día)
 📎 Ejemplo 3 » #setbirth 1 january
 📎 Ejemplo 4 » #setbirth 24 december
-`, m)
+`, m rcanal)
 
   let fecha = args[0]
-  if (!fecha) throw textoAyuda
+  if (!fecha) return conn.reply(m.chat, textoAyuda, m, rcanal)
 
   let regex = /^(0?[1-9]|1[0-2])[\/\-](0?[1-9]|[12][0-9]|3[01])([\/\-](\d{4}))?$/i
   if (!regex.test(fecha)) throw textoAyuda
