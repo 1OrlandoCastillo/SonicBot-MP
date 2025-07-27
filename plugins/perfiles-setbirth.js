@@ -6,7 +6,7 @@ let handler = async (m, { conn }) => {
 📎 Ejemplo 2 » #setbirth 01/01 (mes/día)
 📎 Ejemplo 3 » #setbirth 1 january
 📎 Ejemplo 4 » #setbirth 24 december
-`, m rcanal)
+`
 
   let fecha = args[0]
   if (!fecha) return conn.reply(m.chat, textoAyuda, m, rcanal)
