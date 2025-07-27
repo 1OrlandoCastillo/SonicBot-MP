@@ -1,11 +1,10 @@
-import { arch, cpus as _cpus, freemem, platform, release, totalmem } from 'os'
 import fs from 'fs'
-import { sizeFormatter } from 'human-readable'
-import speed from 'performance-now'
 import { join } from 'path'
+import { sizeFormatter } from 'human-readable'
+import { performance } from 'perf_hooks'
 import ws from 'ws'
 
-let format = sizeFormatter({
+const format = sizeFormatter({
   std: 'JEDEC',
   decimalPlaces: 2,
   keepTrailingZeroes: false,
@@ -13,18 +12,15 @@ let format = sizeFormatter({
 })
 
 let handler = async (m, { conn, usedPrefix }) => {
-  let uniqueUsers = new Map()
+  let sockets = new Map()
 
-  global.conns.forEach((conn) => {
-    if (conn.user && conn.ws?.socket?.readyState !== ws.CLOSED) {
-      uniqueUsers.set(conn.user.jid, conn)
+  global.conns.forEach(sock => {
+    if (sock.user && sock.ws?.socket?.readyState !== ws.CLOSED) {
+      sockets.set(sock.user.jid, sock)
     }
   })
 
-  let users = [...uniqueUsers.values()]
   let totalf = Object.values(global.plugins).filter(v => v.help && v.tags).length
-  const chats = Object.entries(conn.chats).filter(([id, data]) => id && data.isChats)
-  const groupsIn = chats.filter(([id]) => id.endsWith('@g.us'))
 
   let _muptime
   if (process.send) {
@@ -34,13 +30,14 @@ let handler = async (m, { conn, usedPrefix }) => {
       setTimeout(resolve, 1000)
     }) * 1000
   }
+
   let muptime = clockString(_muptime)
 
   const botActual = conn.user?.jid?.split('@')[0]?.replace(/\D/g, '')
   const configPath = join('./Serbot', botActual, 'config.json')
 
   let nombreBot = global.namebot || 'Anya Forger'
-  let moneyName = 'Money'
+  let moneyName = 'Gats'
   let imgBot = './storage/img/menu3.jpg'
 
   if (fs.existsSync(configPath)) {
@@ -49,15 +46,15 @@ let handler = async (m, { conn, usedPrefix }) => {
       if (config.name) nombreBot = config.name
       if (config.moneyName) moneyName = config.moneyName
       if (config.img) imgBot = config.img
-    } catch (err) { }
+    } catch {}
   }
 
   const tipo = botActual === '+5363172635'.replace(/\D/g, '')
     ? 'Principal Bot'
     : 'Prem Bot'
 
-  let timestamp = speed()
-  let latensi = speed() - timestamp
+  let t1 = performance.now()
+  let latensi = performance.now() - t1
 
   let txt = `⟡ Nombre: ${nombreBot}\n`
   txt += `❁ Moneda: ${moneyName}\n\n`
@@ -72,7 +69,7 @@ let handler = async (m, { conn, usedPrefix }) => {
   await conn.sendFile(m.chat, imgBot, 'thumbnail.jpg', txt, m, null, rcanal)
 }
 
-handler.help = ['botinfo • infobot\n→ Obtener información única y original del bot']
+handler.help = ['botinfo • #infobot\n→ Obtener información única y original del bot']
 handler.tags = ['subbots']
 handler.command = ['info', 'infobot']
 
