@@ -1,28 +1,23 @@
-import fs from 'fs'
-import path from 'path'
-import { join } from 'path'
-
-let handler = async (m, { conn, args, command }) => {
-  const botActual = conn.user?.id?.match(/\d{5,15}/)?.[0] || ''
-  const senderNumber = m.sender.match(/\d{5,15}/)?.[0] || ''
-
-  console.log('BOT:', conn.user?.id)
-  console.log('SENDER:', m.sender)
-
-  if (senderNumber !== botActual) {
-    return conn.reply(m.chat, `❖ El comando *${command}* solo puede ser usado por el dueño del número del *sub-bot*.`, m, rcanal)
-  }
-
+let handler = async (m, { conn, command }) => {
+  // Verifica que sea un grupo
   if (!m.isGroup) {
-    return conn.reply(m.chat, `❖ El comando *${command}* solo puede ser usado en grupos.`, m, rcanal)
+    return conn.reply(m.chat, `✦ El comando *${command}* solo se puede usar dentro de grupos.`, m)
   }
 
-  await conn.reply(m.chat, `❖ Gracias por permitirme ser parte de este grupo.\n\nEstoy partiendo ahora.`, m, rcanal)
+  // Solo el dueño del subbot (el número emparejado con el subbot) puede usar el comando
+  const senderJid = m.sender // Ej: 1234567890@lid
+  const botJid = conn.user.jid // Ej: 51928303585:83@s.whatsapp.net
+
+  if (senderJid !== botJid) {
+    return conn.reply(m.chat, `✦ Este comando solo puede ser usado por el número *emparejado* al Sub-Bot.`, m)
+  }
+
+  // Sale del grupo
+  await conn.reply(m.chat, `✦ Gracias por dejarme ser parte del grupo.\n\nMe retiro ahora mismo.`, m)
   await conn.groupLeave(m.chat)
 }
 
-handler.help = ['logout']
-handler.tags = ['subbots']
-handler.command = /^logout$/i
+handler.command = /^salir|leave|retirate$/i
+handler.group = false
 
 export default handler
