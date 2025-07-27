@@ -2,7 +2,7 @@ import fs from 'fs'
 import path from 'path'
 import { join } from 'path'
 
-let handler = async (m, { conn, mentionedJid }) => {
+let handler = async (m, { conn, usedPrefix }) => {
   const user = mentionedJid[0] || m.sender
   const data = global.db.data.users[user]
 
