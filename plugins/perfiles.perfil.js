@@ -1,12 +1,12 @@
 import fs from 'fs'
-import path from 'path'
-import { join } from 'path'
+import path, { join } from 'path'
 
-let handler = async (m, { conn, usedPrefix }) => {
+let handler = async (m, { conn, usedPrefix, command }) => {
+  const user = m.sender
   const data = global.db.data.users[user]
 
   const texto = `
-✿ Perfil de ${conn.getName(user)}
+✿ Perfil de ${await conn.getName(user)}
 
 ✿ Género: ${data.genre || 'No establecido'}
 ✿ Cumpleaños: ${data.birth || 'No registrado'}
@@ -32,7 +32,7 @@ let handler = async (m, { conn, usedPrefix }) => {
     } catch {}
   }
 
-  await conn.sendFile(m.chat, imgBot, 'thumbnail.jpg', texto, m, null, rcanal)
+  await conn.sendFile(m.chat, imgBot, 'profile.jpg', texto, m, null, { mentions: [data.partner || user] })
 }
 
 handler.command = /^profile$/i
