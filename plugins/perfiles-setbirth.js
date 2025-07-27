@@ -1,6 +1,3 @@
-import fs from 'fs'
-import path, { join } from 'path'
-
 let handler = async (m, { conn }) => {
   const textoAyuda = `
 《 ✧ 》Debes ingresar una fecha válida para tu cumpleaños.
@@ -24,5 +21,6 @@ let handler = async (m, { conn }) => {
   if (user.birth) {
     return conn.reply(m.chat, `「✐」Ya has establecido tu cumpleaños. Si deseas borrarlo, usa: *#delbirth*`, m, rcanal)
   }
+  
 handler.command = /^setbirth$/i
 export default handler
