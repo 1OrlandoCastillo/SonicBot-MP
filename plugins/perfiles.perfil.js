@@ -32,7 +32,7 @@ let handler = async (m, { conn, usedPrefix, command }) => {
     } catch {}
   }
 
-  await conn.sendFile(m.chat, imgBot, 'profile.jpg', texto, m, null, { mentions: [data.partner || user] })
+  await conn.sendFile(m.chat, imgBot, 'profile.jpg', texto, m, null, rcanal, { mentions: [data.partner || user] })
 }
 
 handler.command = /^profile$/i
