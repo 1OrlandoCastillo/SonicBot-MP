@@ -7,7 +7,7 @@ let handler = async (m, { conn }) => {
     ? `✿ Cumpleaños registrados:\n\n${all.join('\n')}`
     : '✦ No hay cumpleaños registrados.'
 
-  conn.reply(m.chat, msg, m, { mentions: all.map(a => a.replace(/[^\d]/g, '') + '@s.whatsapp.net') })
+  conn.reply(m.chat, msg, m, rcanal, { mentions: all.map(a => a.replace(/[^\d]/g, '') + '@s.whatsapp.net') })
 }
 handler.command = /^allbirthdays|allbirths$/i
 export default handler
