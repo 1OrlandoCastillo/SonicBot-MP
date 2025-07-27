@@ -9,5 +9,7 @@ let handler = async (m, { conn }) => {
 
   conn.reply(m.chat, msg, m, rcanal, { mentions: all.map(a => a.replace(/[^\d]/g, '') + '@s.whatsapp.net') })
 }
+handler.help = ['#allbirthdays • #allbirths\n→ Consulta el calendario de cumpleaños de los usuarios']
+handler.tags = ['perfiles']
 handler.command = /^allbirthdays|allbirths$/i
 export default handler
