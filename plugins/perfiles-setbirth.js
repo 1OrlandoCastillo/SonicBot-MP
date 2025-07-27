@@ -22,13 +22,6 @@ let handler = async (m, { conn, args, command, usedPrefix }) => {
   }
 
   global.db.data.users[m.sender].birth = fecha
-
-  return conn.reply(m.chat, `
-✿ Configuración actualizada
-
-✦ Tu cumpleaños ha sido registrado como:
-❝ ${fecha} ❞
-`.trim(), m) // ❌ Aquí *no* necesita rcanal
 }
 
 handler.help = ['setbirth']
