@@ -1,4 +1,4 @@
-let handler = async (m, { args, conn, rcanal }) => {
+let handler = async (m, { conn }) => {
   const textoAyuda = `
 《 ✧ 》Debes ingresar una fecha válida para tu cumpleaños.
 
