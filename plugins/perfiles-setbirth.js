@@ -1,3 +1,6 @@
+import fs from 'fs'
+import path, { join } from 'path'
+
 let handler = async (m, { conn }) => {
   const textoAyuda = `
 《 ✧ 》Debes ingresar una fecha válida para tu cumpleaños.
