@@ -9,17 +9,16 @@ let handler = async (m, { conn, args, command, usedPrefix }) => {
 `.trim()
 
   let fecha = args.join(' ').trim()
-  if (!fecha) return conn.reply(m.chat, textoAyuda, m)
+  if (!fecha) return conn.reply(m.chat, textoAyuda, m, rcanal) // ✅ Útil con rcanal
 
-  // Validaciones aceptadas: dd/mm/yyyy, dd/mm, "1 january", "24 december"
   const regex = /^(0?[1-9]|[12][0-9]|3[01])[\/\-](0?[1-9]|1[0-2])([\/\-](\d{4}))?$|^\d{1,2}\s+[a-zA-Z]+$/i
-  if (!regex.test(fecha)) return conn.reply(m.chat, textoAyuda, m)
+  if (!regex.test(fecha)) return conn.reply(m.chat, textoAyuda, m, rcanal) // ✅ También aquí
 
   let user = global.db.data.users[m.sender]
   if (!user) global.db.data.users[m.sender] = {}
 
   if (user.birth) {
-    return conn.reply(m.chat, `「✐」Ya has establecido tu cumpleaños. Si deseas borrarlo, usa: *#delbirth*`, m, rcanal)
+    return conn.reply(m.chat, `「✐」Ya has establecido tu cumpleaños. Si deseas borrarlo, usa: *#delbirth*`, m, rcanal) // ✅ Aquí sí
   }
 
   global.db.data.users[m.sender].birth = fecha
@@ -29,7 +28,7 @@ let handler = async (m, { conn, args, command, usedPrefix }) => {
 
 ✦ Tu cumpleaños ha sido registrado como:
 ❝ ${fecha} ❞
-`.trim(), m)
+`.trim(), m) // ❌ Aquí *no* necesita rcanal
 }
 
 handler.help = ['setbirth']
