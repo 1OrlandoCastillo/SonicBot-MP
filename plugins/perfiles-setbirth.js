@@ -19,7 +19,7 @@ let handler = async (m, { conn, args, command, usedPrefix }) => {
   if (!user) global.db.data.users[m.sender] = {}
 
   if (user.birth) {
-    return conn.reply(m.chat, `「✐」Ya has establecido tu cumpleaños. Si deseas borrarlo, usa: *#delbirth*`, m)
+    return conn.reply(m.chat, `「✐」Ya has establecido tu cumpleaños. Si deseas borrarlo, usa: *#delbirth*`, m, rcanal)
   }
 
   global.db.data.users[m.sender].birth = fecha
