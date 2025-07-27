@@ -2,38 +2,27 @@ import fs from 'fs'
 import path from 'path'
 import { join } from 'path'
 
-let handler = async (m, { conn, text, isROwner }) => {
+let handler = async (m, { conn, args, command }) => {
   const botActual = conn.user?.jid?.split('@')[0].replace(/\D/g, '')
-  const senderNumber = m.sender.replace(/[^0-9]/g, '')
+  const senderNumber = m.sender.replace(/\D/g, '')
   const botPath = path.join('./Serbot', senderNumber)
 
-  // Verificación unificada: solo el dueño del número del bot o el creador puede usar el comando
-  if (senderNumber !== botActual && !isROwner) {
-    return conn.reply(m.chat, `❖ El comando *join* solo puede ser usado por el dueño del número del *bot* o el *creador del sistema*.`, m, rcanal)
+  // Verifica si quien lo ejecuta es dueño del subbot
+  if (senderNumber !== botActual) {
+    return conn.reply(m.chat, `❖ El comando *${command}* solo puede ser usado por el dueño del número del *sub-bot* o el *creador del sistema*.\n\n> LOVELLOUD Official`, m, rcanal)
   }
 
-  if (!text) {
-    return conn.reply(m.chat, `✦ Necesito un enlace de invitación para poder unirme a un grupo.\n\nUsa el comando así:\n\n*#join* [enlace de grupo de WhatsApp]\n\n> LOVELLOUD Official`, m, rcanal)
+  if (!m.isGroup) {
+    return conn.reply(m.chat, `Este comando solo puede usarse dentro de grupos.\n\nPor favor, úsalos desde uno.`, m, rcanal)
   }
 
-  const match = text.match(/chat\.whatsapp\.com\/([0-9A-Za-z]{20,24})/)
-  if (!match) {
-    return conn.reply(m.chat, `✦ El enlace proporcionado no es válido.\n\nAsegúrate de copiarlo completo, cielo.`, m, rcanal)
-  }
-
-  const groupCode = match[1]
-
-  try {
-    await conn.groupAcceptInvite(groupCode)
-    return conn.reply(m.chat, `✅ Me he unido al grupo con elegancia~\n\nGracias por invitarme 💖\n\n> LOVELLOUD Official`, m, rcanal)
-  } catch (e) {
-    console.error(e)
-    return conn.reply(m.chat, `❌ No pude unirme al grupo.\n\n* Revisa si el enlace sigue siendo válido\n* O si he sido expulsada antes\n\n> LOVELLOUD Official`, m, rcanal)
-  }
+  // Confirmación visual y salida
+  await conn.reply(m.chat, `🌸 Gracias por permitirme ser parte de este grupo.\n\nEstoy partiendo ahora...\n\n> LOVELLOUD Official`, m)
+  await conn.groupLeave(m.chat)
 }
 
-handler.help = ['join <enlace>']
-handler.tags = ['subbots']
-handler.command = /^join$/i
+handler.help = ['logout']
+handler.tags = ['serbot']
+handler.command = /^logout$/i
 
 export default handler
