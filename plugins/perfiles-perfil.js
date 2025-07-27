@@ -35,6 +35,6 @@ let handler = async (m, { conn, usedPrefix, command }) => {
   await conn.sendFile(m.chat, imgBot, 'profile.jpg', texto, m, null, rcanal, { mentions: [data.partner || user] })
 }
 handler.help = ['#profile • #perfil\n→ Revisa tu perfil completo con estadísticas y logros']
-handler.tags = ['subbots']
+handler.tags = ['perfiles']
 handler.command = /^profile|perfil$/i
 export default handler
