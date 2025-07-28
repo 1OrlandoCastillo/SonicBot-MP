@@ -4,7 +4,7 @@ let handler = async (m, { conn }) => {
   let users = Object.entries(global.db.data.users)
     .filter(([_, u]) => u.birth)
 
-  if (!users.length) return conn.reply(m.chat, '✦ No hay cumpleaños registrados.', m)
+  if (!users.length) return conn.reply(m.chat, '《✧》No hay usuarios con cumpleaños registrados en este momento.', m, rcanal)
 
   let now = moment.tz('America/Lima')
   let lista = []
@@ -35,7 +35,7 @@ let handler = async (m, { conn }) => {
 
   let texto = `「✿」Cumpleaños en *${await conn.getName(m.chat)}*:\n\n` + lista.map(v => v.texto).join('\n\n')
 
-  conn.reply(m.chat, texto, m, rcanal, {
+  conn.reply(m.chat, texto, m, {
     mentions: users.map(([jid]) => jid)
   })
 }
