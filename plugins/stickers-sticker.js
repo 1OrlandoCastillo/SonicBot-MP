@@ -12,15 +12,12 @@ let handler = async (m, { conn, quoted }) => {
     const mime = q.mimetype || ''
     const media = await q.download()
 
-    let stiker = false
-    if (/image/.test(mime)) {
-      stiker = await sticker(media, false, 'Bot Oficial', '★ StarCor')
-    } else if (/video/.test(mime)) {
-      stiker = await sticker(media, true, 'Bot Oficial', '★ StarCor') // para video sticker
-    }
+    let isVideo = /video/.test(mime)
+    let stiker = await sticker(media, isVideo, 'StarCor Pack', 'Bot Oficial')
 
-    if (stiker) await conn.sendFile(m.chat, stiker, 'sticker.webp', '', m, { asSticker: true })
-    else throw '✦ No se pudo generar el sticker.'
+    if (!stiker) throw '✦ No se pudo generar el sticker.'
+
+    await conn.sendFile(m.chat, stiker, 'sticker.webp', '', m, { asSticker: true })
   } catch (e) {
     console.error(e)
     conn.reply(m.chat, '✦ Ocurrió un error al crear el sticker.', m)
@@ -28,4 +25,7 @@ let handler = async (m, { conn, quoted }) => {
 }
 
 handler.command = /^s|sticker|stickers$/i
+handler.tags = ['sticker']
+handler.help = ['sticker (responde a imagen/video)']
+
 export default handler
