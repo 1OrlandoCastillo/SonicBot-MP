@@ -4,7 +4,7 @@ let handler = async (m) => {
 
   delete global.db.data.users[m.sender].genre
 
-  return conn.reply(m.chat, `✐ Tu género ha sido eliminado.` m, rcanal)
+  return conn.reply(m.chat, `✐ Tu género ha sido eliminado.`, m, rcanal)
 }
 handler.help = ['#delgenre\n→ Elimina tu género del perfil']
 handler.tags = ['perfiles']
