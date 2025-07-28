@@ -17,23 +17,25 @@ let handler = async (m, { conn, args }) => {
       const res = await fetch(args[0])
       buffer = await res.buffer()
     } else {
-      return conn.reply(m.chat, '《✧》Por favor, envia una imagen o video para hacer un sticker', m, rcanal)
+      return conn.reply(m.chat, '《✧》Por favor, envía una imagen o video para crear un sticker.', m, rcanal)
     }
+
+    const username = '@' + (conn.getName(m.sender) || 'Usuario')
     
-    const user = global.db.data.users[m.sender] || {}
-    const packname = user.packname || '[•Bot Anya•]'
-    const author = user.author || 'Stickers'
-    
+    const packname = `lovelloud@gmail.com\n↳https://lovelloud/`
+    const author = `▪ Info:\n↳https://lovelloud/discord • 👑Bot:\n↳@*_.Anya-Bot-md_*\n\n👑Usuario:\n↳${username}`
+
     const stickerData = await toWebp(buffer)
     const finalSticker = await addExif(stickerData, packname, author)
 
     await conn.sendFile(m.chat, finalSticker, 'sticker.webp', '', m, null, rcanal)
   } catch (e) {
     console.error(e)
+    conn.reply(m.chat, '《✧》Error al crear el sticker.', m, rcanal)
   }
 }
 
-handler.help = ['#sticker • #s • #stickers + {cita una imagen/video}\n→ Convierte imágenes o videos en stickers al instante']
+handler.help = ['#sticker • #s • #stickers + {imagen/video o link}']
 handler.tags = ['stickers']
 handler.command = ['s', 'stickers', 'sticker']
 
@@ -41,7 +43,7 @@ export default handler
 
 async function toWebp(buffer, opts = {}) {
   const { ext } = await fromBuffer(buffer)
-  if (!/(png|jpg|jpeg|mp4|mkv|m4p|gif|webp|webm)/i.test(ext)) throw 'Archivo no compatible.'
+  if (!/(png|jpg|jpeg|mp4|mkv|m4p|gif|webp|webm)/i.test(ext)) throw '《✧》Archivo no compatible.'
 
   const tempDir = global.tempDir || './tmp'
   const input = path.join(tempDir, `${Date.now()}.${ext}`)
