@@ -1,6 +1,6 @@
 let handler = async (m, { text }) => {
   if (!text || !text.trim()) {
-    return m.reply(`《✧》Por favor, escribe el *pack* y/o el *autor* que deseas usar por defecto para tus stickers.\n> Ejemplo: *Forger* | Stickers`, m, rcanal)
+    return m.reply(`《✧》Por favor, escribe el *pack* y/o el *autor* que deseas usar por defecto para tus stickers.\n> Ejemplo: *Forger* | Stickers`)
   }
 
   let packname, author
@@ -13,7 +13,7 @@ let handler = async (m, { text }) => {
   }
 
   if (!packname && !author) {
-    return m.reply(`《✧》No se detectó ningún dato válido. Usa el formato:\n> *pack* | autor\n> Ejemplo: *Forger* | Stickers`, m, rcanal)
+    return m.reply(`《✧》No se detectó ningún dato válido. Usa el formato:\n> *pack* | autor\n> Ejemplo: *Forger* | Stickers`)
   }
 
   let user = global.db.data.users[m.sender]
@@ -22,7 +22,7 @@ let handler = async (m, { text }) => {
 
   m.reply(`✐ Se actualizó el *pack* y/o *autor* por defecto para tus stickers.${
     packname ? `\n> Pack: *${user.packname}*` : ''
-  }${author ? `\n> Autor: *${user.author}*` : ''}`, m, rcanal)
+  }${author ? `\n> Autor: *${user.author}*` : ''}`)
 }
 
 handler.help = ['setmeta <pack> | <autor>']
