@@ -25,7 +25,7 @@ let handler = async (m, { conn }) => {
     let diaSemana = cumple.format('dddd') // lunes, martes, etc.
     let fechaTexto = `${diaSemana}, ${d} de ${cumple.format('MMMM')}`
 
-    lista.push(`✒ @${jid.split('@')[0]} » *${fechaTexto}*\n→ ${dias} días ${horas} horas ${minutos} minutos ${segundos} segundos`)
+    lista.push(`♚ ${nombre} » *${fechaTexto}*\n→ ${dias} días ${horas} horas ${minutos} minutos ${segundos} segundos`)
   }
 
   let texto = `「✿」Cumpleaños en *${await conn.getName(m.chat)}*:\n\n` + lista.sort((a, b) => {
