@@ -1,7 +1,10 @@
 let handler = async (m, { conn, mentionedJid }) => {
-  const pareja = mentionedJid?.[0]
+  let pareja = mentionedJid?.[0] || m.quoted?.sender
   if (!pareja)
-    return conn.reply(m.chat, '《✧》Menciona a alguien para casarte. Ej: #marry @usuario', m, rcanal)
+    return conn.reply(m.chat, '《✧》Menciona a alguien o responde a su mensaje para casarte. Ej: #marry @usuario', m)
+
+  if (pareja === m.sender)
+    return conn.reply(m.chat, '《✧》No puedes casarte contigo mismo.', m)
 
   global.db.data.users[m.sender] = global.db.data.users[m.sender] || {}
   global.db.data.users[pareja] = global.db.data.users[pareja] || {}
@@ -13,7 +16,7 @@ let handler = async (m, { conn, mentionedJid }) => {
 ✿ Matrimonio realizado
 
 ✦ Ahora estás casado con @${pareja.split('@')[0]}
-  `.trim(), m, rcanal, { mentions: [pareja] })
+  `.trim(), m, { mentions: [pareja] })
 }
 
 handler.help = ['#marry • #casarse + @usuario\n→ Cásate con otra persona y forma una pareja en tu perfil.']
