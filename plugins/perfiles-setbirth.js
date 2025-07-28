@@ -2,8 +2,8 @@ let handler = async (m, { conn, args, command, usedPrefix }) => {
   const textoAyuda = `
 《 ✧ 》Debes ingresar una fecha válida para tu cumpleaños.
 
-✐ Ejemplo 1 » ${usedPrefix + command} 01/01/2000 (día/mes/año)
-✐ Ejemplo 2 » ${usedPrefix + command} 01/01 (día/mes)
+✐ Ejemplo 1 » ${usedPrefix + command} 01/10/2009 (día/mes/año)
+✐ Ejemplo 2 » ${usedPrefix + command} 01/10 (día/mes)
 ✐ Ejemplo 3 » ${usedPrefix + command} 1 january
 ✐ Ejemplo 4 » ${usedPrefix + command} 24 december
 `.trim()
