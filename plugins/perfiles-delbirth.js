@@ -5,6 +5,7 @@ let handler = async (m) => {
   delete global.db.data.users[m.sender].birth
   return conn.reply(m.chat, '「✐」Se ha eliminado tu cumpleaños correctamente.', m, rcanal)
 }
-
+handler.help = ['#delbirth + [fecha]\n→ Borra tu fecha de nacimiento de tu perfil']
+handler.tags = ['subbots']
 handler.command = /^delbirth$/i
 export default handler
