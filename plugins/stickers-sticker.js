@@ -11,23 +11,22 @@ let handler = async (m, { conn, args }) => {
   let buffer
 
   try {
-    if (/image|video|webp|webm/g.test(mime) && q.download) {
-      if (/video|webm/.test(mime) && (q.msg || q).seconds > 11)
-        return conn.reply(m.chat, 'El video o animación debe durar como máximo 10 segundos.', m)
-
+    if (/image|video|webp|webm/.test(mime) && q.download) {
       buffer = await q.download()
     } else if (args[0] && isUrl(args[0])) {
       const res = await fetch(args[0])
       buffer = await res.buffer()
     } else {
-      return conn.reply(m.chat, 'Solo funciona si contestas a una imagen, sticker, video o webm.', m)
+      return conn.reply(m.chat, '《✧》Por favor, envia una imagen o video para hacer un sticker', m, rcanal)
     }
 
     const stickerData = await toWebp(buffer)
     const finalSticker = await addExif(stickerData, packname, author)
 
-    await conn.sendFile(m.chat, finalSticker, 'sticker.webp', '', m)
-  } catch {}
+    await conn.sendFile(m.chat, finalSticker, 'sticker.webp', '', m, null, rcanal)
+  } catch (e) {
+    console.error(e)
+  }
 }
 
 handler.help = ['sticker']
@@ -38,7 +37,7 @@ export default handler
 
 async function toWebp(buffer, opts = {}) {
   const { ext } = await fromBuffer(buffer)
-  if (!/(png|jpg|jpeg|mp4|mkv|m4p|gif|webp|webm)/i.test(ext)) throw 'Media no compatible.'
+  if (!/(png|jpg|jpeg|mp4|mkv|m4p|gif|webp|webm)/i.test(ext)) throw 'Archivo no compatible.'
 
   const tempDir = global.tempDir || './tmp'
   const input = path.join(tempDir, `${Date.now()}.${ext}`)
@@ -49,8 +48,8 @@ async function toWebp(buffer, opts = {}) {
   const options = [
     '-vcodec', 'libwebp',
     '-vf', `scale=512:512:force_original_aspect_ratio=decrease,pad=512:512:(ow-iw)/2:(oh-ih)/2:color=0x00000000,fps=15,split[a][b];[a]palettegen=reserve_transparent=on:transparency_color=ffffff[p];[b][p]paletteuse`,
-    ...(ext.match(/(mp4|mkv|m4p|gif|webm)/) 
-      ? ['-loop', '0', '-ss', '00:00:00', '-t', '00:00:10', '-preset', 'default', '-an', '-vsync', '0']
+    ...(ext.match(/(mp4|mkv|m4p|gif|webm)/)
+      ? ['-loop', '0', '-preset', 'default', '-an', '-vsync', '0']
       : []
     )
   ]
@@ -74,5 +73,5 @@ async function toWebp(buffer, opts = {}) {
 }
 
 function isUrl(text) {
-  return /^https?:\/\/\S+\.(jpg|jpeg|png|gif|webp)$/i.test(text)
+  return /^https?:\/\/\S+\.(jpg|jpeg|png|gif|webp|mp4|webm)$/i.test(text)
 }
