@@ -21,7 +21,7 @@ let handler = async (m, { conn, args }) => {
     }
     
     const user = global.db.data.users[m.sender] || {}
-    const packname = user.packname || '[•∆MAT1_xD∆•]'
+    const packname = user.packname || '[•Bot Anya•]'
     const author = user.author || 'Stickers'
     
     const stickerData = await toWebp(buffer)
