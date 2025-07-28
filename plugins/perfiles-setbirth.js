@@ -9,22 +9,22 @@ let handler = async (m, { conn, args, command, usedPrefix }) => {
 `.trim()
 
   let fecha = args.join(' ').trim()
-  if (!fecha) return conn.reply(m.chat, textoAyuda, m, rcanal) // ✅ Útil con rcanal
+  if (!fecha) return conn.reply(m.chat, textoAyuda, m, rcanal)
 
   const regex = /^(0?[1-9]|[12][0-9]|3[01])[\/\-](0?[1-9]|1[0-2])([\/\-](\d{4}))?$|^\d{1,2}\s+[a-zA-Z]+$/i
-  if (!regex.test(fecha)) return conn.reply(m.chat, textoAyuda, m, rcanal) // ✅ También aquí
+  if (!regex.test(fecha)) return conn.reply(m.chat, textoAyuda, m, rcanal)
 
   let user = global.db.data.users[m.sender]
   if (!user) global.db.data.users[m.sender] = {}
 
   if (user.birth) {
-    return conn.reply(m.chat, `「✐」Ya has establecido tu cumpleaños. Si deseas borrarlo, usa: *#delbirth*`, m, rcanal) // ✅ Aquí sí
+    return conn.reply(m.chat, `「✐」Ya has establecido tu cumpleaños. Si deseas borrarlo, usa: *#delbirth*`, m, rcanal)
   }
 
   global.db.data.users[m.sender].birth = fecha
 }
 
-handler.help = ['setbirth']
+handler.help = ['#setbirth + [fecha]\n→ Guarda tu fecha de nacimiento en tu perfil de usuario']
 handler.tags = ['perfiles']
 handler.command = /^setbirth$/i
 export default handler
