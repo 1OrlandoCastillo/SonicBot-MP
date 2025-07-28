@@ -23,8 +23,8 @@ let handler = async (m, { text }) => {
   }${author ? `\n> Autor: *${user.author}*` : ''}`, m, rcanal)
 }
 
-handler.help = ['setmeta <pack> | <autor>']
+handler.help = ['#setstickermeta • #setmeta* + [autor] | [pack]\n→ Define el autor y nombre del pack para tus stickers']
 handler.tags = ['stickers']
-handler.command = /^setmeta$/i
+handler.command = /^setstickermeta|setmeta$/i
 
 export default handler
