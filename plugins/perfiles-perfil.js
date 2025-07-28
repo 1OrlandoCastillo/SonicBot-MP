@@ -14,7 +14,6 @@ let handler = async (m, { conn, usedPrefix, command }) => {
 ✿ Favorito: ${data.favourite || 'No establecido'}
 ✿ Nivel: ${data.level || 0}
 ✿ Experiencia: ${data.exp || 0}
-✿ Casado con: ${data.partner ? '@' + data.partner.split('@')[0] : 'Nadie'}
 
 ❒ ID: ${user}
 ❒ Tipo: ${data.premium ? 'Premium' : 'Usuario'}
