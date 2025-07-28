@@ -1,4 +1,4 @@
-let handler = async (m, { args, conn, rcanal }) => {
+let handler = async (m, { args }) => {
   let genero = args[0]?.toLowerCase()
   if (!genero || !['hombre', 'mujer'].includes(genero)) {
     return conn.reply(m.chat, '《✧》Debes ingresar un género valido.\n> Ejemplo » *#setgenre hombre*', m, rcanal)
