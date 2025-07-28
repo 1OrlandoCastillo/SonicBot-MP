@@ -4,7 +4,7 @@ let handler = async (m) => {
   user.packname = ''
   user.author = ''
 
-  return conn.reply(m.chat, `✐ Se restablecieron el *pack* y *autor* por defecto para tus stickers.`, rcanal)
+  return conn.reply(m.chat, `✐ Se restablecieron el *pack* y *autor* por defecto para tus stickers.`, m, rcanal)
 }
 
 handler.help = ['delstickermeta', 'delmeta']
