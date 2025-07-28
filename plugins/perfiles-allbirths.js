@@ -4,7 +4,7 @@ let handler = async (m, { conn }) => {
   let users = Object.entries(global.db.data.users)
     .filter(([_, u]) => u.birth)
 
-  if (!users.length) return conn.reply(m.chat, '✦ No hay cumpleaños registrados.', m, rcanal)
+  if (!users.length) return conn.reply(m.chat, '✦ No hay cumpleaños registrados.', m)
 
   let now = moment.tz('America/Lima')
   let lista = []
@@ -23,18 +23,21 @@ let handler = async (m, { conn }) => {
     let segundos = diff.seconds()
 
     let diaSemana = cumple.format('dddd') // lunes, martes, etc.
-    let fechaTexto = `${diaSemana}, ${d} de ${cumple.format('MMMM')}`
+    let nombre = data.name || `@${jid.split('@')[0]}`
 
-    lista.push(`♚ ${nombre} » *${fechaTexto}*\n→ ${dias} días ${horas} horas ${minutos} minutos ${segundos} segundos`)
+    lista.push({
+      tiempo: cumple.valueOf(),
+      texto: `♚ ${nombre} » *${diaSemana}, ${d} de ${cumple.format('MMMM')}*\n\t→ _${dias} días${horas ? ` ${horas} horas` : ''}${minutos ? ` ${minutos} minutos` : ''}${segundos ? ` ${segundos} segundos` : ''}_`
+    })
   }
 
-  let texto = `「✿」Cumpleaños en *${await conn.getName(m.chat)}*:\n\n` + lista.sort((a, b) => {
-    let t1 = parseInt(a.match(/→ (\d+) días/)[1])
-    let t2 = parseInt(b.match(/→ (\d+) días/)[1])
-    return t1 - t2
-  }).join('\n\n')
+  lista.sort((a, b) => a.tiempo - b.tiempo)
 
-  conn.reply(m.chat, texto, m, rcanal, { mentions: users.map(([k]) => k) })
+  let texto = `「✿」Cumpleaños en *${await conn.getName(m.chat)}*:\n\n` + lista.map(v => v.texto).join('\n\n')
+
+  conn.reply(m.chat, texto, m, {
+    mentions: users.map(([jid]) => jid)
+  })
 }
 
 handler.help = ['#allbirthdays • #allbirths\n→ Consulta el calendario de cumpleaños de los usuarios']
