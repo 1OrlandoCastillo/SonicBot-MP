@@ -1,17 +1,24 @@
 let handler = async (m, { text }) => {
-  if (!text.includes('|') && !text.trim()) {
-    return m.reply(`《✧》Por favor, escribe al menos el *pack* o el *autor* que deseas usar por defecto para tus stickers.\n> Ejemplo: *Forger* | Stickers`, m, rcanal)
+  if (!text || !text.trim()) {
+    return m.reply(`《✧》Por favor, escribe el *pack* y/o el *autor* que deseas usar por defecto para tus stickers.\n> Ejemplo: *Forger* | Stickers`, m, rcanal)
   }
 
-  let [packname, author] = text.split('|').map(v => v?.trim())
-  let user = global.db.data.users[m.sender]
+  let packname, author
+  let parts = text.split('|').map(v => v.trim())
 
-  if (packname) user.packname = packname
-  if (author) user.author = author
+  if (parts.length === 1) {
+    packname = parts[0]
+  } else {
+    [packname, author] = parts
+  }
 
   if (!packname && !author) {
     return m.reply(`《✧》No se detectó ningún dato válido. Usa el formato:\n> *pack* | autor\n> Ejemplo: *Forger* | Stickers`, m, rcanal)
   }
+
+  let user = global.db.data.users[m.sender]
+  if (packname) user.packname = packname
+  if (author) user.author = author
 
   m.reply(`✐ Se actualizó el *pack* y/o *autor* por defecto para tus stickers.${
     packname ? `\n> Pack: *${user.packname}*` : ''
