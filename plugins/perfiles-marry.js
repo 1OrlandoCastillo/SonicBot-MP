@@ -1,13 +1,21 @@
 let handler = async (m, { conn, mentionedJid }) => {
   let pareja = mentionedJid?.[0] || m.quoted?.sender
-  if (!pareja)
-    return conn.reply(m.chat, '《✧》Menciona a alguien o responde a su mensaje para casarte. Ej: #marry @usuario', m)
 
-  if (pareja === m.sender)
+  if (!pareja) {
+    return conn.reply(m.chat, '《✧》Debes *mencionar* o *responder* a alguien para casarte. Ej: #marry @usuario', m)
+  }
+
+  if (pareja === m.sender) {
     return conn.reply(m.chat, '《✧》No puedes casarte contigo mismo.', m)
+  }
 
-  global.db.data.users[m.sender] = global.db.data.users[m.sender] || {}
-  global.db.data.users[pareja] = global.db.data.users[pareja] || {}
+  if (!global.db.data.users[pareja]) {
+    global.db.data.users[pareja] = {}
+  }
+
+  if (!global.db.data.users[m.sender]) {
+    global.db.data.users[m.sender] = {}
+  }
 
   global.db.data.users[m.sender].partner = pareja
   global.db.data.users[pareja].partner = m.sender
