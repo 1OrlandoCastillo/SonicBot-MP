@@ -19,7 +19,11 @@ let handler = async (m, { conn, args }) => {
     } else {
       return conn.reply(m.chat, '《✧》Por favor, envia una imagen o video para hacer un sticker', m, rcanal)
     }
-
+    
+    const user = global.db.data.users[m.sender] || {}
+    const packname = user.packname || '[•∆MAT1_xD∆•]'
+    const author = user.author || 'Stickers'
+    
     const stickerData = await toWebp(buffer)
     const finalSticker = await addExif(stickerData, packname, author)
 
