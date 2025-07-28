@@ -35,7 +35,7 @@ let handler = async (m, { conn }) => {
 
   let texto = `「✿」Cumpleaños en *${await conn.getName(m.chat)}*:\n\n` + lista.map(v => v.texto).join('\n\n')
 
-  conn.reply(m.chat, texto, m, {
+  conn.reply(m.chat, texto, m, rcanal, {
     mentions: users.map(([jid]) => jid)
   })
 }
