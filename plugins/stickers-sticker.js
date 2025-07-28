@@ -29,9 +29,9 @@ let handler = async (m, { conn, args }) => {
   }
 }
 
-handler.help = ['sticker']
-handler.tags = ['sticker']
-handler.command = ['s', 'sticker', 'stiker']
+handler.help = ['#sticker • #s • #stickers + {cita una imagen/video}\n→ Convierte imágenes o videos en stickers al instante']
+handler.tags = ['stickers']
+handler.command = ['s', 'stickers', 'sticker']
 
 export default handler
 
