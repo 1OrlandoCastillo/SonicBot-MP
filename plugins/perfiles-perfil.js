@@ -13,6 +13,7 @@ let handler = async (m, { conn, usedPrefix, command }) => {
 ✿ Descripción: ${data.desc || 'Sin descripción'}
 ✿ Favorito: ${data.favourite || 'No establecido'}
 ✿ Nivel: ${data.level || 0}
+✿ Coins: ${data.coins || 0}
 ✿ Experiencia: ${data.exp || 0}
 
 ❒ ID: ${user}
