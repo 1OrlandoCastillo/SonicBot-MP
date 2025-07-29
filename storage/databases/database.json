@@ -1,7 +1,7 @@
 {
   "users": {
     "51958333972@s.whatsapp.net": {
-      "exp": 67,
+      "exp": 78,
       "limit": 10,
       "premium": false,
       "premiumTime": 0,
@@ -33,7 +33,7 @@
       "bank": 0
     },
     "114263544885392@lid": {
-      "exp": 465,
+      "exp": 6,
       "limit": 10,
       "premium": false,
       "premiumTime": 0,
@@ -67,7 +67,7 @@
       "Subs": 1753820799695
     },
     "214078920359966@lid": {
-      "exp": 17,
+      "exp": 67,
       "limit": 10,
       "premium": false,
       "premiumTime": 0,
@@ -115,7 +115,7 @@
       "bank": 0
     },
     "51901437507@s.whatsapp.net": {
-      "exp": 35,
+      "exp": 8,
       "limit": 10,
       "premium": false,
       "premiumTime": 0,
@@ -187,14 +187,22 @@
       "onlyLatinos": false,
       "nsfw": false,
       "expired": 0
+    },
+    "120363421435621230@g.us": {
+      "isBanned": false,
+      "bienvenida": true,
+      "antiLink": false,
+      "onlyLatinos": false,
+      "nsfw": false,
+      "expired": 0
     }
   },
   "stats": {
     "main-menu.js": {
-      "total": 19,
-      "success": 19,
-      "last": 1753827043680,
-      "lastSuccess": 1753827043680
+      "total": 20,
+      "success": 20,
+      "last": 1753827218300,
+      "lastSuccess": 1753827218300
     },
     "serbot-serbot.js": {
       "total": 1,
