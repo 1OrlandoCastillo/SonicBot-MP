@@ -114,19 +114,21 @@ const handler = async (m, { conn, usedPrefix: _p }) => {
       (_, name) => String(replace[name])
     )
 
+    // Menú con recuadro verde (como en la foto)
     await conn.sendMessage(m.chat, {
-  image: fs.readFileSync(imgBot), // la imagen principal grande
-  caption: text.trim(),           // el menú en el caption
-  contextInfo: {
-    externalAdReply: {
-      title: `『 ${nombreBot} 』`,
-      body: `Made with ❤️ by LightningNeko`, // opcional, para el preview pequeño
-      sourceUrl: 'https://nekos.club',
-      mediaType: 1,
-      renderLargerThumbnail: true
-    }
-  }
-}, { quoted: m })
+      text: text.trim(),
+      contextInfo: {
+        externalAdReply: {
+          title: `『 ${nombreBot} 』`, // título en la tarjeta verde
+          body: `👑 Dueño: ${global.owner?.[0]?.[0] || 'LightningNeko'}`, // subtítulo
+          thumbnail: fs.readFileSync(imgBot), // imagen local o config.json
+          sourceUrl: 'https://nekos.club', // link clickeable
+          mediaType: 1,
+          renderLargerThumbnail: true,
+          showAdAttribution: true
+        }
+      }
+    }, { quoted: m })
 
   } catch (e) {
     conn.reply(m.chat, '❎ Lo sentimos, el menú tiene un error.', m)
