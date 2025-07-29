@@ -26,6 +26,10 @@ const AYBotOptions = {}
 if (!(global.conns instanceof Array)) global.conns = []
 
 let handler = async (m, { conn, args, usedPrefix, command, isOwner }) => {
+  if (m.isGroup) {
+    return m.reply('*[❗] Para convertirte en Sub-Bot usa el comando en privado del bot.*')
+  }
+  
   let time = global.db.data.users[m.sender].Subs + 120000
   const subBots = [...new Set([...global.conns.filter((conn) => conn.user && conn.ws.socket && conn.ws.socket.readyState !== ws.CLOSED).map((conn) => conn)])]
   const subBotsCount = subBots.length
