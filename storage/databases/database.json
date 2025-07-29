@@ -17,7 +17,7 @@
       "bank": 0
     },
     "170231330795766@lid": {
-      "exp": 12,
+      "exp": 59,
       "limit": 10,
       "premium": false,
       "premiumTime": 0,
@@ -33,7 +33,7 @@
       "bank": 0
     },
     "114263544885392@lid": {
-      "exp": 31,
+      "exp": 179,
       "limit": 10,
       "premium": false,
       "premiumTime": 0,
@@ -67,7 +67,7 @@
       "Subs": 1753820799695
     },
     "214078920359966@lid": {
-      "exp": 167,
+      "exp": 104,
       "limit": 10,
       "premium": false,
       "premiumTime": 0,
@@ -163,8 +163,8 @@
       "bank": 0
     },
     "270613105139841@lid": {
-      "exp": null,
-      "limit": null,
+      "exp": 37,
+      "limit": 10,
       "premium": false,
       "premiumTime": 0,
       "registered": false,
@@ -196,6 +196,22 @@
     },
     "42520209834094@lid": {
       "banned": true
+    },
+    "136254247153664@lid": {
+      "exp": 34,
+      "limit": 10,
+      "premium": false,
+      "premiumTime": 0,
+      "registered": false,
+      "name": "💙𝕂-𝟛𝟡𝟙🩵",
+      "age": -1,
+      "regTime": -1,
+      "afk": -1,
+      "afkReason": "",
+      "banned": false,
+      "useDocument": false,
+      "level": 0,
+      "bank": 0
     }
   },
   "chats": {
@@ -246,14 +262,22 @@
       "onlyLatinos": false,
       "nsfw": false,
       "expired": 0
+    },
+    "120363402434717449@g.us": {
+      "isBanned": false,
+      "bienvenida": true,
+      "antiLink": false,
+      "onlyLatinos": false,
+      "nsfw": false,
+      "expired": 0
     }
   },
   "stats": {
     "main-menu.js": {
-      "total": 31,
-      "success": 31,
-      "last": 1753830275689,
-      "lastSuccess": 1753830275689
+      "total": 32,
+      "success": 32,
+      "last": 1753830951415,
+      "lastSuccess": 1753830951415
     },
     "serbot-serbot.js": {
       "total": 1,
@@ -280,10 +304,10 @@
       "lastSuccess": 1753821235379
     },
     "buscador-yt.js": {
-      "total": 8,
-      "success": 8,
-      "last": 1753828877943,
-      "lastSuccess": 1753828877943
+      "total": 12,
+      "success": 12,
+      "last": 1753831125240,
+      "lastSuccess": 1753831125240
     },
     "stickers-sticker.js": {
       "total": 1,
@@ -302,6 +326,12 @@
       "success": 12,
       "last": 1753830171818,
       "lastSuccess": 1753830171818
+    },
+    "tag-all.js": {
+      "total": 9,
+      "success": 9,
+      "last": 1753831063145,
+      "lastSuccess": 1753831063145
     }
   },
   "msgs": {},
