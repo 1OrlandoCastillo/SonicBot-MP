@@ -33,7 +33,7 @@
       "bank": 0
     },
     "114263544885392@lid": {
-      "exp": 6,
+      "exp": 10,
       "limit": 10,
       "premium": false,
       "premiumTime": 0,
@@ -145,6 +145,22 @@
       "useDocument": false,
       "level": 0,
       "bank": 0
+    },
+    "275878953148477@lid": {
+      "exp": 8,
+      "limit": 10,
+      "premium": false,
+      "premiumTime": 0,
+      "registered": false,
+      "name": "Fernando",
+      "age": -1,
+      "regTime": -1,
+      "afk": -1,
+      "afkReason": "",
+      "banned": false,
+      "useDocument": false,
+      "level": 0,
+      "bank": 0
     }
   },
   "chats": {
@@ -199,10 +215,10 @@
   },
   "stats": {
     "main-menu.js": {
-      "total": 20,
-      "success": 20,
-      "last": 1753827218300,
-      "lastSuccess": 1753827218300
+      "total": 22,
+      "success": 22,
+      "last": 1753828024524,
+      "lastSuccess": 1753828024524
     },
     "serbot-serbot.js": {
       "total": 1,
