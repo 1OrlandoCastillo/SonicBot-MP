@@ -33,7 +33,7 @@
       "bank": 0
     },
     "114263544885392@lid": {
-      "exp": 454,
+      "exp": 465,
       "limit": 10,
       "premium": false,
       "premiumTime": 0,
@@ -191,10 +191,10 @@
   },
   "stats": {
     "main-menu.js": {
-      "total": 18,
-      "success": 18,
-      "last": 1753825365337,
-      "lastSuccess": 1753825365337
+      "total": 19,
+      "success": 19,
+      "last": 1753827043680,
+      "lastSuccess": 1753827043680
     },
     "serbot-serbot.js": {
       "total": 1,
@@ -203,10 +203,10 @@
       "lastSuccess": 1753820799696
     },
     "owner-update.js": {
-      "total": 4,
-      "success": 4,
-      "last": 1753826679608,
-      "lastSuccess": 1753826679608
+      "total": 5,
+      "success": 5,
+      "last": 1753827047058,
+      "lastSuccess": 1753827047058
     },
     "perfiles-perfil.js": {
       "total": 3,

@@ -22,6 +22,7 @@ Aqui tienes la lista de comandos
 ╭───〔 ✦ 𓆩💎𓆪  ᴄᴀɴᴀʟ ᴏғɪᴄɪᴀʟ ✦ 〕───╮
 │  ꒷ꕤ  Accede aquí  
 │  ➺ https://whatsapp.com/channel/0029VbAZUQ3002T9KZfx2O1M
+│  ➺ https://whatsapp.com/channel/0029Vb5Vinf72WTo11c5hJ3O
 ╰──────────────────────────────╯
 %readmore`.trimStart(),
 
