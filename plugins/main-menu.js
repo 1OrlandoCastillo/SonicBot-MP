@@ -122,7 +122,6 @@ const handler = async (m, { conn, usedPrefix: _p }) => {
         externalAdReply: {
           title: `『 ${nombreBot} 』`,
           body: `👑 Dueño: ${global.owner?.[0]?.[0] || 'LightningNeko'}`,
-          thumbnailUrl: imgBot, // miniatura en el recuadro verde
           sourceUrl: 'https://nekos.club',
           mediaType: 1,
           previewType: 'PHOTO',
