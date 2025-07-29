@@ -17,7 +17,7 @@
       "bank": 0
     },
     "170231330795766@lid": {
-      "exp": 11,
+      "exp": 12,
       "limit": 10,
       "premium": false,
       "premiumTime": 0,
@@ -33,7 +33,7 @@
       "bank": 0
     },
     "114263544885392@lid": {
-      "exp": 125,
+      "exp": 31,
       "limit": 10,
       "premium": false,
       "premiumTime": 0,
@@ -43,7 +43,7 @@
       "regTime": -1,
       "afk": -1,
       "afkReason": "",
-      "banned": false,
+      "banned": true,
       "useDocument": false,
       "level": 0,
       "bank": 0,
@@ -67,7 +67,7 @@
       "Subs": 1753820799695
     },
     "214078920359966@lid": {
-      "exp": 67,
+      "exp": 167,
       "limit": 10,
       "premium": false,
       "premiumTime": 0,
@@ -77,7 +77,7 @@
       "regTime": -1,
       "afk": -1,
       "afkReason": "",
-      "banned": false,
+      "banned": true,
       "useDocument": false,
       "level": 0,
       "bank": 0
@@ -163,8 +163,8 @@
       "bank": 0
     },
     "270613105139841@lid": {
-      "exp": 33,
-      "limit": 10,
+      "exp": null,
+      "limit": null,
       "premium": false,
       "premiumTime": 0,
       "registered": false,
@@ -193,6 +193,9 @@
       "useDocument": false,
       "level": 0,
       "bank": 0
+    },
+    "42520209834094@lid": {
+      "banned": true
     }
   },
   "chats": {
@@ -247,10 +250,10 @@
   },
   "stats": {
     "main-menu.js": {
-      "total": 27,
-      "success": 27,
-      "last": 1753828784450,
-      "lastSuccess": 1753828784450
+      "total": 31,
+      "success": 31,
+      "last": 1753830275689,
+      "lastSuccess": 1753830275689
     },
     "serbot-serbot.js": {
       "total": 1,
@@ -289,10 +292,16 @@
       "lastSuccess": 1753828696592
     },
     "subbots-botinfo.js": {
-      "total": 1,
-      "success": 1,
-      "last": 1753828940637,
-      "lastSuccess": 1753828940637
+      "total": 3,
+      "success": 3,
+      "last": 1753829349209,
+      "lastSuccess": 1753829349209
+    },
+    "ban.js": {
+      "total": 12,
+      "success": 12,
+      "last": 1753830171818,
+      "lastSuccess": 1753830171818
     }
   },
   "msgs": {},
