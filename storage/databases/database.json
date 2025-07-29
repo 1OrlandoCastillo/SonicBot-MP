@@ -1,7 +1,7 @@
 {
   "users": {
     "51958333972@s.whatsapp.net": {
-      "exp": 91,
+      "exp": 92,
       "limit": 10,
       "premium": false,
       "premiumTime": 0,
@@ -33,7 +33,7 @@
       "bank": 0
     },
     "114263544885392@lid": {
-      "exp": 179,
+      "exp": 9,
       "limit": 10,
       "premium": false,
       "premiumTime": 0,
@@ -47,7 +47,8 @@
       "useDocument": false,
       "level": 0,
       "bank": 0,
-      "genre": "hombre"
+      "genre": "hombre",
+      "Subs": 1753831843278
     },
     "78186205446362@lid": {
       "exp": 321,
@@ -67,7 +68,7 @@
       "Subs": 1753820799695
     },
     "214078920359966@lid": {
-      "exp": 104,
+      "exp": 227,
       "limit": 10,
       "premium": false,
       "premiumTime": 0,
@@ -80,7 +81,8 @@
       "banned": true,
       "useDocument": false,
       "level": 0,
-      "bank": 0
+      "bank": 0,
+      "Subs": 1753831281553
     },
     "190954883563592@lid": {
       "exp": 35,
@@ -115,7 +117,7 @@
       "bank": 0
     },
     "51901437507@s.whatsapp.net": {
-      "exp": 8,
+      "exp": 3,
       "limit": 10,
       "premium": false,
       "premiumTime": 0,
@@ -128,7 +130,8 @@
       "banned": false,
       "useDocument": false,
       "level": 0,
-      "bank": 0
+      "bank": 0,
+      "Subs": 1753831232498
     },
     "51942501966@s.whatsapp.net": {
       "exp": 18,
@@ -147,7 +150,7 @@
       "bank": 0
     },
     "275878953148477@lid": {
-      "exp": 8,
+      "exp": 109,
       "limit": 10,
       "premium": false,
       "premiumTime": 0,
@@ -160,10 +163,11 @@
       "banned": false,
       "useDocument": false,
       "level": 0,
-      "bank": 0
+      "bank": 0,
+      "Subs": 1753831747165
     },
     "270613105139841@lid": {
-      "exp": 37,
+      "exp": 122,
       "limit": 10,
       "premium": false,
       "premiumTime": 0,
@@ -176,7 +180,8 @@
       "banned": false,
       "useDocument": false,
       "level": 0,
-      "bank": 0
+      "bank": 0,
+      "Subs": 1753831536293
     },
     "113675536965816@lid": {
       "exp": 14,
@@ -204,6 +209,22 @@
       "premiumTime": 0,
       "registered": false,
       "name": "💙𝕂-𝟛𝟡𝟙🩵",
+      "age": -1,
+      "regTime": -1,
+      "afk": -1,
+      "afkReason": "",
+      "banned": false,
+      "useDocument": false,
+      "level": 0,
+      "bank": 0
+    },
+    "239273164963865@lid": {
+      "exp": 2,
+      "limit": 10,
+      "premium": false,
+      "premiumTime": 0,
+      "registered": false,
+      "name": "Cheo 🦦",
       "age": -1,
       "regTime": -1,
       "afk": -1,
@@ -280,10 +301,10 @@
       "lastSuccess": 1753830951415
     },
     "serbot-serbot.js": {
-      "total": 1,
-      "success": 1,
-      "last": 1753820799696,
-      "lastSuccess": 1753820799696
+      "total": 12,
+      "success": 12,
+      "last": 1753831843278,
+      "lastSuccess": 1753831843278
     },
     "owner-update.js": {
       "total": 5,
