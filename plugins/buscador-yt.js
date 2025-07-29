@@ -49,7 +49,7 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
 }
 
 handler.help = ['#yt <búsqueda>']
-handler.tags = ['búsqueda']
+handler.tags = ['busqueda']
 handler.command = /^yt(search|buscar)?$/i
 
 export default handler

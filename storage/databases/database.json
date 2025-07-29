@@ -33,7 +33,7 @@
       "bank": 0
     },
     "114263544885392@lid": {
-      "exp": 449,
+      "exp": 450,
       "limit": 10,
       "premium": false,
       "premiumTime": 0,
@@ -203,10 +203,10 @@
       "lastSuccess": 1753820799696
     },
     "owner-update.js": {
-      "total": 3,
-      "success": 3,
-      "last": 1753825349603,
-      "lastSuccess": 1753825349603
+      "total": 4,
+      "success": 4,
+      "last": 1753826679608,
+      "lastSuccess": 1753826679608
     },
     "perfiles-perfil.js": {
       "total": 3,
