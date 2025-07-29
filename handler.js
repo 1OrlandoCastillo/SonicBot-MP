@@ -57,7 +57,8 @@ try {
 
   let settings = global.db.data.settings[this.user.jid] ||= {}  
   if (!('self' in settings)) settings.self = false  
-  if (!('autoread' in settings)) settings.autoread = false  
+  if (!('autoread' in settings)) settings.autoread = true 
+  if (!('autoread' in opts)) opts.autoread = true 
 } catch (e) {  
   console.error(e)  
 }  
@@ -253,9 +254,17 @@ try {
   console.log(m, m.quoted, e)  
 }  
 
-const settingsREAD = global.db.data.settings[this.user.jid] || {}  
-if (opts['autoread']) await this.readMessages([m.key])  
-if (settingsREAD.autoread) await this.readMessages([m.key])
+const settingsREAD = global.db.data.settings[this.user.jid] || {}
+// Marcar mensaje como leído
+try {
+  await this.readMessages([m.key])
+  // Si es un grupo, marcar también el mensaje como leído en el grupo
+  if (m.isGroup) {
+    await this.readMessages([m.key], { readEphemeral: true })
+  }
+} catch (e) {
+  console.error('Error al marcar como leído:', e)
+}
 
 }
 }

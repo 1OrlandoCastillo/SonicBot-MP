@@ -33,7 +33,7 @@
       "bank": 0
     },
     "114263544885392@lid": {
-      "exp": 11,
+      "exp": 44,
       "limit": 10,
       "premium": false,
       "premiumTime": 0,
@@ -161,6 +161,22 @@
       "useDocument": false,
       "level": 0,
       "bank": 0
+    },
+    "270613105139841@lid": {
+      "exp": 16,
+      "limit": 10,
+      "premium": false,
+      "premiumTime": 0,
+      "registered": false,
+      "name": "ˡⁱⁿˣ ⁂ 𝔾𝕏𝔹𝕆꧂™",
+      "age": -1,
+      "regTime": -1,
+      "afk": -1,
+      "afkReason": "",
+      "banned": false,
+      "useDocument": false,
+      "level": 0,
+      "bank": 0
     }
   },
   "chats": {
@@ -215,10 +231,10 @@
   },
   "stats": {
     "main-menu.js": {
-      "total": 23,
-      "success": 23,
-      "last": 1753828154425,
-      "lastSuccess": 1753828154425
+      "total": 24,
+      "success": 24,
+      "last": 1753828198959,
+      "lastSuccess": 1753828198959
     },
     "serbot-serbot.js": {
       "total": 1,
