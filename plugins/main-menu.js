@@ -13,16 +13,15 @@ const tags = {
 
 const defaultMenu = {
   before: `
-Hola, soy %botname  
+Hola! soy %botname  
 (%tipo)
 
-¿Cómo te encuentrass hoy, cielo?
+Aqui tienes la lista de comandos
 
-︵‿︵‿୨♡୧‿︵‿︵
-🪷 : Tiempo    :: %uptime  
-📚 : Plataforma  :: Baileys MD  
-💮 : Modo        :: Privado
-︶‿︶‿୨♡୧‿︶‿︶
+╭───〔 ✦ 𓆩💎𓆪  ᴄᴀɴᴀʟ ᴏғɪᴄɪᴀʟ ✦ 〕───╮
+│  ꒷ꕤ  Accede aquí  
+│  ➺ https://whatsapp.com/channel/0029VbAZUQ3002T9KZfx2O1M
+╰──────────────────────────────╯
 %readmore`.trimStart(),
 
   header: '%category',
