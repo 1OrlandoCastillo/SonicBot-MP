@@ -1,7 +1,7 @@
 {
   "users": {
     "51958333972@s.whatsapp.net": {
-      "exp": 78,
+      "exp": 91,
       "limit": 10,
       "premium": false,
       "premiumTime": 0,
@@ -33,7 +33,7 @@
       "bank": 0
     },
     "114263544885392@lid": {
-      "exp": 79,
+      "exp": 125,
       "limit": 10,
       "premium": false,
       "premiumTime": 0,
@@ -163,12 +163,28 @@
       "bank": 0
     },
     "270613105139841@lid": {
-      "exp": 30,
+      "exp": 33,
       "limit": 10,
       "premium": false,
       "premiumTime": 0,
       "registered": false,
       "name": "ˡⁱⁿˣ ⁂ 𝔾𝕏𝔹𝕆꧂™",
+      "age": -1,
+      "regTime": -1,
+      "afk": -1,
+      "afkReason": "",
+      "banned": false,
+      "useDocument": false,
+      "level": 0,
+      "bank": 0
+    },
+    "113675536965816@lid": {
+      "exp": 14,
+      "limit": 10,
+      "premium": false,
+      "premiumTime": 0,
+      "registered": false,
+      "name": "m",
       "age": -1,
       "regTime": -1,
       "afk": -1,
@@ -231,10 +247,10 @@
   },
   "stats": {
     "main-menu.js": {
-      "total": 25,
-      "success": 25,
-      "last": 1753828594425,
-      "lastSuccess": 1753828594425
+      "total": 27,
+      "success": 27,
+      "last": 1753828784450,
+      "lastSuccess": 1753828784450
     },
     "serbot-serbot.js": {
       "total": 1,
@@ -261,10 +277,22 @@
       "lastSuccess": 1753821235379
     },
     "buscador-yt.js": {
-      "total": 4,
-      "success": 4,
-      "last": 1753822710083,
-      "lastSuccess": 1753822710083
+      "total": 8,
+      "success": 8,
+      "last": 1753828877943,
+      "lastSuccess": 1753828877943
+    },
+    "stickers-sticker.js": {
+      "total": 1,
+      "success": 1,
+      "last": 1753828696592,
+      "lastSuccess": 1753828696592
+    },
+    "subbots-botinfo.js": {
+      "total": 1,
+      "success": 1,
+      "last": 1753828940637,
+      "lastSuccess": 1753828940637
     }
   },
   "msgs": {},

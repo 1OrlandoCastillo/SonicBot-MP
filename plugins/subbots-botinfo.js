@@ -61,8 +61,8 @@ let handler = async (m, { conn, usedPrefix }) => {
   txt += `♡ Prefijo: ${usedPrefix}\n`
   txt += `✧ Plugins: ${totalf}\n`
   txt += `❀ Speed: ${latensi.toFixed(4)}\n\n`
-  txt += `✩ Host: Akirax\n`
-  txt += `✦ Conexión: Akirax_1\n`
+  txt += `✩ Host: --\n`
+  txt += `✦ Conexión: --\n`
   txt += `♢ Tipo: ${tipo}\n`
   txt += `\n> LOVELLOUD Official`
 
