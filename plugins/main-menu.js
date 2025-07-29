@@ -65,7 +65,7 @@ const handler = async (m, { conn, usedPrefix: _p }) => {
       } catch {}
     }
 
-    const tipo = botActual === '+5363172635'.replace(/\D/g, '') ? 'Principal Bot' : 'Prem Bot'
+    const tipo = botActual === '+5363172635'.replace(/\D/g, '') ? 'Principal Bot' : 'Sub Bot'
 
     const menuConfig = conn.menu || defaultMenu
     const _text = [
@@ -114,22 +114,7 @@ const handler = async (m, { conn, usedPrefix: _p }) => {
       (_, name) => String(replace[name])
     )
 
-    // 📌 Enviar imagen completa con menú + recuadro verde
-    await conn.sendMessage(m.chat, {
-      image: { url: imgBot }, // muestra la imagen completa
-      caption: text.trim(),   // debajo la info del menú
-      contextInfo: {
-        externalAdReply: {
-          title: `『 ${nombreBot} 』`,
-          body: `👑 Dueño: ${global.owner?.[0]?.[0] || 'LightningNeko'}`,
-          sourceUrl: 'https://nekos.club',
-          mediaType: 1,
-          previewType: 'PHOTO',
-          renderLargerThumbnail: true
-        }
-      }
-    }, { quoted: m })
-
+    await conn.sendFile(m.chat, imgBot, 'thumbnail.jpg', text.trim(), m, null, rcanal)
   } catch (e) {
     conn.reply(m.chat, '❎ Lo sentimos, el menú tiene un error.', m)
     throw e
