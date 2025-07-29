@@ -6,7 +6,7 @@ let handler = async (m, { conn, text, args }) => {
       : m.sender
 
   let user = global.db.data.users[who]
-  if (!user) return conn.reply(m.chat, `《✧》Usuario no registrado en la base de datos.`, m, rcanal, { mentions: [who] })
+  if (!user) return conn.reply(m.chat, `《✧》Usuario no registrado en la base de datos.`, m, rcanal)
 
   let coins = user.coins || 0
 
