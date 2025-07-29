@@ -114,21 +114,19 @@ const handler = async (m, { conn, usedPrefix: _p }) => {
       (_, name) => String(replace[name])
     )
 
-    // enviar menú con externalAdReply
     await conn.sendMessage(m.chat, {
-      text: text.trim(),
-      contextInfo: {
-        externalAdReply: {
-          title: `*『 %botname 』*`,
-          body: `Made with ❤️ by LightningNeko`,
-          thumbnail: fs.readFileSync(imgBot), // usa el mismo imgBot definido arriba
-          sourceUrl: 'https://nekos.club',
-          mediaType: 1,
-          renderLargerThumbnail: true,
-          showAdAttribution: true
-        }
-      }
-    }, { quoted: m })
+  text: text.trim(),
+  contextInfo: {
+    externalAdReply: {
+      title: `『 ${nombreBot} 』`,
+      body: `Made with ❤️ by LightningNeko`,
+      thumbnail: fs.readFileSync(imgBot),
+      sourceUrl: 'https://nekos.club',
+      mediaType: 2, // más seguro para imágenes
+      renderLargerThumbnail: true
+    }
+  }
+}, { quoted: m })
 
   } catch (e) {
     conn.reply(m.chat, '❎ Lo sentimos, el menú tiene un error.', m)
