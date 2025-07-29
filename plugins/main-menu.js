@@ -69,7 +69,7 @@ const handler = async (m, { conn, usedPrefix: _p }) => {
       } catch {}
     }
 
-    const tipo = botActual === '+51958303585'.replace(/\D/g, '') ? 'Principal Bot' : 'Sub Bot'
+    const tipo = botActual === '+51958333972'.replace(/\D/g, '') ? 'Principal Bot' : 'Sub Bot'
 
     const menuConfig = conn.menu || defaultMenu
     const _text = [

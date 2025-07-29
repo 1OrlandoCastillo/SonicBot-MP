@@ -33,7 +33,7 @@
       "bank": 0
     },
     "114263544885392@lid": {
-      "exp": 10,
+      "exp": 11,
       "limit": 10,
       "premium": false,
       "premiumTime": 0,
@@ -215,10 +215,10 @@
   },
   "stats": {
     "main-menu.js": {
-      "total": 22,
-      "success": 22,
-      "last": 1753828024524,
-      "lastSuccess": 1753828024524
+      "total": 23,
+      "success": 23,
+      "last": 1753828154425,
+      "lastSuccess": 1753828154425
     },
     "serbot-serbot.js": {
       "total": 1,
