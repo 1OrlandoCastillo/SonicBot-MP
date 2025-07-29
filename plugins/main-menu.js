@@ -114,18 +114,19 @@ const handler = async (m, { conn, usedPrefix: _p }) => {
       (_, name) => String(replace[name])
     )
 
-    // 📌 Menú con tarjeta visible
+    // 📌 Enviar imagen completa con menú + recuadro verde
     await conn.sendMessage(m.chat, {
-      text: text.trim(),
+      image: { url: imgBot }, // muestra la imagen completa
+      caption: text.trim(),   // debajo la info del menú
       contextInfo: {
         externalAdReply: {
           title: `『 ${nombreBot} 』`,
           body: `👑 Dueño: ${global.owner?.[0]?.[0] || 'LightningNeko'}`,
-          thumbnail: fs.existsSync(imgBot) ? fs.readFileSync(imgBot) : null,
+          thumbnailUrl: imgBot, // miniatura en el recuadro verde
           sourceUrl: 'https://nekos.club',
           mediaType: 1,
-          previewType: 'PHOTO',   // ⚠️ importante para que salga visible
-          renderLargerThumbnail: true,
+          previewType: 'PHOTO',
+          renderLargerThumbnail: true
         }
       }
     }, { quoted: m })
