@@ -115,14 +115,14 @@ const handler = async (m, { conn, usedPrefix: _p }) => {
     )
 
     await conn.sendMessage(m.chat, {
-  text: text.trim(),
+  image: fs.readFileSync(imgBot), // la imagen principal grande
+  caption: text.trim(),           // el menú en el caption
   contextInfo: {
     externalAdReply: {
       title: `『 ${nombreBot} 』`,
-      body: `Made with ❤️ by LightningNeko`,
-      thumbnail: fs.readFileSync(imgBot),
+      body: `Made with ❤️ by LightningNeko`, // opcional, para el preview pequeño
       sourceUrl: 'https://nekos.club',
-      mediaType: 2, // más seguro para imágenes
+      mediaType: 1,
       renderLargerThumbnail: true
     }
   }
