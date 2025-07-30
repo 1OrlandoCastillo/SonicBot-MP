@@ -21,6 +21,7 @@ let handler = async (m, { conn, args, participants, isAdmin, isBotAdmin, isOwner
       }
     }, { quoted: m })
   }
+  
   const who = m.mentionedJid[0]
   
   if (who === conn.user.jid) return conn.sendMessage(m.chat, {
@@ -55,15 +56,7 @@ let handler = async (m, { conn, args, participants, isAdmin, isBotAdmin, isOwner
       }
     }, { quoted: m })
     
-  } catch (e) {
-    console.error('Error al promover usuario:', e)
-    return conn.sendMessage(m.chat, {
-      text: '《✧》Ocurrió un error al intentar promover al usuario. Por favor, inténtalo de nuevo.',
-      contextInfo: {
-        ...rcanal.contextInfo
-      }
-    }, { quoted: m })
-  }
+  } catch (e) {}
 }
 
 handler.command = /^(promote|promover|daradmin)$/i
