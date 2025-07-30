@@ -1,12 +1,12 @@
 import { isJidGroup } from '@whiskeysockets/baileys'
 
 let handler = async (m, { conn, args, participants, isAdmin, isBotAdmin, isOwner, isPrems, usedPrefix, command }) => {
-  if (!m.isGroup) return conn.reply(m.chat, '《✧》Este comando solo puede ser usado en grupos.', m, rcanal)
+  if (!m.isGroup) return m.reply('《✧》Este comando solo puede ser usado en grupos.')
   
-  if (!isAdmin && !isOwner && !isPrems) return conn.reply(m.chat, '《✧》Solo los administradores pueden usar este comando.', m, rcanal)
+  if (!isAdmin && !isOwner && !isPrems) return m.reply('《✧》Solo los administradores pueden usar este comando.')
   
   if (!m.mentionedJid || m.mentionedJid.length === 0) {
-    return conn.reply(m.chat, `《✧》Debes mencionar al usuario que deseas banear.\n\n> Ejemplo: ${usedPrefix + command} @usuario`, m, rcanal)
+    return m.reply(`《✧》Debes mencionar al usuario que deseas banear.\n\n> Ejemplo: ${usedPrefix + command} @usuario`)
   }
   const who = m.mentionedJid[0]
   
@@ -16,10 +16,10 @@ let handler = async (m, { conn, args, participants, isAdmin, isBotAdmin, isOwner
   });
   
   if (ownerNumbers.includes(who)) {
-    return conn.reply(m.chat, '《✧》No puedes banear a un propietario del bot.', m, rcanal)
+    return m.reply('《✧》No puedes banear a un propietario del bot.')
   }
   
-  if (who === conn.user.jid) return conn.reply(m.chat, '《✧》No se puede usar este comando para banear al bot.', m, rcanal)
+  if (who === conn.user.jid) return m.reply('《✧》No se puede usar este comando para banear al bot.')
   
   await conn.groupParticipantsUpdate(m.chat, [who], 'remove')
   
@@ -28,7 +28,19 @@ let handler = async (m, { conn, args, participants, isAdmin, isBotAdmin, isOwner
   }
   global.db.data.users[who].banned = true
   
-  return conn.reply(m.chat, `❏ Usuario baneado exitosamente.\n\n✐ Usuario: @${who.split('@')[0]}\n✐ Grupo: ${(await conn.groupMetadata(m.chat)).subject}\n✐ Admin: @${m.sender.split('@')[0]}`, m, rcanal, { mentions: [who, m.sender] })
+
+  const userName = await conn.getName(who)
+  const adminName = await conn.getName(m.sender)
+  const groupName = (await conn.groupMetadata(m.chat)).subject
+  
+
+  return conn.sendMessage(m.chat, {
+    text: `[✅] Usuario baneado exitosamente.\n\nUsuario: @${who.split('@')[0]}\nGrupo: ${groupName}\nAdmin: @${m.sender.split('@')[0]}`,
+    contextInfo: {
+      ...rcanal.contextInfo,
+      mentionedJid: [who, m.sender]
+    }
+  }, { quoted: m })
 }
 
 handler.command = /^banear|ban|kick?$/i

@@ -13,21 +13,27 @@ let handler = async (m, { conn, args, participants, isAdmin, isBotAdmin, isOwner
   const groupMetadata = await conn.groupMetadata(m.chat)
   const isUserAdmin = groupMetadata.participants.find(p => p.id === who)?.admin
   if (isUserAdmin) {
-    return m.reply(`*[❗] El usuario @${who.split('@')[0]} ya es administrador del grupo.*`, 
-      null, { mentions: [who] })
+    return conn.sendMessage(m.chat, {
+      text: `*[❗] El usuario @${who.split('@')[0]} ya es administrador del grupo.*`,
+      contextInfo: {
+        ...rcanal.contextInfo,
+        mentionedJid: [who]
+      }
+    }, { quoted: m })
   }
   
   try {
     await conn.groupParticipantsUpdate(m.chat, [who], 'promote')
     
-    m.reply(
-      `*[✅] Usuario promovido a administrador exitosamente.*\n\n` +
-      `*Usuario:* @${who.split('@')[0]}\n` +
-      `*Grupo:* ${(await conn.groupMetadata(m.chat)).subject}\n` +
-      `*Admin:* @${m.sender.split('@')[0]}`,
-      null,
-      { mentions: [who, m.sender] }
-    )
+    const groupName = (await conn.groupMetadata(m.chat)).subject
+    
+    return conn.sendMessage(m.chat, {
+      text: `*[✅] Usuario promovido a administrador exitosamente.*\n\n*Usuario:* @${who.split('@')[0]}\n*Grupo:* ${groupName}\n*Admin:* @${m.sender.split('@')[0]}`,
+      contextInfo: {
+        ...rcanal.contextInfo,
+        mentionedJid: [who, m.sender]
+      }
+    }, { quoted: m })
     
   } catch (e) {
     console.error('Error al promover usuario:', e)
