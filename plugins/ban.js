@@ -1,12 +1,12 @@
 import { isJidGroup } from '@whiskeysockets/baileys'
 
-let handler = async (m, { conn, args, participants, isAdmin, isBotAdmin, isOwner, isPrems, usedPrefix, command }) => {
-  if (!m.isGroup) return m.reply('*[❗] Este comando solo puede ser usado en grupos.*')
+let handler = async (m, { conn, args, participants, isAdmin, isBotAdmin, isOwner, isPrems, usedPrefix, command, rcanal }) => {
+  if (!m.isGroup) return conn.reply(m.chat, '《✧》Este comando solo puede ser usado en grupos.', m, rcanal)
   
-  if (!isAdmin && !isOwner && !isPrems) return m.reply('*[❗] Solo los administradores pueden usar este comando.*')
+  if (!isAdmin && !isOwner && !isPrems) return conn.reply(m.chat, '《✧》Solo los administradores pueden usar este comando.', m, rcanal)
   
   if (!m.mentionedJid || m.mentionedJid.length === 0) {
-    return m.reply(`*[❗] Debes mencionar al usuario que deseas banear.*\n*Ejemplo:* ${usedPrefix + command} @usuario`)
+    return conn.reply(m.chat, `《✧》Debes mencionar al usuario que deseas banear.\n\n> Ejemplo: ${usedPrefix + command} @usuario`, m, rcanal)
   }
   const who = m.mentionedJid[0]
   
@@ -16,30 +16,22 @@ let handler = async (m, { conn, args, participants, isAdmin, isBotAdmin, isOwner
   });
   
   if (ownerNumbers.includes(who)) {
-    return m.reply('*[❗] No puedes banear a un propietario del bot.*');
+    return conn.reply(m.chat, '《✧》No puedes banear a un propietario del bot.', m, rcanal)
   }
   
-  if (who === conn.user.jid) return m.reply('*[❗] No puedes banear al bot.*')
+  if (who === conn.user.jid) return conn.reply(m.chat, '《✧》No se puede usar este comando para banear al bot.', m, rcanal)
   
-  try {
-    await conn.groupParticipantsUpdate(m.chat, [who], 'remove')
-    
-    if (!global.db.data.users[who]) {
-      global.db.data.users[who] = {}
-    }
-    global.db.data.users[who].banned = true
-    
-    m.reply(`*[✅] Usuario baneado exitosamente.*\n\n*Usuario:* @${who.split('@')[0]}\n*Grupo:* ${(await conn.groupMetadata(m.chat)).subject}\n*Admin:* @${m.sender.split('@')[0]}`, null, { mentions: [who, m.sender] })
-    
-  } catch (e) {
-    console.error('Error al banear usuario:', e)
-    m.reply('*[❗] Ocurrió un error al intentar banear al usuario. Por favor, inténtalo de nuevo.*')
+  await conn.groupParticipantsUpdate(m.chat, [who], 'remove')
+  
+  if (!global.db.data.users[who]) {
+    global.db.data.users[who] = {}
   }
+  global.db.data.users[who].banned = true
+  
+  return conn.reply(m.chat, `❏ Usuario baneado exitosamente.\n\n✐ Usuario: @${who.split('@')[0]}\n✐ Grupo: ${(await conn.groupMetadata(m.chat)).subject}\n✐ Admin: @${m.sender.split('@')[0]}`, m, rcanal, { mentions: [who, m.sender] })
 }
 
-handler.help = ['#ban @usuario']
-handler.tags = ['grupos']
-handler.command = /^ban(ear)?$/i
+handler.command = /^ban(ear)|kick?$/i
 handler.group = true
 handler.admin = true
 handler.botAdmin = true
