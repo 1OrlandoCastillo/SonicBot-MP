@@ -15,7 +15,7 @@ let handler = async (m, { conn, args, participants, isAdmin, isBotAdmin, isOwner
   
   if (!m.mentionedJid || m.mentionedJid.length === 0) {
     return conn.sendMessage(m.chat, {
-      text: `《✧》Debes mencionar al usuario que deseas promover.\n> Ejemplo: ${usedPrefix + command} @usuario`,
+      text: `《✧》Debes mencionar al usuario que deseas promover.\n\n> Ejemplo: ${usedPrefix + command} @usuario`,
       contextInfo: {
         ...rcanal.contextInfo
       }
