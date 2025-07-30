@@ -34,7 +34,7 @@ let handler = async (m, { conn, args, participants, isAdmin, isBotAdmin, isOwner
   const isUserAdmin = groupMetadata.participants.find(p => p.id === who)?.admin
   if (isUserAdmin) {
     return conn.sendMessage(m.chat, {
-      text: `《✧》El usuario @${who.split('@')[0]} ya es administrador del grupo.*`,
+      text: `《✧》El usuario @${who.split('@')[0]} ya es administrador del grupo.`,
       contextInfo: {
         ...rcanal.contextInfo,
         mentionedJid: [who]
@@ -50,10 +50,20 @@ let handler = async (m, { conn, args, participants, isAdmin, isBotAdmin, isOwner
     return conn.sendMessage(m.chat, {
       text: `✿ Usuario promovido a administrador exitosamente.\n\n❒ Usuario: @${who.split('@')[0]}\n❒ Grupo: ${groupName}\n❒ Admin: @${m.sender.split('@')[0]}`,
       contextInfo: {
-      ...rcanal.contextInfo,
-      mentionedJid: [who, m.sender]
-    }
-  }, { quoted: m })
+        ...rcanal.contextInfo,
+        mentionedJid: [who, m.sender]
+      }
+    }, { quoted: m })
+    
+  } catch (e) {
+    console.error('Error al promover usuario:', e)
+    return conn.sendMessage(m.chat, {
+      text: '《✧》Ocurrió un error al intentar promover al usuario. Por favor, inténtalo de nuevo.',
+      contextInfo: {
+        ...rcanal.contextInfo
+      }
+    }, { quoted: m })
+  }
 }
 
 handler.command = /^(promote|promover|daradmin)$/i
