@@ -33,7 +33,7 @@
       "bank": 0
     },
     "114263544885392@lid": {
-      "exp": 49,
+      "exp": 71,
       "limit": 10,
       "premium": false,
       "premiumTime": 0,
@@ -52,7 +52,7 @@
       "desc": "Webi Wabo"
     },
     "78186205446362@lid": {
-      "exp": 39,
+      "exp": 344,
       "limit": 10,
       "premium": false,
       "premiumTime": 0,
@@ -118,7 +118,7 @@
       "bank": 0
     },
     "51901437507@s.whatsapp.net": {
-      "exp": 140,
+      "exp": 31,
       "limit": 10,
       "premium": false,
       "premiumTime": 0,
@@ -132,7 +132,7 @@
       "useDocument": false,
       "level": 0,
       "bank": 0,
-      "Subs": 1753836144598
+      "Subs": 1753910266160
     },
     "51942501966@s.whatsapp.net": {
       "exp": 18,
@@ -1048,7 +1048,7 @@
       "bank": 0
     },
     "994400770565@s.whatsapp.net": {
-      "exp": 9,
+      "exp": 19,
       "limit": 10,
       "premium": false,
       "premiumTime": 0,
@@ -11099,6 +11099,86 @@
       "useDocument": false,
       "level": 0,
       "bank": 0
+    },
+    "51956232479@s.whatsapp.net": {
+      "exp": 1,
+      "limit": 10,
+      "premium": false,
+      "premiumTime": 0,
+      "registered": false,
+      "name": "+51 956 232 479",
+      "age": -1,
+      "regTime": -1,
+      "afk": -1,
+      "afkReason": "",
+      "banned": false,
+      "useDocument": false,
+      "level": 0,
+      "bank": 0
+    },
+    "51977728471@s.whatsapp.net": {
+      "exp": 18,
+      "limit": 10,
+      "premium": false,
+      "premiumTime": 0,
+      "registered": false,
+      "name": "Servicios Digitales",
+      "age": -1,
+      "regTime": -1,
+      "afk": -1,
+      "afkReason": "",
+      "banned": false,
+      "useDocument": false,
+      "level": 0,
+      "bank": 0
+    },
+    "51939250799@s.whatsapp.net": {
+      "exp": 7,
+      "limit": 10,
+      "premium": false,
+      "premiumTime": 0,
+      "registered": false,
+      "name": "servis",
+      "age": -1,
+      "regTime": -1,
+      "afk": -1,
+      "afkReason": "",
+      "banned": false,
+      "useDocument": false,
+      "level": 0,
+      "bank": 0
+    },
+    "994405181972@s.whatsapp.net": {
+      "exp": 10,
+      "limit": 10,
+      "premium": false,
+      "premiumTime": 0,
+      "registered": false,
+      "name": "Davy </>",
+      "age": -1,
+      "regTime": -1,
+      "afk": -1,
+      "afkReason": "",
+      "banned": false,
+      "useDocument": false,
+      "level": 0,
+      "bank": 0
+    },
+    "86887775633559@lid": {
+      "exp": 7,
+      "limit": 10,
+      "premium": false,
+      "premiumTime": 0,
+      "registered": false,
+      "name": "canales digitales",
+      "age": -1,
+      "regTime": -1,
+      "afk": -1,
+      "afkReason": "",
+      "banned": false,
+      "useDocument": false,
+      "level": 0,
+      "bank": 0
     }
   },
   "chats": {
@@ -12997,26 +13077,42 @@
       "onlyLatinos": false,
       "nsfw": false,
       "expired": 0
+    },
+    "120363027138235189@g.us": {
+      "isBanned": false,
+      "bienvenida": true,
+      "antiLink": false,
+      "onlyLatinos": false,
+      "nsfw": false,
+      "expired": 0
+    },
+    "51921910811-1537926192@g.us": {
+      "isBanned": false,
+      "bienvenida": true,
+      "antiLink": false,
+      "onlyLatinos": false,
+      "nsfw": false,
+      "expired": 0
     }
   },
   "stats": {
     "main-menu.js": {
-      "total": 200,
-      "success": 200,
-      "last": 1753907056021,
-      "lastSuccess": 1753907056021
+      "total": 210,
+      "success": 210,
+      "last": 1753909604503,
+      "lastSuccess": 1753909604503
     },
     "serbot-serbot.js": {
-      "total": 64,
-      "success": 64,
-      "last": 1753906874802,
-      "lastSuccess": 1753906874802
+      "total": 65,
+      "success": 65,
+      "last": 1753910266161,
+      "lastSuccess": 1753910266161
     },
     "owner-update.js": {
-      "total": 10,
-      "success": 10,
-      "last": 1753897321983,
-      "lastSuccess": 1753897321983
+      "total": 19,
+      "success": 19,
+      "last": 1753909597887,
+      "lastSuccess": 1753909597887
     },
     "perfiles-perfil.js": {
       "total": 11,
@@ -13085,10 +13181,10 @@
       "lastSuccess": 1753884782667
     },
     "sub-bots.js": {
-      "total": 64,
-      "success": 64,
-      "last": 1753907218122,
-      "lastSuccess": 1753907218122
+      "total": 76,
+      "success": 76,
+      "last": 1753910323712,
+      "lastSuccess": 1753910323712
     },
     "economia-coins.js": {
       "total": 11,
@@ -13167,6 +13263,18 @@
       "success": 1,
       "last": 1753897184893,
       "lastSuccess": 1753897184893
+    },
+    "restartbot.js": {
+      "total": 2,
+      "success": 2,
+      "last": 1753908644390,
+      "lastSuccess": 1753908644390
+    },
+    "botstatus.js": {
+      "total": 1,
+      "success": 1,
+      "last": 1753908684742,
+      "lastSuccess": 1753908684742
     }
   },
   "msgs": {},
