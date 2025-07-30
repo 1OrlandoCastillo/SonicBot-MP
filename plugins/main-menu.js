@@ -9,6 +9,7 @@ const tags = {
   busqueda: '➺ 𖦹 ִֶָ𐀔 ₊˚ ༘⋆  *Busquedas* 𖤓\n\n✧ Comandos para buscar contenido.\n\n',
   descargas: '➺ 𖦹 ִֶָ𐀔 ₊˚ ༘⋆  *Descargas* 𖤓\n\n✧ Comandos para obtener música, videos y más desde distintas fuentes.\n\n',
   grupos: '➺ 𖦹 ִֶָ𐀔 ₊˚ ༘⋆  *Administración* 𖤓\n\n✧ Comandos exclusivos para gestionar y moderar grupos.\n\n',
+  inteligencia: '➺ 𖦹 ִֶָ𐀔 ₊˚ ༘⋆  *Inteligencia Artificial* 𖤓\n\n✧ Comandos para consultar a los modelos de IA.\n\n',
   stickers: '➺ 𖦹 ִֶָ𐀔 ₊˚ ༘⋆  *Stickers* 𖤓\n\n✧ Comandos para crear, editar y divertirte con tus stickers.\n\n',
 }
 
