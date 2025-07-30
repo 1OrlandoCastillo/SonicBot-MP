@@ -57,8 +57,8 @@ let handler = async (m, { conn, args, usedPrefix, command, isOwner }) => {
   global.db.data.users[m.sender].Subs = new Date * 1
 }
 
-handler.help = ['qr', 'code']
-handler.tags = ['serbot']
+handler.help = ['#qr', '#code']
+handler.tags = ['subbots']
 handler.command = ['qr', 'code']
 export default handler
 

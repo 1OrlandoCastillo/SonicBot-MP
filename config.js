@@ -12,7 +12,7 @@ global.bot = 'Serbot'
 global.AFBots = true
 
 global.packname = 'LOVELLOUD'
-global.namebot = 'Anya Forger'
+global.namebot = 'ANYA MD'
 global.author = 'Sung'
 
 
