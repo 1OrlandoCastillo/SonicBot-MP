@@ -31,7 +31,7 @@ let handler = async (m, { conn, args, participants, isAdmin, isBotAdmin, isOwner
   return conn.reply(m.chat, `❏ Usuario baneado exitosamente.\n\n✐ Usuario: @${who.split('@')[0]}\n✐ Grupo: ${(await conn.groupMetadata(m.chat)).subject}\n✐ Admin: @${m.sender.split('@')[0]}`, m, rcanal, { mentions: [who, m.sender] })
 }
 
-handler.command = /^banear|kick?$/i
+handler.command = /^banear|ban|kick?$/i
 handler.group = true
 handler.admin = true
 handler.botAdmin = true
