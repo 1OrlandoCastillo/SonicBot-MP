@@ -1,7 +1,7 @@
 {
   "users": {
     "51958333972@s.whatsapp.net": {
-      "exp": 297,
+      "exp": 305,
       "limit": 10,
       "premium": false,
       "premiumTime": 0,
@@ -33,7 +33,7 @@
       "bank": 0
     },
     "114263544885392@lid": {
-      "exp": 7,
+      "exp": 3,
       "limit": 10,
       "premium": false,
       "premiumTime": 0,
@@ -52,7 +52,7 @@
       "desc": "Webi Wabo"
     },
     "78186205446362@lid": {
-      "exp": 4,
+      "exp": 13,
       "limit": 10,
       "premium": false,
       "premiumTime": 0,
@@ -10218,7 +10218,7 @@
       "bank": 0
     },
     "593962620741@s.whatsapp.net": {
-      "exp": 36,
+      "exp": 46,
       "limit": 10,
       "premium": false,
       "premiumTime": 0,
