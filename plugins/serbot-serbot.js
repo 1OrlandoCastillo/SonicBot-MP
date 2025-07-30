@@ -280,7 +280,16 @@ function msToTime(duration) {
 }
 
 async function joinChannels(conn) {
+  if (!global.ch) return
+  
   for (const channelId of Object.values(global.ch)) {
-    await conn.newsletterFollow(channelId).catch(() => {})
+    try {
+
+      if (typeof conn.newsletterFollow === 'function') {
+        await conn.newsletterFollow(channelId).catch(console.error)
+      }
+    } catch (e) {
+      console.error('Error al seguir el canal:', channelId, e)
+    }
   }
 }
