@@ -60,7 +60,7 @@ let handler = async (m, { conn, args, participants, isAdmin, isBotAdmin, isOwner
   
 
   return conn.sendMessage(m.chat, {
-    text: `[✅] Usuario baneado exitosamente.\n\nUsuario: @${who.split('@')[0]}\nGrupo: ${groupName}\nAdmin: @${m.sender.split('@')[0]}`,
+    text: `❏ Usuario baneado exitosamente.\n\n✐ Usuario: @${who.split('@')[0]}\n✐ Grupo: ${groupName}\n✐ Admin: @${m.sender.split('@')[0]}`,
     contextInfo: {
       ...rcanal.contextInfo,
       mentionedJid: [who, m.sender]
