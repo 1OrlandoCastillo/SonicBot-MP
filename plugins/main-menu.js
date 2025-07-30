@@ -7,6 +7,7 @@ const tags = {
   economía: '➺ 𖦹 ִֶָ𐀔 ₊˚ ༘⋆  *Economía* 𖤓\n\n✧ Comandos para trabajar, jugar y hacer dinero con estilo.\n\n',
   perfiles: '➺ 𖦹 ִֶָ𐀔 ₊˚ ༘⋆  *Perfiles* 𖤓\n\n✧ Comandos para ver, personalizar y destacar tu perfil.\n\n',
   busqueda: '➺ 𖦹 ִֶָ𐀔 ₊˚ ༘⋆  *Busquedas* 𖤓\n\n✧ Comandos para buscar contenido.\n\n',
+  nsfw: '➺ 𖦹 ִֶָ𐀔 ₊˚ ༘⋆  *Nsfw* 𖤓\n\n✧ Comandos para obtener imagenes  de anime +18\n\n',
   descargas: '➺ 𖦹 ִֶָ𐀔 ₊˚ ༘⋆  *Descargas* 𖤓\n\n✧ Comandos para obtener música, videos y más desde distintas fuentes.\n\n',
   grupos: '➺ 𖦹 ִֶָ𐀔 ₊˚ ༘⋆  *Administración* 𖤓\n\n✧ Comandos exclusivos para gestionar y moderar grupos.\n\n',
   inteligencia: '➺ 𖦹 ִֶָ𐀔 ₊˚ ༘⋆  *Inteligencia Artificial* 𖤓\n\n✧ Comandos para consultar a los modelos de IA.\n\n',
