@@ -1,19 +1,44 @@
 let handler = async (m, { conn, args, participants, isAdmin, isOwner, isPrems, usedPrefix, command }) => {
-  if (!m.isGroup) return m.reply('《✧》Este comando solo puede ser usado en grupos.')
+  if (!m.isGroup) return conn.sendMessage(m.chat, {
+    text: '《✧》Este comando solo puede ser usado en grupos.',
+    contextInfo: {
+      ...rcanal.contextInfo
+    }
+  }, { quoted: m })
   
-  if (!isAdmin && !isOwner && !isPrems) return m.reply('《✧》Solo los administradores pueden usar este comando.')
+  if (!isAdmin && !isOwner && !isPrems) return conn.sendMessage(m.chat, {
+    text: '《✧》Solo los administradores pueden usar este comando.',
+    contextInfo: {
+      ...rcanal.contextInfo
+    }
+  }, { quoted: m })
   
   if (!m.mentionedJid || m.mentionedJid.length === 0) {
-    return m.reply(`《✧》Debes mencionar a un usuario para poder degradarlo de administrador.\n\n> Ejemplo: ${usedPrefix + command} @usuario`)
+    return conn.sendMessage(m.chat, {
+      text: `《✧》Debes mencionar a un usuario para poder degradarlo de administrador.\n\n> Ejemplo: ${usedPrefix + command} @usuario`,
+      contextInfo: {
+        ...rcanal.contextInfo
+      }
+    }, { quoted: m })
   }
   const who = m.mentionedJid[0]
   
-  if (who === conn.user.jid) return m.reply('《✧》No puedes quitar admin al bot.')
+  if (who === conn.user.jid) return conn.sendMessage(m.chat, {
+    text: '《✧》No puedes quitar admin al bot.',
+    contextInfo: {
+      ...rcanal.contextInfo
+    }
+  }, { quoted: m })
   
   const groupMetadata = await conn.groupMetadata(m.chat)
   const participant = groupMetadata.participants.find(p => p.id === who)
   
-  if (!participant) return m.reply('《✧》No se encontró al usuario en este grupo.')
+  if (!participant) return conn.sendMessage(m.chat, {
+    text: '《✧》No se encontró al usuario en este grupo.',
+    contextInfo: {
+      ...rcanal.contextInfo
+    }
+  }, { quoted: m })
   
   if (!participant.admin) {
     return conn.sendMessage(m.chat, {
