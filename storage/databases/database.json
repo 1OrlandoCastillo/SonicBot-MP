@@ -33,7 +33,7 @@
       "bank": 0
     },
     "114263544885392@lid": {
-      "exp": 26,
+      "exp": 75,
       "limit": 10,
       "premium": false,
       "premiumTime": 0,
@@ -52,7 +52,7 @@
       "desc": "Webi Wabo"
     },
     "78186205446362@lid": {
-      "exp": 22,
+      "exp": 37,
       "limit": 10,
       "premium": false,
       "premiumTime": 0,
@@ -151,7 +151,7 @@
       "bank": 0
     },
     "275878953148477@lid": {
-      "exp": 24,
+      "exp": 36,
       "limit": 10,
       "premium": false,
       "premiumTime": 0,
@@ -222,7 +222,7 @@
       "bank": 0
     },
     "239273164963865@lid": {
-      "exp": 6,
+      "exp": 10,
       "limit": 10,
       "premium": false,
       "premiumTime": 0,
@@ -238,8 +238,8 @@
       "bank": 0
     },
     "5218448582376@s.whatsapp.net": {
-      "exp": null,
-      "limit": null,
+      "exp": 9,
+      "limit": 10,
       "premium": false,
       "premiumTime": 0,
       "registered": false,
@@ -271,8 +271,8 @@
       "bank": 0
     },
     "67134885490762@lid": {
-      "exp": 62,
-      "limit": 10,
+      "exp": null,
+      "limit": null,
       "premium": false,
       "premiumTime": 0,
       "registered": false,
@@ -302,7 +302,7 @@
       "bank": 0
     },
     "254258423316539@lid": {
-      "exp": 450,
+      "exp": 463,
       "limit": 10,
       "premium": false,
       "premiumTime": 0,
@@ -350,7 +350,7 @@
       "bank": 0
     },
     "177052057620554@lid": {
-      "exp": 64,
+      "exp": 69,
       "limit": 10,
       "premium": false,
       "premiumTime": 0,
@@ -398,7 +398,7 @@
       "bank": 0
     },
     "78735441170508@lid": {
-      "exp": 196,
+      "exp": 255,
       "limit": 10,
       "premium": false,
       "premiumTime": 0,
@@ -589,7 +589,7 @@
       "bank": 0
     },
     "584264120781@s.whatsapp.net": {
-      "exp": 192,
+      "exp": 238,
       "limit": 10,
       "premium": false,
       "premiumTime": 0,
@@ -1380,7 +1380,7 @@
       "bank": 0
     },
     "72452507959439@lid": {
-      "exp": 138,
+      "exp": 142,
       "limit": 10,
       "premium": false,
       "premiumTime": 0,
@@ -1538,7 +1538,7 @@
       "bank": 0
     },
     "120363161629617396@newsletter": {
-      "exp": 17,
+      "exp": 22,
       "limit": 10,
       "premium": false,
       "premiumTime": 0,
@@ -1679,7 +1679,7 @@
       "bank": 0
     },
     "52914047463448@lid": {
-      "exp": 9,
+      "exp": 13,
       "limit": 10,
       "premium": false,
       "premiumTime": 0,
@@ -2825,7 +2825,7 @@
       "bank": 0
     },
     "195790395981828@lid": {
-      "exp": 51,
+      "exp": 60,
       "limit": 10,
       "premium": false,
       "premiumTime": 0,
@@ -13478,10 +13478,10 @@
       "lastSuccess": 1753912037427
     },
     "tag-all.js": {
-      "total": 114,
-      "success": 114,
-      "last": 1753911990709,
-      "lastSuccess": 1753911990709
+      "total": 116,
+      "success": 116,
+      "last": 1753912139137,
+      "lastSuccess": 1753912139137
     },
     "delsub.js": {
       "total": 7,
@@ -13490,10 +13490,10 @@
       "lastSuccess": 1753833872858
     },
     "promote.js": {
-      "total": 35,
-      "success": 35,
-      "last": 1753911988968,
-      "lastSuccess": 1753911988968
+      "total": 37,
+      "success": 37,
+      "last": 1753912213748,
+      "lastSuccess": 1753912213748
     },
     "demote.js": {
       "total": 19,
