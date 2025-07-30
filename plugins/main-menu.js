@@ -3,7 +3,7 @@ import { join } from 'path'
 
 let handler = async (m, { conn }) => {
   try {
-    let nombreBot = global.namebot || 'Anya Forger'
+    let nombreBot = global.namebot || 'Anya MD'
     let imgBot = './storage/img/menu3.jpg'
     const botActual = conn.user?.jid?.split('@')[0]?.replace(/\D/g, '')
     const tipo = botActual === '+51958333972'.replace(/\D/g, '') ? 'Principal Bot' : 'Sub Bot'
@@ -16,7 +16,7 @@ Hola! soy *${nombreBot}*
 ╭─〔 ✦ 𓆩👑𓆪  ᴘʀᴏᴘɪᴇᴛᴀʀɪᴏs ✦ 〕─╮
 │  ꒷ꕤ  Dueños del bot:
 │
-╰➺ +51942501966 (Sung.)
+╰➺ +51942501966 (Sung)
 
 ╰➺ +51901437507 (Sunkovv)
 
