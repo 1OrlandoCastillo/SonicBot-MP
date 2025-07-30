@@ -27,7 +27,7 @@ let handler = async (m, { conn }) => {
   txt += '🪷 : Principales :: 1\n'
   txt += `🍥 : Sub-Bots :: ${totalUsers || 0}\n`
   txt += '\n'
-  txt += '> LOVELLOUD Official'
+  txt += '> Anya Forger'
 
   let imgBot = './storage/img/menu3.jpg'
 
