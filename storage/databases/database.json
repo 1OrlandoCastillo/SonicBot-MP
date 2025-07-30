@@ -33,7 +33,7 @@
       "bank": 0
     },
     "114263544885392@lid": {
-      "exp": 75,
+      "exp": 82,
       "limit": 10,
       "premium": false,
       "premiumTime": 0,
@@ -10216,7 +10216,7 @@
       "bank": 0
     },
     "593962620741@s.whatsapp.net": {
-      "exp": 359,
+      "exp": 4,
       "limit": 10,
       "premium": false,
       "premiumTime": 0,
@@ -10230,7 +10230,7 @@
       "useDocument": false,
       "level": 0,
       "bank": 0,
-      "Subs": 1753904621372
+      "Subs": 1753912604574
     },
     "120363419182031499@newsletter": {
       "exp": 12,
@@ -11474,6 +11474,21 @@
       "premiumTime": 0,
       "registered": false,
       "name": "𝐠𝐮𝐬𝐭𝐚.𝐡𝐱𝐩🤟🏻🤣",
+      "age": -1,
+      "regTime": -1,
+      "afk": -1,
+      "afkReason": "",
+      "banned": false,
+      "useDocument": false,
+      "level": 0,
+      "bank": 0
+    },
+    "120363316533574847@newsletter": {
+      "exp": 6,
+      "limit": 10,
+      "premium": false,
+      "premiumTime": 0,
+      "registered": false,
       "age": -1,
       "regTime": -1,
       "afk": -1,
@@ -13420,20 +13435,28 @@
       "onlyLatinos": false,
       "nsfw": false,
       "expired": 0
+    },
+    "120363316533574847@newsletter": {
+      "isBanned": false,
+      "bienvenida": true,
+      "antiLink": false,
+      "onlyLatinos": false,
+      "nsfw": false,
+      "expired": 0
     }
   },
   "stats": {
     "main-menu.js": {
-      "total": 224,
-      "success": 224,
-      "last": 1753911804701,
-      "lastSuccess": 1753911804701
+      "total": 225,
+      "success": 225,
+      "last": 1753912605733,
+      "lastSuccess": 1753912605733
     },
     "serbot-serbot.js": {
-      "total": 68,
-      "success": 68,
-      "last": 1753911218692,
-      "lastSuccess": 1753911218692
+      "total": 70,
+      "success": 70,
+      "last": 1753912604575,
+      "lastSuccess": 1753912604575
     },
     "owner-update.js": {
       "total": 28,
