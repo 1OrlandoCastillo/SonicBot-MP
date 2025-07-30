@@ -20,14 +20,32 @@ let handler = async (m, { conn }) => {
   let formatUptime = clockString(uptime)
 
   let totalUsers = uniqueUsers.size
-  let txt = `¿Cómo le va su día? `
-  txt += '\n\n'
-  txt += 'Lista de activ@s'
-  txt += '\n\n'
-  txt += '🪷 : Principales :: 1\n'
-  txt += `🍥 : Sub-Bots :: ${totalUsers || 0}\n`
-  txt += '\n'
-  txt += '> Anya Forger'
+  let txt = `╭─「 INFO DE LOS SUB BOTS 」─╮\n`
+  txt += `│\n`
+  txt += `╰➺ 🕒 *Tiempo activo:* ${formatUptime}\n`
+  txt += `╰➺ 🍥 *Sub-Bots:* ${totalUsers || 0}\n`
+  txt += `│\n`
+  txt += `╰────────────────╯\n\n`
+  txt += `╭─「  LISTA DE SUB BOTS 」─╮\n`
+  txt += `│\n`
+  txt += `╰➺ 🪷 *Principal*\n`
+  txt += `│   1. +${global.conn.user.jid.split('@')[0]}\n`
+  txt += `│\n`
+  
+  if (totalUsers > 0) {
+    txt += `╰➺ 🍥 *Sub-Bots (${totalUsers})*\n`
+    let i = 2
+    for (let [jid] of uniqueUsers) {
+      txt += `│   ${i}. +${jid.split('@')[0]}\n`
+      i++
+    }
+  } else {
+    txt += `│ 🍥 *Sin sub-bots activos*\n`
+  }
+  
+  txt += `│\n`
+  txt += `╰────────────────╯\n`
+  txt += `\n> Anya Forger`
 
   let imgBot = './storage/img/menu3.jpg'
 
