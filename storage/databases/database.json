@@ -1,7 +1,7 @@
 {
   "users": {
     "51958333972@s.whatsapp.net": {
-      "exp": 422,
+      "exp": 53,
       "limit": 10,
       "premium": false,
       "premiumTime": 0,
@@ -33,7 +33,7 @@
       "bank": 0
     },
     "114263544885392@lid": {
-      "exp": 9,
+      "exp": 3,
       "limit": 10,
       "premium": false,
       "premiumTime": 0,
@@ -543,7 +543,7 @@
       "bank": 0
     },
     "75420129042499@lid": {
-      "exp": 16,
+      "exp": 8,
       "limit": 10,
       "premium": false,
       "premiumTime": 0,
@@ -10218,7 +10218,7 @@
       "bank": 0
     },
     "593962620741@s.whatsapp.net": {
-      "exp": 7,
+      "exp": 12,
       "limit": 10,
       "premium": false,
       "premiumTime": 0,
@@ -10565,8 +10565,8 @@
       "bank": 0
     },
     "593987574753@s.whatsapp.net": {
-      "exp": null,
-      "limit": null,
+      "exp": 14,
+      "limit": 10,
       "premium": false,
       "premiumTime": 0,
       "registered": false,
@@ -10661,8 +10661,8 @@
       "bank": 0
     },
     "593981862062@s.whatsapp.net": {
-      "exp": 10,
-      "limit": 10,
+      "exp": null,
+      "limit": null,
       "premium": false,
       "premiumTime": 0,
       "registered": false,
@@ -10928,8 +10928,8 @@
       "bank": 0
     },
     "593981914613@s.whatsapp.net": {
-      "exp": null,
-      "limit": null,
+      "exp": 10,
+      "limit": 10,
       "premium": false,
       "premiumTime": 0,
       "registered": false,
@@ -13521,10 +13521,10 @@
   },
   "stats": {
     "main-menu.js": {
-      "total": 229,
-      "success": 229,
-      "last": 1753913672289,
-      "lastSuccess": 1753913672289
+      "total": 231,
+      "success": 231,
+      "last": 1753915212230,
+      "lastSuccess": 1753915212230
     },
     "serbot-serbot.js": {
       "total": 70,
@@ -13533,16 +13533,16 @@
       "lastSuccess": 1753912604575
     },
     "owner-update.js": {
-      "total": 39,
-      "success": 39,
-      "last": 1753915004458,
-      "lastSuccess": 1753915004458
+      "total": 40,
+      "success": 40,
+      "last": 1753915218413,
+      "lastSuccess": 1753915218413
     },
     "perfiles-perfil.js": {
-      "total": 11,
-      "success": 11,
-      "last": 1753897219037,
-      "lastSuccess": 1753897219037
+      "total": 12,
+      "success": 12,
+      "last": 1753915649365,
+      "lastSuccess": 1753915649365
     },
     "perfiles-setgenre.js": {
       "total": 1,
@@ -13587,10 +13587,10 @@
       "lastSuccess": 1753833872858
     },
     "promote.js": {
-      "total": 43,
-      "success": 43,
-      "last": 1753914502383,
-      "lastSuccess": 1753914502383
+      "total": 44,
+      "success": 44,
+      "last": 1753915484382,
+      "lastSuccess": 1753915484382
     },
     "demote.js": {
       "total": 25,
