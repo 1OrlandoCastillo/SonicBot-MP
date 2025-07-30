@@ -1,7 +1,7 @@
 {
   "users": {
     "51958333972@s.whatsapp.net": {
-      "exp": 273,
+      "exp": 275,
       "limit": 10,
       "premium": false,
       "premiumTime": 0,
@@ -17,7 +17,7 @@
       "bank": 0
     },
     "170231330795766@lid": {
-      "exp": 13,
+      "exp": 9,
       "limit": 10,
       "premium": false,
       "premiumTime": 0,
@@ -10218,7 +10218,7 @@
       "bank": 0
     },
     "593962620741@s.whatsapp.net": {
-      "exp": 2,
+      "exp": 7,
       "limit": 10,
       "premium": false,
       "premiumTime": 0,
