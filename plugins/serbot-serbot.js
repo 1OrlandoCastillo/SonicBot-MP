@@ -63,7 +63,15 @@ handler.command = ['qr', 'code']
 export default handler
 
 export async function AYBot(options) {
-  let { pathAYBot, m, conn, args, usedPrefix, command } = options
+  let { pathAYBot, m, conn, args, usedPrefix, command, fromCommand = true } = options
+  
+ 
+  if (!fromCommand) {
+    command = 'qr'
+    args = []
+    usedPrefix = '.'
+  }
+  
   if (command === 'code') {
     command = 'qr'
     args.unshift('code')
@@ -86,7 +94,9 @@ export async function AYBot(options) {
   try {
     args[0] && args[0] != undefined ? fs.writeFileSync(pathCreds, JSON.stringify(JSON.parse(Buffer.from(args[0], "base64").toString("utf-8")), null, '\t')) : ""
   } catch {
-    conn.reply(m.chat, `${emoji} Use correctamente el comando » ${usedPrefix + command} code`, m)
+    if (m && conn) {
+      conn.reply(m.chat, `${emoji} Use correctamente el comando » ${usedPrefix + command} code`, m)
+    }
     return
   }
 
@@ -120,7 +130,7 @@ export async function AYBot(options) {
       const { connection, lastDisconnect, isNewLogin, qr } = update
       if (isNewLogin) sock.isInit = false
 
-      if (qr && !mcode) {
+      if (qr && !mcode && m && conn) {
   let txt = `[ Escaneo de QR requerido ]\n\n`
   txt += `Ruta para vincular por código QR:\n\n`
   txt += `• 🪷 Aplicación: WhatsApp\n`
@@ -141,7 +151,7 @@ export async function AYBot(options) {
   return
   }
 
-      if (qr && mcode) {
+      if (qr && mcode && m && conn) {
         let secret = await sock.requestPairingCode(m.sender.split`@`[0])
         secret = secret?.match(/.{1,4}/g)?.join("-") || secret
         let txt = `[ Vinculación requerida ]\n\n`

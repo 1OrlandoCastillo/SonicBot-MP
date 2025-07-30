@@ -39,6 +39,7 @@ Hola! soy *${nombreBot}*
 𝆬✦.#code
 𝆬✦.#bots
 𝆬✦.#botinfo • infobot
+𝆬✦.#reconnect
 → Obtener información única y original del bot
 
 ➺ 𖦹 ִֶָ𐀔 ₊˚ ༘⋆  *Economía* 𖤓
