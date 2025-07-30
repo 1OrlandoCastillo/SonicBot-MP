@@ -1,7 +1,7 @@
 {
   "users": {
     "51958333972@s.whatsapp.net": {
-      "exp": 278,
+      "exp": 297,
       "limit": 10,
       "premium": false,
       "premiumTime": 0,
@@ -33,7 +33,7 @@
       "bank": 0
     },
     "114263544885392@lid": {
-      "exp": 4,
+      "exp": 7,
       "limit": 10,
       "premium": false,
       "premiumTime": 0,
@@ -52,7 +52,7 @@
       "desc": "Webi Wabo"
     },
     "78186205446362@lid": {
-      "exp": 1,
+      "exp": 4,
       "limit": 10,
       "premium": false,
       "premiumTime": 0,
@@ -10218,7 +10218,7 @@
       "bank": 0
     },
     "593962620741@s.whatsapp.net": {
-      "exp": 15,
+      "exp": 36,
       "limit": 10,
       "premium": false,
       "premiumTime": 0,
@@ -13593,10 +13593,10 @@
       "lastSuccess": 1753914502383
     },
     "demote.js": {
-      "total": 20,
-      "success": 20,
-      "last": 1753914458962,
-      "lastSuccess": 1753914458962
+      "total": 21,
+      "success": 21,
+      "last": 1753914613492,
+      "lastSuccess": 1753914613492
     },
     "gemini.js": {
       "total": 16,
