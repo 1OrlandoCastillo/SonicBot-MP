@@ -118,7 +118,7 @@
       "bank": 0
     },
     "51901437507@s.whatsapp.net": {
-      "exp": 31,
+      "exp": 46,
       "limit": 10,
       "premium": false,
       "premiumTime": 0,
@@ -11171,6 +11171,22 @@
       "premiumTime": 0,
       "registered": false,
       "name": "canales digitales",
+      "age": -1,
+      "regTime": -1,
+      "afk": -1,
+      "afkReason": "",
+      "banned": false,
+      "useDocument": false,
+      "level": 0,
+      "bank": 0
+    },
+    "258862120581@s.whatsapp.net": {
+      "exp": 3,
+      "limit": 10,
+      "premium": false,
+      "premiumTime": 0,
+      "registered": false,
+      "name": "꧁༒♛Ϛìҟ⊘⊘úքɾօ ♛༒꧂",
       "age": -1,
       "regTime": -1,
       "afk": -1,
