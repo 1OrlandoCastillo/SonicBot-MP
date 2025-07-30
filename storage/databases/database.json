@@ -33,7 +33,7 @@
       "bank": 0
     },
     "114263544885392@lid": {
-      "exp": 14,
+      "exp": 26,
       "limit": 10,
       "premium": false,
       "premiumTime": 0,
@@ -52,7 +52,7 @@
       "desc": "Webi Wabo"
     },
     "78186205446362@lid": {
-      "exp": 10,
+      "exp": 22,
       "limit": 10,
       "premium": false,
       "premiumTime": 0,
@@ -238,7 +238,7 @@
       "bank": 0
     },
     "5218448582376@s.whatsapp.net": {
-      "exp": 0,
+      "exp": 15,
       "limit": 10,
       "premium": false,
       "premiumTime": 0,
@@ -589,7 +589,7 @@
       "bank": 0
     },
     "584264120781@s.whatsapp.net": {
-      "exp": 162,
+      "exp": 173,
       "limit": 10,
       "premium": false,
       "premiumTime": 0,
@@ -13478,10 +13478,10 @@
       "lastSuccess": 1753911813114
     },
     "tag-all.js": {
-      "total": 113,
-      "success": 113,
-      "last": 1753911740189,
-      "lastSuccess": 1753911740189
+      "total": 114,
+      "success": 114,
+      "last": 1753911990709,
+      "lastSuccess": 1753911990709
     },
     "delsub.js": {
       "total": 7,
@@ -13496,10 +13496,10 @@
       "lastSuccess": 1753911988968
     },
     "demote.js": {
-      "total": 18,
-      "success": 18,
-      "last": 1753911959093,
-      "lastSuccess": 1753911959093
+      "total": 19,
+      "success": 19,
+      "last": 1753911997350,
+      "lastSuccess": 1753911997350
     },
     "gemini.js": {
       "total": 16,
