@@ -47,7 +47,7 @@ let handler = async (m, { conn }) => {
 }
 
 handler.command = ['listjadibot', 'bots']
-handler.help = ['bots']
+handler.help = ['#bots']
 handler.tags = ['subbots']
 export default handler
 

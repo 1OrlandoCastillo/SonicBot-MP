@@ -16,19 +16,27 @@ const tags = {
 
 const defaultMenu = {
   before: `
-Hola! soy %botname  
+Hola! soy *%botname*  
 (%tipo)
 
-Aqui tienes la lista de comandos
 
-╭───〔 ✦ 𓆩💎𓆪  ᴄᴀɴᴀʟᴇs ᴏғɪᴄɪᴀʟᴇs ✦ 〕───╮
+╭─〔 ✦ 𓆩👑𓆪  ᴘʀᴏᴘɪᴇᴛᴀʀɪᴏs ✦ 〕─╮
+│  ꒷ꕤ  Dueños del bot:
+│
+╰➺ +51942501966 (Sung)
+
+╰➺ +51901437507 (Sunkovv)
+
+
+╭─〔 ✦ 𓆩💎𓆪  ᴄᴀɴᴀʟᴇs ᴏғɪᴄɪᴀʟᴇs ✦ 〕─╮
 │  ꒷ꕤ  Accede aquí:
 │
-│  ➺ https://whatsapp.com/channel/0029VbAZUQ3002T9KZfx2O1M
-│
-│  ➺ https://whatsapp.com/channel/0029Vb5Vinf72WTo11c5hJ3O
-│
-╰──────────────────────────────╯
+╰➺ https://whatsapp.com/channel/0029VbAZUQ3002T9KZfx2O1M
+
+╰➺ https://whatsapp.com/channel/0029Vb5Vinf72WTo11c5hJ3O
+
+𝗔𝗾𝘂𝗶 𝘁𝗶𝗲𝗻𝗲𝘀 𝗹𝗮 𝗹𝗶𝘀𝘁𝗮 𝗱𝗲 𝗰𝗼𝗺𝗮𝗻𝗱𝗼𝘀:
+
 %readmore`.trimStart(),
 
   header: '%category',
