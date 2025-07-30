@@ -1,7 +1,7 @@
 {
   "users": {
     "51958333972@s.whatsapp.net": {
-      "exp": 413,
+      "exp": 422,
       "limit": 10,
       "premium": false,
       "premiumTime": 0,
@@ -33,7 +33,7 @@
       "bank": 0
     },
     "114263544885392@lid": {
-      "exp": 19,
+      "exp": 9,
       "limit": 10,
       "premium": false,
       "premiumTime": 0,
@@ -52,8 +52,8 @@
       "desc": "Webi Wabo"
     },
     "78186205446362@lid": {
-      "exp": null,
-      "limit": null,
+      "exp": 10,
+      "limit": 10,
       "premium": false,
       "premiumTime": 0,
       "registered": false,
@@ -10218,7 +10218,7 @@
       "bank": 0
     },
     "593962620741@s.whatsapp.net": {
-      "exp": 17,
+      "exp": 7,
       "limit": 10,
       "premium": false,
       "premiumTime": 0,
@@ -13533,10 +13533,10 @@
       "lastSuccess": 1753912604575
     },
     "owner-update.js": {
-      "total": 38,
-      "success": 38,
-      "last": 1753914786594,
-      "lastSuccess": 1753914786594
+      "total": 39,
+      "success": 39,
+      "last": 1753915004458,
+      "lastSuccess": 1753915004458
     },
     "perfiles-perfil.js": {
       "total": 11,
@@ -13569,10 +13569,10 @@
       "lastSuccess": 1753897292974
     },
     "ban.js": {
-      "total": 42,
-      "success": 42,
-      "last": 1753914239603,
-      "lastSuccess": 1753914239603
+      "total": 44,
+      "success": 44,
+      "last": 1753915036533,
+      "lastSuccess": 1753915036533
     },
     "tag-all.js": {
       "total": 117,

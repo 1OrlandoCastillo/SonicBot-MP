@@ -1,12 +1,27 @@
 import { isJidGroup } from '@whiskeysockets/baileys'
 
 let handler = async (m, { conn, args, participants, isAdmin, isBotAdmin, isOwner, isPrems, usedPrefix, command }) => {
-  if (!m.isGroup) return m.reply('《✧》Este comando solo puede ser usado en grupos.')
+  if (!m.isGroup) return conn.sendMessage(m.chat, {
+    text: '《✧》Este comando solo puede ser usado en grupos.',
+    contextInfo: {
+      ...rcanal.contextInfo
+    }
+  }, { quoted: m })
   
-  if (!isAdmin && !isOwner && !isPrems) return m.reply('《✧》Solo los administradores pueden usar este comando.')
+  if (!isAdmin && !isOwner && !isPrems) return conn.sendMessage(m.chat, {
+    text: '《✧》Solo los administradores pueden usar este comando.',
+    contextInfo: {
+      ...rcanal.contextInfo
+    }
+  }, { quoted: m })
   
   if (!m.mentionedJid || m.mentionedJid.length === 0) {
-    return m.reply(`《✧》Debes mencionar al usuario que deseas banear.\n\n> Ejemplo: ${usedPrefix + command} @usuario`)
+    return conn.sendMessage(m.chat, {
+      text: `《✧》Debes mencionar al usuario que deseas banear.\n\n> Ejemplo: ${usedPrefix + command} @usuario`,
+      contextInfo: {
+        ...rcanal.contextInfo
+      }
+    }, { quoted: m })
   }
   const who = m.mentionedJid[0]
   
@@ -16,10 +31,20 @@ let handler = async (m, { conn, args, participants, isAdmin, isBotAdmin, isOwner
   });
   
   if (ownerNumbers.includes(who)) {
-    return m.reply('《✧》No puedes banear a un propietario del bot.')
+    return conn.sendMessage(m.chat, {
+      text: '《✧》No puedes banear a un propietario del bot.',
+      contextInfo: {
+        ...rcanal.contextInfo
+      }
+    }, { quoted: m })
   }
   
-  if (who === conn.user.jid) return m.reply('《✧》No se puede usar este comando para banear al bot.')
+  if (who === conn.user.jid) return conn.sendMessage(m.chat, {
+    text: '《✧》No se puede usar este comando para banear al bot.',
+    contextInfo: {
+      ...rcanal.contextInfo
+    }
+  }, { quoted: m })
   
   await conn.groupParticipantsUpdate(m.chat, [who], 'remove')
   
