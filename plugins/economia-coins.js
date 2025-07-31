@@ -11,12 +11,16 @@ let handler = async (m, { conn, text, args }) => {
   let coins = user.coins || 0
   let name = await conn.getName(who)
 
-  conn.reply(m.chat, `
-✿ Economía de usuario
+  return conn.sendMessage(m.chat, {
+  text: `✿ Economía de usuario
 
 ✐ Usuario: ${name} (@${who.split('@')[0]})
-❏ Coins actuales: ${coins}
-  `.trim(), m, rcanal, { mentions: [who] })
+❏ Coins actuales: ${coins}`,
+      contextInfo: {
+      ...rcanal.contextInfo,
+      mentionedJid: [who, m.sender]
+    }
+  }, { quoted: m })
 }
 
 handler.help = ['balance', 'bal', 'coins']
