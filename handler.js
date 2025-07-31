@@ -32,20 +32,15 @@ try {
   let user = global.db.data.users[m.sender] ||= {}  
   if (!isNumber(user.exp)) user.exp = 0  
   if (!isNumber(user.limit)) user.limit = 10  
-  if (!('premium' in user)) user.premium = false  
-  if (!user.premium) user.premiumTime = 0  
   if (!('registered' in user)) user.registered = false  
   if (!user.registered) {  
     if (!('name' in user)) user.name = m.name  
     if (!isNumber(user.age)) user.age = -1  
     if (!isNumber(user.regTime)) user.regTime = -1  
   }  
-  if (!isNumber(user.afk)) user.afk = -1  
-  if (!('afkReason' in user)) user.afkReason = ''  
   if (!('banned' in user)) user.banned = false  
-  if (!('useDocument' in user)) user.useDocument = false  
   if (!isNumber(user.level)) user.level = 0  
-  if (!isNumber(user.bank)) user.bank = 0  
+  if (!isNumber(user.coins)) user.coins = 0  
 
   let chat = global.db.data.chats[m.chat] ||= {}  
   if (!('isBanned' in chat)) chat.isBanned = false  

@@ -17,7 +17,7 @@ let handler = async (m, { conn, usedPrefix, command }) => {
 ✿ Experiencia: ${data.exp || 0}
 
 ❒ ID: ${user}
-❒ Tipo: ${data.premium ? 'Premium' : 'Usuario'}
+❒ Tipo: Usuario
 ❒ Registrado: ${data.registered ? 'Sí' : 'No'}
   `.trim()
 

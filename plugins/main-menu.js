@@ -80,6 +80,7 @@ Hola! soy *${nombreBot}*
 ✧ Comandos para buscar contenido.
 
 
+𝆬✦.#google <búsqueda>
 𝆬✦.#yt <búsqueda>
 𝆬✦.#tiktok <búsqueda>
 
@@ -118,7 +119,8 @@ Hola! soy *${nombreBot}*
 
 ✧ Comandos exclusivos para gestionar y moderar grupos.
 
-
+✦.#delete
+✦.#del
 𝆬✦.#ban @usuario
 𝆬✦.#demote @usuario
 𝆬✦.#promote @usuario
