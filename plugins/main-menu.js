@@ -47,9 +47,9 @@ Hola! soy *${nombreBot}*
 ✧ Comandos para trabajar, jugar y hacer dinero con estilo.
 
 
-𝆬✦.balance
-𝆬✦.bal
-𝆬✦.coins
+𝆬✦#balance
+𝆬✦#bal
+𝆬✦#coins
 
 ➺ 𖦹 ִֶָ𐀔 ₊˚ ༘⋆  *Perfiles* 𖤓
 
@@ -82,6 +82,21 @@ Hola! soy *${nombreBot}*
 
 𝆬✦.#yt <búsqueda>
 𝆬✦.#tiktok <búsqueda>
+
+➺ 𖦹 ִֶָ𐀔 ₊˚ ༘⋆  *Tops* 𖤓
+
+✧ Tops del grupos
+
+
+𝆬✦.#topgays
+𝆬✦.#topfeos
+𝆬✦.#toplindos
+𝆬✦.#topburros
+𝆬✦.#topmachos
+𝆬✦.#topparejas
+𝆬✦.#toppajeros
+𝆬✦.#topmancos
+
 
 ➺ 𖦹 ִֶָ𐀔 ₊˚ ༘⋆  *Nsfw* 𖤓
 
