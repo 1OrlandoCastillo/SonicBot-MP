@@ -111,7 +111,7 @@ Hola! soy *${nombreBot}*
 
 ✧ Comandos para obtener música, videos y más desde distintas fuentes.
 
-
+𝆬✦.#play <query> o <url>
 
 
 ➺ 𖦹 ִֶָ𐀔 ₊˚ ༘⋆  *Administración* 𖤓
