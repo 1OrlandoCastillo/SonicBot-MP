@@ -1,7 +1,7 @@
 {
   "users": {
     "51958333972@s.whatsapp.net": {
-      "exp": 180,
+      "exp": 466,
       "limit": 10,
       "premium": false,
       "premiumTime": 0,
@@ -121,7 +121,7 @@
       "bank": 0
     },
     "114263544885392@lid": {
-      "exp": 304,
+      "exp": 1896,
       "limit": 10,
       "premium": false,
       "premiumTime": 0,
@@ -178,7 +178,7 @@
       "currentWork": ""
     },
     "58540639154396@lid": {
-      "exp": 107,
+      "exp": 1216,
       "limit": 10,
       "premium": false,
       "premiumTime": 0,
@@ -387,7 +387,7 @@
       "bank": 0
     },
     "275878953148477@lid": {
-      "exp": 14,
+      "exp": 5,
       "limit": 10,
       "premium": false,
       "premiumTime": 0,
@@ -400,7 +400,8 @@
       "banned": false,
       "useDocument": false,
       "level": 0,
-      "bank": 0
+      "bank": 0,
+      "coins": 0
     },
     "235072334639255@lid": {
       "exp": 5,
@@ -450,7 +451,7 @@
       "bank": 0
     },
     "177052057620554@lid": {
-      "exp": 159,
+      "exp": 1549,
       "limit": 10,
       "premium": false,
       "premiumTime": 0,
@@ -463,7 +464,8 @@
       "banned": true,
       "useDocument": false,
       "level": 0,
-      "bank": 0
+      "bank": 0,
+      "coins": 0
     },
     "120363173620115764@newsletter": {
       "exp": 34,
@@ -512,7 +514,7 @@
       "bank": 0
     },
     "51901437507@s.whatsapp.net": {
-      "exp": 239,
+      "exp": 92,
       "limit": 10,
       "premium": false,
       "premiumTime": 0,
@@ -903,7 +905,7 @@
       "bank": 0
     },
     "214078920359966@lid": {
-      "exp": 6,
+      "exp": 158,
       "limit": 10,
       "premium": false,
       "premiumTime": 0,
@@ -954,7 +956,7 @@
       "bank": 0
     },
     "5219991034993@s.whatsapp.net": {
-      "exp": 242,
+      "exp": 96,
       "limit": 10,
       "premium": false,
       "premiumTime": 0,
@@ -968,7 +970,8 @@
       "useDocument": false,
       "level": 0,
       "bank": 0,
-      "Subs": 1753922378522
+      "Subs": 1753922378522,
+      "coins": 0
     },
     "120363240478812648@newsletter": {
       "exp": null,
@@ -1605,7 +1608,7 @@
       "bank": 0
     },
     "120363307694217288@newsletter": {
-      "exp": 5,
+      "exp": 14,
       "limit": 10,
       "premium": false,
       "premiumTime": 0,
@@ -1794,8 +1797,8 @@
       "Subs": 1753925675428
     },
     "120363312092804854@newsletter": {
-      "exp": null,
-      "limit": null,
+      "exp": 6,
+      "limit": 10,
       "premium": false,
       "premiumTime": 0,
       "registered": false,
@@ -2193,7 +2196,7 @@
       "bank": 0
     },
     "5218442600752@s.whatsapp.net": {
-      "exp": 108,
+      "exp": 63,
       "limit": 10,
       "premium": false,
       "premiumTime": 0,
@@ -2207,7 +2210,8 @@
       "useDocument": false,
       "level": 0,
       "bank": 0,
-      "Subs": 1753928339750
+      "Subs": 1753928339750,
+      "coins": 0
     },
     "120363419046474152@newsletter": {
       "exp": 6,
@@ -2318,7 +2322,7 @@
       "bank": 0
     },
     "75420129042499@lid": {
-      "exp": 30,
+      "exp": 10,
       "limit": 10,
       "premium": false,
       "premiumTime": 0,
@@ -2718,7 +2722,7 @@
       "bank": 0
     },
     "120363285463957058@newsletter": {
-      "exp": 6,
+      "exp": 11,
       "limit": 10,
       "premium": false,
       "premiumTime": 0,
@@ -2730,7 +2734,8 @@
       "banned": false,
       "useDocument": false,
       "level": 0,
-      "bank": 0
+      "bank": 0,
+      "coins": 0
     },
     "5212204709104@s.whatsapp.net": {
       "exp": 8,
@@ -2749,7 +2754,7 @@
       "bank": 0
     },
     "5350764388@s.whatsapp.net": {
-      "exp": 17,
+      "exp": 24,
       "limit": 10,
       "premium": false,
       "premiumTime": 0,
@@ -2970,7 +2975,7 @@
       "bank": 0
     },
     "5219991935938@s.whatsapp.net": {
-      "exp": 75,
+      "exp": 136,
       "limit": 10,
       "premium": false,
       "premiumTime": 0,
@@ -2983,7 +2988,45 @@
       "banned": false,
       "useDocument": false,
       "level": 0,
+      "bank": 0,
+      "coins": 0
+    },
+    "18092623033@s.whatsapp.net": {
+      "exp": 15,
+      "limit": 10,
+      "premium": false,
+      "premiumTime": 0,
+      "registered": false,
+      "name": "☾︎𝓐𝓲𝓼𝓶𝓮☽︎ ꨄ︎",
+      "age": -1,
+      "regTime": -1,
+      "afk": -1,
+      "afkReason": "",
+      "banned": false,
+      "useDocument": false,
+      "level": 0,
       "bank": 0
+    },
+    "5219995054394@s.whatsapp.net": {
+      "exp": 5,
+      "limit": 10,
+      "registered": false,
+      "name": "🔥KYOJURO RENGOKU 🔥",
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "120363360008661883@newsletter": {
+      "exp": 31,
+      "limit": 10,
+      "registered": false,
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
     }
   },
   "chats": {
@@ -3806,32 +3849,40 @@
       "onlyLatinos": false,
       "nsfw": false,
       "expired": 0
+    },
+    "120363360008661883@newsletter": {
+      "isBanned": false,
+      "bienvenida": true,
+      "antiLink": false,
+      "onlyLatinos": false,
+      "nsfw": false,
+      "expired": 0
     }
   },
   "stats": {
     "grupos-banear.js": {
-      "total": 5,
-      "success": 5,
-      "last": 1753928011724,
-      "lastSuccess": 1753928011724
+      "total": 7,
+      "success": 7,
+      "last": 1753940212944,
+      "lastSuccess": 1753940212944
     },
     "grupos-demote.js": {
-      "total": 4,
-      "success": 4,
-      "last": 1753928412798,
-      "lastSuccess": 1753928412798
+      "total": 7,
+      "success": 7,
+      "last": 1753940607296,
+      "lastSuccess": 1753940607296
     },
     "sub-bots.js": {
-      "total": 19,
-      "success": 19,
-      "last": 1753939835171,
-      "lastSuccess": 1753939835171
+      "total": 24,
+      "success": 24,
+      "last": 1753940751203,
+      "lastSuccess": 1753940751203
     },
     "main-menu.js": {
-      "total": 40,
-      "success": 40,
-      "last": 1753938449543,
-      "lastSuccess": 1753938449543
+      "total": 55,
+      "success": 55,
+      "last": 1753941568543,
+      "lastSuccess": 1753941568543
     },
     "promote.js": {
       "total": 1,
@@ -3840,10 +3891,10 @@
       "lastSuccess": 1753916696643
     },
     "grupos-promote.js": {
-      "total": 21,
-      "success": 21,
-      "last": 1753939537215,
-      "lastSuccess": 1753939537215
+      "total": 30,
+      "success": 30,
+      "last": 1753940588379,
+      "lastSuccess": 1753940588379
     },
     "owner-update.js": {
       "total": 8,
@@ -3864,10 +3915,10 @@
       "lastSuccess": 1753935529304
     },
     "tag-all.js": {
-      "total": 13,
-      "success": 13,
-      "last": 1753939319465,
-      "lastSuccess": 1753939319465
+      "total": 15,
+      "success": 15,
+      "last": 1753940159619,
+      "lastSuccess": 1753940159619
     },
     "top-feos.js": {
       "total": 2,
@@ -3936,10 +3987,10 @@
       "lastSuccess": 1753938490573
     },
     "set-botname.js": {
-      "total": 4,
-      "success": 4,
-      "last": 1753935295320,
-      "lastSuccess": 1753935295320
+      "total": 12,
+      "success": 12,
+      "last": 1753941617332,
+      "lastSuccess": 1753941617332
     },
     "set-botimg.js": {
       "total": 2,
@@ -3948,10 +3999,10 @@
       "lastSuccess": 1753935312859
     },
     "waifu-nsfw.js": {
-      "total": 2,
-      "success": 2,
-      "last": 1753928072847,
-      "lastSuccess": 1753928072847
+      "total": 5,
+      "success": 5,
+      "last": 1753941428727,
+      "lastSuccess": 1753941428727
     },
     "waifu.js": {
       "total": 2,
@@ -3960,10 +4011,10 @@
       "lastSuccess": 1753928168388
     },
     "play.js": {
-      "total": 29,
-      "success": 29,
-      "last": 1753930573773,
-      "lastSuccess": 1753930573773
+      "total": 31,
+      "success": 31,
+      "last": 1753940279640,
+      "lastSuccess": 1753940279640
     },
     "toimg.js": {
       "total": 28,
@@ -4014,10 +4065,22 @@
       "lastSuccess": 1753935439936
     },
     "grupos-delete.js": {
-      "total": 57,
-      "success": 57,
-      "last": 1753939849528,
-      "lastSuccess": 1753939849528
+      "total": 82,
+      "success": 82,
+      "last": 1753940986133,
+      "lastSuccess": 1753940986133
+    },
+    "grupos-clear.js": {
+      "total": 59,
+      "success": 59,
+      "last": 1753941184471,
+      "lastSuccess": 1753941184471
+    },
+    "reconnect-bots.js": {
+      "total": 3,
+      "success": 3,
+      "last": 1753941100683,
+      "lastSuccess": 1753941100683
     }
   },
   "msgs": {},

@@ -125,6 +125,7 @@ Hola! soy *${nombreBot}*
 𝆬✦.#demote @usuario
 𝆬✦.#promote @usuario
 𝆬✦.#tag
+✦.#clear
 
 ➺ 𖦹 ִֶָ𐀔 ₊˚ ༘⋆  *Inteligencia Artificial* 𖤓
 
