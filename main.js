@@ -16,7 +16,7 @@ import pino from 'pino'
 import { Boom } from '@hapi/boom'
 import { makeWASocket, protoType, serialize } from './lib/simple.js'
 import { Low, JSONFile } from 'lowdb'
-import lodash from 'lodash' // ✅ Usamos lodash directamente
+import lodash from 'lodash' 
 import readline from 'readline'
 import NodeCache from 'node-cache'
 import qrcode from 'qrcode-terminal'
@@ -158,7 +158,7 @@ async function handleLogin() {
     let phoneNumber = await question(chalk.blue('Ingresa el número de WhatsApp donde estará el bot (incluye código país, ej: 521XXXXXXXXXX):\n'))
     phoneNumber = phoneNumber.replace(/\D/g, '') // Solo números
 
-    // Ajustes básicos para México (52)
+    
     if (phoneNumber.startsWith('52') && phoneNumber.length === 12) {
       phoneNumber = `521${phoneNumber.slice(2)}`
     } else if (phoneNumber.startsWith('52')) {
@@ -169,7 +169,7 @@ async function handleLogin() {
 
     if (typeof conn.requestPairingCode === 'function') {
       try {
-        // Validar que la conexión esté abierta antes de solicitar código
+        
         if (conn.ws.readyState === ws.OPEN) {
           let code = await conn.requestPairingCode(phoneNumber)
           code = code?.match(/.{1,4}/g)?.join('-') || code

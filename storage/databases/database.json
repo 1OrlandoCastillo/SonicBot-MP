@@ -1,7 +1,7 @@
 {
   "users": {
     "51958333972@s.whatsapp.net": {
-      "exp": 700,
+      "exp": 1026,
       "limit": 10,
       "premium": false,
       "premiumTime": 0,
@@ -17,7 +17,7 @@
       "bank": 0
     },
     "78186205446362@lid": {
-      "exp": 400,
+      "exp": 503,
       "limit": 10,
       "premium": false,
       "premiumTime": 0,
@@ -111,8 +111,8 @@
       "bank": 0
     },
     "114263544885392@lid": {
-      "exp": 236,
-      "limit": 10,
+      "exp": null,
+      "limit": null,
       "premium": false,
       "premiumTime": 0,
       "registered": false,
@@ -158,7 +158,7 @@
       "bank": 0
     },
     "58540639154396@lid": {
-      "exp": 13,
+      "exp": 28,
       "limit": 10,
       "premium": false,
       "premiumTime": 0,
@@ -222,7 +222,7 @@
       "bank": 0
     },
     "120363144632866729@newsletter": {
-      "exp": 8,
+      "exp": 10,
       "limit": 10,
       "premium": false,
       "premiumTime": 0,
@@ -237,7 +237,7 @@
       "bank": 0
     },
     "120363153791482611@newsletter": {
-      "exp": 11,
+      "exp": 18,
       "limit": 10,
       "premium": false,
       "premiumTime": 0,
@@ -252,7 +252,7 @@
       "bank": 0
     },
     "187097499586650@lid": {
-      "exp": 147,
+      "exp": 179,
       "limit": 10,
       "premium": false,
       "premiumTime": 0,
@@ -284,7 +284,7 @@
       "bank": 0
     },
     "120363166444328439@newsletter": {
-      "exp": 73,
+      "exp": 60,
       "limit": 10,
       "premium": false,
       "premiumTime": 0,
@@ -330,7 +330,7 @@
       "bank": 0
     },
     "155512763109444@lid": {
-      "exp": 96,
+      "exp": 107,
       "limit": 10,
       "premium": false,
       "premiumTime": 0,
@@ -346,7 +346,7 @@
       "bank": 0
     },
     "5218448582376@s.whatsapp.net": {
-      "exp": 168,
+      "exp": 196,
       "limit": 10,
       "premium": false,
       "premiumTime": 0,
@@ -362,7 +362,7 @@
       "bank": 0
     },
     "275878953148477@lid": {
-      "exp": 176,
+      "exp": 223,
       "limit": 10,
       "premium": false,
       "premiumTime": 0,
@@ -425,7 +425,7 @@
       "bank": 0
     },
     "177052057620554@lid": {
-      "exp": 184,
+      "exp": 205,
       "limit": 10,
       "premium": false,
       "premiumTime": 0,
@@ -441,7 +441,7 @@
       "bank": 0
     },
     "120363173620115764@newsletter": {
-      "exp": 16,
+      "exp": 26,
       "limit": 10,
       "premium": false,
       "premiumTime": 0,
@@ -487,7 +487,7 @@
       "bank": 0
     },
     "51901437507@s.whatsapp.net": {
-      "exp": 21,
+      "exp": 1,
       "limit": 10,
       "premium": false,
       "premiumTime": 0,
@@ -518,8 +518,8 @@
       "bank": 0
     },
     "5219651172377@s.whatsapp.net": {
-      "exp": 10,
-      "limit": 10,
+      "exp": null,
+      "limit": null,
       "premium": false,
       "premiumTime": 0,
       "registered": false,
@@ -534,7 +534,7 @@
       "bank": 0
     },
     "593962620741@s.whatsapp.net": {
-      "exp": 665,
+      "exp": 980,
       "limit": 10,
       "premium": false,
       "premiumTime": 0,
@@ -551,7 +551,7 @@
       "Subs": 1753918146382
     },
     "72452507959439@lid": {
-      "exp": 11,
+      "exp": 12,
       "limit": 10,
       "premium": false,
       "premiumTime": 0,
@@ -598,7 +598,7 @@
       "bank": 0
     },
     "593985332166@s.whatsapp.net": {
-      "exp": 26,
+      "exp": 55,
       "limit": 10,
       "premium": false,
       "premiumTime": 0,
@@ -614,7 +614,7 @@
       "bank": 0
     },
     "593987574753@s.whatsapp.net": {
-      "exp": 149,
+      "exp": 197,
       "limit": 10,
       "premium": false,
       "premiumTime": 0,
@@ -677,7 +677,7 @@
       "bank": 0
     },
     "120363145218730937@newsletter": {
-      "exp": 13,
+      "exp": 20,
       "limit": 10,
       "premium": false,
       "premiumTime": 0,
@@ -692,7 +692,7 @@
       "bank": 0
     },
     "120363166260728864@newsletter": {
-      "exp": 9,
+      "exp": 40,
       "limit": 10,
       "premium": false,
       "premiumTime": 0,
@@ -707,7 +707,7 @@
       "bank": 0
     },
     "593961768027@s.whatsapp.net": {
-      "exp": 28,
+      "exp": 51,
       "limit": 10,
       "premium": false,
       "premiumTime": 0,
@@ -755,7 +755,7 @@
       "bank": 0
     },
     "120363179570601485@newsletter": {
-      "exp": 13,
+      "exp": 25,
       "limit": 10,
       "premium": false,
       "premiumTime": 0,
@@ -881,7 +881,7 @@
       "bank": 0
     },
     "593989714369@s.whatsapp.net": {
-      "exp": 221,
+      "exp": 498,
       "limit": 10,
       "premium": false,
       "premiumTime": 0,
@@ -913,7 +913,7 @@
       "bank": 0
     },
     "5219991034993@s.whatsapp.net": {
-      "exp": 6,
+      "exp": 154,
       "limit": 10,
       "premium": false,
       "premiumTime": 0,
@@ -927,11 +927,11 @@
       "useDocument": false,
       "level": 0,
       "bank": 0,
-      "Subs": 1753919787511
+      "Subs": 1753922378522
     },
     "120363240478812648@newsletter": {
-      "exp": null,
-      "limit": null,
+      "exp": 6,
+      "limit": 10,
       "premium": false,
       "premiumTime": 0,
       "registered": false,
@@ -961,7 +961,7 @@
       "bank": 0
     },
     "120363161698458363@newsletter": {
-      "exp": 4,
+      "exp": 10,
       "limit": 10,
       "premium": false,
       "premiumTime": 0,
@@ -976,7 +976,7 @@
       "bank": 0
     },
     "5493794297363@s.whatsapp.net": {
-      "exp": 29,
+      "exp": 30,
       "limit": 10,
       "premium": false,
       "premiumTime": 0,
@@ -1056,12 +1056,639 @@
       "bank": 0
     },
     "195790395981828@lid": {
-      "exp": 10,
+      "exp": 11,
       "limit": 10,
       "premium": false,
       "premiumTime": 0,
       "registered": false,
       "name": "Hm",
+      "age": -1,
+      "regTime": -1,
+      "afk": -1,
+      "afkReason": "",
+      "banned": false,
+      "useDocument": false,
+      "level": 0,
+      "bank": 0
+    },
+    "120363416941140657@newsletter": {
+      "exp": null,
+      "limit": null,
+      "premium": false,
+      "premiumTime": 0,
+      "registered": false,
+      "age": -1,
+      "regTime": -1,
+      "afk": -1,
+      "afkReason": "",
+      "banned": false,
+      "useDocument": false,
+      "level": 0,
+      "bank": 0
+    },
+    "120363237109909036@newsletter": {
+      "exp": 7,
+      "limit": 10,
+      "premium": false,
+      "premiumTime": 0,
+      "registered": false,
+      "age": -1,
+      "regTime": -1,
+      "afk": -1,
+      "afkReason": "",
+      "banned": false,
+      "useDocument": false,
+      "level": 0,
+      "bank": 0
+    },
+    "593988297313@s.whatsapp.net": {
+      "exp": 10,
+      "limit": 10,
+      "premium": false,
+      "premiumTime": 0,
+      "registered": false,
+      "name": "Dilan Magno ♤",
+      "age": -1,
+      "regTime": -1,
+      "afk": -1,
+      "afkReason": "",
+      "banned": false,
+      "useDocument": false,
+      "level": 0,
+      "bank": 0
+    },
+    "120363252143014230@newsletter": {
+      "exp": 8,
+      "limit": 10,
+      "premium": false,
+      "premiumTime": 0,
+      "registered": false,
+      "age": -1,
+      "regTime": -1,
+      "afk": -1,
+      "afkReason": "",
+      "banned": false,
+      "useDocument": false,
+      "level": 0,
+      "bank": 0
+    },
+    "120363260049528216@newsletter": {
+      "exp": 9,
+      "limit": 10,
+      "premium": false,
+      "premiumTime": 0,
+      "registered": false,
+      "age": -1,
+      "regTime": -1,
+      "afk": -1,
+      "afkReason": "",
+      "banned": false,
+      "useDocument": false,
+      "level": 0,
+      "bank": 0
+    },
+    "120363238910789222@newsletter": {
+      "exp": 2,
+      "limit": 10,
+      "premium": false,
+      "premiumTime": 0,
+      "registered": false,
+      "age": -1,
+      "regTime": -1,
+      "afk": -1,
+      "afkReason": "",
+      "banned": false,
+      "useDocument": false,
+      "level": 0,
+      "bank": 0
+    },
+    "593979058335@s.whatsapp.net": {
+      "exp": 10,
+      "limit": 10,
+      "premium": false,
+      "premiumTime": 0,
+      "registered": false,
+      "name": "Elias",
+      "age": -1,
+      "regTime": -1,
+      "afk": -1,
+      "afkReason": "",
+      "banned": false,
+      "useDocument": false,
+      "level": 0,
+      "bank": 0
+    },
+    "120363201008391465@newsletter": {
+      "exp": 12,
+      "limit": 10,
+      "premium": false,
+      "premiumTime": 0,
+      "registered": false,
+      "age": -1,
+      "regTime": -1,
+      "afk": -1,
+      "afkReason": "",
+      "banned": false,
+      "useDocument": false,
+      "level": 0,
+      "bank": 0
+    },
+    "584142695318@s.whatsapp.net": {
+      "exp": 12,
+      "limit": 10,
+      "premium": false,
+      "premiumTime": 0,
+      "registered": false,
+      "name": "Iago",
+      "age": -1,
+      "regTime": -1,
+      "afk": -1,
+      "afkReason": "",
+      "banned": false,
+      "useDocument": false,
+      "level": 0,
+      "bank": 0
+    },
+    "5218447949038@s.whatsapp.net": {
+      "exp": 9,
+      "limit": 10,
+      "premium": false,
+      "premiumTime": 0,
+      "registered": false,
+      "name": "Alexis 💈",
+      "age": -1,
+      "regTime": -1,
+      "afk": -1,
+      "afkReason": "",
+      "banned": false,
+      "useDocument": false,
+      "level": 0,
+      "bank": 0
+    },
+    "593959401912@s.whatsapp.net": {
+      "exp": 43,
+      "limit": 10,
+      "premium": false,
+      "premiumTime": 0,
+      "registered": false,
+      "name": "Sánchez 💋",
+      "age": -1,
+      "regTime": -1,
+      "afk": -1,
+      "afkReason": "",
+      "banned": false,
+      "useDocument": false,
+      "level": 0,
+      "bank": 0
+    },
+    "593985072375@s.whatsapp.net": {
+      "exp": 121,
+      "limit": 10,
+      "premium": false,
+      "premiumTime": 0,
+      "registered": false,
+      "name": "Erick",
+      "age": -1,
+      "regTime": -1,
+      "afk": -1,
+      "afkReason": "",
+      "banned": false,
+      "useDocument": false,
+      "level": 0,
+      "bank": 0
+    },
+    "250409847361749@lid": {
+      "exp": 6,
+      "limit": 10,
+      "premium": false,
+      "premiumTime": 0,
+      "registered": false,
+      "name": "jeremy",
+      "age": -1,
+      "regTime": -1,
+      "afk": -1,
+      "afkReason": "",
+      "banned": false,
+      "useDocument": false,
+      "level": 0,
+      "bank": 0
+    },
+    "131477924745242@lid": {
+      "exp": 6,
+      "limit": 10,
+      "premium": false,
+      "premiumTime": 0,
+      "registered": false,
+      "name": "𝐕𝐢𝐨𝐥𝐞𝐭🫧",
+      "age": -1,
+      "regTime": -1,
+      "afk": -1,
+      "afkReason": "",
+      "banned": false,
+      "useDocument": false,
+      "level": 0,
+      "bank": 0
+    },
+    "593968855283@s.whatsapp.net": {
+      "exp": 56,
+      "limit": 10,
+      "premium": false,
+      "premiumTime": 0,
+      "registered": false,
+      "name": "Ah",
+      "age": -1,
+      "regTime": -1,
+      "afk": -1,
+      "afkReason": "",
+      "banned": false,
+      "useDocument": false,
+      "level": 0,
+      "bank": 0
+    },
+    "259932108660967@lid": {
+      "exp": 28,
+      "limit": 10,
+      "premium": false,
+      "premiumTime": 0,
+      "registered": false,
+      "name": "Pan con queso",
+      "age": -1,
+      "regTime": -1,
+      "afk": -1,
+      "afkReason": "",
+      "banned": false,
+      "useDocument": false,
+      "level": 0,
+      "bank": 0
+    },
+    "120363298577691690@newsletter": {
+      "exp": 6,
+      "limit": 10,
+      "premium": false,
+      "premiumTime": 0,
+      "registered": false,
+      "age": -1,
+      "regTime": -1,
+      "afk": -1,
+      "afkReason": "",
+      "banned": false,
+      "useDocument": false,
+      "level": 0,
+      "bank": 0
+    },
+    "132929590181978@lid": {
+      "exp": 26,
+      "limit": 10,
+      "premium": false,
+      "premiumTime": 0,
+      "registered": false,
+      "name": "ᴾᴮᵀ ⁂ 𝙎𝙋𝙊𝙍𝙏",
+      "age": -1,
+      "regTime": -1,
+      "afk": -1,
+      "afkReason": "",
+      "banned": false,
+      "useDocument": false,
+      "level": 0,
+      "bank": 0
+    },
+    "15170193612957@lid": {
+      "exp": 11,
+      "limit": 10,
+      "premium": false,
+      "premiumTime": 0,
+      "registered": false,
+      "name": "丂ᴏᴍʙʀᴀ Mc",
+      "age": -1,
+      "regTime": -1,
+      "afk": -1,
+      "afkReason": "",
+      "banned": false,
+      "useDocument": false,
+      "level": 0,
+      "bank": 0
+    },
+    "13572767748217@lid": {
+      "exp": 1,
+      "limit": 10,
+      "premium": false,
+      "premiumTime": 0,
+      "registered": false,
+      "name": "𝑴𝒂𝒓ꉂ(ˊᗜˋ*)🌹💫",
+      "age": -1,
+      "regTime": -1,
+      "afk": -1,
+      "afkReason": "",
+      "banned": false,
+      "useDocument": false,
+      "level": 0,
+      "bank": 0
+    },
+    "584126753663@s.whatsapp.net": {
+      "exp": 30,
+      "limit": 10,
+      "premium": false,
+      "premiumTime": 0,
+      "registered": false,
+      "name": "Cristian",
+      "age": -1,
+      "regTime": -1,
+      "afk": -1,
+      "afkReason": "",
+      "banned": false,
+      "useDocument": false,
+      "level": 0,
+      "bank": 0
+    },
+    "5215540892707@s.whatsapp.net": {
+      "exp": 7,
+      "limit": 10,
+      "premium": false,
+      "premiumTime": 0,
+      "registered": false,
+      "name": "Amir",
+      "age": -1,
+      "regTime": -1,
+      "afk": -1,
+      "afkReason": "",
+      "banned": false,
+      "useDocument": false,
+      "level": 0,
+      "bank": 0
+    },
+    "5215514221281@s.whatsapp.net": {
+      "exp": 14,
+      "limit": 10,
+      "premium": false,
+      "premiumTime": 0,
+      "registered": false,
+      "name": "El Dino",
+      "age": -1,
+      "regTime": -1,
+      "afk": -1,
+      "afkReason": "",
+      "banned": false,
+      "useDocument": false,
+      "level": 0,
+      "bank": 0
+    },
+    "120363316533574847@newsletter": {
+      "exp": 10,
+      "limit": 10,
+      "premium": false,
+      "premiumTime": 0,
+      "registered": false,
+      "age": -1,
+      "regTime": -1,
+      "afk": -1,
+      "afkReason": "",
+      "banned": false,
+      "useDocument": false,
+      "level": 0,
+      "bank": 0
+    },
+    "179117903352010@lid": {
+      "exp": 36,
+      "limit": 10,
+      "premium": false,
+      "premiumTime": 0,
+      "registered": false,
+      "name": "WVX_",
+      "age": -1,
+      "regTime": -1,
+      "afk": -1,
+      "afkReason": "",
+      "banned": false,
+      "useDocument": false,
+      "level": 0,
+      "bank": 0
+    },
+    "78735441170508@lid": {
+      "exp": 10,
+      "limit": 10,
+      "premium": false,
+      "premiumTime": 0,
+      "registered": false,
+      "name": "Karollcitaa",
+      "age": -1,
+      "regTime": -1,
+      "afk": -1,
+      "afkReason": "",
+      "banned": false,
+      "useDocument": false,
+      "level": 0,
+      "bank": 0
+    },
+    "5491128898704@s.whatsapp.net": {
+      "exp": 7,
+      "limit": 10,
+      "premium": false,
+      "premiumTime": 0,
+      "registered": false,
+      "name": "Zi",
+      "age": -1,
+      "regTime": -1,
+      "afk": -1,
+      "afkReason": "",
+      "banned": false,
+      "useDocument": false,
+      "level": 0,
+      "bank": 0
+    },
+    "5219651384354@s.whatsapp.net": {
+      "exp": 26,
+      "limit": 10,
+      "premium": false,
+      "premiumTime": 0,
+      "registered": false,
+      "name": "💗Flaqui💗",
+      "age": -1,
+      "regTime": -1,
+      "afk": -1,
+      "afkReason": "",
+      "banned": false,
+      "useDocument": false,
+      "level": 0,
+      "bank": 0
+    },
+    "108895288688783@lid": {
+      "exp": 13,
+      "limit": 10,
+      "premium": false,
+      "premiumTime": 0,
+      "registered": false,
+      "name": "ฅ⁠^⁠•⁠ﻌ⁠•⁠^ฅ Sonic ¯⁠\\⁠_⁠(⁠ツ⁠)⁠_⁠/⁠¯",
+      "age": -1,
+      "regTime": -1,
+      "afk": -1,
+      "afkReason": "",
+      "banned": false,
+      "useDocument": false,
+      "level": 0,
+      "bank": 0
+    },
+    "246561758015609@lid": {
+      "exp": 13,
+      "limit": 10,
+      "premium": false,
+      "premiumTime": 0,
+      "registered": false,
+      "name": "卍 Juanito 卍",
+      "age": -1,
+      "regTime": -1,
+      "afk": -1,
+      "afkReason": "",
+      "banned": false,
+      "useDocument": false,
+      "level": 0,
+      "bank": 0
+    },
+    "120363170848499638@newsletter": {
+      "exp": 3,
+      "limit": 10,
+      "premium": false,
+      "premiumTime": 0,
+      "registered": false,
+      "age": -1,
+      "regTime": -1,
+      "afk": -1,
+      "afkReason": "",
+      "banned": false,
+      "useDocument": false,
+      "level": 0,
+      "bank": 0
+    },
+    "120363307694217288@newsletter": {
+      "exp": 3,
+      "limit": 10,
+      "premium": false,
+      "premiumTime": 0,
+      "registered": false,
+      "age": -1,
+      "regTime": -1,
+      "afk": -1,
+      "afkReason": "",
+      "banned": false,
+      "useDocument": false,
+      "level": 0,
+      "bank": 0
+    },
+    "5213221581249@s.whatsapp.net": {
+      "exp": 2,
+      "limit": 10,
+      "premium": false,
+      "premiumTime": 0,
+      "registered": false,
+      "name": "Manu",
+      "age": -1,
+      "regTime": -1,
+      "afk": -1,
+      "afkReason": "",
+      "banned": false,
+      "useDocument": false,
+      "level": 0,
+      "bank": 0
+    },
+    "235751056871439@lid": {
+      "exp": 14,
+      "limit": 10,
+      "premium": false,
+      "premiumTime": 0,
+      "registered": false,
+      "name": "ღ᭄◦ Kirito",
+      "age": -1,
+      "regTime": -1,
+      "afk": -1,
+      "afkReason": "",
+      "banned": false,
+      "useDocument": false,
+      "level": 0,
+      "bank": 0
+    },
+    "120363181805285218@newsletter": {
+      "exp": 3,
+      "limit": 10,
+      "premium": false,
+      "premiumTime": 0,
+      "registered": false,
+      "age": -1,
+      "regTime": -1,
+      "afk": -1,
+      "afkReason": "",
+      "banned": false,
+      "useDocument": false,
+      "level": 0,
+      "bank": 0
+    },
+    "117759782461599@lid": {
+      "exp": 4,
+      "limit": 10,
+      "premium": false,
+      "premiumTime": 0,
+      "registered": false,
+      "name": "¿•~LUCERO ~•?",
+      "age": -1,
+      "regTime": -1,
+      "afk": -1,
+      "afkReason": "",
+      "banned": false,
+      "useDocument": false,
+      "level": 0,
+      "bank": 0
+    },
+    "238040542928988@lid": {
+      "exp": 1,
+      "limit": 10,
+      "premium": false,
+      "premiumTime": 0,
+      "registered": false,
+      "name": "Josue",
+      "age": -1,
+      "regTime": -1,
+      "afk": -1,
+      "afkReason": "",
+      "banned": false,
+      "useDocument": false,
+      "level": 0,
+      "bank": 0
+    },
+    "120363299520796874@newsletter": {
+      "exp": 15,
+      "limit": 10,
+      "premium": false,
+      "premiumTime": 0,
+      "registered": false,
+      "age": -1,
+      "regTime": -1,
+      "afk": -1,
+      "afkReason": "",
+      "banned": false,
+      "useDocument": false,
+      "level": 0,
+      "bank": 0
+    },
+    "120363171809094592@newsletter": {
+      "exp": 6,
+      "limit": 10,
+      "premium": false,
+      "premiumTime": 0,
+      "registered": false,
+      "age": -1,
+      "regTime": -1,
+      "afk": -1,
+      "afkReason": "",
+      "banned": false,
+      "useDocument": false,
+      "level": 0,
+      "bank": 0
+    },
+    "163453620727872@lid": {
+      "exp": 1,
+      "limit": 10,
+      "premium": false,
+      "premiumTime": 0,
+      "registered": false,
+      "name": "fotosíntesis :3",
       "age": -1,
       "regTime": -1,
       "afk": -1,
@@ -1079,7 +1706,8 @@
       "antiLink": false,
       "onlyLatinos": false,
       "nsfw": false,
-      "expired": 0
+      "expired": 0,
+      "welcome": true
     },
     "120363421270216607@g.us": {
       "isBanned": false,
@@ -1087,7 +1715,8 @@
       "antiLink": false,
       "onlyLatinos": false,
       "nsfw": false,
-      "expired": 0
+      "expired": 0,
+      "welcome": true
     },
     "120363163128868418@newsletter": {
       "isBanned": false,
@@ -1215,7 +1844,8 @@
       "antiLink": false,
       "onlyLatinos": false,
       "nsfw": false,
-      "expired": 0
+      "expired": 0,
+      "welcome": true
     },
     "120363403143798163@newsletter": {
       "isBanned": false,
@@ -1440,6 +2070,158 @@
       "onlyLatinos": false,
       "nsfw": false,
       "expired": 0
+    },
+    "120363416941140657@newsletter": {
+      "isBanned": false,
+      "bienvenida": true,
+      "antiLink": false,
+      "onlyLatinos": false,
+      "nsfw": false,
+      "expired": 0
+    },
+    "120363237109909036@newsletter": {
+      "isBanned": false,
+      "bienvenida": true,
+      "antiLink": false,
+      "onlyLatinos": false,
+      "nsfw": false,
+      "expired": 0
+    },
+    "120363252143014230@newsletter": {
+      "isBanned": false,
+      "bienvenida": true,
+      "antiLink": false,
+      "onlyLatinos": false,
+      "nsfw": false,
+      "expired": 0
+    },
+    "120363260049528216@newsletter": {
+      "isBanned": false,
+      "bienvenida": true,
+      "antiLink": false,
+      "onlyLatinos": false,
+      "nsfw": false,
+      "expired": 0
+    },
+    "120363238910789222@newsletter": {
+      "isBanned": false,
+      "bienvenida": true,
+      "antiLink": false,
+      "onlyLatinos": false,
+      "nsfw": false,
+      "expired": 0
+    },
+    "120363201008391465@newsletter": {
+      "isBanned": false,
+      "bienvenida": true,
+      "antiLink": false,
+      "onlyLatinos": false,
+      "nsfw": false,
+      "expired": 0
+    },
+    "120363298577691690@newsletter": {
+      "isBanned": false,
+      "bienvenida": true,
+      "antiLink": false,
+      "onlyLatinos": false,
+      "nsfw": false,
+      "expired": 0
+    },
+    "120363420823752003@g.us": {
+      "isBanned": false,
+      "bienvenida": true,
+      "antiLink": false,
+      "onlyLatinos": false,
+      "nsfw": false,
+      "expired": 0
+    },
+    "120363415058364119@g.us": {
+      "isBanned": false,
+      "bienvenida": true,
+      "antiLink": false,
+      "onlyLatinos": false,
+      "nsfw": false,
+      "expired": 0
+    },
+    "120363316533574847@newsletter": {
+      "isBanned": false,
+      "bienvenida": true,
+      "antiLink": false,
+      "onlyLatinos": false,
+      "nsfw": false,
+      "expired": 0
+    },
+    "51901437507@s.whatsapp.net": {
+      "isBanned": false,
+      "welcome": true,
+      "antiLink": false,
+      "onlyLatinos": false,
+      "nsfw": false,
+      "expired": 0
+    },
+    "120363170848499638@newsletter": {
+      "isBanned": false,
+      "bienvenida": true,
+      "antiLink": false,
+      "onlyLatinos": false,
+      "nsfw": false,
+      "expired": 0
+    },
+    "120363307694217288@newsletter": {
+      "isBanned": false,
+      "bienvenida": true,
+      "antiLink": false,
+      "onlyLatinos": false,
+      "nsfw": false,
+      "expired": 0
+    },
+    "120363181805285218@newsletter": {
+      "isBanned": false,
+      "bienvenida": true,
+      "antiLink": false,
+      "onlyLatinos": false,
+      "nsfw": false,
+      "expired": 0
+    },
+    "120363420079428898@g.us": {
+      "isBanned": false,
+      "bienvenida": true,
+      "antiLink": false,
+      "onlyLatinos": false,
+      "nsfw": false,
+      "expired": 0
+    },
+    "120363392488534600@g.us": {
+      "isBanned": false,
+      "bienvenida": true,
+      "antiLink": false,
+      "onlyLatinos": false,
+      "nsfw": false,
+      "expired": 0
+    },
+    "120363299520796874@newsletter": {
+      "isBanned": false,
+      "bienvenida": true,
+      "antiLink": false,
+      "onlyLatinos": false,
+      "nsfw": false,
+      "expired": 0
+    },
+    "120363171809094592@newsletter": {
+      "isBanned": false,
+      "bienvenida": true,
+      "antiLink": false,
+      "onlyLatinos": false,
+      "nsfw": false,
+      "expired": 0
+    },
+    "120363310515393900@g.us": {
+      "isBanned": false,
+      "bienvenida": true,
+      "antiLink": false,
+      "onlyLatinos": false,
+      "nsfw": false,
+      "expired": 0
     }
   },
   "stats": {
@@ -1462,10 +2244,10 @@
       "lastSuccess": 1753920619159
     },
     "main-menu.js": {
-      "total": 14,
-      "success": 14,
-      "last": 1753920497996,
-      "lastSuccess": 1753920497996
+      "total": 18,
+      "success": 18,
+      "last": 1753923650268,
+      "lastSuccess": 1753923650268
     },
     "promote.js": {
       "total": 1,
@@ -1486,16 +2268,16 @@
       "lastSuccess": 1753917175257
     },
     "top-gays.js": {
-      "total": 6,
-      "success": 6,
-      "last": 1753918337648,
-      "lastSuccess": 1753918337648
+      "total": 9,
+      "success": 9,
+      "last": 1753924768099,
+      "lastSuccess": 1753924768099
     },
     "serbot-serbot.js": {
-      "total": 7,
-      "success": 7,
-      "last": 1753920477945,
-      "lastSuccess": 1753920477945
+      "total": 9,
+      "success": 9,
+      "last": 1753922378523,
+      "lastSuccess": 1753922378523
     },
     "tag-all.js": {
       "total": 1,
@@ -1540,16 +2322,34 @@
       "lastSuccess": 1753920318975
     },
     "stickers-sticker.js": {
-      "total": 1,
-      "success": 1,
-      "last": 1753920489541,
-      "lastSuccess": 1753920489541
+      "total": 9,
+      "success": 9,
+      "last": 1753922445847,
+      "lastSuccess": 1753922445847
     },
     "top-mancos.js": {
       "total": 4,
       "success": 4,
       "last": 1753920868311,
       "lastSuccess": 1753920868311
+    },
+    "test-welcome.js": {
+      "total": 1,
+      "success": 1,
+      "last": 1753922888711,
+      "lastSuccess": 1753922888711
+    },
+    "welcome.js": {
+      "total": 2,
+      "success": 2,
+      "last": 1753922905550,
+      "lastSuccess": 1753922905550
+    },
+    "economia-coins.js": {
+      "total": 5,
+      "success": 5,
+      "last": 1753924753726,
+      "lastSuccess": 1753924753726
     }
   },
   "msgs": {},
@@ -1568,6 +2368,10 @@
       "autoread": true
     },
     "593983582744@s.whatsapp.net": {
+      "self": false,
+      "autoread": true
+    },
+    "5219991034993@s.whatsapp.net": {
       "self": false,
       "autoread": true
     }
