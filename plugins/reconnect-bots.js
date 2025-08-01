@@ -1,5 +1,5 @@
-let handler = async (m, { conn, usedPrefix, command }) => {
-  if (!m.isOwner) {
+let handler = async (m, { conn, usedPrefix, command, isOwner }) => {
+  if (!isOwner) {
     return conn.reply(m.chat, '✤ Hola, este comando solo puede ser utilizado por el *Creador* de la Bot.', m, rcanal)
   }
 

@@ -219,6 +219,63 @@ export async function AYBot(options) {
         sock.isInit = true
         global.conns.push(sock)
         await joinChannels(sock)
+        
+       
+                try {
+          const botNumber = path.basename(pathAYBot)
+          const configPath = path.join(pathAYBot, 'config.json')
+          let nombreBot = global.namebot || 'Anya Forger'
+          
+          if (fs.existsSync(configPath)) {
+            try {
+              const config = JSON.parse(fs.readFileSync(configPath, 'utf-8'))
+              if (config.name) nombreBot = config.name
+            } catch (err) {}
+          } else {
+            
+            const defaultConfig = {
+              name: nombreBot,
+              autoRead: false  
+            }
+            fs.writeFileSync(configPath, JSON.stringify(defaultConfig, null, 2))
+          }
+          
+          const welcomeMessage = `╭─「 ✦ 𓆩🎉𓆪 ʙɪᴇɴᴠᴇɴɪᴅᴏ ✦ 」─╮
+│
+╰➺ ✧ *¡Felicidades!* 🎊
+╰➺ ✧ *Te has convertido en un Sub-Bot exitosamente*
+│
+╭─「 ✦ 𓆩🤖𓆪 ɪɴғᴏ ᴅᴇʟ sᴜʙ-ʙᴏᴛ ✦ 」─╮
+│
+╰➺ ✧ *Nombre:* ${nombreBot}
+╰➺ ✧ *Número:* +${botNumber}
+╰➺ ✧ *Usuario:* ${userName}
+╰➺ ✧ *Estado:* Conectado ✅
+╰➺ ✧ *Auto-leer:* Desactivado ❌
+│
+╰────────────────╯
+│
+╰➺ ✧ *Comandos de configuración:*
+╰➺ ✧ *.setautoread on* - Activar auto-leer
+╰➺ ✧ *.setautoread off* - Desactivar auto-leer
+│
+╰────────────────╯
+> LOVELLOUD Official`
+
+          
+          
+          if (m && conn) {
+            await conn.sendMessage(m.chat, {
+              text: welcomeMessage,
+              contextInfo: {
+                ...rcanal.contextInfo
+              }
+            })
+          }
+          
+        } catch (error) {
+          console.error('Error enviando mensaje de bienvenida:', error)
+        }
       }
     }
 

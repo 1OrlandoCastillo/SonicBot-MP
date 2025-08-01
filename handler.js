@@ -2,7 +2,7 @@ import { smsg } from './lib/simple.js'
 import { format } from 'util'
 import { fileURLToPath } from 'url'
 import path, { join } from 'path'
-import { unwatchFile, watchFile } from 'fs'
+import { unwatchFile, watchFile, readFileSync, existsSync } from 'fs'
 import chalk from 'chalk'
 import fetch from 'node-fetch'
 
@@ -412,14 +412,39 @@ try {
 
 const settingsREAD = global.db.data.settings[this.user.jid] || {}
 
-try {
-  await this.readMessages([m.key])
-  
-  if (m.isGroup) {
-    await this.readMessages([m.key], { readEphemeral: true })
+
+const isSubBot = this.user.jid !== global.conn.user.jid
+let shouldAutoRead = true
+
+if (isSubBot) {
+  try {
+    const botNumber = this.user.jid.split('@')[0].replace(/\D/g, '')
+    const configPath = `./Serbot/${botNumber}/config.json`
+    
+    if (existsSync(configPath)) {
+      const config = JSON.parse(readFileSync(configPath, 'utf-8'))
+     
+      if (config.autoRead === false) {
+        shouldAutoRead = false
+      }
+    }
+  } catch (error) {
+   
+    console.error('Error leyendo configuración de auto-leer:', error)
   }
-} catch (e) {
-  console.error('Error al marcar como leído:', e)
+}
+
+
+if (shouldAutoRead) {
+  try {
+    await this.readMessages([m.key])
+    
+    if (m.isGroup) {
+      await this.readMessages([m.key], { readEphemeral: true })
+    }
+  } catch (e) {
+    console.error('Error al marcar como leído:', e)
+  }
 }
 
 }

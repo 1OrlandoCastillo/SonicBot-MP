@@ -40,6 +40,9 @@ Hola! soy *${nombreBot}*
 𝆬✦.#bots
 𝆬✦.#botinfo • infobot
 𝆬✦.#reconnect
+𝆬✦.#setbotname
+𝆬✦.#setbotimg
+𝆬✦.#setautoread
 → Obtener información única y original del bot
 
 ➺ 𖦹 ִֶָ𐀔 ₊˚ ༘⋆  *Economía* 𖤓
