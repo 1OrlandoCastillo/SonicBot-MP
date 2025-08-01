@@ -129,6 +129,8 @@ Hola! soy ${nombreBot}
 𝆬✦.#ban @usuario
 𝆬✦.#demote @usuario
 𝆬✦.#promote @usuario
+𝆬✦.#open
+𝆬✦.#close
 𝆬✦.#tag
 ✦.#clear
 

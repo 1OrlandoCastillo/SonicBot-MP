@@ -1,7 +1,7 @@
 {
   "users": {
     "51958333972@s.whatsapp.net": {
-      "exp": 73,
+      "exp": 89,
       "limit": 10,
       "premium": false,
       "premiumTime": 0,
@@ -122,7 +122,7 @@
       "bank": 0
     },
     "114263544885392@lid": {
-      "exp": 81,
+      "exp": 64,
       "limit": 10,
       "premium": false,
       "premiumTime": 0,
@@ -456,7 +456,7 @@
       "coins": 0
     },
     "177052057620554@lid": {
-      "exp": 707,
+      "exp": 16,
       "limit": 10,
       "premium": false,
       "premiumTime": 0,
@@ -2365,7 +2365,7 @@
       "bank": 0
     },
     "75420129042499@lid": {
-      "exp": 127,
+      "exp": 146,
       "limit": 10,
       "premium": false,
       "premiumTime": 0,
@@ -5578,10 +5578,10 @@
       "lastSuccess": 1754022782004
     },
     "main-menu.js": {
-      "total": 102,
-      "success": 102,
-      "last": 1754027352759,
-      "lastSuccess": 1754027352759
+      "total": 104,
+      "success": 104,
+      "last": 1754032581797,
+      "lastSuccess": 1754032581797
     },
     "promote.js": {
       "total": 1,
@@ -5846,6 +5846,24 @@
       "success": 5,
       "last": 1754031833246,
       "lastSuccess": 1754031833246
+    },
+    "grupos-toggle.js": {
+      "total": 1,
+      "success": 1,
+      "last": 1754032151342,
+      "lastSuccess": 1754032151342
+    },
+    "grupos-close.js": {
+      "total": 5,
+      "success": 5,
+      "last": 1754032477020,
+      "lastSuccess": 1754032477020
+    },
+    "grupos-open.js": {
+      "total": 7,
+      "success": 7,
+      "last": 1754032541652,
+      "lastSuccess": 1754032541652
     }
   },
   "msgs": {},
