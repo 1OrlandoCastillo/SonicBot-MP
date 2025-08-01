@@ -240,6 +240,9 @@ async function connectionUpdate(update) {
   if (global.db.data == null) await loadDatabase()
   if (connection === 'open') {
     console.log(chalk.yellow('Conectado correctamente.'))
+    if (!conn.startTime) {
+      conn.startTime = Date.now()
+    }
   }
   const reason = new Boom(lastDisconnect?.error)?.output?.statusCode
   if (reason === 405) {

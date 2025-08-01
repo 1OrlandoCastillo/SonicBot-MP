@@ -12,32 +12,48 @@ let handler = async (m, { conn }) => {
   }
 
  
+  let mainBotGroups = 0
   if (global.conn.chats) {
     for (let [jid, chat] of Object.entries(global.conn.chats)) {
-      if (chat.id.endsWith('@g.us')) {
-        totalGroups++
+      if (jid.endsWith('@g.us')) {
+        mainBotGroups++
       }
     }
   }
 
+
+  let uniqueGroupIds = new Set()
+  
  
+  if (global.conn.chats) {
+    for (let [jid, chat] of Object.entries(global.conn.chats)) {
+      if (jid.endsWith('@g.us')) {
+        uniqueGroupIds.add(jid)
+      }
+    }
+  }
+
   global.conns.forEach((subConn) => {
     if (subConn.user && subConn.ws?.socket?.readyState !== ws.CLOSED) {
       uniqueUsers.set(subConn.user.jid, subConn)
       
-   
+    
       if (subConn.chats) {
         for (let [jid, chat] of Object.entries(subConn.chats)) {
-          if (chat.id.endsWith('@g.us')) {
-            totalGroups++
+          if (jid.endsWith('@g.us')) {
+            uniqueGroupIds.add(jid)
           }
         }
       }
     }
   })
 
-  let uptime = process.uptime() * 1000
-  let formatUptime = clockString(uptime)
+ 
+  totalGroups = uniqueGroupIds.size
+
+
+  const mainBotUptime = global.conn.startTime ? Date.now() - global.conn.startTime : process.uptime() * 1000
+  let formatUptime = clockString(mainBotUptime)
   let totalSubBots = uniqueUsers.size
 
   const botActual = conn.user?.jid?.split('@')[0].replace(/\D/g, '')
@@ -80,7 +96,8 @@ let handler = async (m, { conn }) => {
   txt += `│\n`
   txt += `╰➺ ✧ *Número:* +${global.conn.user.jid.split('@')[0]}\n`
   txt += `╰➺ ✧ *Estado:* Conectado\n`
-  txt += `╰➺ ✧ *Grupos:* ${Object.values(global.conn.chats || {}).filter(chat => chat.id.endsWith('@g.us')).length}\n`
+  txt += `╰➺ ✧ *Grupos:* ${mainBotGroups}\n`
+  txt += `╰➺ ✧ *Tiempo Activo:* ${formatUptime}\n`
   txt += `│\n`
   txt += `╰────────────────╯\n\n`
   
@@ -91,11 +108,25 @@ let handler = async (m, { conn }) => {
     let i = 1
     for (let [jid, subConn] of uniqueUsers) {
       const subBotNumber = jid.split('@')[0]
-      const subBotGroups = Object.values(subConn.chats || {}).filter(chat => chat.id.endsWith('@g.us')).length
+      let subBotGroups = 0
+      
+     
+      if (subConn.chats) {
+        for (let [chatJid, chat] of Object.entries(subConn.chats)) {
+          if (chatJid.endsWith('@g.us')) {
+            subBotGroups++
+          }
+        }
+      }
+      
+    
+      const subBotUptime = subConn.startTime ? Date.now() - subConn.startTime : 0
+      const subBotFormatUptime = clockString(subBotUptime)
       
       txt += `╰➺ ✧ *${i}. +${subBotNumber}*\n`
       txt += `│   • Grupos: ${subBotGroups}\n`
       txt += `│   • Estado: Activo\n`
+      txt += `│   • Tiempo: ${subBotFormatUptime}\n`
       if (i < totalSubBots) txt += `│\n`
       i++
     }

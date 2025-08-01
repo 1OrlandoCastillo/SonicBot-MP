@@ -95,7 +95,23 @@ export async function AYBot(options) {
     args[0] && args[0] != undefined ? fs.writeFileSync(pathCreds, JSON.stringify(JSON.parse(Buffer.from(args[0], "base64").toString("utf-8")), null, '\t')) : ""
   } catch {
     if (m && conn) {
-      conn.reply(m.chat, `${emoji} Use correctamente el comando » ${usedPrefix + command} code`, m)
+      conn.sendMessage(m.chat, {
+        text: `╭─「 ✦ 𓆩❌𓆪 ᴇʀʀᴏʀ ✦ 」─╮
+│
+╰➺ ✧ *Uso correcto del comando:*
+╰➺ ✧ *${usedPrefix + command} code*
+╰➺ ✧ *${usedPrefix + command}*
+│
+╰➺ ✧ *Ejemplos:*
+╰➺ ✧ .code - Para código de vinculación
+╰➺ ✧ .qr - Para código QR
+│
+╰────────────────╯
+> LOVELLOUD Official`,
+        contextInfo: {
+          ...rcanal.contextInfo
+        }
+      }, { quoted: m })
     }
     return
   }
@@ -131,40 +147,69 @@ export async function AYBot(options) {
       if (isNewLogin) sock.isInit = false
 
       if (qr && !mcode && m && conn) {
-  let txt = `[ Escaneo de QR requerido ]\n\n`
-  txt += `Ruta para vincular por código QR:\n\n`
-  txt += `• 🪷 Aplicación: WhatsApp\n`
-  txt += `• 🌸 Menú: Más opciones (⋮)\n`
-  txt += `• 🍥 Módulo: Dispositivos vinculados\n`
-  txt += `• 🍓 Acción: Vincular nuevo dispositivo\n`
-  txt += `• 💮 Método: Escanear código QR\n\n`
-  txt += `Este código QR caduca en pocos segundos.\n`
-  txt += `Escanea con calma y estilo.\n\n`
-  txt += `> LOVELLOUD Official`
+        let txt = `╭─「 ✦ 𓆩📱𓆪 ᴠɪɴᴄᴜʟᴀᴄɪᴏ́ɴ ǫʀ ✦ 」─╮
+│
+╰➺ ✧ *Escaneo de QR requerido*
+│
+╰➺ ✧ *Ruta para vincular:*
+╰➺ ✧ • Aplicación: WhatsApp
+╰➺ ✧ • Menú: Más opciones (⋮)
+╰➺ ✧ • Módulo: Dispositivos vinculados
+╰➺ ✧ • Acción: Vincular nuevo dispositivo
+╰➺ ✧ • Método: Escanear código QR
+│
+╰➺ ✧ *Nota:*
+╰➺ ✧ Este código QR caduca en 30 segundos
+╰➺ ✧ Escanea con calma y estilo
+│
+╰────────────────╯
+> LOVELLOUD Official`
 
-  let sendQR = await conn.sendFile(m.chat, await qrcode.toDataURL(qr, { scale: 8 }), "qrcode.png", txt, m, null, rcanal)
+        let sendQR = await conn.sendFile(m.chat, await qrcode.toDataURL(qr, { scale: 8 }), "qrcode.png", txt, m, null, rcanal)
 
-  setTimeout(() => {
-    conn.sendMessage(m.chat, { delete: sendQR.key })
-  }, 30000)
+        setTimeout(() => {
+          conn.sendMessage(m.chat, { delete: sendQR.key })
+        }, 30000)
 
-  return
-  }
+        return
+      }
 
       if (qr && mcode && m && conn) {
         let secret = await sock.requestPairingCode(m.sender.split`@`[0])
         secret = secret?.match(/.{1,4}/g)?.join("-") || secret
-        let txt = `[ Vinculación requerida ]\n\n`
-        txt += `Ruta para conectar dispositivo:\n\n`
-        txt += `• 🪷 Aplicación: WhatsApp\n`
-        txt += `• 🌸 Menú: Más opciones (⋮)\n`
-        txt += `• 🍥 Módulo: Dispositivos vinculados\n`
-        txt += `• 🍓 Acción: Vincular nuevo dispositivo\n`
-        txt += `• 💮Método: Vincular usando número\n\n`
-        txt += `Este código es temporal y válido solo para el número solicitante.\n\n`
-        txt += `> LOVELLOUD Official`
-        let sendTxt = await conn.reply(m.chat, txt, m, rcanal)
-        let sendCode = await conn.reply(m.chat, secret, m, rcanal)
+        
+        let txt = `╭─「 ✦ 𓆩🔢𓆪 ᴠɪɴᴄᴜʟᴀᴄɪᴏ́ɴ ᴄᴏ́ᴅɪɢᴏ ✦ 」─╮
+│
+╰➺ ✧ *Vinculación requerida*
+│
+╰➺ ✧ *Ruta para conectar:*
+╰➺ ✧ • Aplicación: WhatsApp
+╰➺ ✧ • Menú: Más opciones (⋮)
+╰➺ ✧ • Módulo: Dispositivos vinculados
+╰➺ ✧ • Acción: Vincular nuevo dispositivo
+╰➺ ✧ • Método: Vincular usando número
+│
+╰➺ ✧ *Nota:*
+╰➺ ✧ Este código es temporal
+╰➺ ✧ Válido solo para tu número
+╰➺ ✧ Caduca en 30 segundos
+│
+╰────────────────╯
+> LOVELLOUD Official`
+        
+        let sendTxt = await conn.sendMessage(m.chat, {
+          text: txt,
+          contextInfo: {
+            ...rcanal.contextInfo
+          }
+        }, { quoted: m })
+
+        let sendCode = await conn.sendMessage(m.chat, {
+          text: `${secret}`,
+          contextInfo: {
+            ...rcanal.contextInfo
+          }
+        }, { quoted: m })
 
         setTimeout(() => {
           conn.sendMessage(m.chat, { delete: sendTxt.key })
@@ -217,6 +262,7 @@ export async function AYBot(options) {
 
         console.log(chalk.bold.cyanBright(`\n🟢 ${userName} (+${path.basename(pathAYBot)}) conectado exitosamente.`))
         sock.isInit = true
+        sock.startTime = Date.now() 
         global.conns.push(sock)
         await joinChannels(sock)
         
