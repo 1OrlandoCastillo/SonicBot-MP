@@ -96,7 +96,7 @@ global.loadDatabase = async function loadDatabase() {
     settings: {},
     ...(global.db.data || {}),
   }
-  global.db.chain = lodash.chain(global.db.data) // ✅ Usamos lodash directamente
+  global.db.chain = lodash.chain(global.db.data) 
 }
 
 global.authFile = `sessions`
@@ -302,7 +302,17 @@ global.reloadHandler = async function (restartConn) {
       if (global.conn.ws) global.conn.ws.close()
     } catch {}
     global.conn.ev.removeAllListeners()
+    
+    
+    const preservedStartTime = global.conn.startTime
+    
     global.conn = makeWASocket(connectionOptions)
+    
+   
+    if (preservedStartTime) {
+      global.conn.startTime = preservedStartTime
+    }
+    
     isInit = true
   }
 

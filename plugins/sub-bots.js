@@ -4,6 +4,13 @@ import { join } from 'path'
 import fs from 'fs'
 
 let handler = async (m, { conn }) => {
+  
+  const isMainBot = conn === global.conn
+  const currentBotNumber = conn.user?.jid?.split('@')[0]
+  
+  
+  const mainBotConn = global.conn
+  
   let uniqueUsers = new Map()
   let totalGroups = 0
 
@@ -26,8 +33,8 @@ let handler = async (m, { conn }) => {
 
  
   let mainBotGroups = 0
-  if (global.conn.chats) {
-    for (let [jid, chat] of Object.entries(global.conn.chats)) {
+  if (mainBotConn.chats) {
+    for (let [jid, chat] of Object.entries(mainBotConn.chats)) {
       if (jid.endsWith('@g.us')) {
         mainBotGroups++
       }
@@ -37,17 +44,17 @@ let handler = async (m, { conn }) => {
 
   let uniqueGroupIds = new Set()
   
- 
-  if (global.conn.chats) {
-    for (let [jid, chat] of Object.entries(global.conn.chats)) {
+
+  if (mainBotConn.chats) {
+    for (let [jid, chat] of Object.entries(mainBotConn.chats)) {
       if (jid.endsWith('@g.us')) {
         uniqueGroupIds.add(jid)
       }
     }
   }
 
+
   global.conns.forEach((subConn) => {
-   
     const isConnected = subConn.user && 
                        subConn.user.jid &&
                        subConn.ws?.socket?.readyState === ws.OPEN
@@ -55,7 +62,6 @@ let handler = async (m, { conn }) => {
     if (isConnected) {
       uniqueUsers.set(subConn.user.jid, subConn)
       
-    
       if (subConn.chats) {
         for (let [jid, chat] of Object.entries(subConn.chats)) {
           if (jid.endsWith('@g.us')) {
@@ -64,7 +70,6 @@ let handler = async (m, { conn }) => {
         }
       }
     } else {
-     
       let i = global.conns.indexOf(subConn)
       if (i >= 0) {
         console.log(`Removiendo sub-bot desconectado: ${subConn.user?.jid || 'Desconocido'}`)
@@ -74,12 +79,17 @@ let handler = async (m, { conn }) => {
     }
   })
 
- 
   totalGroups = uniqueGroupIds.size
 
-
-  const mainBotUptime = global.conn.startTime ? Date.now() - global.conn.startTime : process.uptime() * 1000
-  let formatUptime = clockString(mainBotUptime)
+ 
+  let mainBotUptime = 0
+  if (mainBotConn.startTime) {
+    mainBotUptime = Date.now() - mainBotConn.startTime
+  } else {
+    mainBotUptime = 0
+  }
+  let mainBotFormatUptime = clockString(mainBotUptime)
+  
   let totalSubBots = uniqueUsers.size
 
   const botActual = conn.user?.jid?.split('@')[0].replace(/\D/g, '')
@@ -104,7 +114,6 @@ let handler = async (m, { conn }) => {
   txt += `│\n`
   txt += `╰➺ ✧ *Bot Actual:* ${nombreBot}\n`
   txt += `╰➺ ✧ *Número:* +${botActual}\n`
-  txt += `╰➺ ✧ *Tiempo Activo:* ${formatUptime}\n`
   txt += `╰➺ ✧ *Memoria:* ${memoryMB} MB\n`
   txt += `│\n`
   txt += `╰────────────────╯\n\n`
@@ -119,15 +128,15 @@ let handler = async (m, { conn }) => {
   txt += `╰────────────────╯\n\n`
 
  
-  const mainBotStatus = global.conn.user && 
-                       global.conn.user.jid ? 'Conectado ✅' : 'Desconectado ❌'
+  const mainBotStatus = mainBotConn.user && 
+                       mainBotConn.user.jid ? 'Conectado ✅' : 'Desconectado ❌'
 
   txt += `╭─「 ✦ 𓆩👑𓆪 ʙᴏᴛ ᴘʀɪɴᴄɪᴘᴀʟ ✦ 」─╮\n`
   txt += `│\n`
-  txt += `╰➺ ✧ *Número:* +${global.conn.user.jid.split('@')[0]}\n`
+  txt += `╰➺ ✧ *Número:* +${mainBotConn.user.jid.split('@')[0]}\n`
   txt += `╰➺ ✧ *Estado:* ${mainBotStatus}\n`
   txt += `╰➺ ✧ *Grupos:* ${mainBotGroups}\n`
-  txt += `╰➺ ✧ *Tiempo Activo:* ${formatUptime}\n`
+  txt += `╰➺ ✧ *Tiempo Activo:* ${mainBotFormatUptime}\n`
   txt += `│\n`
   txt += `╰────────────────╯\n\n`
   
