@@ -86,6 +86,7 @@ Hola! soy ${nombreBot}
 𝆬✦.#google <búsqueda>
 𝆬✦.#yt <búsqueda>
 𝆬✦.#tiktok <búsqueda>
+𝆬✦.#onlyfans <username>
 
 ➺ 𖦹 ִֶָ𐀔 ₊˚ ༘⋆  *Tops* 𖤓
 
@@ -116,6 +117,7 @@ Hola! soy ${nombreBot}
 ✧ Comandos para obtener música, videos y más desde distintas fuentes.
 
 𝆬✦.#play <query> o <url>
+𝆬✦.#aptoide <app>
 
 
 ➺ 𖦹 ִֶָ𐀔 ₊˚ ༘⋆  *Administración* 𖤓

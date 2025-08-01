@@ -30,7 +30,7 @@ let handler = async (m, { conn, args, participants, isAdmin, isBotAdmin, isOwner
     
     const messagesToDelete = messageKeys
       .filter(key => key !== m.key.id) 
-      .slice(-10) 
+      .slice(-17) 
     
    
     for (const messageId of messagesToDelete) {

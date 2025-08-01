@@ -1,7 +1,7 @@
 {
   "users": {
     "51958333972@s.whatsapp.net": {
-      "exp": 48,
+      "exp": 73,
       "limit": 10,
       "premium": false,
       "premiumTime": 0,
@@ -122,7 +122,7 @@
       "bank": 0
     },
     "114263544885392@lid": {
-      "exp": 10,
+      "exp": 81,
       "limit": 10,
       "premium": false,
       "premiumTime": 0,
@@ -179,7 +179,7 @@
       "currentWork": ""
     },
     "58540639154396@lid": {
-      "exp": 302,
+      "exp": 1409,
       "limit": 10,
       "premium": false,
       "premiumTime": 0,
@@ -391,7 +391,7 @@
       "Subs": 1753948212842
     },
     "275878953148477@lid": {
-      "exp": 9,
+      "exp": 23,
       "limit": 10,
       "premium": false,
       "premiumTime": 0,
@@ -456,7 +456,7 @@
       "coins": 0
     },
     "177052057620554@lid": {
-      "exp": 23,
+      "exp": 707,
       "limit": 10,
       "premium": false,
       "premiumTime": 0,
@@ -520,7 +520,7 @@
       "coins": 0
     },
     "51901437507@s.whatsapp.net": {
-      "exp": 37,
+      "exp": 153,
       "limit": 10,
       "premium": false,
       "premiumTime": 0,
@@ -919,7 +919,7 @@
       "coins": 0
     },
     "214078920359966@lid": {
-      "exp": 349,
+      "exp": 10,
       "limit": 10,
       "premium": false,
       "premiumTime": 0,
@@ -2066,7 +2066,7 @@
       "Subs": 1753996677638
     },
     "98625518571627@lid": {
-      "exp": 33,
+      "exp": 834,
       "limit": 10,
       "premium": false,
       "premiumTime": 0,
@@ -2137,7 +2137,7 @@
       "currentWork": ""
     },
     "5218446081508@s.whatsapp.net": {
-      "exp": 25,
+      "exp": 31,
       "limit": 10,
       "premium": false,
       "premiumTime": 0,
@@ -2365,7 +2365,7 @@
       "bank": 0
     },
     "75420129042499@lid": {
-      "exp": 13,
+      "exp": 127,
       "limit": 10,
       "premium": false,
       "premiumTime": 0,
@@ -4209,6 +4209,51 @@
       "banned": false,
       "level": 0,
       "coins": 0
+    },
+    "59896449730@s.whatsapp.net": {
+      "exp": 18,
+      "limit": 10,
+      "registered": false,
+      "name": "乃ㄖㄒ ㄖ几 匚ㄖᗪ乇 ㄖㄥ丨几卂",
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0,
+      "Subs": 1754027205984
+    },
+    "74170360684745@lid": {
+      "exp": 52,
+      "limit": 10,
+      "registered": false,
+      "name": "Is",
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "573112245037@s.whatsapp.net": {
+      "exp": 5,
+      "limit": 10,
+      "registered": false,
+      "name": "😘😍🥰⛓️",
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "137830516936877@lid": {
+      "exp": 58,
+      "limit": 10,
+      "registered": false,
+      "name": "乃ㄖㄒ ㄖ几 匚ㄖᗪ乇 ㄖㄥ丨几卂",
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
     }
   },
   "chats": {
@@ -5487,14 +5532,38 @@
       "onlyLatinos": false,
       "nsfw": false,
       "expired": 0
+    },
+    "59896449730@s.whatsapp.net": {
+      "isBanned": false,
+      "bienvenida": true,
+      "antiLink": false,
+      "onlyLatinos": false,
+      "nsfw": false,
+      "expired": 0
+    },
+    "120363420918819385@g.us": {
+      "isBanned": false,
+      "bienvenida": true,
+      "antiLink": false,
+      "onlyLatinos": false,
+      "nsfw": false,
+      "expired": 0
+    },
+    "120363419529559830@g.us": {
+      "isBanned": false,
+      "bienvenida": true,
+      "antiLink": false,
+      "onlyLatinos": false,
+      "nsfw": false,
+      "expired": 0
     }
   },
   "stats": {
     "grupos-banear.js": {
-      "total": 7,
-      "success": 7,
-      "last": 1753940212944,
-      "lastSuccess": 1753940212944
+      "total": 11,
+      "success": 11,
+      "last": 1754029298118,
+      "lastSuccess": 1754029298118
     },
     "grupos-demote.js": {
       "total": 13,
@@ -5509,10 +5578,10 @@
       "lastSuccess": 1754022782004
     },
     "main-menu.js": {
-      "total": 99,
-      "success": 99,
-      "last": 1754022877888,
-      "lastSuccess": 1754022877888
+      "total": 102,
+      "success": 102,
+      "last": 1754027352759,
+      "lastSuccess": 1754027352759
     },
     "promote.js": {
       "total": 1,
@@ -5539,10 +5608,10 @@
       "lastSuccess": 1754023134038
     },
     "serbot-serbot.js": {
-      "total": 29,
-      "success": 29,
-      "last": 1754019848305,
-      "lastSuccess": 1754019848305
+      "total": 32,
+      "success": 32,
+      "last": 1754027205984,
+      "lastSuccess": 1754027205984
     },
     "tag-all.js": {
       "total": 47,
@@ -5551,10 +5620,10 @@
       "lastSuccess": 1754020133566
     },
     "top-feos.js": {
-      "total": 2,
-      "success": 2,
-      "last": 1753918459668,
-      "lastSuccess": 1753918459668
+      "total": 4,
+      "success": 4,
+      "last": 1754028578461,
+      "lastSuccess": 1754028578461
     },
     "top-lindos.js": {
       "total": 2,
@@ -5581,10 +5650,10 @@
       "lastSuccess": 1753919758715
     },
     "top-pajeros.js": {
-      "total": 8,
-      "success": 8,
-      "last": 1753920318975,
-      "lastSuccess": 1753920318975
+      "total": 10,
+      "success": 10,
+      "last": 1754028672078,
+      "lastSuccess": 1754028672078
     },
     "stickers-sticker.js": {
       "total": 15,
@@ -5629,10 +5698,10 @@
       "lastSuccess": 1753935312859
     },
     "waifu-nsfw.js": {
-      "total": 5,
-      "success": 5,
-      "last": 1753941428727,
-      "lastSuccess": 1753941428727
+      "total": 11,
+      "success": 11,
+      "last": 1754028285359,
+      "lastSuccess": 1754028285359
     },
     "waifu.js": {
       "total": 2,
@@ -5641,10 +5710,10 @@
       "lastSuccess": 1753928168388
     },
     "play.js": {
-      "total": 36,
-      "success": 36,
-      "last": 1753999040227,
-      "lastSuccess": 1753999040227
+      "total": 41,
+      "success": 41,
+      "last": 1754030729808,
+      "lastSuccess": 1754030729808
     },
     "toimg.js": {
       "total": 28,
@@ -5695,16 +5764,16 @@
       "lastSuccess": 1753935439936
     },
     "grupos-delete.js": {
-      "total": 83,
-      "success": 83,
-      "last": 1753983745747,
-      "lastSuccess": 1753983745747
+      "total": 85,
+      "success": 85,
+      "last": 1754028825551,
+      "lastSuccess": 1754028825551
     },
     "grupos-clear.js": {
-      "total": 74,
-      "success": 74,
-      "last": 1753942729362,
-      "lastSuccess": 1753942729362
+      "total": 93,
+      "success": 93,
+      "last": 1754029112708,
+      "lastSuccess": 1754029112708
     },
     "reconnect-bots.js": {
       "total": 14,
@@ -5725,10 +5794,58 @@
       "lastSuccess": 1753996715582
     },
     "set-autoread.js": {
-      "total": 6,
-      "success": 6,
-      "last": 1754016858113,
-      "lastSuccess": 1754016858113
+      "total": 7,
+      "success": 7,
+      "last": 1754027818895,
+      "lastSuccess": 1754027818895
+    },
+    "tiktok-search.js": {
+      "total": 4,
+      "success": 4,
+      "last": 1754028207632,
+      "lastSuccess": 1754028207632
+    },
+    "download-apps.js": {
+      "total": 4,
+      "success": 4,
+      "last": 1754026133088,
+      "lastSuccess": 1754026133088
+    },
+    "onlyfans-info.js": {
+      "total": 10,
+      "success": 10,
+      "last": 1754028355634,
+      "lastSuccess": 1754028355634
+    },
+    "buscador-yt.js": {
+      "total": 2,
+      "success": 2,
+      "last": 1754028162817,
+      "lastSuccess": 1754028162817
+    },
+    "gemini.js": {
+      "total": 2,
+      "success": 2,
+      "last": 1754028701672,
+      "lastSuccess": 1754028701672
+    },
+    "enhance-image.js": {
+      "total": 5,
+      "success": 5,
+      "last": 1754030046509,
+      "lastSuccess": 1754030046509
+    },
+    "play2.js": {
+      "total": 10,
+      "success": 10,
+      "last": 1754031287200,
+      "lastSuccess": 1754031287200
+    },
+    "catbox-upload.js": {
+      "total": 5,
+      "success": 5,
+      "last": 1754031833246,
+      "lastSuccess": 1754031833246
     }
   },
   "msgs": {},
@@ -5775,6 +5892,10 @@
       "autoread": true
     },
     "51901437507@s.whatsapp.net": {
+      "self": false,
+      "autoread": true
+    },
+    "59896449730@s.whatsapp.net": {
       "self": false,
       "autoread": true
     }
