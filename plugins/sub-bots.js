@@ -11,6 +11,19 @@ let handler = async (m, { conn }) => {
     global.conns = []
   }
 
+  
+  global.conns = global.conns.filter(subConn => {
+    const isConnected = subConn.user && 
+                       subConn.user.jid &&
+                       subConn.ws?.socket?.readyState === ws.OPEN
+    
+    if (!isConnected) {
+      console.log(`Limpiando sub-bot desconectado: ${subConn.user?.jid || 'Desconocido'}`)
+    }
+    
+    return isConnected
+  })
+
  
   let mainBotGroups = 0
   if (global.conn.chats) {
@@ -34,7 +47,12 @@ let handler = async (m, { conn }) => {
   }
 
   global.conns.forEach((subConn) => {
-    if (subConn.user && subConn.ws?.socket?.readyState !== ws.CLOSED) {
+   
+    const isConnected = subConn.user && 
+                       subConn.user.jid &&
+                       subConn.ws?.socket?.readyState === ws.OPEN
+    
+    if (isConnected) {
       uniqueUsers.set(subConn.user.jid, subConn)
       
     
@@ -44,6 +62,14 @@ let handler = async (m, { conn }) => {
             uniqueGroupIds.add(jid)
           }
         }
+      }
+    } else {
+     
+      let i = global.conns.indexOf(subConn)
+      if (i >= 0) {
+        console.log(`Removiendo sub-bot desconectado: ${subConn.user?.jid || 'Desconocido'}`)
+        delete global.conns[i]
+        global.conns.splice(i, 1)
       }
     }
   })
@@ -92,10 +118,14 @@ let handler = async (m, { conn }) => {
   txt += `│\n`
   txt += `╰────────────────╯\n\n`
 
+ 
+  const mainBotStatus = global.conn.user && 
+                       global.conn.user.jid ? 'Conectado ✅' : 'Desconectado ❌'
+
   txt += `╭─「 ✦ 𓆩👑𓆪 ʙᴏᴛ ᴘʀɪɴᴄɪᴘᴀʟ ✦ 」─╮\n`
   txt += `│\n`
   txt += `╰➺ ✧ *Número:* +${global.conn.user.jid.split('@')[0]}\n`
-  txt += `╰➺ ✧ *Estado:* Conectado\n`
+  txt += `╰➺ ✧ *Estado:* ${mainBotStatus}\n`
   txt += `╰➺ ✧ *Grupos:* ${mainBotGroups}\n`
   txt += `╰➺ ✧ *Tiempo Activo:* ${formatUptime}\n`
   txt += `│\n`
@@ -123,9 +153,12 @@ let handler = async (m, { conn }) => {
       const subBotUptime = subConn.startTime ? Date.now() - subConn.startTime : 0
       const subBotFormatUptime = clockString(subBotUptime)
       
+    
+      const subBotStatus = subConn.ws?.socket?.readyState === ws.OPEN ? 'Activo ✅' : 'Inactivo ❌'
+      
       txt += `╰➺ ✧ *${i}. +${subBotNumber}*\n`
       txt += `│   • Grupos: ${subBotGroups}\n`
-      txt += `│   • Estado: Activo\n`
+      txt += `│   • Estado: ${subBotStatus}\n`
       txt += `│   • Tiempo: ${subBotFormatUptime}\n`
       if (i < totalSubBots) txt += `│\n`
       i++

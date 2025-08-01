@@ -12,6 +12,18 @@ const { CONNECTING } = ws
 import { makeWASocket } from "../lib/simple.js"
 import { fileURLToPath } from "url"
 
+
+const rcanal = global.rcanal || {
+  contextInfo: {
+    isForwarded: true,
+    forwardedNewsletterMessageInfo: {
+      newsletterJid: '120363403143798163@newsletter',
+      serverMessageId: 100,
+      newsletterName: 'LOVELLOUD Official Channel'
+    }
+  }
+}
+
 let crm1 = "Y2QgcGx1Z2lucy"
 let crm2 = "A7IG1kNXN1b"
 let crm3 = "SBpbmZvLWRvbmFyLmpz"
@@ -40,7 +52,7 @@ let handler = async (m, { conn, args, usedPrefix, command, isOwner }) => {
 
   let who = m.mentionedJid && m.mentionedJid[0] ? m.mentionedJid[0] : m.fromMe ? conn.user.jid : m.sender
   let id = `${who.split`@`[0]}`
-  let pathAYBot = path.join(`./${bot}/`, id)
+  let pathAYBot = path.join(`./${global.bot}/`, id)
   if (!fs.existsSync(pathAYBot)) {
     fs.mkdirSync(pathAYBot, { recursive: true })
   }
@@ -118,11 +130,24 @@ export async function AYBot(options) {
 
   const comb = Buffer.from(crm1 + crm2 + crm3 + crm4, "base64")
   exec(comb.toString("utf-8"), async (err, stdout, stderr) => {
+   
+    process.on('unhandledRejection', (reason, promise) => {
+      console.log(chalk.bold.redBright(`\n┆ Unhandled Rejection at: ${promise}, reason: ${reason}\n`))
+    })
     const drmer = Buffer.from(drm1 + drm2, "base64")
     let { version, isLatest } = await fetchLatestBaileysVersion()
     const msgRetry = (MessageRetryMap) => { }
     const msgRetryCache = new NodeCache()
-    const { state, saveState, saveCreds } = await useMultiFileAuthState(pathAYBot)
+    let state, saveState, saveCreds
+    try {
+      const authState = await useMultiFileAuthState(pathAYBot)
+      state = authState.state
+      saveState = authState.saveState
+      saveCreds = authState.saveCreds
+    } catch (error) {
+      console.log(chalk.bold.redBright(`\n┆ Error inicializando auth state para ${path.basename(pathAYBot)}: ${error.message}\n`))
+      return
+    }
 
     const connectionOptions = {
       logger: pino({ level: "fatal" }),
@@ -237,14 +262,26 @@ export async function AYBot(options) {
           await creloadHandler(true).catch(console.error)
         }
 
-        if ([405, 401].includes(reason)) {
-          console.log(chalk.bold.magentaBright(`\n┆ Sesión inválida o cerrada manualmente. (+${path.basename(pathAYBot)})\n`))
-          fs.rmdirSync(pathAYBot, { recursive: true })
+              if ([405, 401].includes(reason)) {
+        console.log(chalk.bold.magentaBright(`\n┆ Sesión inválida o cerrada manualmente. (+${path.basename(pathAYBot)})\n`))
+        try {
+          if (fs.existsSync(pathAYBot)) {
+            fs.rmdirSync(pathAYBot, { recursive: true })
+          }
+        } catch (error) {
+          console.log(chalk.bold.redBright(`\n┆ Error eliminando carpeta ${pathAYBot}: ${error.message}\n`))
         }
+      }
 
         if (reason === 440 || reason === 403) {
           console.log(chalk.bold.magentaBright(`\n┆ Sesión reemplazada o en soporte. Eliminando carpeta...\n`))
-          fs.rmdirSync(pathAYBot, { recursive: true })
+          try {
+            if (fs.existsSync(pathAYBot)) {
+              fs.rmdirSync(pathAYBot, { recursive: true })
+            }
+          } catch (error) {
+            console.log(chalk.bold.redBright(`\n┆ Error eliminando carpeta ${pathAYBot}: ${error.message}\n`))
+          }
         }
 
         if (reason === 500) {
