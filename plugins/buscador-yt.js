@@ -32,7 +32,7 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
       text: message.trim(),
       contextInfo: {
         externalAdReply: {
-          title: 'ANYA FORGER',
+          title: 'KIYOMI MD',
           body: `Busqueda: ${text}`,
           thumbnailUrl: videos[0].thumbnail,
           sourceUrl: 'https://youtube.com',

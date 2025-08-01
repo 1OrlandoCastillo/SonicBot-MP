@@ -3,13 +3,13 @@ import { join } from 'path'
 
 let handler = async (m, { conn }) => {
   try {
-    let nombreBot = global.namebot || 'Anya MD'
+    let nombreBot = global.namebot || 'KIYOMI MD'
     let imgBot = './storage/img/menu3.jpg'
     const botActual = conn.user?.jid?.split('@')[0]?.replace(/\D/g, '')
     const tipo = botActual === '+51958333972'.replace(/\D/g, '') ? 'Principal Bot' : 'Sub Bot'
 
     const text = `
-Hola! soy *${nombreBot}*  
+Hola! soy ${nombreBot}  
 (${tipo})
 
 

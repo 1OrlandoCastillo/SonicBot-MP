@@ -42,7 +42,7 @@ let handler = async (m, { conn }) => {
 
   const botActual = conn.user?.jid?.split('@')[0].replace(/\D/g, '')
   const configPath = join('./Serbot', botActual, 'config.json')
-  let nombreBot = global.namebot || 'Anya Forger'
+  let nombreBot = global.namebot || 'KIYOMI MD'
   
   if (fs.existsSync(configPath)) {
     try {

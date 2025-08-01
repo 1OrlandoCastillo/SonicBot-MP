@@ -306,7 +306,7 @@ if (m.text && !commandExecuted) {
         }
       })
       
-      let message = `《✧》El comando *${fullCommand}* no existe en ANYA MD.\n\n`
+      let message = `《✧》El comando *${fullCommand}* no existe en KIYOMI MD.\n\n`
       
       if (bestSuggestion && bestScore >= 10) {
         

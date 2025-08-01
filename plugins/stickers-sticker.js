@@ -23,7 +23,7 @@ let handler = async (m, { conn, args }) => {
     const username = '@' + (conn.getName(m.sender) || 'Usuario')
     
     const packname = `[ lovelloud@gmail.com] \n↳https://lovelloud/\n\n♦️ Info:\n↳https://lovelloud/discord`
-    const author = `👑Bot:\n↳ANYA MD\n\n👑Usuario:\n↳${username}`
+    const author = `👑Bot:\n↳KIYOMI MD\n\n👑Usuario:\n↳${username}`
 
     const stickerData = await toWebp(buffer)
     const finalSticker = await addExif(stickerData, packname, author)

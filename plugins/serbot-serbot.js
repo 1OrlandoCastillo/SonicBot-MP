@@ -224,7 +224,7 @@ export async function AYBot(options) {
                 try {
           const botNumber = path.basename(pathAYBot)
           const configPath = path.join(pathAYBot, 'config.json')
-          let nombreBot = global.namebot || 'Anya Forger'
+          let nombreBot = global.namebot || 'KIYOMI MD'
           
           if (fs.existsSync(configPath)) {
             try {
