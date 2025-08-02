@@ -30,6 +30,18 @@ Hola! soy ${nombreBot}
 
 𝗔𝗾𝘂𝗶 𝘁𝗶𝗲𝗻𝗲𝘀 𝗹𝗮 𝗹𝗶𝘀𝘁𝗮 𝗱𝗲 𝗰𝗼𝗺𝗮𝗻𝗱𝗼𝘀:
 
+
+➺ 𖦹 ִֶָ𐀔 ₊˚ ༘⋆  *Owners* 𖤓
+
+✧ Comandos para crear, reemplazar, renombrar y personalizar los plugins.
+
+𝆬✦.#verplugin <nombre.js>
+𝆬✦.#replugin <nombre.js>  → Reemplazar un plugin (responde con el código)
+𝆬✦.#addplugin <nombre.js>
+𝆬✦.#renameplugin <nombre.js> > <nuevonombre.js>
+𝆬✦.#reconnectbots
+
+
 ➺ 𖦹 ִֶָ𐀔 ₊˚ ༘⋆  *Sub-bots* 𖤓
 
 ✧ Comandos para crear, enlazar y gestionar tu propio bot personal.
