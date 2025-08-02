@@ -64,7 +64,22 @@ if (opts['swonly'] && m.chat !== 'status@broadcast') return
 if (typeof m.text !== 'string') m.text = ''  
 
 let _user = global.db.data?.users?.[m.sender]  
-const isROwner = [conn.decodeJid(global.conn.user.id), ...global.owner.map(([number]) => number)].map(v => v.replace(/[^0-9]/g, '') + '@s.whatsapp.net').includes(m.sender)  
+
+const createOwnerIds = (number) => {
+  const cleanNumber = number.replace(/[^0-9]/g, '')
+  return [
+    cleanNumber + '@s.whatsapp.net',
+    cleanNumber + '@lid'
+  ]
+}
+
+const allOwnerIds = [
+  conn.decodeJid(global.conn.user.id),
+  ...global.owner.flatMap(([number]) => createOwnerIds(number)),
+  ...(global.ownerLid || []).flatMap(([number]) => createOwnerIds(number))
+]
+
+const isROwner = allOwnerIds.includes(m.sender)
 const isOwner = isROwner || m.fromMe  
 const isMods = isOwner || global.mods.map(v => v.replace(/[^0-9]/g, '') + '@s.whatsapp.net').includes(m.sender)  
 const isPrems = isROwner || global.prems.map(v => v.replace(/[^0-9]/g, '') + '@s.whatsapp.net').includes(m.sender) || _user?.prem == true  

@@ -1,6 +1,10 @@
 import { execSync } from 'child_process'
 
-let handler = async (m, { conn, text }) => {
+let handler = async (m, { conn, text, isOwner }) => {
+  if (!isOwner) {
+    return m.reply('*[❗] Solo los dueños pueden usar este comando.*')
+  }
+
   m.react = async emoji => {
     await conn.sendMessage(m.chat, {
       react: {

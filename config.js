@@ -7,6 +7,12 @@ global.owner = [
   ['51901437507', 'Sunkovv', true],
 ]
 
+
+global.ownerLid = [
+  ['114263544885392', 'Sunkovv', true],
+  ['78186205446362', 'Sung', true],
+]
+
 global.sessions = 'Sessions'
 global.bot = 'Serbot' 
 global.AFBots = true
