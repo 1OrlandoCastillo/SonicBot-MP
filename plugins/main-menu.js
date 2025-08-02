@@ -68,6 +68,8 @@ let handler = async (m, { conn, usedPrefix }) => {
 │   • ${usedPrefix}addplugin <nombre.js>
 │   • ${usedPrefix}nameplugins <archivo.js> > <nuevo.js>
 │   • ${usedPrefix}update
+│   • ${usedPrefix}restart
+│   • ${usedPrefix}subme <mensaje>
 │
 ╰➺ ✧ *Sub-bots* 𖤓
 │   • ${usedPrefix}qr
