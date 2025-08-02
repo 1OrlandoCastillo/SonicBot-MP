@@ -2,7 +2,12 @@ import axios from 'axios'
 import { format } from 'util'
 
 let handler = async (m, { conn, text, usedPrefix, command }) => {
-  if (!text) return m.reply(`*[❗] Ejemplo de uso:* ${usedPrefix + command} *<búsqueda>*`)
+  if (!text) return conn.sendMessage(m.chat, {
+    text: `*[❗] Ejemplo de uso:* ${usedPrefix + command} *<búsqueda>*`,
+    contextInfo: {
+      ...rcanal.contextInfo
+    }
+  }, { quoted: m })
   
   try {
 
@@ -12,7 +17,12 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
     const { data } = await axios.get(apiUrl)
     
     if (!data.status || !data.resultado || data.resultado.length === 0) {
-      return m.reply('*[❗] No se encontraron resultados para tu búsqueda.*')
+      return conn.sendMessage(m.chat, {
+        text: '*[❗] No se encontraron resultados para tu búsqueda.*',
+        contextInfo: {
+          ...rcanal.contextInfo
+        }
+      }, { quoted: m })
     }
     
     const videos = data.resultado.slice(0, 5)
@@ -44,7 +54,12 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
     
   } catch (error) {
     console.error('Error en la búsqueda de YouTube:', error)
-    m.reply('*[❗] Ocurrió un error al realizar la búsqueda. Por favor, inténtalo de nuevo más tarde.*')
+    conn.sendMessage(m.chat, {
+      text: '*[❗] Ocurrió un error al realizar la búsqueda. Por favor, inténtalo de nuevo más tarde.*',
+      contextInfo: {
+        ...rcanal.contextInfo
+      }
+    }, { quoted: m })
   }
 }
 

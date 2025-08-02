@@ -1,175 +1,166 @@
 import fs from 'fs'
 import { join } from 'path'
 
-let handler = async (m, { conn }) => {
+function clockString(ms) {
+  let h = Math.floor(ms / 3600000)
+  let m = Math.floor((ms % 3600000) / 60000)
+  let s = Math.floor((ms % 60000) / 1000)
+  return [h, m, s].map(v => v.toString().padStart(2, '0')).join(':')
+}
+
+let handler = async (m, { conn, usedPrefix }) => {
   try {
     let nombreBot = global.namebot || 'KIYOMI MD'
     let imgBot = './storage/img/menu3.jpg'
     const botActual = conn.user?.jid?.split('@')[0]?.replace(/\D/g, '')
     const tipo = botActual === '+51958333972'.replace(/\D/g, '') ? 'Principal Bot' : 'Sub Bot'
+    
+    
+    let botUptime = 0
+    if (conn.startTime) {
+      botUptime = Date.now() - conn.startTime
+    }
+    let botFormatUptime = clockString(botUptime)
+    
+    
+    let totalf = Object.values(global.plugins).filter(v => v.help && v.tags).length
+    
+    
+    const memoryUsage = process.memoryUsage()
+    const memoryMB = Math.round(memoryUsage.heapUsed / 1024 / 1024)
 
     const text = `
-Hola! soy ${nombreBot}  
-(${tipo})
-
-
-╭─〔 ✦ 𓆩👑𓆪  ᴘʀᴏᴘɪᴇᴛᴀʀɪᴏs ✦ 〕─╮
-│  ꒷ꕤ  Dueños del bot:
+╭─「 ✦ 𓆩⚡𓆪 ʙɪᴇɴᴠᴇɴɪᴅᴏ ✦ 」─╮
 │
-╰➺ +51942501966 (Sung)
-
-╰➺ +51901437507 (Sunkovv)
-
-
-╭─〔 ✦ 𓆩💎𓆪  ᴄᴀɴᴀʟᴇs ᴏғɪᴄɪᴀʟᴇs ✦ 〕─╮
-│  ꒷ꕤ  Accede aquí:
+╰➺ ✧ *Usuario:* @${m.sender.split('@')[0]}
 │
-╰➺ https://whatsapp.com/channel/0029VbAZUQ3002T9KZfx2O1M
-
-╰➺ https://whatsapp.com/channel/0029Vb5Vinf72WTo11c5hJ3O
-
-𝗔𝗾𝘂𝗶 𝘁𝗶𝗲𝗻𝗲𝘀 𝗹𝗮 𝗹𝗶𝘀𝘁𝗮 𝗱𝗲 𝗰𝗼𝗺𝗮𝗻𝗱𝗼𝘀:
-
-
-➺ 𖦹 ִֶָ𐀔 ₊˚ ༘⋆  *Owners* 𖤓
-
-✧ Comandos para crear, reemplazar, renombrar y personalizar los plugins.
-
-𝆬✦.#verplugin <nombre.js>
-𝆬✦.#replugin <nombre.js>  → Reemplazar un plugin (responde con el código)
-𝆬✦.#addplugin <nombre.js>
-𝆬✦.#renameplugin <nombre.js> > <nuevonombre.js>
-𝆬✦.#reconnectbots
+╰➺ ✧ *Bot:* ${nombreBot}
+│
+╰➺ ✧ *Tipo:* ${tipo}
+│
+╰➺ ✧ *Librería:* Baileys MD
+│
+╰➺ ✧ *Tiempo Activo:* ${botFormatUptime}
+│
+╰➺ ✧ *Plugins:* ${totalf}
+│
+╰➺ ✧ *Memoria:* ${memoryMB} MB
 
 
-➺ 𖦹 ִֶָ𐀔 ₊˚ ༘⋆  *Sub-bots* 𖤓
-
-✧ Comandos para crear, enlazar y gestionar tu propio bot personal.
-
-
-𝆬✦.#qr
-𝆬✦.#code
-𝆬✦.#bots
-𝆬✦.#botinfo • infobot
-𝆬✦.#reconnect
-𝆬✦.#setbotname
-𝆬✦.#setbotimg
-𝆬✦.#setautoread
-→ Obtener información única y original del bot
-
-➺ 𖦹 ִֶָ𐀔 ₊˚ ༘⋆  *Economía* 𖤓
-
-✧ Comandos para trabajar, jugar y hacer dinero con estilo.
+╭─「 ✦ 𓆩👑𓆪 ᴘʀᴏᴘɪᴇᴛᴀʀɪᴏs ✦ 」─╮
+│
+╰➺ ✧ +51942501966 ➺ Sung
+╰➺ ✧ +51901437507 ➺ Sunkovv
 
 
-𝆬✦#balance
-𝆬✦#bal
-𝆬✦#coins
+╭─「 ✦ 𓆩💎𓆪 ᴄᴀɴᴀʟᴇs ᴏғɪᴄɪᴀʟᴇs ✦ 」─╮
+│
+╰➺ ✧ https://whatsapp.com/channel/0029VbAZUQ3002T9KZfx2O1M
 
-➺ 𖦹 ִֶָ𐀔 ₊˚ ༘⋆  *Perfiles* 𖤓
-
-✧ Comandos para ver, personalizar y destacar tu perfil.
+╰➺ ✧ https://whatsapp.com/channel/0029Vb5Vinf72WTo11c5hJ3O
 
 
-𝆬✦.#allbirthdays • #allbirths
-→ Consulta el calendario de cumpleaños de los usuarios
-𝆬✦.#birthdays • #cumpleaños • #births
-→ Revisa quién está por celebrar su día
-𝆬✦.#delbirth + [fecha]
-→ Borra tu fecha de nacimiento de tu perfil
-𝆬✦.#delgenre
-→ Elimina tu género del perfil
-𝆬✦.#profile • #perfil
-→ Revisa tu perfil completo con estadísticas y logros
-𝆬✦.#setbirth + [fecha]
-→ Guarda tu fecha de nacimiento en tu perfil de usuario
-𝆬✦.#setdescription • #setdesc + [Descripción]
-→ Establece una descripción única para tu perfil
-𝆬✦.#setfav • #setfavourite + [Personaje]
-→ Establece tu personaje o ídolo favorito en tu perfil.
-𝆬✦.#setgenre + Hombre | Mujer
-→ Establece tu género para personalizar tu experiencia
+╭─「 ✦ 𓆩🐦‍🔥𓆪 ᴄᴏᴍᴀɴᴅᴏs ᴅɪsᴘᴏɴɪʙʟᴇs ✦ 」─╮
+│
+╰➺ ✧ *Owners* 𖤓
+│   • ${usedPrefix}verplugin <nombre.js>
+│   • ${usedPrefix}replugin <nombre.js>
+│   • ${usedPrefix}addplugin <nombre.js>
+│   • ${usedPrefix}nameplugins <archivo.js> > <nuevo.js>
+│   • ${usedPrefix}update
+│
+╰➺ ✧ *Sub-bots* 𖤓
+│   • ${usedPrefix}qr
+│   • ${usedPrefix}code
+│   • ${usedPrefix}bots
+│   • ${usedPrefix}botinfo
+│   • ${usedPrefix}reconnect
+│   • ${usedPrefix}setbotname
+│   • ${usedPrefix}setbotimg
+│   • ${usedPrefix}setautoread
+│
+╰➺ ✧ *Economía* 𖤓
+│   • ${usedPrefix}balance
+│   • ${usedPrefix}bal
+│   • ${usedPrefix}coins
+│
+╰➺ ✧ *Perfiles* 𖤓
+│   • ${usedPrefix}profile
+│   • ${usedPrefix}setbirth <fecha>
+│   • ${usedPrefix}setdesc <descripción>
+│   • ${usedPrefix}setfav <personaje>
+│   • ${usedPrefix}setgenre <hombre/mujer>
+│   • ${usedPrefix}birthdays
+│   • ${usedPrefix}allbirthdays
+│
+╰➺ ✧ *Búsquedas* 𖤓
+│   • ${usedPrefix}google <búsqueda>
+│   • ${usedPrefix}yt <búsqueda>
+│   • ${usedPrefix}tiktok <búsqueda>
+│   • ${usedPrefix}onlyfans <username>
+│
+╰➺ ✧ *Inteligencia* 𖤓
+│   • ${usedPrefix}gemini <texto>
+│   • ${usedPrefix}deepseek <texto>
+│
+╰➺ ✧ *Descargas* 𖤓
+│   • ${usedPrefix}play <query/url>
+│   • ${usedPrefix}aptoide <app>
+│
+╰➺ ✧ *Stickers* 𖤓
+│   • ${usedPrefix}sticker
+│   • ${usedPrefix}toimg
+│   • ${usedPrefix}setmeta <autor> | <pack>
+│   • ${usedPrefix}delmeta
+│
+╰➺ ✧ *Administración* 𖤓
+│   • ${usedPrefix}ban @usuario
+│   • ${usedPrefix}promote @usuario
+│   • ${usedPrefix}demote @usuario
+│   • ${usedPrefix}tag
+│   • ${usedPrefix}open
+│   • ${usedPrefix}close
+│   • ${usedPrefix}delete
+│
+╰➺ ✧ *Diversión* 𖤓
+│   • ${usedPrefix}topgays
+│   • ${usedPrefix}topfeos
+│   • ${usedPrefix}toplindos
+│   • ${usedPrefix}topburros
+│   • ${usedPrefix}topmachos
+│   • ${usedPrefix}topparejas
+│   • ${usedPrefix}toppajeros
+│   • ${usedPrefix}topmancos
+│
+╰➺ ✧ *NSFW* 𖤓
+│   • ${usedPrefix}waifu
+│   • ${usedPrefix}waifu2
+│   • ${usedPrefix}neko
+│
+╰➺ ✧ *Información* 𖤓
+│   • ${usedPrefix}id
+│   • ${usedPrefix}menu
+│   • ${usedPrefix}help
+│
+╰────────────────╯
 
-➺ 𖦹 ִֶָ𐀔 ₊˚ ༘⋆  *Busquedas* 𖤓
+> LOVELLOUD Official`.trim()
 
-✧ Comandos para buscar contenido.
-
-
-𝆬✦.#google <búsqueda>
-𝆬✦.#yt <búsqueda>
-𝆬✦.#tiktok <búsqueda>
-𝆬✦.#onlyfans <username>
-
-➺ 𖦹 ִֶָ𐀔 ₊˚ ༘⋆  *Tops* 𖤓
-
-✧ Tops del grupos
-
-
-𝆬✦.#topgays
-𝆬✦.#topfeos
-𝆬✦.#toplindos
-𝆬✦.#topburros
-𝆬✦.#topmachos
-𝆬✦.#topparejas
-𝆬✦.#toppajeros
-𝆬✦.#topmancos
-
-
-➺ 𖦹 ִֶָ𐀔 ₊˚ ༘⋆  *Nsfw* 𖤓
-
-✧ Comandos para obtener imagenes  de anime +18
-
-
-𝆬✦.#neko
-𝆬✦.#waifu
-𝆬✦.#waifu2
-
-➺ 𖦹 ִֶָ𐀔 ₊˚ ༘⋆  *Descargas* 𖤓
-
-✧ Comandos para obtener música, videos y más desde distintas fuentes.
-
-𝆬✦.#play <query> o <url>
-𝆬✦.#aptoide <app>
-
-
-➺ 𖦹 ִֶָ𐀔 ₊˚ ༘⋆  *Administración* 𖤓
-
-✧ Comandos exclusivos para gestionar y moderar grupos.
-
-✦.#delete
-✦.#del
-𝆬✦.#ban @usuario
-𝆬✦.#demote @usuario
-𝆬✦.#promote @usuario
-𝆬✦.#open
-𝆬✦.#close
-𝆬✦.#tag
-✦.#clear
-
-➺ 𖦹 ִֶָ𐀔 ₊˚ ༘⋆  *Inteligencia Artificial* 𖤓
-
-✧ Comandos para consultar a los modelos de IA.
-
-
-𝆬✦.#gemini <texto>
-
-➺ 𖦹 ִֶָ𐀔 ₊˚ ༘⋆  *Stickers* 𖤓
-
-✧ Comandos para crear, editar y divertirte con tus stickers.
-
-
-𝆬✦.#delstickermeta • #delmeta
-→ Restablece el pack y autor por defecto de tus stickers
-𝆬✦.#setstickermeta • #setmeta + [autor] | [pack]
-→ Define el autor y nombre del pack para tus stickers
-𝆬✦.#sticker • #s • #stickers + {imagen/video o link}
-𝆬✦.#toimg
-    `.trim()
-
-    await conn.sendFile(m.chat, imgBot, 'thumbnail.jpg', text, m, null, rcanal)
+    await conn.sendFile(m.chat, imgBot, 'thumbnail.jpg', text, m, null, { 
+      contextInfo: {
+        ...rcanal.contextInfo,
+        mentionedJid: [m.sender]
+      }
+    })
 
   } catch (e) {
-    conn.reply(m.chat, '❎ Hubo un error al mostrar el menú.', m)
+    console.error('Error en menú:', e)
+    conn.sendMessage(m.chat, {
+      text: '❎ Hubo un error al mostrar el menú.',
+      contextInfo: {
+        ...rcanal.contextInfo
+      }
+    }, { quoted: m })
     throw e
   }
 }

@@ -190,14 +190,14 @@ export async function AYBot(options) {
 ╰────────────────╯
 > LOVELLOUD Official`
 
-        let sendQR = await conn.sendFile(m.chat, await qrcode.toDataURL(qr, { scale: 8 }), "qrcode.png", txt, m, null, rcanal)
+  let sendQR = await conn.sendFile(m.chat, await qrcode.toDataURL(qr, { scale: 8 }), "qrcode.png", txt, m, null, rcanal)
 
-        setTimeout(() => {
-          conn.sendMessage(m.chat, { delete: sendQR.key })
-        }, 30000)
+  setTimeout(() => {
+    conn.sendMessage(m.chat, { delete: sendQR.key })
+  }, 30000)
 
-        return
-      }
+  return
+  }
 
       if (qr && mcode && m && conn) {
         let secret = await sock.requestPairingCode(m.sender.split`@`[0])
@@ -262,22 +262,22 @@ export async function AYBot(options) {
           await creloadHandler(true).catch(console.error)
         }
 
-              if ([405, 401].includes(reason)) {
-        console.log(chalk.bold.magentaBright(`\n┆ Sesión inválida o cerrada manualmente. (+${path.basename(pathAYBot)})\n`))
+        if ([405, 401].includes(reason)) {
+          console.log(chalk.bold.magentaBright(`\n┆ Sesión inválida o cerrada manualmente. (+${path.basename(pathAYBot)})\n`))
         try {
           if (fs.existsSync(pathAYBot)) {
-            fs.rmdirSync(pathAYBot, { recursive: true })
+          fs.rmdirSync(pathAYBot, { recursive: true })
           }
         } catch (error) {
           console.log(chalk.bold.redBright(`\n┆ Error eliminando carpeta ${pathAYBot}: ${error.message}\n`))
         }
-      }
+        }
 
         if (reason === 440 || reason === 403) {
           console.log(chalk.bold.magentaBright(`\n┆ Sesión reemplazada o en soporte. Eliminando carpeta...\n`))
           try {
             if (fs.existsSync(pathAYBot)) {
-              fs.rmdirSync(pathAYBot, { recursive: true })
+          fs.rmdirSync(pathAYBot, { recursive: true })
             }
           } catch (error) {
             console.log(chalk.bold.redBright(`\n┆ Error eliminando carpeta ${pathAYBot}: ${error.message}\n`))

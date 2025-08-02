@@ -105,7 +105,11 @@ let handler = async (m, { conn, usedPrefix }) => {
 
   txt += `> LOVELLOUD Official`
 
-  await conn.sendFile(m.chat, imgBot, 'thumbnail.jpg', txt, m, null, rcanal)
+  await conn.sendFile(m.chat, imgBot, 'thumbnail.jpg', txt, m, null, { 
+    contextInfo: {
+      ...rcanal.contextInfo
+    }
+  })
 }
 
 handler.help = ['#botinfo • #infobot\n→ Obtener información única y original del bot']

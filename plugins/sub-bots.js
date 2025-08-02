@@ -198,7 +198,7 @@ let handler = async (m, { conn }) => {
   txt += `╰────────────────╯\n`
   txt += `\n> LOVELLOUD Official`
 
-  let imgBot = './storage/img/menu3.jpg'
+  let imgBot = './storage/img/menu.jpg'
   
   if (fs.existsSync(configPath)) {
     try {
@@ -209,7 +209,12 @@ let handler = async (m, { conn }) => {
     }
   }
 
-  await conn.sendFile(m.chat, imgBot, 'thumbnail.jpg', txt, m, null, { mentions: [] })
+  await conn.sendFile(m.chat, imgBot, 'thumbnail.jpg', txt, m, null, { 
+    mentions: [],
+    contextInfo: {
+      ...rcanal.contextInfo
+    }
+  })
 }
 
 handler.command = ['listjadibot', 'bots', 'subbots', 'listbots']

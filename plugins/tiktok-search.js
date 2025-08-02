@@ -2,16 +2,26 @@ import fetch from 'node-fetch'
 import { Sticker, StickerTypes } from 'wa-sticker-formatter'
 
 let handler = async (m, { conn, text, usedPrefix, command }) => {
-  if (!text) return m.reply(`*[❗] Ingresa un término de búsqueda.*\nEjemplo: ${usedPrefix + command} funk`)
+  if (!text) return conn.sendMessage(m.chat, {
+    text: `*[❗] Ingresa un término de búsqueda.*\nEjemplo: ${usedPrefix + command} funk`,
+    contextInfo: {
+      ...rcanal.contextInfo
+    }
+  }, { quoted: m })
   
   try {
     
-    const searchUrl = `https://www.bytebazz.store/api/busqueda/tiktok?query=${encodeURIComponent(text)}&apikey=8jkh5icbf05`
+    const searchUrl = `https://bytebazz-api.koyeb.app/api/busqueda/tiktok?query=${encodeURIComponent(text)}&apikey=8jkh5icbf05`
     const response = await fetch(searchUrl)
     const data = await response.json()
     
     if (!data.status || !data.resultado || data.resultado.length === 0) {
-      return m.reply('*[❗] No se encontraron resultados para tu búsqueda.*')
+      return conn.sendMessage(m.chat, {
+        text: '*[❗] No se encontraron resultados para tu búsqueda.*',
+        contextInfo: {
+          ...rcanal.contextInfo
+        }
+      }, { quoted: m })
     }
     
     const video = data.resultado[0]
@@ -37,12 +47,20 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
     await conn.sendMessage(m.chat, {
       video: { url: video.sin_marca_agua || video.con_marca_agua },
       caption: info,
-      mentions: [m.sender]
+      mentions: [m.sender],
+      contextInfo: {
+        ...rcanal.contextInfo
+      }
     }, { quoted: m })
     
   } catch (e) {
     console.error('Error en tiktok-search:', e)
-    m.reply('*[❗] Ocurrió un error al buscar en TikTok. Por favor, inténtalo de nuevo más tarde.*')
+    conn.sendMessage(m.chat, {
+      text: '*[❗] Ocurrió un error al buscar en TikTok. Por favor, inténtalo de nuevo más tarde.*',
+      contextInfo: {
+        ...rcanal.contextInfo
+      }
+    }, { quoted: m })
   }
 }
 
