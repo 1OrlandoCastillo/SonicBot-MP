@@ -38,7 +38,7 @@ let handler = async (m, { conn, usedPrefix }) => {
 
   let nombreBot = global.namebot || 'KIYOMI MD'
   let moneyName = 'Gats'
-  let imgBot = './storage/img/menu3.jpg'
+  let imgBot = './storage/img/menu2.jpg'
 
   if (fs.existsSync(configPath)) {
     try {
@@ -51,20 +51,59 @@ let handler = async (m, { conn, usedPrefix }) => {
 
   const tipo = botActual === '+51958333972'.replace(/\D/g, '')
     ? 'Principal Bot'
-    : 'Prem Bot'
+    : 'Sub Bot'
 
   let t1 = performance.now()
   let latensi = performance.now() - t1
 
-  let txt = `⟡ Nombre: ${nombreBot}\n`
-  txt += `❁ Moneda: ${moneyName}\n\n`
-  txt += `♡ Prefijo: ${usedPrefix}\n`
-  txt += `✧ Plugins: ${totalf}\n`
-  txt += `❀ Speed: ${latensi.toFixed(4)}\n\n`
-  txt += `✩ Host: --\n`
-  txt += `✦ Conexión: --\n`
-  txt += `♢ Tipo: ${tipo}\n`
-  txt += `\n> LOVELLOUD Official`
+ 
+  let botUptime = 0
+  if (conn.startTime) {
+    botUptime = Date.now() - conn.startTime
+  }
+  let botFormatUptime = clockString(botUptime)
+
+  
+  let subBotsActivos = 0
+  if (global.conns && Array.isArray(global.conns)) {
+    subBotsActivos = global.conns.filter(subConn => 
+      subConn.user && 
+      subConn.ws?.socket?.readyState !== ws.CLOSED
+    ).length
+  }
+
+  
+  let ownersText = ''
+  if (global.owner && Array.isArray(global.owner)) {
+    ownersText = global.owner.map(([number, name]) => `+${number} (${name})`).join('\n')
+  }
+
+ 
+  const botNumber = conn.user?.jid?.split('@')[0] || 'Desconocido'
+
+  let txt = `╭─「 ✦ 𓆩🤖𓆪 ɪɴғᴏ ᴅᴇʟ ʙᴏᴛ ✦ 」─╮\n`
+  txt += `│\n`
+  txt += `╰➺ ✧ *Nombre:* ${nombreBot}\n`
+  txt += `╰➺ ✧ *Número:* +${botNumber}\n`
+  txt += `╰➺ ✧ *Tipo:* ${tipo}\n`
+  txt += `╰➺ ✧ *Librería:* Baileys MD\n`
+  txt += `╰➺ ✧ *Tiempo Activo:* ${botFormatUptime}\n`
+  txt += `╰➺ ✧ *Sub-Bots Activos:* ${subBotsActivos}\n`
+  txt += `╰➺ ✧ *Plugins:* ${totalf}\n`
+  txt += `╰➺ ✧ *Prefijo:* ${usedPrefix}\n`
+  txt += `╰➺ ✧ *Speed:* ${latensi.toFixed(4)}ms\n`
+  txt += `│\n`
+  txt += `╰────────────────╯\n\n`
+
+  if (ownersText) {
+    txt += `╭─「 ✦ 𓆩👑𓆪 ᴄʀᴇᴀᴅᴏʀᴇs ✦ 」─╮\n`
+    txt += `│\n`
+    txt += `${ownersText.split('\n').map(owner => `╰➺ ✧ *${owner}*`).join('\n')}\n`
+    txt += `│\n`
+    txt += `╰────────────────╯\n\n`
+  }
+
+  txt += `> LOVELLOUD Official`
 
   await conn.sendFile(m.chat, imgBot, 'thumbnail.jpg', txt, m, null, rcanal)
 }

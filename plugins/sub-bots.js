@@ -123,7 +123,6 @@ let handler = async (m, { conn }) => {
   txt += `╰➺ ✧ *Total de Bots:* ${totalBots}\n`
   txt += `╰➺ ✧ *Bot Principal:* 1\n`
   txt += `╰➺ ✧ *Sub-Bots Activos:* ${totalSubBots}\n`
-  txt += `╰➺ ✧ *Total de Grupos:* ${totalGroups}\n`
   txt += `│\n`
   txt += `╰────────────────╯\n\n`
 
@@ -135,7 +134,6 @@ let handler = async (m, { conn }) => {
   txt += `│\n`
   txt += `╰➺ ✧ *Número:* +${mainBotConn.user.jid.split('@')[0]}\n`
   txt += `╰➺ ✧ *Estado:* ${mainBotStatus}\n`
-  txt += `╰➺ ✧ *Grupos:* ${mainBotGroups}\n`
   txt += `╰➺ ✧ *Tiempo Activo:* ${mainBotFormatUptime}\n`
   txt += `│\n`
   txt += `╰────────────────╯\n\n`
@@ -147,28 +145,37 @@ let handler = async (m, { conn }) => {
     let i = 1
     for (let [jid, subConn] of uniqueUsers) {
       const subBotNumber = jid.split('@')[0]
-      let subBotGroups = 0
       
-     
-      if (subConn.chats) {
-        for (let [chatJid, chat] of Object.entries(subConn.chats)) {
-          if (chatJid.endsWith('@g.us')) {
-            subBotGroups++
-          }
+      
+      const subBotConfigPath = join('./Serbot', subBotNumber, 'config.json')
+      let subBotName = global.namebot || 'KIYOMI MD'
+      
+      if (fs.existsSync(subBotConfigPath)) {
+        try {
+          const subBotConfig = JSON.parse(fs.readFileSync(subBotConfigPath, 'utf-8'))
+          if (subBotConfig.name) subBotName = subBotConfig.name
+        } catch (err) {
+          console.error('Error al leer configuración del sub-bot:', err)
         }
+      } else {
+       
+        subBotName = `Sub-Bot ${i}`
       }
       
-    
-      const subBotUptime = subConn.startTime ? Date.now() - subConn.startTime : 0
-      const subBotFormatUptime = clockString(subBotUptime)
-      
-    
       const subBotStatus = subConn.ws?.socket?.readyState === ws.OPEN ? 'Activo ✅' : 'Inactivo ❌'
       
-      txt += `╰➺ ✧ *${i}. +${subBotNumber}*\n`
-      txt += `│   • Grupos: ${subBotGroups}\n`
+     
+      let userName = 'Anónimo'
+      if (subConn.user && subConn.user.name) {
+        userName = subConn.user.name
+      } else if (subConn.authState && subConn.authState.creds && subConn.authState.creds.me && subConn.authState.creds.me.name) {
+        userName = subConn.authState.creds.me.name
+      }
+      
+      txt += `╰➺ ✧ *${i}. Sub Bot*\n`
+      txt += `│   • Número: +${subBotNumber}\n`
+      txt += `│   • Usuario: *${userName}*\n`
       txt += `│   • Estado: ${subBotStatus}\n`
-      txt += `│   • Tiempo: ${subBotFormatUptime}\n`
       if (i < totalSubBots) txt += `│\n`
       i++
     }
@@ -187,7 +194,6 @@ let handler = async (m, { conn }) => {
   txt += `╭─「 ✦ 𓆩📈𓆪 ʀᴇsᴜᴍᴇɴ ✦ 」─╮\n`
   txt += `│\n`
   txt += `╰➺ ✧ *Bots Totales:* ${totalBots}\n`
-  txt += `╰➺ ✧ *Grupos Totales:* ${totalGroups}\n`
   txt += `│\n`
   txt += `╰────────────────╯\n`
   txt += `\n> LOVELLOUD Official`
