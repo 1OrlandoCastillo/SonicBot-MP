@@ -1,31 +1,35 @@
+import fs from 'fs'
+import { join } from 'path'
 import axios from 'axios'
 import { format } from 'util'
 
+const botActual = conn.user?.jid?.split('@')[0]?.replace(/\D/g, '')
+  const configPath = join('./Serbot', botActual, 'config.json')
+
+  let nombreBot = global.namebot || 'KIYOMI MD'
+
+  if (fs.existsSync(configPath)) {
+    try {
+      const config = JSON.parse(fs.readFileSync(configPath, 'utf-8'))
+      if (config.name) nombreBot = config.name
+    } catch {}
+  }
+
 let handler = async (m, { conn, text, usedPrefix, command }) => {
-  if (!text) return conn.sendMessage(m.chat, {
-    text: `*[❗] Ejemplo de uso:* ${usedPrefix + command} *<búsqueda>*`,
-    contextInfo: {
-      ...rcanal.contextInfo
-    }
-  }, { quoted: m })
+  if (!text) return m.reply(`《✧》Por favor, ingresa una busqueda.\n\nEjemplo: ${usedPrefix + command} BLACKPINK`)
   
   try {
 
     const searchQuery = encodeURIComponent(text)
-    const apiUrl = `https://www.bytebazz.store/api/busqueda/youtube?query=${searchQuery}&apikey=8jkh5icbf05`
+    const apiUrl = `https://bytebazz-api.koyeb.app/api/busqueda/youtube?query=${searchQuery}&apikey=8jkh5icbf05`
     
     const { data } = await axios.get(apiUrl)
     
     if (!data.status || !data.resultado || data.resultado.length === 0) {
-      return conn.sendMessage(m.chat, {
-        text: '*[❗] No se encontraron resultados para tu búsqueda.*',
-        contextInfo: {
-          ...rcanal.contextInfo
-        }
-      }, { quoted: m })
+      return m.reply('*[❗] No se encontraron resultados para tu búsqueda.*')
     }
     
-    const videos = data.resultado.slice(0, 5)
+    const videos = data.resultado.slice(0, 6)
     
     let message = `*Resultados de: ${text}*\n\n`
     
@@ -42,10 +46,10 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
       text: message.trim(),
       contextInfo: {
         externalAdReply: {
-          title: 'KIYOMI MD',
+          title: `${nombreBot}`,
           body: `Busqueda: ${text}`,
           thumbnailUrl: videos[0].thumbnail,
-          sourceUrl: 'https://youtube.com',
+          sourceUrl: `https://youtube.com`,
           mediaType: 1,
           renderLargerThumbnail: true
         }
@@ -54,17 +58,10 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
     
   } catch (error) {
     console.error('Error en la búsqueda de YouTube:', error)
-    conn.sendMessage(m.chat, {
-      text: '*[❗] Ocurrió un error al realizar la búsqueda. Por favor, inténtalo de nuevo más tarde.*',
-      contextInfo: {
-        ...rcanal.contextInfo
-      }
-    }, { quoted: m })
+    m.reply('*[❗] Ocurrió un error al realizar la búsqueda. Por favor, inténtalo de nuevo más tarde.*')
   }
 }
 
-handler.help = ['#yt <búsqueda>']
-handler.tags = ['busqueda']
 handler.command = /^yt(search|buscar)?$/i
 
 export default handler

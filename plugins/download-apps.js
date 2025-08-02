@@ -5,15 +5,9 @@ import path from 'path'
 let handler = async (m, { conn, text, args, usedPrefix, command }) => {
   if (!text) {
     return conn.sendMessage(m.chat, {
-      text: `╭─「 ✦ 𓆩📱𓆪 ᴅᴇsᴄᴀʀɢᴀ ✦ 」─╮
-│
-╰➺ ✧ *Uso:* ${usedPrefix}aptoide <nombre de la app>
-╰➺ ✧ *Ejemplo:* ${usedPrefix}aptoide whatsapp
-╰➺ ✧ *Ejemplo:* ${usedPrefix}aptoide instagram
-╰➺ ✧ *Ejemplo:* ${usedPrefix}aptoide tiktok
-│
-╰────────────────╯
-> LOVELLOUD Official`,
+      text: `《✧》Ingresa el nombre de la aplicación que deseas descargar.
+      
+> Ejemplo: ${usedPrefix}apk Whatsapp`,
       contextInfo: {
         ...rcanal.contextInfo
       }
@@ -30,14 +24,7 @@ let handler = async (m, { conn, text, args, usedPrefix, command }) => {
 
     if (!data.status) {
       await conn.sendMessage(m.chat, {
-        text: `╭─「 ✦ 𓆩❌𓆪 ᴇʀʀᴏʀ ✦ 」─╮
-│
-╰➺ ✧ *No se encontró la aplicación*
-╰➺ ✧ *Intenta con otro nombre*
-╰➺ ✧ *O verifica la ortografía*
-│
-╰────────────────╯
-> LOVELLOUD Official`,
+        text: `《✧》No se encontró la aplicación intenta con otro nombre.`,
         contextInfo: {
           ...rcanal.contextInfo
         }
@@ -48,15 +35,10 @@ let handler = async (m, { conn, text, args, usedPrefix, command }) => {
     const appData = data.data
 
     
-    const appInfo = `╭─「 ✦ 𓆩📱𓆪 ✦ 」─╮
-│
-╰➺ ✧ *Nombre:* ${appData.name}
-╰➺ ✧ *Paquete:* ${appData.package}
-╰➺ ✧ *Tamaño:* ${appData.size}
-╰➺ ✧ *Actualizado:* ${appData.lastup}
-│
-╰────────────────╯
-> LOVELLOUD Official`
+    const appInfo = `✐ Nombre: ${appData.name}
+ⴵ Paquete: ${appData.package}
+✰ Tamaño: ${appData.size}
+❒ Actualizado: ${appData.lastup}`
 
     
     try {
@@ -78,16 +60,11 @@ let handler = async (m, { conn, text, args, usedPrefix, command }) => {
       console.error('Error descargando APK:', apkError)
       
     
-      const fallbackInfo = `╭─「 ✦ 𓆩📱𓆪 ✦ 」─╮
-│
-╰➺ ✧ *Nombre:* ${appData.name}
-╰➺ ✧ *Paquete:* ${appData.package}
-╰➺ ✧ *Tamaño:* ${appData.size}
-╰➺ ✧ *Actualizado:* ${appData.lastup}
-│
-╰➺ ✧ *Enlace de descarga:*
-╰➺ ✧ ${appData.dllink}
-> LOVELLOUD Official`
+      const fallbackInfo = `✧ Nombre: ${appData.name}
+ⴵ Paquete: ${appData.package}
+✰ Tamaño: ${appData.size}
+❖ Actualizado: ${appData.lastup}
+❏ Enlace de descarga: ${appData.dllink}`
 
       await conn.sendMessage(m.chat, {
         text: fallbackInfo,
@@ -101,16 +78,7 @@ let handler = async (m, { conn, text, args, usedPrefix, command }) => {
     console.error('Error en comando download-apps:', error)
     
     await conn.sendMessage(m.chat, {
-      text: `╭─「 ✦ 𓆩❌𓆪 ᴇʀʀᴏʀ ✦ 」─╮
-│
-╰➺ ✧ *Error al buscar la aplicación*
-╰➺ ✧ *Posibles causas:*
-╰➺ ✧ • Nombre incorrecto
-╰➺ ✧ • Problema de conexión
-╰➺ ✧ *Intenta nuevamente más tarde*
-│
-╰────────────────╯
-> LOVELLOUD Official`,
+      text: `《✧》Error al buscar la aplicación intenta nuevamente más tarde.`,
       contextInfo: {
         ...rcanal.contextInfo
       }
@@ -118,8 +86,6 @@ let handler = async (m, { conn, text, args, usedPrefix, command }) => {
   }
 }
 
-handler.help = ['aptoide <app>', 'descargar <app>', 'apk <app>']
-handler.tags = ['descargas']
 handler.command = /^(aptoide|descargar|apk)$/i
 
-export default handler 
+export default handler

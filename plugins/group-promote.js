@@ -15,7 +15,7 @@ let handler = async (m, { conn, args, participants, isAdmin, isBotAdmin, isOwner
   
   if (!m.mentionedJid || m.mentionedJid.length === 0) {
     return conn.sendMessage(m.chat, {
-      text: `《✧》Debes mencionar al usuario que deseas promover.\n\n> Ejemplo: ${usedPrefix + command} @usuario`,
+      text: `《✧》Debes mencionar a un usuario para poder promoverlo de administrador.\n\n> Ejemplo: ${usedPrefix + command} @usuario`,
       contextInfo: {
         ...rcanal.contextInfo
       }
@@ -35,7 +35,7 @@ let handler = async (m, { conn, args, participants, isAdmin, isBotAdmin, isOwner
   const isUserAdmin = groupMetadata.participants.find(p => p.id === who)?.admin
   if (isUserAdmin) {
     return conn.sendMessage(m.chat, {
-      text: `《✧》El usuario @${who.split('@')[0]} ya es administrador del grupo.`,
+      text: `《✧》@${who.split('@')[0]} ya es administrador del grupo.`,
       contextInfo: {
         ...rcanal.contextInfo,
         mentionedJid: [who]
@@ -49,7 +49,7 @@ let handler = async (m, { conn, args, participants, isAdmin, isBotAdmin, isOwner
     const groupName = (await conn.groupMetadata(m.chat)).subject
     
     return conn.sendMessage(m.chat, {
-      text: `✿ Usuario promovido a administrador exitosamente.\n\n❒ Usuario: @${who.split('@')[0]}\n❒ Grupo: ${groupName}\n❒ Admin: @${m.sender.split('@')[0]}`,
+      text: `✿ Admin promovido exitosamente.\n\n🜸 Usuario: @${who.split('@')[0]}\n✰ Admin: @${m.sender.split('@')[0]}\n❒ Grupo: ${groupName}`,
       contextInfo: {
         ...rcanal.contextInfo,
         mentionedJid: [who, m.sender]

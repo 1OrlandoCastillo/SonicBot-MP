@@ -32,7 +32,7 @@ let handler = async (m, { conn, args, participants, isAdmin, isBotAdmin, isOwner
   
   if (ownerNumbers.includes(who)) {
     return conn.sendMessage(m.chat, {
-      text: '《✧》No puedes banear a un propietario del bot.',
+      text: '《✧》No puedes eliminar a un propietario del bot.',
       contextInfo: {
         ...rcanal.contextInfo
       }
@@ -40,7 +40,7 @@ let handler = async (m, { conn, args, participants, isAdmin, isBotAdmin, isOwner
   }
   
   if (who === conn.user.jid) return conn.sendMessage(m.chat, {
-    text: '《✧》No se puede usar este comando para banear al bot.',
+    text: '《✧》No se puede usar este comando para eliminar al bot.',
     contextInfo: {
       ...rcanal.contextInfo
     }
@@ -60,7 +60,7 @@ let handler = async (m, { conn, args, participants, isAdmin, isBotAdmin, isOwner
   
 
   return conn.sendMessage(m.chat, {
-    text: `❏ Usuario baneado exitosamente.\n\n✐ Usuario: @${who.split('@')[0]}\n✐ Grupo: ${groupName}\n✐ Admin: @${m.sender.split('@')[0]}`,
+    text: `✿ Usuario eliminado exitosamente.\n\n✰ Usuario: @${who.split('@')[0]}\n❏ Admin: @${m.sender.split('@')[0]}\n\n✐ Grupo: ${groupName}`,
     contextInfo: {
       ...rcanal.contextInfo,
       mentionedJid: [who, m.sender]

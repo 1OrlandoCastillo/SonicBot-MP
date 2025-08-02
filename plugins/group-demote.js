@@ -42,7 +42,7 @@ let handler = async (m, { conn, args, participants, isAdmin, isOwner, isPrems, u
   
   if (!participant.admin) {
     return conn.sendMessage(m.chat, {
-      text: `《✧》El usuario @${who.split('@')[0]} no es administrador del grupo.`,
+      text: `《✧》@${who.split('@')[0]} no es administrador del grupo.`,
       contextInfo: {
         ...rcanal.contextInfo,
         mentionedJid: [who]
@@ -53,7 +53,7 @@ let handler = async (m, { conn, args, participants, isAdmin, isOwner, isPrems, u
   await conn.groupParticipantsUpdate(m.chat, [who], 'demote')
   
   return conn.sendMessage(m.chat, {
-    text: `❏ Admin removido exitosamente.\n\n✐ Usuario: @${who.split('@')[0]}\n✐ Grupo: ${groupMetadata.subject}\n✐ Admin: @${m.sender.split('@')[0]}`,
+    text: `✦ Admin removido exitosamente.\n\nꕥ Usuario: @${who.split('@')[0]}\n✧ Admin: @${m.sender.split('@')[0]}\n❖ Grupo: ${groupMetadata.subject}`,
     contextInfo: {
       ...rcanal.contextInfo,
       mentionedJid: [who, m.sender]

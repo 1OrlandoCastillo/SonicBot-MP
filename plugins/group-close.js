@@ -20,7 +20,7 @@ let handler = async (m, { conn, args, participants, isAdmin, isBotAdmin, isOwner
   
     if (groupMetadata.announce) {
       return conn.sendMessage(m.chat, {
-        text: `《✧》El grupo ya está cerrado.\n\n✐ Grupo: ${groupName}`,
+        text: `《✧》Este grupo ya está cerrado.`,
         contextInfo: {
           ...rcanal.contextInfo
         }
@@ -30,7 +30,7 @@ let handler = async (m, { conn, args, participants, isAdmin, isBotAdmin, isOwner
     await conn.groupSettingUpdate(m.chat, 'announcement')
     
     return conn.sendMessage(m.chat, {
-      text: `❏ Grupo cerrado exitosamente.\n\n✐ Grupo: ${groupName}\n✐ Admin: @${m.sender.split('@')[0]}`,
+      text: `「✦」Grupo cerrado exitosamente.\n\n❖ Grupo: ${groupName}\n✰ Admin: @${m.sender.split('@')[0]}`,
       contextInfo: {
         ...rcanal.contextInfo,
         mentionedJid: [m.sender]
@@ -40,7 +40,7 @@ let handler = async (m, { conn, args, participants, isAdmin, isBotAdmin, isOwner
   } catch (e) {
     console.error('Error al cerrar grupo:', e)
     return conn.sendMessage(m.chat, {
-      text: '《✧》Error al cerrar el grupo.',
+      text: '《✧》Debo ser admin para ejecutar este Comando.',
       contextInfo: {
         ...rcanal.contextInfo
       }
@@ -53,4 +53,4 @@ handler.group = true
 handler.admin = true
 handler.botAdmin = true
 
-export default handler 
+export default handler
