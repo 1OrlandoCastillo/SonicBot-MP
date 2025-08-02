@@ -22,7 +22,7 @@ let handler = async (m, { conn, usedPrefix }) => {
     }
     let botFormatUptime = clockString(botUptime)
     
-    
+   
     let totalf = Object.values(global.plugins).filter(v => v.help && v.tags).length
     
     
