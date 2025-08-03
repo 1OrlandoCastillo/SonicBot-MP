@@ -1,9 +1,11 @@
 import fs from 'fs'
 import { join } from 'path'
 import axios from 'axios'
-import { format } from 'util'
 
-const botActual = conn.user?.jid?.split('@')[0]?.replace(/\D/g, '')
+let handler = async (m, { conn, text, usedPrefix, command }) => {
+  if (!text) return m.reply(`《✧》Por favor, ingresa una búsqueda.\n\nEjemplo: ${usedPrefix + command} BLACKPINK`)
+
+  const botActual = conn.user?.jid?.split('@')[0]?.replace(/\D/g, '')
   const configPath = join('./Serbot', botActual, 'config.json')
 
   let nombreBot = global.namebot || 'KIYOMI MD'
@@ -15,11 +17,7 @@ const botActual = conn.user?.jid?.split('@')[0]?.replace(/\D/g, '')
     } catch {}
   }
 
-let handler = async (m, { conn, text, usedPrefix, command }) => {
-  if (!text) return m.reply(`《✧》Por favor, ingresa una busqueda.\n\nEjemplo: ${usedPrefix + command} BLACKPINK`)
-  
   try {
-
     const searchQuery = encodeURIComponent(text)
     const apiUrl = `https://bytebazz-api.koyeb.app/api/busqueda/youtube?query=${searchQuery}&apikey=8jkh5icbf05`
     
