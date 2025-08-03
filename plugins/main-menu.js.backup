@@ -101,7 +101,7 @@ let handler = async (m, { conn, usedPrefix }) => {
 │   • ${usedPrefix}tiktok <búsqueda>
 │   • ${usedPrefix}onlyfans <username>
 │
-╰➺ ✧ *Inteligencia A.* 𖤓
+╰➺ ✧ *Inteligencia* 𖤓
 │   • ${usedPrefix}gemini <texto>
 │   • ${usedPrefix}deepseek <texto>
 │   • ${usedPrefix}llama <texto>
@@ -109,7 +109,6 @@ let handler = async (m, { conn, usedPrefix }) => {
 ╰➺ ✧ *Descargas* 𖤓
 │   • ${usedPrefix}play <query/url>
 │   • ${usedPrefix}aptoide <app>
-│   • ${usedPrefix}git <url>
 │
 ╰➺ ✧ *Stickers* 𖤓
 │   • ${usedPrefix}sticker
