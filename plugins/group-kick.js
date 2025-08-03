@@ -68,7 +68,7 @@ let handler = async (m, { conn, args, participants, isAdmin, isBotAdmin, isOwner
   }, { quoted: m })
 }
 
-handler.command = /^banear|ban|kick?$/i
+handler.command = ['ban', 'kick']
 handler.group = true
 handler.admin = true
 handler.botAdmin = true

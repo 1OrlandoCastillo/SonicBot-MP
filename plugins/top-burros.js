@@ -81,7 +81,7 @@ let handler = async (m, { conn, args, participants, isAdmin, isBotAdmin, isOwner
 
 handler.help = ['#topburros']
 handler.tags = ['fun', 'grupos']
-handler.command = /^(topburros|topburro|burros|burrotop)$/i
+handler.command = ['topburros', 'topburro', 'burros', 'burrotop']
 handler.group = true
 
 export default handler 

@@ -135,6 +135,6 @@ let handler = async (m, { conn, text, args, usedPrefix, command }) => {
 
 handler.help = ['#google <búsqueda>']
 handler.tags = ['búsquedas', 'internet']
-handler.command = /^(google|g|buscar|search)$/i
+handler.command = ['google', 'g', 'buscar', 'search']
 
 export default handler 

@@ -125,93 +125,143 @@ let usedPrefix = '.'
 
 let commandExecuted = false
 
-for (let name in global.plugins) {  
-  let plugin = global.plugins[name]  
-  if (!plugin) continue  
-  if (plugin.disabled) continue  
 
-  const __filename = join(___dirname, name)  
+const processedPlugins = []
+for (let name in global.plugins) {
+  let plugin = global.plugins[name]
+  if (!plugin || plugin.disabled) continue
+  
+ 
+  let normalizedPlugin = {
+    name: name,
+    handler: plugin.handler || plugin,
+    command: plugin.command || [],
+    tags: plugin.tags || [],
+    help: plugin.help || [],
+    all: plugin.all,
+    customPrefix: plugin.customPrefix
+  }
+  
+  
+  if (typeof normalizedPlugin.command === 'string') {
+    normalizedPlugin.command = [normalizedPlugin.command]
+  }
+  
+  
+  if (normalizedPlugin.command instanceof RegExp) {
+    normalizedPlugin.command = [normalizedPlugin.command.source]
+  }
+  
+  processedPlugins.push(normalizedPlugin)
+}
 
-  if (typeof plugin.all === 'function') {  
-    try {  
-      await plugin.all.call(this, m, {  
-        chatUpdate,  
-        __dirname: ___dirname,  
-        __filename  
-      })  
-    } catch (e) {  
-      console.error(e)  
-    }  
-  }  
+for (let plugin of processedPlugins) {
+  const __filename = join(___dirname, plugin.name)
 
-  if (!opts['restrict']) {  
-    if (plugin.tags && plugin.tags.includes('admin')) continue  
-  }  
+  
+  if (typeof plugin.all === 'function') {
+    try {
+      await plugin.all.call(this, m, {
+        chatUpdate,
+        __dirname: ___dirname,
+        __filename
+      })
+    } catch (e) {
+      console.error(`Error en plugin.all de ${plugin.name}:`, e)
+    }
+  }
 
-  const str2Regex = str => str.replace(/[|\\{}()[\]^$+*?.]/g, '\\$&')  
-  let _prefix = plugin.customPrefix ? plugin.customPrefix : conn.prefix ? conn.prefix : global.prefix  
-  let match = (_prefix instanceof RegExp ?  
-    [[_prefix.exec(m.text), _prefix]] :  
-    Array.isArray(_prefix) ?  
-      _prefix.map(p => {  
-        let re = p instanceof RegExp ? p : new RegExp(str2Regex(p))  
-        return [re.exec(m.text), re]  
-      }) :  
-      typeof _prefix === 'string' ?  
-        [[new RegExp(str2Regex(_prefix)).exec(m.text), new RegExp(str2Regex(_prefix))]] :  
-        [[[], new RegExp]]  
-  ).find(p => p[1] && p[0])  
+  
+  if (!opts['restrict']) {
+    if (plugin.tags && plugin.tags.includes('admin')) continue
+  }
 
-  if (!match) continue  
+  
+  const str2Regex = str => str.replace(/[|\\{}()[\]^$+*?.]/g, '\\$&')
+  let _prefix = plugin.customPrefix ? plugin.customPrefix : conn.prefix ? conn.prefix : global.prefix
+  
+  let match = (_prefix instanceof RegExp ?
+    [[_prefix.exec(m.text), _prefix]] :
+    Array.isArray(_prefix) ?
+      _prefix.map(p => {
+        let re = p instanceof RegExp ? p : new RegExp(str2Regex(p))
+        return [re.exec(m.text), re]
+      }) :
+      typeof _prefix === 'string' ?
+        [[new RegExp(str2Regex(_prefix)).exec(m.text), new RegExp(str2Regex(_prefix))]] :
+        [[[], new RegExp]]
+  ).find(p => p[1] && p[0])
 
-  const prefixMatch = match[0]  
-  const noPrefix = m.text.slice(prefixMatch[0].length).trim()  
-  const [commandText, ...args] = noPrefix.split(/\s+/)  
-  const command = commandText?.toLowerCase()  
+  if (!match) continue
 
-  const isMatchCommand = plugin.command && (  
-    typeof plugin.command === 'string'  
-      ? command === plugin.command  
-      : plugin.command instanceof RegExp  
-        ? plugin.command.test(command)  
-        : Array.isArray(plugin.command)  
-          ? plugin.command.includes(command)  
-          : false  
-  )  
+  const prefixMatch = match[0]
+  const noPrefix = m.text.slice(prefixMatch[0].length).trim()
+  const [commandText, ...args] = noPrefix.split(/\s+/)
+  const command = commandText?.toLowerCase()
 
-  if (isMatchCommand) {  
-    commandExecuted = true 
-    try {  
-      await plugin.call(this, m, {  
-        match,  
-        conn: this,  
-        participants,  
-        groupMetadata,  
-        user,  
-        bot,  
-        isROwner,  
-        isOwner,  
-        isRAdmin,  
-        isAdmin,  
-        isBotAdmin,  
-        isPrems,  
-        chatUpdate,  
-        __dirname: ___dirname,  
-        __filename,  
-        usedPrefix: prefixMatch[0],  
-        command,  
-        args,  
+ 
+  const isMatchCommand = plugin.command && plugin.command.some(cmd => {
+    if (typeof cmd === 'string') {
+      return command === cmd.toLowerCase()
+    } else if (cmd instanceof RegExp) {
+      return cmd.test(command)
+    }
+    return false
+  })
+
+  if (isMatchCommand) {
+    
+    if (m.isGroup && global.db.data.botGroups && global.db.data.botGroups[m.chat] === false) {
+      const alwaysAllowedCommands = ['grupo']
+      if (!alwaysAllowedCommands.includes(command) && !isOwner) {
+        return m.reply(`*[🪐] El bot está desactivado en este grupo.*\n\n> Pídele a un administrador que lo active.`)
+      }
+    }
+    
+   
+    if (m.isGroup && global.db.data.antiImg && global.db.data.antiImg[m.chat] === true) {
+      if (m.message && (m.message.imageMessage || m.message.extendedTextMessage?.contextInfo?.quotedMessage?.imageMessage)) {
+        try {
+          await this.sendMessage(m.chat, { delete: m.key })
+          return
+        } catch (error) {
+          console.error('Error eliminando imagen:', error)
+        }
+      }
+    }
+    
+    commandExecuted = true
+    try {
+      await plugin.handler.call(this, m, {
+        match,
+        conn: this,
+        participants,
+        groupMetadata,
+        user,
+        bot,
+        isROwner,
+        isOwner,
+        isRAdmin,
+        isAdmin,
+        isBotAdmin,
+        isPrems,
+        chatUpdate,
+        __dirname: ___dirname,
+        __filename,
+        usedPrefix: prefixMatch[0],
+        command,
+        args,
         text: args.join(' ').trim()
-      })  
-      m.plugin = name  
-      m.command = command  
-      m.args = args  
-    } catch (e) {  
-      m.error = e  
-      console.error(e)  
-    }  
-  }  
-}  
+      })
+      m.plugin = plugin.name
+      m.command = command
+      m.args = args
+    } catch (e) {
+      m.error = e
+      console.error(`Error ejecutando plugin ${plugin.name}:`, e)
+    }
+  }
+}
 
 
 if (m.text && !commandExecuted) {
@@ -247,24 +297,15 @@ if (m.text && !commandExecuted) {
       const allCommands = []
       
       
-      for (let name in global.plugins) {
-        let plugin = global.plugins[name]
-        if (!plugin || plugin.disabled) continue
-        
-        if (plugin.command) {
-          if (Array.isArray(plugin.command)) {
-            plugin.command.forEach(cmd => allCommands.push(cmd))
-          } else if (typeof plugin.command === 'string') {
-            allCommands.push(plugin.command)
-          } else if (plugin.command instanceof RegExp) {
-            
-            const testText = 'test'
-            if (plugin.command.test(testText)) {
-              allCommands.push(testText)
+      processedPlugins.forEach(plugin => {
+        if (plugin.command && Array.isArray(plugin.command)) {
+          plugin.command.forEach(cmd => {
+            if (typeof cmd === 'string') {
+              allCommands.push(cmd)
             }
-          }
+          })
         }
-      }
+      })
       
       
       allCommands.forEach(cmd => {

@@ -12,5 +12,5 @@ let handler = async (m, { conn }) => {
 }
 handler.help = ['#birthdays • #cumpleaños • #births\n→ Revisa quién está por celebrar su día']
 handler.tags = ['perfiles']
-handler.command = /^birthdays|cumpleaños|births$/i
+handler.command = ['birthdays', 'cumpleaños', 'births']
 export default handler

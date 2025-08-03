@@ -66,5 +66,5 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
 
 handler.help = ['#tiktok <búsqueda>']
 handler.tags = ['busqueda']
-handler.command = /^(tiktok|ttsearch|buscartt|buscartiktok)$/i
+handler.command = ['tiktok', 'ttsearch', 'buscartt', 'buscartiktok']
 export default handler

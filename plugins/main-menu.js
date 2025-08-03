@@ -30,7 +30,7 @@ let handler = async (m, { conn, usedPrefix }) => {
     const memoryMB = Math.round(memoryUsage.heapUsed / 1024 / 1024)
 
     const text = `
-╭─「 ✦ 𓆩⚡𓆪 ʙɪᴇɴᴠᴇɴɪᴅᴏ ✦ 」─╮
+╭─「 ✦ 𓆩🪐𓆪 ʙɪᴇɴᴠᴇɴɪᴅᴏ ✦ 」─╮
 │
 ╰➺ ✧ *Usuario:* @${m.sender.split('@')[0]}
 │
@@ -70,7 +70,7 @@ let handler = async (m, { conn, usedPrefix }) => {
 │   • ${usedPrefix}update
 │   • ${usedPrefix}restart
 │   • ${usedPrefix}subme <mensaje>
-│
+'│
 ╰➺ ✧ *Sub-bots* 𖤓
 │   • ${usedPrefix}qr
 │   • ${usedPrefix}code
@@ -125,6 +125,8 @@ let handler = async (m, { conn, usedPrefix }) => {
 │   • ${usedPrefix}open
 │   • ${usedPrefix}close
 │   • ${usedPrefix}delete
+│   • ${usedPrefix}grupo on/off
+│   • ${usedPrefix}antimg on/off
 │
 ╰➺ ✧ *Diversión* 𖤓
 │   • ${usedPrefix}topgays

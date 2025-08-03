@@ -48,7 +48,7 @@ let handler = async (m, { conn, args, participants, isAdmin, isBotAdmin, isOwner
   }
 }
 
-handler.command = /^(close|cerrar|grupo-cerrado)$/i
+handler.command = ['close', 'cerrar', 'grupo-cerrado']
 handler.group = true
 handler.admin = true
 handler.botAdmin = true

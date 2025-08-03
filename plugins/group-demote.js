@@ -61,7 +61,7 @@ let handler = async (m, { conn, args, participants, isAdmin, isOwner, isPrems, u
   }, { quoted: m })
 }
 
-handler.command = /^(demote|degradar|quitaradmin)$/i
+handler.command = ['demote', 'degradar', 'quitaradmin']
 handler.group = true
 handler.admin = true
 handler.botAdmin = true

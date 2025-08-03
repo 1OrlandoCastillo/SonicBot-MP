@@ -68,7 +68,7 @@ let handler = async (m, { conn, args, participants, isAdmin, isBotAdmin, isOwner
   }
 }
 
-handler.command = /^(clear|limpiar|clean)$/i
+handler.command = ['clear', 'limpiar', 'clean']
 handler.group = true
 handler.admin = true
 handler.botAdmin = true

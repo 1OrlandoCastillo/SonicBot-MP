@@ -7,5 +7,5 @@ let handler = async (m) => {
 }
 handler.help = ['#delbirth + [fecha]\n→ Borra tu fecha de nacimiento de tu perfil']
 handler.tags = ['perfiles']
-handler.command = /^delbirth$/i
+handler.command = ['delbirth']
 export default handler

@@ -43,6 +43,6 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
 
 handler.help = ['#gemini <texto>']
 handler.tags = ['inteligencia']
-handler.command = /^(gemini|geminiai|googleai)$/i
+handler.command = ['gemini', 'geminiai', 'googleai']
 
 export default handler

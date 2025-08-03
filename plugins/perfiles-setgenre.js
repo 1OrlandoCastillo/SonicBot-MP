@@ -10,5 +10,5 @@ let handler = async (m, { args }) => {
 }
 handler.help = ['#setgenre + Hombre | Mujer\n→ Establece tu género para personalizar tu experiencia']
 handler.tags = ['perfiles']
-handler.command = /^setgenre$/i
+handler.command = ['setgenre']
 export default handler

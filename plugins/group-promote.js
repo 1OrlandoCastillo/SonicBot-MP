@@ -59,7 +59,7 @@ let handler = async (m, { conn, args, participants, isAdmin, isBotAdmin, isOwner
   } catch (e) {}
 }
 
-handler.command = /^(promote|promover|daradmin)$/i
+handler.command = ['promote', 'promover', 'daradmin']
 handler.group = true
 handler.admin = true
 handler.botAdmin = true

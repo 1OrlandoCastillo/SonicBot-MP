@@ -8,5 +8,5 @@ let handler = async (m) => {
 }
 handler.help = ['#delgenre\n→ Elimina tu género del perfil']
 handler.tags = ['perfiles']
-handler.command = /^delgenre$/i
+handler.command = ['delgenre']
 export default handler

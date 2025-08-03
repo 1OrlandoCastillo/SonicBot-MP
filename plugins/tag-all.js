@@ -37,7 +37,7 @@ let handler = async (m, { conn, text, isAdmin, isOwner, isPrems }) => {
 
 handler.help = ['#tag']
 handler.tags = ['grupos']
-handler.command = /^(tag|todos|mencionartodos)$/i
+handler.command = ['tag', 'todos', 'mencionartodos']
 handler.group = true
 handler.admin = true
 

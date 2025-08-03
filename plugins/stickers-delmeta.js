@@ -9,6 +9,6 @@ let handler = async (m) => {
 
 handler.help = ['#delstickermeta • #delmeta\n→ Restablece el pack y autor por defecto de tus stickers']
 handler.tags = ['stickers']
-handler.command = /^delstickermeta|delmeta$/i
+handler.command = ['delstickermeta', 'delmeta']
 
 export default handler

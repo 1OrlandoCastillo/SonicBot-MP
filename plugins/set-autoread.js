@@ -94,6 +94,6 @@ let handler = async (m, { conn, usedPrefix, command, text, args }) => {
 
 handler.help = ['setautoread <on/off>']
 handler.tags = ['serbot']
-handler.command = /^setautoread$/i
+handler.command = ['setautoread']
 
 export default handler 

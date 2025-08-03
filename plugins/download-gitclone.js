@@ -81,5 +81,5 @@ let handler = async (m, { conn, args, usedPrefix, command }) => {
     m.reply(`*[❌] Ocurrió un error al procesar el repositorio.*\n\n> Error: ${error.message}`)
   }
 }
-handler.command = /^(git)$/i
+handler.command = ['git']
 export default handler

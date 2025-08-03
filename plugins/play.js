@@ -164,6 +164,6 @@ let handler = async (m, { conn, text, args, usedPrefix, command }) => {
 
 handler.help = ['#play <enlace o título>']
 handler.tags = ['downloader', 'audio']
-handler.command = /^(play|ytmp3|mp3|p)$/i
+handler.command = ['play', 'ytmp3', 'mp3']
 
 export default handler 

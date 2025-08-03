@@ -36,5 +36,5 @@ let handler = async (m, { conn, usedPrefix, command }) => {
 }
 handler.help = ['#profile • #perfil\n→ Revisa tu perfil completo con estadísticas y logros']
 handler.tags = ['perfiles']
-handler.command = /^profile|perfil$/i
+handler.command = ['profile', 'perfil']
 export default handler

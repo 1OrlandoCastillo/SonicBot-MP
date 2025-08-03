@@ -25,6 +25,6 @@ let handler = async (m, { text }) => {
 
 handler.help = ['#setstickermeta • #setmeta + [autor] | [pack]\n→ Define el autor y nombre del pack para tus stickers']
 handler.tags = ['stickers']
-handler.command = /^setstickermeta|setmeta$/i
+handler.command = ['setstickermeta', 'setmeta']
 
 export default handler

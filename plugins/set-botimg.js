@@ -52,6 +52,6 @@ const handler = async (m, { conn, usedPrefix, command }) => {
 
 handler.help = ['setbotimg']
 handler.tags = ['serbot']
-handler.command = /^setbotimg$/i
+handler.command = ['setbotimg']
 
 export default handler

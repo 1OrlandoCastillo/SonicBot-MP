@@ -86,6 +86,6 @@ let handler = async (m, { conn, text, args, usedPrefix, command }) => {
   }
 }
 
-handler.command = /^(aptoide|descargar|apk)$/i
+handler.command = ['aptoide', 'descargar', 'apk']
 
 export default handler

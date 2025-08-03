@@ -24,5 +24,5 @@ let handler = async (m, { conn, usedPrefix, command }) => {
 
 handler.help = ['#waifu2']
 handler.tags = ['nsfw']
-handler.command = /^(waifu2|waifus2)$/i
+handler.command = ['waifu2', 'waifus2']
 export default handler

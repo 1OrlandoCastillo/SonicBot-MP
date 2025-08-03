@@ -94,6 +94,8 @@ global.loadDatabase = async function loadDatabase() {
     msgs: {},
     sticker: {},
     settings: {},
+    botGroups: {},
+    antiImg: {},
     ...(global.db.data || {}),
   }
   global.db.chain = lodash.chain(global.db.data) 
@@ -343,9 +345,31 @@ async function filesInit() {
     try {
       const file = global.__filename(join(pluginFolder, filename))
       const module = await import(file)
-      global.plugins[filename] = module.default || module
+      
+     
+      let plugin = module.default || module
+      
+     
+      if (typeof plugin === 'function') {
+       
+        plugin = {
+          handler: plugin,
+          command: plugin.command || [],
+          tags: plugin.tags || [],
+          help: plugin.help || [],
+          disabled: false
+        }
+      }
+      
+      
+      if (plugin.command && typeof plugin.command === 'string') {
+        plugin.command = [plugin.command]
+      }
+      
+      global.plugins[filename] = plugin
+      
     } catch (e) {
-      conn.logger.error(e)
+      conn.logger.error(`Error cargando plugin ${filename}:`, e)
       delete global.plugins[filename]
     }
   }

@@ -43,6 +43,6 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
 
 handler.help = ['#llama <texto>']
 handler.tags = ['inteligencia']
-handler.command = /^(llama|meta|llama3)$/i
+handler.command = ['llama', 'meta', 'llama3']
 
 export default handler

@@ -153,6 +153,6 @@ let handler = async (m, { conn, text, args, usedPrefix, command }) => {
 
 handler.help = ['onlyfans <username>', 'of <username>', 'onlyfansinfo <username>']
 handler.tags = ['búsquedas']
-handler.command = /^(onlyfans|of|onlyfansinfo)$/i
+handler.command = ['onlyfans', 'of', 'onlyfansinfo']
 
 export default handler 

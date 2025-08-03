@@ -42,5 +42,5 @@ let handler = async (m, { conn }) => {
 
 handler.help = ['#allbirthdays • #allbirths\n→ Consulta el calendario de cumpleaños de los usuarios']
 handler.tags = ['perfiles']
-handler.command = /^allbirthdays|allbirths$/i
+handler.command = ['allbirthdays', 'allbirths']
 export default handler

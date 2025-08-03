@@ -26,5 +26,5 @@ let handler = async (m, { conn, args, command, usedPrefix }) => {
 
 handler.help = ['#setbirth + [fecha]\n→ Guarda tu fecha de nacimiento en tu perfil de usuario']
 handler.tags = ['perfiles']
-handler.command = /^setbirth$/i
+handler.command = ['setbirth']
 export default handler

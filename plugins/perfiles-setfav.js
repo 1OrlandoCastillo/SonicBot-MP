@@ -9,6 +9,6 @@ let handler = async (m, { text }) => {
 
 handler.help = ['#setfav • #setfavourite + [Personaje]\n→ Establece tu personaje o ídolo favorito en tu perfil.']
 handler.tags = ['perfiles']
-handler.command = /^setfav|setfavourite$/i
+handler.command = ['setfav', 'setfavourite']
 
 export default handler

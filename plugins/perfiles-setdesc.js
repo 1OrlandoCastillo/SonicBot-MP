@@ -8,5 +8,5 @@ let handler = async (m, { text}) => {
 }
 handler.help = ['#setdescription • #setdesc + [Descripción]\n→ Establece una descripción única para tu perfil']
 handler.tags = ['perfiles']
-handler.command = /^setdesc|setdescription$/i
+handler.command = ['setdesc', 'setdescription']
 export default handler
