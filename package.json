@@ -10,7 +10,9 @@
     "plugins": "plugins"
   },
   "scripts": {
-    "start": "node index.js"
+    "start": "node index.js",
+    "install": "npm install --no-bin-links",
+    "postinstall": "npm install --no-bin-links"
   },
   "homepage": "https://github.com/LOVELLOUD/Anya-Forger",
   "author": {
