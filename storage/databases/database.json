@@ -1,7 +1,7 @@
 {
   "users": {
     "51958333972@s.whatsapp.net": {
-      "exp": 998,
+      "exp": 242,
       "limit": 10,
       "premium": false,
       "premiumTime": 0,
@@ -22,7 +22,7 @@
       "currentWork": ""
     },
     "78186205446362@lid": {
-      "exp": 336,
+      "exp": 1199,
       "limit": 10,
       "premium": false,
       "premiumTime": 0,
@@ -122,7 +122,7 @@
       "bank": 0
     },
     "114263544885392@lid": {
-      "exp": 24,
+      "exp": 9,
       "limit": 10,
       "premium": false,
       "premiumTime": 0,
@@ -373,7 +373,7 @@
       "coins": 0
     },
     "5218448582376@s.whatsapp.net": {
-      "exp": 39,
+      "exp": 4,
       "limit": 10,
       "premium": false,
       "premiumTime": 0,
@@ -456,7 +456,7 @@
       "coins": 0
     },
     "177052057620554@lid": {
-      "exp": 395,
+      "exp": 9,
       "limit": 10,
       "premium": false,
       "premiumTime": 0,
@@ -504,8 +504,8 @@
       "bank": 0
     },
     "120363403143798163@newsletter": {
-      "exp": null,
-      "limit": null,
+      "exp": 7,
+      "limit": 10,
       "premium": false,
       "premiumTime": 0,
       "registered": false,
@@ -520,7 +520,7 @@
       "coins": 0
     },
     "51901437507@s.whatsapp.net": {
-      "exp": 552,
+      "exp": 136,
       "limit": 10,
       "premium": false,
       "premiumTime": 0,
@@ -540,7 +540,7 @@
       "Subs": 1754163710309
     },
     "120363403162100537@newsletter": {
-      "exp": 105,
+      "exp": 107,
       "limit": 10,
       "premium": false,
       "premiumTime": 0,
@@ -1072,7 +1072,7 @@
       "bank": 0
     },
     "120363170947253369@newsletter": {
-      "exp": 6,
+      "exp": 9,
       "limit": 10,
       "premium": false,
       "premiumTime": 0,
@@ -1084,7 +1084,8 @@
       "banned": false,
       "useDocument": false,
       "level": 0,
-      "bank": 0
+      "bank": 0,
+      "coins": 0
     },
     "136254247153664@lid": {
       "exp": 256,
@@ -1407,7 +1408,7 @@
       "bank": 0
     },
     "132929590181978@lid": {
-      "exp": 28,
+      "exp": 16,
       "limit": 10,
       "premium": false,
       "premiumTime": 0,
@@ -1586,7 +1587,7 @@
       "coins": 0
     },
     "108895288688783@lid": {
-      "exp": 203,
+      "exp": 213,
       "limit": 10,
       "premium": false,
       "premiumTime": 0,
@@ -1780,7 +1781,7 @@
       "coins": 0
     },
     "51942501966@s.whatsapp.net": {
-      "exp": 56,
+      "exp": 30,
       "limit": 10,
       "premium": false,
       "premiumTime": 0,
@@ -1847,7 +1848,7 @@
       "coins": 0
     },
     "120363160031023229@newsletter": {
-      "exp": 4,
+      "exp": 5,
       "limit": 10,
       "premium": false,
       "premiumTime": 0,
@@ -1976,7 +1977,7 @@
       "bank": 0
     },
     "120363183614708156@newsletter": {
-      "exp": 26,
+      "exp": 75,
       "limit": 10,
       "premium": false,
       "premiumTime": 0,
@@ -2023,7 +2024,7 @@
       "bank": 0
     },
     "66228899082250@lid": {
-      "exp": 360,
+      "exp": 375,
       "limit": 10,
       "premium": false,
       "premiumTime": 0,
@@ -2145,7 +2146,7 @@
       "currentWork": ""
     },
     "5218446081508@s.whatsapp.net": {
-      "exp": 101,
+      "exp": 118,
       "limit": 10,
       "premium": false,
       "premiumTime": 0,
@@ -2226,8 +2227,8 @@
       "bank": 0
     },
     "120363417252896376@newsletter": {
-      "exp": null,
-      "limit": null,
+      "exp": 27,
+      "limit": 10,
       "premium": false,
       "premiumTime": 0,
       "registered": false,
@@ -2276,8 +2277,8 @@
       "coins": 0
     },
     "120363374826926142@newsletter": {
-      "exp": 2,
-      "limit": 10,
+      "exp": null,
+      "limit": null,
       "premium": false,
       "premiumTime": 0,
       "registered": false,
@@ -2288,10 +2289,11 @@
       "banned": false,
       "useDocument": false,
       "level": 0,
-      "bank": 0
+      "bank": 0,
+      "coins": 0
     },
     "584264120781@s.whatsapp.net": {
-      "exp": 763,
+      "exp": 780,
       "limit": 10,
       "premium": false,
       "premiumTime": 0,
@@ -2373,7 +2375,7 @@
       "bank": 0
     },
     "75420129042499@lid": {
-      "exp": 365,
+      "exp": 396,
       "limit": 10,
       "premium": false,
       "premiumTime": 0,
@@ -2411,7 +2413,7 @@
       "coins": 0
     },
     "120363372883715167@newsletter": {
-      "exp": 16,
+      "exp": 28,
       "limit": 10,
       "premium": false,
       "premiumTime": 0,
@@ -2423,7 +2425,8 @@
       "banned": false,
       "useDocument": false,
       "level": 0,
-      "bank": 0
+      "bank": 0,
+      "coins": 0
     },
     "120363401856424495@newsletter": {
       "exp": 3,
@@ -3451,7 +3454,7 @@
       "coins": 0
     },
     "120363335626706839@newsletter": {
-      "exp": 91,
+      "exp": 140,
       "limit": 10,
       "registered": false,
       "age": -1,
@@ -3915,8 +3918,8 @@
       "coins": 0
     },
     "120363402683892387@newsletter": {
-      "exp": 16,
-      "limit": 10,
+      "exp": null,
+      "limit": null,
       "registered": false,
       "age": -1,
       "regTime": -1,
@@ -3936,8 +3939,8 @@
       "coins": 0
     },
     "212705706483@s.whatsapp.net": {
-      "exp": null,
-      "limit": null,
+      "exp": 37,
+      "limit": 10,
       "registered": false,
       "name": "حسبنا الله",
       "age": -1,
@@ -4187,7 +4190,7 @@
       "coins": 0
     },
     "5218442804136@s.whatsapp.net": {
-      "exp": 50,
+      "exp": 51,
       "limit": 10,
       "registered": false,
       "name": ".",
@@ -4209,7 +4212,7 @@
       "coins": 0
     },
     "584165631933@s.whatsapp.net": {
-      "exp": 56,
+      "exp": 67,
       "limit": 10,
       "registered": false,
       "name": "B",
@@ -4320,7 +4323,7 @@
       "coins": 0
     },
     "264183992086547@lid": {
-      "exp": 447,
+      "exp": 147,
       "limit": 10,
       "registered": false,
       "name": "Suli",
@@ -4331,7 +4334,7 @@
       "coins": 0
     },
     "5363172635@s.whatsapp.net": {
-      "exp": 1357,
+      "exp": 254,
       "limit": 10,
       "registered": false,
       "name": "Suli",
@@ -4343,7 +4346,7 @@
       "Subs": 1754079995773
     },
     "120363380550693060@newsletter": {
-      "exp": 20,
+      "exp": 797,
       "limit": 10,
       "registered": false,
       "age": -1,
@@ -4364,7 +4367,7 @@
       "coins": 0
     },
     "153897771491332@lid": {
-      "exp": 31,
+      "exp": 32,
       "limit": 10,
       "registered": false,
       "name": "ℳ𝒾𝒸𝒽ℯ𝓁𝓁ℯ 🧟‍♀️",
@@ -4375,7 +4378,7 @@
       "coins": 0
     },
     "120363361214889050@newsletter": {
-      "exp": 63,
+      "exp": 35,
       "limit": 10,
       "registered": false,
       "age": -1,
@@ -4385,7 +4388,7 @@
       "coins": 0
     },
     "168792332214417@lid": {
-      "exp": 146,
+      "exp": 160,
       "limit": 10,
       "registered": false,
       "name": "jugador oculto",
@@ -4396,7 +4399,7 @@
       "coins": 0
     },
     "52501780910297@lid": {
-      "exp": 1287,
+      "exp": 2171,
       "limit": 10,
       "registered": false,
       "name": "🙃",
@@ -4407,7 +4410,7 @@
       "coins": 0
     },
     "5350783566@s.whatsapp.net": {
-      "exp": 297,
+      "exp": 735,
       "limit": 10,
       "registered": false,
       "name": "❤️Ezz~Helen💙✌🏻",
@@ -4418,7 +4421,7 @@
       "coins": 0
     },
     "256062242484438@lid": {
-      "exp": 19,
+      "exp": 36,
       "limit": 10,
       "registered": false,
       "name": "xueyin flopero 💆🏻",
@@ -4429,7 +4432,7 @@
       "coins": 0
     },
     "5359702942@s.whatsapp.net": {
-      "exp": 93,
+      "exp": 104,
       "limit": 10,
       "registered": false,
       "name": "Rainer🕷️",
@@ -4451,7 +4454,7 @@
       "coins": 0
     },
     "5356847728@s.whatsapp.net": {
-      "exp": 151,
+      "exp": 175,
       "limit": 10,
       "registered": false,
       "name": "Ëmįlî*$💗",
@@ -4462,7 +4465,7 @@
       "coins": 0
     },
     "5215542839720@s.whatsapp.net": {
-      "exp": 272,
+      "exp": 323,
       "limit": 10,
       "registered": false,
       "name": "𝖿𝗅α𝗇  ♡'𝗌ㅤყᦅᦅ𝗇𝗀𝗂ㅤㅤ",
@@ -4473,7 +4476,7 @@
       "coins": 0
     },
     "5353119599@s.whatsapp.net": {
-      "exp": 300,
+      "exp": 311,
       "limit": 10,
       "registered": false,
       "name": "Dann🫦🤍",
@@ -4484,7 +4487,7 @@
       "coins": 0
     },
     "120363364917300458@newsletter": {
-      "exp": 18,
+      "exp": 8,
       "limit": 10,
       "registered": false,
       "age": -1,
@@ -4494,7 +4497,7 @@
       "coins": 0
     },
     "152257244962951@lid": {
-      "exp": 72,
+      "exp": 95,
       "limit": 10,
       "registered": false,
       "name": "✞❦ 𝐉𝐔𝐍GK𝐎𝐎𝐊 ❦ ✞",
@@ -4538,7 +4541,7 @@
       "coins": 0
     },
     "35051731464348@lid": {
-      "exp": 117,
+      "exp": 217,
       "limit": 10,
       "registered": false,
       "name": "Jaeshin",
@@ -4604,7 +4607,7 @@
       "coins": 0
     },
     "5351669602@s.whatsapp.net": {
-      "exp": 34,
+      "exp": 37,
       "limit": 10,
       "registered": false,
       "name": "_Javier_  🥱🥷🏻$$π¶",
@@ -4615,7 +4618,7 @@
       "coins": 0
     },
     "85749659652176@lid": {
-      "exp": 75,
+      "exp": 93,
       "limit": 10,
       "registered": false,
       "name": "💼 ׄ 𝖲ۣۜ𝗛𝗔🉈",
@@ -4626,7 +4629,7 @@
       "coins": 0
     },
     "56393038082089@lid": {
-      "exp": 59,
+      "exp": 64,
       "limit": 10,
       "registered": false,
       "name": "América",
@@ -4637,7 +4640,7 @@
       "coins": 0
     },
     "80028142416124@lid": {
-      "exp": 10,
+      "exp": 19,
       "limit": 10,
       "registered": false,
       "name": "🄽⃝᜔𝅼࣫ꨪᰰ𖹭ɑּ๋᳝۫᪲ⴙ᮫᮫̯𝆬ᜒx",
@@ -4648,7 +4651,7 @@
       "coins": 0
     },
     "51926447953@s.whatsapp.net": {
-      "exp": 152,
+      "exp": 184,
       "limit": 10,
       "registered": false,
       "name": "PINTADO<3",
@@ -4659,7 +4662,7 @@
       "coins": 0
     },
     "18675037954052@lid": {
-      "exp": 39,
+      "exp": 60,
       "limit": 10,
       "registered": false,
       "name": "Nagumo🩸🔪",
@@ -4670,8 +4673,8 @@
       "coins": 0
     },
     "120363402186917653@newsletter": {
-      "exp": null,
-      "limit": null,
+      "exp": 64,
+      "limit": 10,
       "registered": false,
       "age": -1,
       "regTime": -1,
@@ -4702,8 +4705,8 @@
       "coins": 0
     },
     "133092631162957@lid": {
-      "exp": 15,
-      "limit": 10,
+      "exp": null,
+      "limit": null,
       "registered": false,
       "name": "๑  ˙ 🌸 ʚ ᥲsᥲ \" ˙ .ꕤ",
       "age": -1,
@@ -4713,7 +4716,7 @@
       "coins": 0
     },
     "129871774785744@lid": {
-      "exp": 59,
+      "exp": 66,
       "limit": 10,
       "registered": false,
       "name": "tadeo",
@@ -4724,7 +4727,7 @@
       "coins": 0
     },
     "5351892746@s.whatsapp.net": {
-      "exp": 131,
+      "exp": 202,
       "limit": 10,
       "registered": false,
       "name": "😻🥵La Morenita👩🏽‍🦱🥴",
@@ -4735,7 +4738,7 @@
       "coins": 0
     },
     "95408957194266@lid": {
-      "exp": 4,
+      "exp": 6,
       "limit": 10,
       "registered": false,
       "name": "Mai",
@@ -4746,7 +4749,7 @@
       "coins": 0
     },
     "5213321880862@s.whatsapp.net": {
-      "exp": 33,
+      "exp": 34,
       "limit": 10,
       "registered": false,
       "name": "ׅ  🌸 ᩙׅㅤ݃ ׅ  кɑⴊⴗㅤֵ",
@@ -4768,7 +4771,7 @@
       "coins": 0
     },
     "595983923630@s.whatsapp.net": {
-      "exp": 33,
+      "exp": 63,
       "limit": 10,
       "registered": false,
       "name": "Diego✓™",
@@ -4779,7 +4782,7 @@
       "coins": 0
     },
     "2418687381732@lid": {
-      "exp": 44,
+      "exp": 69,
       "limit": 10,
       "registered": false,
       "name": "ᤲ᮫〬🐿️ᤲ݄᪲〬h᜔໋۪֗𝝰𝕟᪲ ¡★!",
@@ -4790,7 +4793,7 @@
       "coins": 0
     },
     "219382919741478@lid": {
-      "exp": 107,
+      "exp": 145,
       "limit": 10,
       "registered": false,
       "name": "බㅤׄ🎧 𝗱𝗿𝗮𝗻𝗲𝘅𝘅 ᬶㅤׅ",
@@ -4801,8 +4804,8 @@
       "coins": 0
     },
     "29665725030447@lid": {
-      "exp": 7,
-      "limit": 10,
+      "exp": null,
+      "limit": null,
       "registered": false,
       "name": "ⴇᧉl𖹭𝖽ⴗ ㅤㅤlvs꯭ㅤㅤ𝗅𝗂𝖺𝗇",
       "age": -1,
@@ -4867,7 +4870,7 @@
       "coins": 0
     },
     "141635472122050@lid": {
-      "exp": 216,
+      "exp": 258,
       "limit": 10,
       "registered": false,
       "name": "♡EDI",
@@ -4889,7 +4892,7 @@
       "coins": 0
     },
     "5350523333@s.whatsapp.net": {
-      "exp": 171,
+      "exp": 251,
       "limit": 10,
       "registered": false,
       "name": "Ivana 🩷💞",
@@ -4911,7 +4914,7 @@
       "coins": 0
     },
     "573016648920@s.whatsapp.net": {
-      "exp": 158,
+      "exp": 167,
       "limit": 10,
       "registered": false,
       "name": "🌸",
@@ -4966,7 +4969,7 @@
       "coins": 0
     },
     "120363419386318549@newsletter": {
-      "exp": 118,
+      "exp": 163,
       "limit": 10,
       "registered": false,
       "age": -1,
@@ -4986,7 +4989,7 @@
       "coins": 0
     },
     "5219831844945@s.whatsapp.net": {
-      "exp": 38,
+      "exp": 46,
       "limit": 10,
       "registered": false,
       "name": "{ ⴗꭎ𝗇ɑի ѵᧉꭇაᎥ𑄈𝗇'S }",
@@ -5019,7 +5022,7 @@
       "coins": 0
     },
     "5359477389@s.whatsapp.net": {
-      "exp": 152,
+      "exp": 250,
       "limit": 10,
       "registered": false,
       "name": "‧₊˚꒷ 𝑨݊ꪀᧁׁ𝒆ׁׅ ‍🪼꒷",
@@ -5052,8 +5055,8 @@
       "coins": 0
     },
     "120363378892030881@newsletter": {
-      "exp": 18,
-      "limit": 10,
+      "exp": null,
+      "limit": null,
       "registered": false,
       "age": -1,
       "regTime": -1,
@@ -5062,7 +5065,7 @@
       "coins": 0
     },
     "270918551081069@lid": {
-      "exp": 78,
+      "exp": 97,
       "limit": 10,
       "registered": false,
       "name": "ㅤJAZZㅤ 愛",
@@ -5084,7 +5087,7 @@
       "coins": 0
     },
     "17682715947121@lid": {
-      "exp": 46,
+      "exp": 96,
       "limit": 10,
       "registered": false,
       "name": "ADRIANA✨️🎀",
@@ -5161,8 +5164,8 @@
       "coins": 0
     },
     "23416732135633@lid": {
-      "exp": 35,
-      "limit": 10,
+      "exp": null,
+      "limit": null,
       "registered": false,
       "name": "ㅤ𝕶𝗈𝗈𝗄",
       "age": -1,
@@ -5172,7 +5175,7 @@
       "coins": 0
     },
     "595971423294@s.whatsapp.net": {
-      "exp": 111,
+      "exp": 133,
       "limit": 10,
       "registered": false,
       "name": "JUNIOR 😻?",
@@ -5216,8 +5219,8 @@
       "coins": 0
     },
     "130687566921738@lid": {
-      "exp": 6,
-      "limit": 10,
+      "exp": null,
+      "limit": null,
       "registered": false,
       "name": "✉️",
       "age": -1,
@@ -5227,7 +5230,7 @@
       "coins": 0
     },
     "5363124313@s.whatsapp.net": {
-      "exp": 167,
+      "exp": 255,
       "limit": 10,
       "registered": false,
       "name": "Nadia💕🪷",
@@ -5260,7 +5263,7 @@
       "coins": 0
     },
     "5355196049@s.whatsapp.net": {
-      "exp": 27,
+      "exp": 8,
       "limit": 10,
       "registered": false,
       "name": "El ZORRO 🦊🦊🔥🔥",
@@ -5271,7 +5274,7 @@
       "coins": 0
     },
     "5493644342771@s.whatsapp.net": {
-      "exp": 36,
+      "exp": 97,
       "limit": 10,
       "registered": false,
       "name": "🍅",
@@ -5304,7 +5307,7 @@
       "coins": 0
     },
     "5491127740724@s.whatsapp.net": {
-      "exp": 46,
+      "exp": 91,
       "limit": 10,
       "registered": false,
       "name": "♡ 𝑀𝑎𝑖𝑡𝑒 𝑆𝑜. ♡",
@@ -5326,7 +5329,7 @@
       "coins": 0
     },
     "169604181717043@lid": {
-      "exp": 440,
+      "exp": 646,
       "limit": 10,
       "registered": false,
       "name": "꧁ᬊᬁ𝒜𝓃𝑔𝑒𝓁ᬊ᭄꧂",
@@ -5337,7 +5340,7 @@
       "coins": 0
     },
     "178765682467057@lid": {
-      "exp": 124,
+      "exp": 168,
       "limit": 10,
       "registered": false,
       "name": "~Michael~",
@@ -5359,7 +5362,7 @@
       "coins": 0
     },
     "5356488349@s.whatsapp.net": {
-      "exp": 3,
+      "exp": 28,
       "limit": 10,
       "registered": false,
       "name": "Keily 🥰",
@@ -5370,7 +5373,7 @@
       "coins": 0
     },
     "72941463154703@lid": {
-      "exp": 55,
+      "exp": 65,
       "limit": 10,
       "registered": false,
       "name": "Lu",
@@ -5403,7 +5406,7 @@
       "coins": 0
     },
     "50493129476@s.whatsapp.net": {
-      "exp": 560,
+      "exp": 91,
       "limit": 10,
       "registered": false,
       "name": "Tony one   🫩",
@@ -5412,10 +5415,10 @@
       "banned": false,
       "level": 0,
       "coins": 0,
-      "Subs": 1754088037928
+      "Subs": 1754237005253
     },
     "5216671072870@s.whatsapp.net": {
-      "exp": 204,
+      "exp": 275,
       "limit": 10,
       "registered": false,
       "name": "M..",
@@ -5426,7 +5429,7 @@
       "coins": 0
     },
     "211123596964075@lid": {
-      "exp": 37,
+      "exp": 42,
       "limit": 10,
       "registered": false,
       "name": "싱ㅤ‎  🌸ㅤ  ‎𝙺ı𝗄ı     ૭૭",
@@ -5459,8 +5462,8 @@
       "coins": 0
     },
     "173972381528124@lid": {
-      "exp": 11,
-      "limit": 10,
+      "exp": null,
+      "limit": null,
       "registered": false,
       "name": "Tony one   🫩",
       "age": -1,
@@ -5481,7 +5484,7 @@
       "coins": 0
     },
     "117944684159034@lid": {
-      "exp": 284,
+      "exp": 722,
       "limit": 10,
       "registered": false,
       "name": "✨️",
@@ -5492,7 +5495,7 @@
       "coins": 0
     },
     "5358225555@s.whatsapp.net": {
-      "exp": 38,
+      "exp": 48,
       "limit": 10,
       "registered": false,
       "name": "💘😻",
@@ -5503,7 +5506,7 @@
       "coins": 0
     },
     "50492476106@s.whatsapp.net": {
-      "exp": 236,
+      "exp": 3,
       "limit": 10,
       "registered": false,
       "name": "hola",
@@ -5524,7 +5527,7 @@
       "coins": 0
     },
     "120363368618055639@newsletter": {
-      "exp": 50,
+      "exp": 53,
       "limit": 10,
       "registered": false,
       "age": -1,
@@ -5567,7 +5570,7 @@
       "coins": 0
     },
     "119267215319156@lid": {
-      "exp": 103,
+      "exp": 151,
       "limit": 10,
       "registered": false,
       "name": "Roselin ✨🌸",
@@ -5589,7 +5592,7 @@
       "coins": 0
     },
     "51989621438@s.whatsapp.net": {
-      "exp": 195,
+      "exp": 251,
       "limit": 10,
       "registered": false,
       "name": "🈷️ミ★𝘡enits𝘶★彡",
@@ -5600,7 +5603,7 @@
       "coins": 0
     },
     "5351365696@s.whatsapp.net": {
-      "exp": 59,
+      "exp": 80,
       "limit": 10,
       "registered": false,
       "name": "Evelyn",
@@ -5611,7 +5614,7 @@
       "coins": 0
     },
     "5354204268@s.whatsapp.net": {
-      "exp": 38,
+      "exp": 75,
       "limit": 10,
       "registered": false,
       "name": "Anita",
@@ -5633,7 +5636,7 @@
       "coins": 0
     },
     "5214438572824@s.whatsapp.net": {
-      "exp": 38,
+      "exp": 48,
       "limit": 10,
       "registered": false,
       "name": "⍣⃝𝒄𝒊𝒕𝒍𝒂𝒍𝒊,🫦🪷",
@@ -5677,7 +5680,7 @@
       "coins": 0
     },
     "573015273624@s.whatsapp.net": {
-      "exp": 32,
+      "exp": 28,
       "limit": 10,
       "registered": false,
       "name": "Army 💜",
@@ -5711,7 +5714,7 @@
       "coins": 0
     },
     "120598990704699@lid": {
-      "exp": 76,
+      "exp": 165,
       "limit": 10,
       "registered": false,
       "name": "ごㅤㅤ⍺ⴜ꯭⍺𐐲ꪱㅤ⠀𐂯ᩨㅤ🥛︩ㅤ",
@@ -5733,7 +5736,7 @@
       "coins": 0
     },
     "5217473271812@s.whatsapp.net": {
-      "exp": 8,
+      "exp": 17,
       "limit": 10,
       "registered": false,
       "name": "꒰ ꒰ ░⃞🌸 𝐌𝗂𝗇",
@@ -5744,7 +5747,7 @@
       "coins": 0
     },
     "152634883366986@lid": {
-      "exp": 775,
+      "exp": 1776,
       "limit": 10,
       "registered": false,
       "name": "Ëmįlî*$💗",
@@ -5755,7 +5758,7 @@
       "coins": 0
     },
     "573223386944@s.whatsapp.net": {
-      "exp": 48,
+      "exp": 70,
       "limit": 10,
       "registered": false,
       "name": "Danny",
@@ -5810,7 +5813,7 @@
       "coins": 0
     },
     "51924533746@s.whatsapp.net": {
-      "exp": 43,
+      "exp": 48,
       "limit": 10,
       "registered": false,
       "name": "Angel",
@@ -5832,7 +5835,7 @@
       "coins": 0
     },
     "22076417171661@lid": {
-      "exp": 31,
+      "exp": 32,
       "limit": 10,
       "registered": false,
       "name": "Bren✨📚",
@@ -5887,7 +5890,7 @@
       "coins": 0
     },
     "5350791027@s.whatsapp.net": {
-      "exp": 107,
+      "exp": 150,
       "limit": 10,
       "registered": false,
       "name": "Analia Martínez🎀✨",
@@ -5909,7 +5912,7 @@
       "coins": 0
     },
     "5358914370@s.whatsapp.net": {
-      "exp": 4,
+      "exp": 9,
       "limit": 10,
       "registered": false,
       "name": "Melissa",
@@ -5920,7 +5923,7 @@
       "coins": 0
     },
     "5214438707137@s.whatsapp.net": {
-      "exp": 5,
+      "exp": 16,
       "limit": 10,
       "registered": false,
       "name": "၇ৎㅤ👖ㅤⴍ᳞𑄝꯭ⴜׅꪱ",
@@ -5953,7 +5956,7 @@
       "coins": 0
     },
     "50492589387@s.whatsapp.net": {
-      "exp": 195,
+      "exp": 56,
       "limit": 10,
       "registered": false,
       "name": "Mariely",
@@ -5986,8 +5989,8 @@
       "coins": 0
     },
     "120363407056380958@newsletter": {
-      "exp": null,
-      "limit": null,
+      "exp": 6,
+      "limit": 10,
       "registered": false,
       "age": -1,
       "regTime": -1,
@@ -6018,7 +6021,7 @@
       "coins": 0
     },
     "181084914499703@lid": {
-      "exp": 64,
+      "exp": 75,
       "limit": 10,
       "registered": false,
       "name": "~ monchi",
@@ -6040,7 +6043,7 @@
       "coins": 0
     },
     "254266728030325@lid": {
-      "exp": 24,
+      "exp": 34,
       "limit": 10,
       "registered": false,
       "name": "✮",
@@ -6051,8 +6054,8 @@
       "coins": 0
     },
     "5492645621583@s.whatsapp.net": {
-      "exp": 33,
-      "limit": 10,
+      "exp": null,
+      "limit": null,
       "registered": false,
       "name": "ﾟ･☆🎐͜͡¸•*𝙈α૨y｡.•*♬✧🅜",
       "age": -1,
@@ -6062,7 +6065,7 @@
       "coins": 0
     },
     "5351707775@s.whatsapp.net": {
-      "exp": 30,
+      "exp": 117,
       "limit": 10,
       "registered": false,
       "name": "Kutú😎😏😏🤫🤨",
@@ -6073,7 +6076,7 @@
       "coins": 0
     },
     "120363315150305964@newsletter": {
-      "exp": 1,
+      "exp": 27,
       "limit": 10,
       "registered": false,
       "age": -1,
@@ -6094,7 +6097,7 @@
       "coins": 0
     },
     "5356842514@s.whatsapp.net": {
-      "exp": 195,
+      "exp": 282,
       "limit": 10,
       "registered": false,
       "name": "Christopher👹🤙🏾",
@@ -6105,7 +6108,7 @@
       "coins": 0
     },
     "5363751380@s.whatsapp.net": {
-      "exp": 74,
+      "exp": 96,
       "limit": 10,
       "registered": false,
       "name": "Josué 👑",
@@ -6116,7 +6119,7 @@
       "coins": 0
     },
     "43212320305159@lid": {
-      "exp": 32,
+      "exp": 39,
       "limit": 10,
       "registered": false,
       "name": "ʂąɖ,(ू˃̣̣̣̣̣̣︿˂̣̣̣̣̣̣ ू)♫",
@@ -6160,7 +6163,7 @@
       "coins": 0
     },
     "120363419496564490@newsletter": {
-      "exp": 82,
+      "exp": 103,
       "limit": 10,
       "registered": false,
       "age": -1,
@@ -6180,7 +6183,7 @@
       "coins": 0
     },
     "51900244641@s.whatsapp.net": {
-      "exp": 10,
+      "exp": 114,
       "limit": 10,
       "registered": false,
       "name": "AXR",
@@ -6189,10 +6192,10 @@
       "banned": false,
       "level": 0,
       "coins": 0,
-      "Subs": 1754093095361
+      "Subs": 1754274887943
     },
     "52081394188413@lid": {
-      "exp": 9,
+      "exp": 19,
       "limit": 10,
       "registered": false,
       "name": "humpty dumpty. 🔥",
@@ -6247,7 +6250,7 @@
       "coins": 0
     },
     "113654045388957@lid": {
-      "exp": 29,
+      "exp": 57,
       "limit": 10,
       "registered": false,
       "name": "👻",
@@ -6390,7 +6393,7 @@
       "coins": 0
     },
     "54584907190359@lid": {
-      "exp": 41,
+      "exp": 83,
       "limit": 10,
       "registered": false,
       "name": "PARK JIMIN",
@@ -6412,7 +6415,7 @@
       "coins": 0
     },
     "5350249521@s.whatsapp.net": {
-      "exp": 76,
+      "exp": 177,
       "limit": 10,
       "registered": false,
       "name": "Zaida 🖤🧵",
@@ -6467,7 +6470,7 @@
       "coins": 0
     },
     "5359784993@s.whatsapp.net": {
-      "exp": 12,
+      "exp": 14,
       "limit": 10,
       "registered": false,
       "name": "Gadiel 🙂",
@@ -6489,7 +6492,7 @@
       "coins": 0
     },
     "51977611476@s.whatsapp.net": {
-      "exp": 22,
+      "exp": 3,
       "limit": 10,
       "registered": false,
       "name": "ANTONY",
@@ -6500,7 +6503,7 @@
       "coins": 0
     },
     "5351321159@s.whatsapp.net": {
-      "exp": 44,
+      "exp": 106,
       "limit": 10,
       "registered": false,
       "name": "Leiser Socarrazz💗🧃🥷🏽¡",
@@ -6731,7 +6734,7 @@
       "coins": 0
     },
     "64854459154555@lid": {
-      "exp": 3,
+      "exp": 54,
       "limit": 10,
       "registered": false,
       "name": "⍣⃝𝒄𝒊𝒕𝒍𝒂𝒍𝒊,🫦🪷",
@@ -6753,7 +6756,7 @@
       "coins": 0
     },
     "120363419305761497@newsletter": {
-      "exp": 103,
+      "exp": 137,
       "limit": 10,
       "registered": false,
       "age": -1,
@@ -6851,7 +6854,7 @@
       "coins": 0
     },
     "5351687150@s.whatsapp.net": {
-      "exp": 132,
+      "exp": 153,
       "limit": 10,
       "registered": false,
       "name": "🤑😎",
@@ -6895,7 +6898,7 @@
       "coins": 0
     },
     "5350674295@s.whatsapp.net": {
-      "exp": 36,
+      "exp": 66,
       "limit": 10,
       "registered": false,
       "name": "L Mâlđîtœ❌13🥵🫠🥷🏿",
@@ -6906,7 +6909,7 @@
       "coins": 0
     },
     "5358807121@s.whatsapp.net": {
-      "exp": 20,
+      "exp": 29,
       "limit": 10,
       "registered": false,
       "name": "*Pc.Hiro.xxx*",
@@ -6950,7 +6953,7 @@
       "coins": 0
     },
     "226049111642287@lid": {
-      "exp": 15,
+      "exp": 25,
       "limit": 10,
       "registered": false,
       "name": "Emi 🌊✨🪽🪸🐚😝💛🎧🌷💋",
@@ -6972,7 +6975,7 @@
       "coins": 0
     },
     "39505713229978@lid": {
-      "exp": 33,
+      "exp": 17,
       "limit": 10,
       "registered": false,
       "name": "Antolín",
@@ -6994,7 +6997,7 @@
       "coins": 0
     },
     "5491126180340@s.whatsapp.net": {
-      "exp": 149,
+      "exp": 155,
       "limit": 10,
       "registered": false,
       "name": "ごㅤㅤ⍺ⴜ꯭⍺𐐲ꪱㅤ⠀𐂯ᩨㅤ🥛︩ㅤ",
@@ -7005,7 +7008,7 @@
       "coins": 0
     },
     "5216563016977@s.whatsapp.net": {
-      "exp": 203,
+      "exp": 238,
       "limit": 10,
       "registered": false,
       "name": ". ˚  𝓩𝓸𝓮  🩰๋࣭⭑ֶָ֢",
@@ -7027,7 +7030,7 @@
       "coins": 0
     },
     "120363330731472970@newsletter": {
-      "exp": 72,
+      "exp": 87,
       "limit": 10,
       "registered": false,
       "age": -1,
@@ -7037,7 +7040,7 @@
       "coins": 0
     },
     "5351920344@s.whatsapp.net": {
-      "exp": 57,
+      "exp": 93,
       "limit": 10,
       "registered": false,
       "name": "Keiny",
@@ -7058,7 +7061,7 @@
       "coins": 0
     },
     "51936367646@s.whatsapp.net": {
-      "exp": 14,
+      "exp": 1,
       "limit": 10,
       "registered": false,
       "name": "no𒉭tengoʕ⁠っ⁠•⁠ᴥ⁠•⁠ʔ⁠っ①",
@@ -7135,7 +7138,7 @@
       "coins": 0
     },
     "159026046324944@lid": {
-      "exp": 13,
+      "exp": 21,
       "limit": 10,
       "registered": false,
       "name": "no𒉭tengoʕ⁠っ⁠•⁠ᴥ⁠•⁠ʔ⁠っ①",
@@ -7146,7 +7149,7 @@
       "coins": 0
     },
     "5352515077@s.whatsapp.net": {
-      "exp": 77,
+      "exp": 129,
       "limit": 10,
       "registered": false,
       "name": "darío_castro",
@@ -7157,7 +7160,7 @@
       "coins": 0
     },
     "48456441827465@lid": {
-      "exp": 32,
+      "exp": 42,
       "limit": 10,
       "registered": false,
       "name": "𝕽̷̸͡𝔲⵿֧֬⃝𝔪𝔦֦",
@@ -7179,7 +7182,7 @@
       "coins": 0
     },
     "5217776023795@s.whatsapp.net": {
-      "exp": 12,
+      "exp": 45,
       "limit": 10,
       "registered": false,
       "name": "hα꯭nn꯭ısı꯭ƚαm",
@@ -7213,7 +7216,7 @@
       "Subs": 1754143960610
     },
     "5353223457@s.whatsapp.net": {
-      "exp": 43,
+      "exp": 56,
       "limit": 10,
       "registered": false,
       "name": "Danny",
@@ -7345,8 +7348,8 @@
       "coins": 0
     },
     "120363420937242057@newsletter": {
-      "exp": null,
-      "limit": null,
+      "exp": 49,
+      "limit": 10,
       "registered": false,
       "age": -1,
       "regTime": -1,
@@ -7355,7 +7358,7 @@
       "coins": 0
     },
     "26607339217087@lid": {
-      "exp": 114,
+      "exp": 154,
       "limit": 10,
       "registered": false,
       "name": "Glow Queens",
@@ -7377,7 +7380,7 @@
       "coins": 0
     },
     "5359686627@s.whatsapp.net": {
-      "exp": 51,
+      "exp": 104,
       "limit": 10,
       "registered": false,
       "name": "miki",
@@ -7421,7 +7424,7 @@
       "coins": 0
     },
     "157441186648109@lid": {
-      "exp": 21,
+      "exp": 38,
       "limit": 10,
       "registered": false,
       "name": "@𝗦𝗖𝗔𝗥𝗔_𝗝𝗘𝗙𝗙𝗥𝗘𝗬 (𝗈𝗋𝗂𝗀𝗂𝗇𝖺𝗅)",
@@ -7531,7 +7534,7 @@
       "coins": 0
     },
     "5350184989@s.whatsapp.net": {
-      "exp": 69,
+      "exp": 99,
       "limit": 10,
       "registered": false,
       "name": "+53 5 0184989",
@@ -7542,7 +7545,7 @@
       "coins": 0
     },
     "54091304698080@lid": {
-      "exp": 11,
+      "exp": 72,
       "limit": 10,
       "registered": false,
       "name": "✨😼",
@@ -7553,7 +7556,7 @@
       "coins": 0
     },
     "83717921984631@lid": {
-      "exp": 263,
+      "exp": 539,
       "limit": 10,
       "registered": false,
       "name": "(⁠•⁠‿⁠•⁠)👷",
@@ -7575,7 +7578,7 @@
       "coins": 0
     },
     "5358158602@s.whatsapp.net": {
-      "exp": 150,
+      "exp": 179,
       "limit": 10,
       "registered": false,
       "name": "Mary'h 💋🥺!¡!¡",
@@ -7597,7 +7600,7 @@
       "coins": 0
     },
     "5350493916@s.whatsapp.net": {
-      "exp": 10,
+      "exp": 18,
       "limit": 10,
       "registered": false,
       "name": "Denzel ⚽💪🏻🤷🏼‍♂️",
@@ -7641,8 +7644,8 @@
       "coins": 0
     },
     "120363402975586673@newsletter": {
-      "exp": null,
-      "limit": null,
+      "exp": 11,
+      "limit": 10,
       "registered": false,
       "age": -1,
       "regTime": -1,
@@ -7706,7 +7709,7 @@
       "coins": 0
     },
     "12108435025@s.whatsapp.net": {
-      "exp": 48,
+      "exp": 110,
       "limit": 10,
       "registered": false,
       "name": "Su💙",
@@ -7750,7 +7753,7 @@
       "coins": 0
     },
     "50493933352@s.whatsapp.net": {
-      "exp": 174,
+      "exp": 13,
       "limit": 10,
       "registered": false,
       "name": "JEFFERSON ❤️‍🩹👤",
@@ -7816,7 +7819,7 @@
       "coins": 0
     },
     "5350584718@s.whatsapp.net": {
-      "exp": 36,
+      "exp": 37,
       "limit": 10,
       "registered": false,
       "name": "Antuan X Santos Suárez 🔥✨",
@@ -7827,7 +7830,7 @@
       "coins": 0
     },
     "5358874629@s.whatsapp.net": {
-      "exp": 898,
+      "exp": 1176,
       "limit": 10,
       "registered": false,
       "name": "Josbel🫠👉🏼👈🏼",
@@ -7849,8 +7852,8 @@
       "coins": 0
     },
     "120363317577418192@newsletter": {
-      "exp": null,
-      "limit": null,
+      "exp": 5,
+      "limit": 10,
       "registered": false,
       "age": -1,
       "regTime": -1,
@@ -7892,7 +7895,7 @@
       "coins": 0
     },
     "5352382078@s.whatsapp.net": {
-      "exp": 39,
+      "exp": 46,
       "limit": 10,
       "registered": false,
       "name": "Marcos🦇",
@@ -7936,7 +7939,7 @@
       "coins": 0
     },
     "5352409031@s.whatsapp.net": {
-      "exp": 28,
+      "exp": 38,
       "limit": 10,
       "registered": false,
       "name": "Mary 01😍🖤",
@@ -7958,7 +7961,7 @@
       "coins": 0
     },
     "5351422357@s.whatsapp.net": {
-      "exp": 26,
+      "exp": 47,
       "limit": 10,
       "registered": false,
       "name": "alejandro",
@@ -8002,7 +8005,7 @@
       "coins": 0
     },
     "5351175357@s.whatsapp.net": {
-      "exp": 1,
+      "exp": 4,
       "limit": 10,
       "registered": false,
       "name": "3l-capy💆🏽‍♂️🩵",
@@ -8013,7 +8016,7 @@
       "coins": 0
     },
     "5363116650@s.whatsapp.net": {
-      "exp": 89,
+      "exp": 145,
       "limit": 10,
       "registered": false,
       "name": "Ezz,Anthony🥵",
@@ -8057,8 +8060,8 @@
       "coins": 0
     },
     "5212431085732@s.whatsapp.net": {
-      "exp": 22,
-      "limit": 10,
+      "exp": null,
+      "limit": null,
       "registered": false,
       "name": "Uwwsisi",
       "age": -1,
@@ -8222,7 +8225,7 @@
       "coins": 0
     },
     "5355837006@s.whatsapp.net": {
-      "exp": 10,
+      "exp": 15,
       "limit": 10,
       "registered": false,
       "name": "Emmanuel 😜",
@@ -8255,7 +8258,7 @@
       "coins": 0
     },
     "120363417748272289@newsletter": {
-      "exp": 137,
+      "exp": 9,
       "limit": 10,
       "registered": false,
       "age": -1,
@@ -8265,7 +8268,7 @@
       "coins": 0
     },
     "132525661888585@lid": {
-      "exp": 45,
+      "exp": 59,
       "limit": 10,
       "registered": false,
       "name": "✩༄Sᴀʀɪ༄✩",
@@ -8287,7 +8290,7 @@
       "coins": 0
     },
     "5353824282@s.whatsapp.net": {
-      "exp": 16,
+      "exp": 17,
       "limit": 10,
       "registered": false,
       "name": "😈Endry Rodrige Sera 👿",
@@ -8309,7 +8312,7 @@
       "coins": 0
     },
     "5354288168@s.whatsapp.net": {
-      "exp": 8,
+      "exp": 9,
       "limit": 10,
       "registered": false,
       "name": "🥷🏻💜IyawositoLMafia🫠🍷",
@@ -8375,7 +8378,7 @@
       "coins": 0
     },
     "918961711446@s.whatsapp.net": {
-      "exp": 31,
+      "exp": 94,
       "limit": 10,
       "registered": false,
       "name": "Md Jamil Akhtar - جميل أختر",
@@ -8418,7 +8421,7 @@
       "coins": 0
     },
     "5353911940@s.whatsapp.net": {
-      "exp": 26,
+      "exp": 32,
       "limit": 10,
       "registered": false,
       "name": "Dimar",
@@ -8451,7 +8454,7 @@
       "coins": 0
     },
     "5354367261@s.whatsapp.net": {
-      "exp": 18,
+      "exp": 19,
       "limit": 10,
       "registered": false,
       "name": "Danieska Araujo Guilarte",
@@ -8484,7 +8487,7 @@
       "coins": 0
     },
     "5356631815@s.whatsapp.net": {
-      "exp": 14,
+      "exp": 39,
       "limit": 10,
       "registered": false,
       "name": "Hiss lvs kook",
@@ -8561,7 +8564,7 @@
       "coins": 0
     },
     "5356044341@s.whatsapp.net": {
-      "exp": 11,
+      "exp": 18,
       "limit": 10,
       "registered": false,
       "name": "juan manuel",
@@ -9078,7 +9081,7 @@
       "coins": 0
     },
     "5351753300@s.whatsapp.net": {
-      "exp": 54,
+      "exp": 75,
       "limit": 10,
       "registered": false,
       "name": "L'Blankitto_01😍😴",
@@ -9089,7 +9092,7 @@
       "coins": 0
     },
     "5352894802@s.whatsapp.net": {
-      "exp": 27,
+      "exp": 35,
       "limit": 10,
       "registered": false,
       "name": "‼️🫠Cristian🫠‼️",
@@ -9287,7 +9290,7 @@
       "coins": 0
     },
     "79995943973@s.whatsapp.net": {
-      "exp": 74,
+      "exp": 104,
       "limit": 10,
       "registered": false,
       "name": "Cute_black 🖤",
@@ -9298,7 +9301,7 @@
       "coins": 0
     },
     "5359326698@s.whatsapp.net": {
-      "exp": 4,
+      "exp": 16,
       "limit": 10,
       "registered": false,
       "name": "Tu Dolor de Cabeza 🤯🥰😘",
@@ -9320,7 +9323,7 @@
       "coins": 0
     },
     "5351418720@s.whatsapp.net": {
-      "exp": 2,
+      "exp": 11,
       "limit": 10,
       "registered": false,
       "name": "Gregory",
@@ -9364,7 +9367,7 @@
       "coins": 0
     },
     "51912698880@s.whatsapp.net": {
-      "exp": 46,
+      "exp": 88,
       "limit": 10,
       "registered": false,
       "name": "A",
@@ -9375,7 +9378,7 @@
       "coins": 0
     },
     "231855823552544@lid": {
-      "exp": 18,
+      "exp": 28,
       "limit": 10,
       "registered": false,
       "name": "ㅤㅤㅤ𓃉ㅤ㘥.ㅤ𝗆𝖺.𝗆𝖺𝗱𝗼𝗿ㅤ",
@@ -9441,7 +9444,7 @@
       "coins": 0
     },
     "134793253638155@lid": {
-      "exp": 71,
+      "exp": 79,
       "limit": 10,
       "registered": false,
       "name": "𓅓    𓂃   𝕭A̸ÇH̶I͟R͟A͟    𝜫     ϡ",
@@ -9452,7 +9455,7 @@
       "coins": 0
     },
     "5350586781@s.whatsapp.net": {
-      "exp": 9,
+      "exp": 17,
       "limit": 10,
       "registered": false,
       "name": "Kmy ( La Araña ) ✨️🔥🕸🕷",
@@ -9562,7 +9565,7 @@
       "coins": 0
     },
     "40982745710827@lid": {
-      "exp": 10,
+      "exp": 34,
       "limit": 10,
       "registered": false,
       "name": "꙳💭˙∘𝐁𝐫𝕖𝕟𝐝𝐚ꔛ🎀ෆ",
@@ -9628,7 +9631,7 @@
       "coins": 0
     },
     "5493757512449@s.whatsapp.net": {
-      "exp": 10,
+      "exp": 11,
       "limit": 10,
       "registered": false,
       "name": "aceituna",
@@ -9639,7 +9642,7 @@
       "coins": 0
     },
     "212720310623@s.whatsapp.net": {
-      "exp": 199,
+      "exp": 204,
       "limit": 10,
       "registered": false,
       "name": "الموهوس بإطاليا🇪🇸🇮🇪",
@@ -9694,7 +9697,7 @@
       "coins": 0
     },
     "202636775162028@lid": {
-      "exp": 9,
+      "exp": 16,
       "limit": 10,
       "registered": false,
       "name": "ㅤ ㅤ      ㅤ",
@@ -9783,7 +9786,7 @@
       "coins": 0
     },
     "120363400610130404@newsletter": {
-      "exp": 36,
+      "exp": 64,
       "limit": 10,
       "registered": false,
       "age": -1,
@@ -9793,7 +9796,7 @@
       "coins": 0
     },
     "5493885209661@s.whatsapp.net": {
-      "exp": 91,
+      "exp": 181,
       "limit": 10,
       "registered": false,
       "name": "🖤 𝐕𝐚𝐥𝐞 💗",
@@ -9804,7 +9807,7 @@
       "coins": 0
     },
     "5350218512@s.whatsapp.net": {
-      "exp": 5,
+      "exp": 13,
       "limit": 10,
       "registered": false,
       "name": "Manuel",
@@ -9815,7 +9818,7 @@
       "coins": 0
     },
     "196800082382858@lid": {
-      "exp": 26,
+      "exp": 31,
       "limit": 10,
       "registered": false,
       "name": "루르드 캐롤라이나",
@@ -9837,7 +9840,7 @@
       "coins": 0
     },
     "5353662830@s.whatsapp.net": {
-      "exp": 31,
+      "exp": 44,
       "limit": 10,
       "registered": false,
       "name": "💯Adrian J Limonta😎",
@@ -9881,7 +9884,7 @@
       "coins": 0
     },
     "573151491009@s.whatsapp.net": {
-      "exp": 239,
+      "exp": 255,
       "limit": 10,
       "registered": false,
       "name": "JUAN 💥",
@@ -9890,7 +9893,7 @@
       "banned": false,
       "level": 0,
       "coins": 0,
-      "Subs": 1754192039314
+      "Subs": 1754237144091
     },
     "234480048595079@lid": {
       "exp": 290,
@@ -9949,7 +9952,7 @@
       "Subs": 1754184756830
     },
     "5493329594224@s.whatsapp.net": {
-      "exp": 409,
+      "exp": 547,
       "limit": 10,
       "registered": false,
       "name": "°•☆~☆•°",
@@ -9982,7 +9985,7 @@
       "coins": 0
     },
     "120363402292961672@newsletter": {
-      "exp": 25,
+      "exp": 36,
       "limit": 10,
       "registered": false,
       "age": -1,
@@ -9992,7 +9995,7 @@
       "coins": 0
     },
     "5359611888@s.whatsapp.net": {
-      "exp": 18,
+      "exp": 22,
       "limit": 10,
       "registered": false,
       "name": "Greylis ~💜🪻🪐",
@@ -10025,7 +10028,7 @@
       "coins": 0
     },
     "5358229907@s.whatsapp.net": {
-      "exp": 18,
+      "exp": 42,
       "limit": 10,
       "registered": false,
       "name": "Xavi~⚾",
@@ -10090,7 +10093,7 @@
       "coins": 0
     },
     "5351960503@s.whatsapp.net": {
-      "exp": 67,
+      "exp": 83,
       "limit": 10,
       "registered": false,
       "name": "Chriss....",
@@ -10232,7 +10235,7 @@
       "coins": 0
     },
     "77507600642096@lid": {
-      "exp": 145,
+      "exp": 10,
       "limit": 10,
       "registered": false,
       "name": "Anna Yamada",
@@ -10298,7 +10301,7 @@
       "coins": 0
     },
     "70210300203218@lid": {
-      "exp": 24,
+      "exp": 57,
       "limit": 10,
       "registered": false,
       "name": "Merly ✨🌸",
@@ -10320,7 +10323,7 @@
       "coins": 0
     },
     "5350050127@s.whatsapp.net": {
-      "exp": 28,
+      "exp": 63,
       "limit": 10,
       "registered": false,
       "name": "El Nene De Oro",
@@ -10595,7 +10598,7 @@
       "coins": 0
     },
     "3071321063469@lid": {
-      "exp": 76,
+      "exp": 118,
       "limit": 10,
       "registered": false,
       "name": "Alexa",
@@ -10606,7 +10609,7 @@
       "coins": 0
     },
     "593979172911@s.whatsapp.net": {
-      "exp": 3,
+      "exp": 5,
       "limit": 10,
       "registered": false,
       "name": "𓂀 𝕁𝕠𝕤𝕙𝕦𝕒 𓂀",
@@ -10661,7 +10664,7 @@
       "coins": 0
     },
     "43606819766320@lid": {
-      "exp": 84,
+      "exp": 89,
       "limit": 10,
       "registered": false,
       "name": "발레리아🌾",
@@ -10748,7 +10751,7 @@
       "coins": 0
     },
     "5351669549@s.whatsapp.net": {
-      "exp": 43,
+      "exp": 52,
       "limit": 10,
       "registered": false,
       "name": "King_osmel 👑🎮",
@@ -10803,7 +10806,7 @@
       "coins": 0
     },
     "120925022322851@lid": {
-      "exp": 285,
+      "exp": 292,
       "limit": 10,
       "registered": false,
       "name": "Eli 💗",
@@ -10880,7 +10883,7 @@
       "coins": 0
     },
     "5213314644940@s.whatsapp.net": {
-      "exp": 181,
+      "exp": 226,
       "limit": 10,
       "registered": false,
       "name": "Sarahí",
@@ -10902,7 +10905,7 @@
       "coins": 0
     },
     "206262146990178@lid": {
-      "exp": 139,
+      "exp": 182,
       "limit": 10,
       "registered": false,
       "name": "Keili",
@@ -10924,7 +10927,7 @@
       "coins": 0
     },
     "5214431895907@s.whatsapp.net": {
-      "exp": 63,
+      "exp": 93,
       "limit": 10,
       "registered": false,
       "name": "andysitaaap",
@@ -10957,7 +10960,7 @@
       "coins": 0
     },
     "5493644386535@s.whatsapp.net": {
-      "exp": 19,
+      "exp": 25,
       "limit": 10,
       "registered": false,
       "name": "@     🏹",
@@ -10990,7 +10993,7 @@
       "coins": 0
     },
     "5352929849@s.whatsapp.net": {
-      "exp": 27,
+      "exp": 15,
       "limit": 10,
       "registered": false,
       "name": "Keili",
@@ -11026,7 +11029,7 @@
       "banned": true
     },
     "5355564008@s.whatsapp.net": {
-      "exp": 161,
+      "exp": 209,
       "limit": 10,
       "registered": false,
       "name": "El Neneh",
@@ -11070,7 +11073,7 @@
       "coins": 0
     },
     "239492241817683@lid": {
-      "exp": 9,
+      "exp": 13,
       "limit": 10,
       "registered": false,
       "name": "һᥡᥙᥒȷіᥒ ᥣ᥆᥎ᥱ ♥︎♡",
@@ -11114,7 +11117,7 @@
       "coins": 0
     },
     "5358199077@s.whatsapp.net": {
-      "exp": 51,
+      "exp": 111,
       "limit": 10,
       "registered": false,
       "name": "Sucel",
@@ -11125,7 +11128,7 @@
       "coins": 0
     },
     "153957850677479@lid": {
-      "exp": 104,
+      "exp": 146,
       "limit": 10,
       "registered": false,
       "name": "ㅤ★⎯ყᧉׁ𝅼ι ❗︎  𝅭 ׄ🕶️︭ᷓ",
@@ -11180,7 +11183,7 @@
       "coins": 0
     },
     "5351256954@s.whatsapp.net": {
-      "exp": 92,
+      "exp": 152,
       "limit": 10,
       "registered": false,
       "name": "Cris 💫🔥",
@@ -11213,7 +11216,7 @@
       "coins": 0
     },
     "70073012207692@lid": {
-      "exp": 44,
+      "exp": 53,
       "limit": 10,
       "registered": false,
       "name": "ˑ 𓈒 𐔌 ☁ ۫𝐂𝙚i᤻ˑ 𓈒 ͡꒱",
@@ -11312,7 +11315,7 @@
       "coins": 0
     },
     "5363917965@s.whatsapp.net": {
-      "exp": 10,
+      "exp": 19,
       "limit": 10,
       "registered": false,
       "name": "Jany🕷️",
@@ -11410,7 +11413,7 @@
       "coins": 0
     },
     "120363159552753674@newsletter": {
-      "exp": 1,
+      "exp": 10,
       "limit": 10,
       "registered": false,
       "age": -1,
@@ -11453,8 +11456,8 @@
       "coins": 0
     },
     "5350249890@s.whatsapp.net": {
-      "exp": 5,
-      "limit": 10,
+      "exp": null,
+      "limit": null,
       "registered": false,
       "name": "Marielis🥰",
       "age": -1,
@@ -11497,7 +11500,7 @@
       "coins": 0
     },
     "104393827467430@lid": {
-      "exp": 19,
+      "exp": 88,
       "limit": 10,
       "registered": false,
       "name": "🥹Marielis🥺",
@@ -11519,7 +11522,7 @@
       "coins": 0
     },
     "5351423356@s.whatsapp.net": {
-      "exp": 7,
+      "exp": 25,
       "limit": 10,
       "registered": false,
       "name": "💯😀😘",
@@ -11530,7 +11533,7 @@
       "coins": 0
     },
     "5491140222830@s.whatsapp.net": {
-      "exp": 42,
+      "exp": 82,
       "limit": 10,
       "registered": false,
       "name": "ㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤ  ㅤㅤㅤㅤㅤ",
@@ -11552,7 +11555,7 @@
       "coins": 0
     },
     "34652935705@s.whatsapp.net": {
-      "exp": 38,
+      "exp": 112,
       "limit": 10,
       "registered": false,
       "name": "─ ໋ ᩠ ꒰  𝑪𝗂𝖼𝗂  𓏲܀💜",
@@ -11574,7 +11577,7 @@
       "coins": 0
     },
     "5351183440@s.whatsapp.net": {
-      "exp": 213,
+      "exp": 222,
       "limit": 10,
       "registered": false,
       "name": "Rumi",
@@ -11596,7 +11599,7 @@
       "coins": 0
     },
     "75450109939923@lid": {
-      "exp": 7,
+      "exp": 9,
       "limit": 10,
       "registered": false,
       "name": "Eli",
@@ -11651,7 +11654,7 @@
       "coins": 0
     },
     "120363420965428038@newsletter": {
-      "exp": 72,
+      "exp": 151,
       "limit": 10,
       "registered": false,
       "age": -1,
@@ -11672,7 +11675,7 @@
       "coins": 0
     },
     "994506864447@s.whatsapp.net": {
-      "exp": 14,
+      "exp": 26,
       "limit": 10,
       "registered": false,
       "name": "jennie🖤🤍",
@@ -11814,8 +11817,8 @@
       "coins": 0
     },
     "261791795904626@lid": {
-      "exp": 14,
-      "limit": 10,
+      "exp": null,
+      "limit": null,
       "registered": false,
       "name": "🍭Bᥲᑲᥡ Sᥲȷᥲ🍭",
       "age": -1,
@@ -11902,8 +11905,8 @@
       "coins": 0
     },
     "68513737748578@lid": {
-      "exp": 57,
-      "limit": 10,
+      "exp": null,
+      "limit": null,
       "registered": false,
       "name": "—✿ 𝐊ɑꬶᧉ𐐲𐐫ꭎ 🍓᪲⃞░",
       "age": -1,
@@ -11968,7 +11971,7 @@
       "coins": 0
     },
     "51957682601@s.whatsapp.net": {
-      "exp": 29,
+      "exp": 66,
       "limit": 10,
       "registered": false,
       "name": "ACUARIO😍🍀🥵",
@@ -12023,7 +12026,7 @@
       "coins": 0
     },
     "5493875148715@s.whatsapp.net": {
-      "exp": 1,
+      "exp": 6,
       "limit": 10,
       "registered": false,
       "name": "fresas con crema",
@@ -12045,7 +12048,7 @@
       "coins": 0
     },
     "1898459471959@lid": {
-      "exp": 27,
+      "exp": 40,
       "limit": 10,
       "registered": false,
       "name": "♡♥︎ ִ  ꔫ  ⴇɑ꯭᷒ᰰƗƗⴍ ര ֺ 🧧",
@@ -12067,7 +12070,7 @@
       "coins": 0
     },
     "255194155769967@lid": {
-      "exp": 15,
+      "exp": 18,
       "limit": 10,
       "registered": false,
       "name": "𝕬𝖑𝖊𝖝𝖎𝖆",
@@ -12122,7 +12125,7 @@
       "coins": 0
     },
     "175802121490443@lid": {
-      "exp": 8,
+      "exp": 18,
       "limit": 10,
       "registered": false,
       "name": "⋆𝓡𝓮𝓸 𝓜𝓲𝓴𝓪𝓰𝓮 ⋆",
@@ -12221,7 +12224,7 @@
       "coins": 0
     },
     "51987875421@s.whatsapp.net": {
-      "exp": 111,
+      "exp": 120,
       "limit": 10,
       "registered": false,
       "name": "DE PIE SIEMPRE",
@@ -12299,7 +12302,7 @@
       "coins": 0
     },
     "5351560819@s.whatsapp.net": {
-      "exp": 39,
+      "exp": 73,
       "limit": 10,
       "registered": false,
       "name": "5351560819",
@@ -12321,7 +12324,7 @@
       "coins": 0
     },
     "116282447900764@lid": {
-      "exp": 80,
+      "exp": 100,
       "limit": 10,
       "registered": false,
       "name": ".𖥔݁𝐂Ɩ⍺υ☘️˖๋⭑",
@@ -12387,7 +12390,7 @@
       "coins": 0
     },
     "61843703873791@lid": {
-      "exp": 36,
+      "exp": 45,
       "limit": 10,
       "registered": false,
       "name": "𝕯𝔢𝔪𝔬𝔫 𝕸𝔬𝔬𝔫",
@@ -12529,7 +12532,7 @@
       "coins": 0
     },
     "5350249134@s.whatsapp.net": {
-      "exp": 5,
+      "exp": 19,
       "limit": 10,
       "registered": false,
       "name": "....",
@@ -12584,7 +12587,7 @@
       "coins": 0
     },
     "573105921835@s.whatsapp.net": {
-      "exp": 236,
+      "exp": 240,
       "limit": 10,
       "registered": false,
       "name": "Michigatocd",
@@ -12595,7 +12598,7 @@
       "coins": 0
     },
     "56547723993108@lid": {
-      "exp": 13,
+      "exp": 48,
       "limit": 10,
       "registered": false,
       "name": "𐙚 𝑀ιɾιαɱ💋💓 te eliminó",
@@ -12606,7 +12609,7 @@
       "coins": 0
     },
     "5351084700@s.whatsapp.net": {
-      "exp": 31,
+      "exp": 86,
       "limit": 10,
       "registered": false,
       "name": "Leo🐺",
@@ -12716,7 +12719,7 @@
       "coins": 0
     },
     "5350249876@s.whatsapp.net": {
-      "exp": 24,
+      "exp": 60,
       "limit": 10,
       "registered": false,
       "name": "\t🐻H-Flow👹👻",
@@ -12727,7 +12730,7 @@
       "coins": 0
     },
     "5359343715@s.whatsapp.net": {
-      "exp": 11,
+      "exp": 29,
       "limit": 10,
       "registered": false,
       "name": "Ame_24™",
@@ -12749,7 +12752,7 @@
       "coins": 0
     },
     "14680852566023@lid": {
-      "exp": 55,
+      "exp": 80,
       "limit": 10,
       "registered": false,
       "name": "Sr.Jeon",
@@ -13079,7 +13082,7 @@
       "coins": 0
     },
     "218927737081919@lid": {
-      "exp": 9,
+      "exp": 14,
       "limit": 10,
       "registered": false,
       "name": "Key🌱",
@@ -13189,7 +13192,7 @@
       "coins": 0
     },
     "88876110618625@lid": {
-      "exp": 1,
+      "exp": 6,
       "limit": 10,
       "registered": false,
       "name": "ɑ𐓣𐓣Ꭵᧉㅤ💞ᩥㅤɑⴊɑㅤɑㅤ🦌ㅤ𝗁ᧉᧉ",
@@ -13222,7 +13225,7 @@
       "coins": 0
     },
     "43800646918212@lid": {
-      "exp": 9,
+      "exp": 25,
       "limit": 10,
       "registered": false,
       "name": "ᶻ 𝘇 𐰁",
@@ -13266,7 +13269,7 @@
       "coins": 0
     },
     "8813306478594@lid": {
-      "exp": 66,
+      "exp": 74,
       "limit": 10,
       "registered": false,
       "name": "🍄",
@@ -13288,7 +13291,7 @@
       "coins": 0
     },
     "44818285760732@lid": {
-      "exp": 12,
+      "exp": 20,
       "limit": 10,
       "registered": false,
       "name": "ɑ𝗆ⴗㅤl𝗏sㅤᦅ𝗅ꪱ𝗏ᧉꭇ",
@@ -13321,8 +13324,8 @@
       "coins": 0
     },
     "122703256281302@lid": {
-      "exp": 11,
-      "limit": 10,
+      "exp": null,
+      "limit": null,
       "registered": false,
       "name": "𐴲᮫ּׁ࣭۫᷼ᰰ🍒̸̷᮫ּׁ᳟࣭۪֟፝۫͜ᝰּ",
       "age": -1,
@@ -13332,7 +13335,7 @@
       "coins": 0
     },
     "260154893271225@lid": {
-      "exp": 95,
+      "exp": 150,
       "limit": 10,
       "registered": false,
       "name": "🦖",
@@ -13354,7 +13357,7 @@
       "coins": 0
     },
     "196392110792736@lid": {
-      "exp": 10,
+      "exp": 16,
       "limit": 10,
       "registered": false,
       "name": "!",
@@ -13365,7 +13368,7 @@
       "coins": 0
     },
     "135399162798175@lid": {
-      "exp": 3,
+      "exp": 6,
       "limit": 10,
       "registered": false,
       "name": ".",
@@ -13387,7 +13390,7 @@
       "coins": 0
     },
     "85079627964608@lid": {
-      "exp": 8,
+      "exp": 17,
       "limit": 10,
       "registered": false,
       "name": "ㅤ𒑰𒑰   𝕭ۣؓ𝗟ۣؓ𝗔ۣؓؓ㕔𝗡ۣؓ𝔇ۣۣؓ𝖨ۣؓ𝖫   𒑰𒑰",
@@ -13398,7 +13401,7 @@
       "coins": 0
     },
     "84426239299804@lid": {
-      "exp": 105,
+      "exp": 14,
       "limit": 10,
       "registered": false,
       "name": "𝐾𝐴𝑅𝐸🦩",
@@ -13409,7 +13412,7 @@
       "coins": 0
     },
     "264046066593873@lid": {
-      "exp": 225,
+      "exp": 339,
       "limit": 10,
       "registered": false,
       "name": "🌸ᩬᮬᩧ〫 𖭗໋࣭⍺۪᳸ι𐨎ׄꮡ࣮֗ⴁּ᪲❢",
@@ -13431,7 +13434,7 @@
       "coins": 0
     },
     "165597396607111@lid": {
-      "exp": 117,
+      "exp": 130,
       "limit": 10,
       "registered": false,
       "name": "YEONTAN",
@@ -13464,7 +13467,7 @@
       "coins": 0
     },
     "5363921626@s.whatsapp.net": {
-      "exp": 32,
+      "exp": 45,
       "limit": 10,
       "registered": false,
       "name": "el negrito con talento",
@@ -13519,7 +13522,7 @@
       "coins": 0
     },
     "32650391732472@lid": {
-      "exp": 20,
+      "exp": 22,
       "limit": 10,
       "registered": false,
       "name": "🇦🇷",
@@ -13684,7 +13687,7 @@
       "coins": 0
     },
     "5355325408@s.whatsapp.net": {
-      "exp": 12,
+      "exp": 13,
       "limit": 10,
       "registered": false,
       "name": "Dåyân_-_L\"D👹🇵🇰",
@@ -13970,7 +13973,7 @@
       "coins": 0
     },
     "138320009015436@lid": {
-      "exp": 92,
+      "exp": 191,
       "limit": 10,
       "registered": false,
       "name": "🐣꧁♪Cynthia♪꧂🐣",
@@ -13981,7 +13984,7 @@
       "coins": 0
     },
     "137869020639328@lid": {
-      "exp": 13,
+      "exp": 19,
       "limit": 10,
       "registered": false,
       "name": "𝐁𝐢𝐚𝐧𝐜𝐚 🌷︴",
@@ -14058,7 +14061,7 @@
       "coins": 0
     },
     "142576254480444@lid": {
-      "exp": 77,
+      "exp": 130,
       "limit": 10,
       "registered": false,
       "name": "#𝐍anao 𝐥vs 𝐉eongin.🤍",
@@ -14113,7 +14116,7 @@
       "coins": 0
     },
     "9793146192085@lid": {
-      "exp": 11,
+      "exp": 146,
       "limit": 10,
       "registered": false,
       "name": "⬤      L꯭E꯭E꯭SE꯭L      𝄂",
@@ -14157,7 +14160,7 @@
       "coins": 0
     },
     "40515013738536@lid": {
-      "exp": 45,
+      "exp": 76,
       "limit": 10,
       "registered": false,
       "name": "Dann🫦🤍",
@@ -14179,7 +14182,7 @@
       "coins": 0
     },
     "167388062470369@lid": {
-      "exp": 3,
+      "exp": 22,
       "limit": 10,
       "registered": false,
       "name": "📖🌸사비🌸📖🌷🍓",
@@ -14234,7 +14237,7 @@
       "coins": 0
     },
     "87763915387009@lid": {
-      "exp": 8,
+      "exp": 19,
       "limit": 10,
       "registered": false,
       "name": "— 🍊୧ 🄽ᥲranjitα ୨ৎ",
@@ -14245,7 +14248,7 @@
       "coins": 0
     },
     "5351965681@s.whatsapp.net": {
-      "exp": 20,
+      "exp": 21,
       "limit": 10,
       "registered": false,
       "name": "𑂘⍺ᥳꭇꪱ𐓣⍺",
@@ -14570,7 +14573,7 @@
       "coins": 0
     },
     "51952710991@s.whatsapp.net": {
-      "exp": 45,
+      "exp": 52,
       "limit": 10,
       "registered": false,
       "name": "el más pro",
@@ -14636,7 +14639,7 @@
       "coins": 0
     },
     "5493772637759@s.whatsapp.net": {
-      "exp": 22,
+      "exp": 38,
       "limit": 10,
       "registered": false,
       "name": "roxi",
@@ -14680,7 +14683,7 @@
       "coins": 0
     },
     "75647795871921@lid": {
-      "exp": 12,
+      "exp": 138,
       "limit": 10,
       "registered": false,
       "name": "✮⋆˙ ⋮ 𝘿𝙖𝘆𝙧ɑׁׅ⭑.ᐟ ֹ ꒱",
@@ -14734,7 +14737,7 @@
       "coins": 0
     },
     "119409083424891@lid": {
-      "exp": 7,
+      "exp": 19,
       "limit": 10,
       "registered": false,
       "name": "Keren 🤍",
@@ -14822,7 +14825,7 @@
       "coins": 0
     },
     "5351702261@s.whatsapp.net": {
-      "exp": 29,
+      "exp": 40,
       "limit": 10,
       "registered": false,
       "name": "🥷💖",
@@ -14866,8 +14869,8 @@
       "coins": 0
     },
     "6283843193686@s.whatsapp.net": {
-      "exp": 8,
-      "limit": 10,
+      "exp": null,
+      "limit": null,
       "registered": false,
       "name": ".",
       "age": -1,
@@ -14877,7 +14880,7 @@
       "coins": 0
     },
     "239221239480410@lid": {
-      "exp": 28,
+      "exp": 254,
       "limit": 10,
       "registered": false,
       "name": "onii_chan/pikachu☺️🫣🌴",
@@ -14910,7 +14913,7 @@
       "coins": 0
     },
     "51929237342@s.whatsapp.net": {
-      "exp": 83,
+      "exp": 50,
       "limit": 10,
       "registered": false,
       "name": "onii_chan/pikachu☺️🫣🌴",
@@ -14943,7 +14946,7 @@
       "coins": 0
     },
     "48769873793082@lid": {
-      "exp": 42,
+      "exp": 54,
       "limit": 10,
       "registered": false,
       "name": "𝑳𝒊𝒅𝒊𝒂𝒏𝒏𝒊𝒔°☆🌻",
@@ -14954,7 +14957,7 @@
       "coins": 0
     },
     "5351687280@s.whatsapp.net": {
-      "exp": 8,
+      "exp": 24,
       "limit": 10,
       "registered": false,
       "name": "Lidia♡",
@@ -15009,7 +15012,7 @@
       "coins": 0
     },
     "5358704413@s.whatsapp.net": {
-      "exp": 3,
+      "exp": 13,
       "limit": 10,
       "registered": false,
       "name": "Dany🧟‍♀️🦈",
@@ -15020,7 +15023,7 @@
       "coins": 0
     },
     "208968077021357@lid": {
-      "exp": 2,
+      "exp": 13,
       "limit": 10,
       "registered": false,
       "name": "ㅤㅤㅤㅤִㅤ𐫱ㅤㅤㅤ nana",
@@ -15086,7 +15089,7 @@
       "coins": 0
     },
     "573185941432@s.whatsapp.net": {
-      "exp": 54,
+      "exp": 63,
       "limit": 10,
       "registered": false,
       "name": "Juan Manuel",
@@ -15119,7 +15122,7 @@
       "coins": 0
     },
     "50250677975@s.whatsapp.net": {
-      "exp": 2,
+      "exp": 3,
       "limit": 10,
       "registered": false,
       "name": "🍮ㅤㅤ✿ㅤㅤ꯭𝙹꯭ᧉ𝗅𝗅ɥㅤㅤ𐑼𐑼",
@@ -15174,7 +15177,7 @@
       "coins": 0
     },
     "178920385196177@lid": {
-      "exp": 11,
+      "exp": 23,
       "limit": 10,
       "registered": false,
       "name": "𝗅υ𝖼𝖾ɾ𝗈. ᰔ",
@@ -15229,7 +15232,7 @@
       "coins": 0
     },
     "5491176315755@s.whatsapp.net": {
-      "exp": 22,
+      "exp": 32,
       "limit": 10,
       "registered": false,
       "name": "franco arzaroli",
@@ -15328,7 +15331,7 @@
       "coins": 0
     },
     "218407727292666@lid": {
-      "exp": 5,
+      "exp": 7,
       "limit": 10,
       "registered": false,
       "name": "Keyla",
@@ -15339,7 +15342,7 @@
       "coins": 0
     },
     "181995598553120@lid": {
-      "exp": 7,
+      "exp": 35,
       "limit": 10,
       "registered": false,
       "name": "— Jeongin.",
@@ -15350,7 +15353,7 @@
       "coins": 0
     },
     "593961323511@s.whatsapp.net": {
-      "exp": 14,
+      "exp": 33,
       "limit": 10,
       "registered": false,
       "name": "𝑰 𝒂𝒂𝒎 𝑺𝒂𝒓𝒆𝒕",
@@ -15427,7 +15430,7 @@
       "coins": 0
     },
     "135498198716467@lid": {
-      "exp": 14,
+      "exp": 15,
       "limit": 10,
       "registered": false,
       "name": "♡𝓵𝓲𝔃♡",
@@ -15438,7 +15441,7 @@
       "coins": 0
     },
     "29893542867119@lid": {
-      "exp": 70,
+      "exp": 103,
       "limit": 10,
       "registered": false,
       "name": "Zero One (Soy Un Bot)",
@@ -15449,7 +15452,7 @@
       "coins": 0
     },
     "48198609592447@lid": {
-      "exp": 99,
+      "exp": 113,
       "limit": 10,
       "registered": false,
       "name": "sasuke",
@@ -15460,7 +15463,7 @@
       "coins": 0
     },
     "168393437094093@lid": {
-      "exp": 476,
+      "exp": 622,
       "limit": 10,
       "registered": false,
       "name": "nosw",
@@ -15471,7 +15474,7 @@
       "coins": 0
     },
     "223063958364291@lid": {
-      "exp": 61,
+      "exp": 115,
       "limit": 10,
       "registered": false,
       "name": "killer",
@@ -15526,7 +15529,7 @@
       "coins": 0
     },
     "180650938249287@lid": {
-      "exp": 5,
+      "exp": 46,
       "limit": 10,
       "registered": false,
       "name": "ꜱᴏʏᴍᴀʏᴄᴏʟ",
@@ -15537,7 +15540,7 @@
       "coins": 0
     },
     "5351921037@s.whatsapp.net": {
-      "exp": 29,
+      "exp": 34,
       "limit": 10,
       "registered": false,
       "name": "kevin",
@@ -15548,7 +15551,7 @@
       "coins": 0
     },
     "267924371669220@lid": {
-      "exp": 340,
+      "exp": 372,
       "limit": 10,
       "registered": false,
       "name": "alex",
@@ -15636,7 +15639,7 @@
       "coins": 0
     },
     "5278951022616@lid": {
-      "exp": 8,
+      "exp": 24,
       "limit": 10,
       "registered": false,
       "name": "monika",
@@ -15736,7 +15739,7 @@
       "coins": 0
     },
     "156827090219081@lid": {
-      "exp": 9,
+      "exp": 22,
       "limit": 10,
       "registered": false,
       "name": "𝙽𝗂𝖼𝗈ᅟ✿︎ᅟ𝙼𝗂𝗇𝗁𝗈",
@@ -15779,7 +15782,7 @@
       "coins": 0
     },
     "59635755143260@lid": {
-      "exp": 1,
+      "exp": 8,
       "limit": 10,
       "registered": false,
       "name": "taiki decor, no copien",
@@ -15790,7 +15793,7 @@
       "coins": 0
     },
     "5216623291933@s.whatsapp.net": {
-      "exp": 55,
+      "exp": 62,
       "limit": 10,
       "registered": false,
       "name": "𝐌att",
@@ -15845,7 +15848,7 @@
       "coins": 0
     },
     "5358601233@s.whatsapp.net": {
-      "exp": 19,
+      "exp": 21,
       "limit": 10,
       "registered": false,
       "name": "Yoelvis",
@@ -15867,10 +15870,2290 @@
       "coins": 0
     },
     "5351636306@s.whatsapp.net": {
-      "exp": 1,
+      "exp": 53,
       "limit": 10,
       "registered": false,
       "name": "✊👊🥵 el q te parte 🥵✊👊",
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "5356150363@s.whatsapp.net": {
+      "exp": 48,
+      "limit": 10,
+      "registered": false,
+      "name": "Ezz ,yandy",
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "72602496278608@lid": {
+      "exp": 4,
+      "limit": 10,
+      "registered": false,
+      "name": "𝐸𝑣𝑒..",
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "201103874478158@lid": {
+      "exp": 787,
+      "limit": 10,
+      "registered": false,
+      "name": "aceituna",
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "190954883563592@lid": {
+      "exp": 28,
+      "limit": 10,
+      "registered": false,
+      "name": "Manu",
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "235253159456807@lid": {
+      "exp": 2,
+      "limit": 10,
+      "registered": false,
+      "name": "shiba    lvs    sham   ♡⁠",
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "215543588118741@lid": {
+      "exp": 1,
+      "limit": 10,
+      "registered": false,
+      "name": "ᰨᰍ  𝓐𝗅꯭𝖺𝗇  📖",
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "15925789093946@lid": {
+      "exp": 14,
+      "limit": 10,
+      "registered": false,
+      "name": "lidice",
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "17845773688945@lid": {
+      "exp": 11,
+      "limit": 10,
+      "registered": false,
+      "name": "Annelis",
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "5350108915@s.whatsapp.net": {
+      "exp": 74,
+      "limit": 10,
+      "registered": false,
+      "name": "Maricela",
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "5355356894@s.whatsapp.net": {
+      "exp": 51,
+      "limit": 10,
+      "registered": false,
+      "name": "El Chuly Artista ❤️🎶",
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "262809686433952@lid": {
+      "exp": 10,
+      "limit": 10,
+      "registered": false,
+      "name": "🌙🌕son-jin🌕🌙",
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "127857082761358@lid": {
+      "exp": 1,
+      "limit": 10,
+      "registered": false,
+      "name": "YuliAnna🥰🎀",
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "234827420831902@lid": {
+      "exp": 8,
+      "limit": 10,
+      "registered": false,
+      "name": "Liz💞🌸",
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "20264377151704@lid": {
+      "exp": 25,
+      "limit": 10,
+      "registered": false,
+      "name": "ᩨ🪻ᩨᮬ⃘𑵅̥𝆬𝗛𝗔̶̤𝗧𝗦̸̷𝗨",
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "181690605514812@lid": {
+      "exp": 56,
+      "limit": 10,
+      "registered": false,
+      "name": "Maximo Gabriel.",
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "5354945845@s.whatsapp.net": {
+      "exp": 25,
+      "limit": 10,
+      "registered": false,
+      "name": "👽DAINIEL👀💀",
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "5351639139@s.whatsapp.net": {
+      "exp": 7,
+      "limit": 10,
+      "registered": false,
+      "name": "🖤David◉｡◉ಡ",
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "52927016255590@lid": {
+      "exp": 9,
+      "limit": 10,
+      "registered": false,
+      "name": "Ruth Eliannis",
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "5350109701@s.whatsapp.net": {
+      "exp": 6,
+      "limit": 10,
+      "registered": false,
+      "name": "🏆⚽️Ɛðgʻªř🥷💸",
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "129321733742677@lid": {
+      "exp": 4,
+      "limit": 10,
+      "registered": false,
+      "name": "Ꭻᥱnnıfᧉr",
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "120363245789089245@newsletter": {
+      "exp": 11,
+      "limit": 10,
+      "registered": false,
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "231576633913407@lid": {
+      "exp": 15,
+      "limit": 10,
+      "registered": false,
+      "name": "Melani",
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "584243653770@s.whatsapp.net": {
+      "exp": 9,
+      "limit": 10,
+      "registered": false,
+      "name": "💖Toti 💖",
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "54550396407986@lid": {
+      "exp": 165,
+      "limit": 10,
+      "registered": false,
+      "name": "hα꯭nn꯭ısı꯭ƚαm",
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "64601156747374@lid": {
+      "exp": 140,
+      "limit": 10,
+      "registered": false,
+      "name": "ㅤㅤ•᷄‎ࡇ•᷅",
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "18155229466637@lid": {
+      "exp": 50,
+      "limit": 10,
+      "registered": false,
+      "name": "ㅤ𐙚  ȷυlⴤ ..",
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "103259637346411@lid": {
+      "exp": 145,
+      "limit": 10,
+      "registered": false,
+      "name": "੭୧ 💝 𝗄ɑყrꪱ.ᐟ 🐼",
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "46639536406622@lid": {
+      "exp": 60,
+      "limit": 10,
+      "registered": false,
+      "name": "̲🌸z𖹭ᧉ ꒱꒱",
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "145672808472672@lid": {
+      "exp": 1,
+      "limit": 10,
+      "registered": false,
+      "name": "⏤͟͟͞͞♡⃞🌸᪲᪲᪲.°.",
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "49912385405168@lid": {
+      "exp": 8,
+      "limit": 10,
+      "registered": false,
+      "name": "ׄ꒰᮫𝕶ᨘ𝆬ⲓׅ𝗍𝗍ׄ𝟯۠𝕟ׅ 🌸᪲",
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "123919050784935@lid": {
+      "exp": 49,
+      "limit": 10,
+      "registered": false,
+      "name": "𐔌՞. .՞𐦯",
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "261912071803046@lid": {
+      "exp": 132,
+      "limit": 10,
+      "registered": false,
+      "name": "☾⋆ßხ𖹭᳟᳟𝐤᳞𝗄ı𝖾⋆☽",
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "232169255469115@lid": {
+      "exp": 36,
+      "limit": 10,
+      "registered": false,
+      "name": "¡☆!",
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "217755429134552@lid": {
+      "exp": 1,
+      "limit": 10,
+      "registered": false,
+      "name": "mia",
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "16372868362444@lid": {
+      "exp": 7,
+      "limit": 10,
+      "registered": false,
+      "name": "𝓥𝓪𝓵𝓮𝓷𝓽𝓲𝓷𝓪 🕷",
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "5492634475291@s.whatsapp.net": {
+      "exp": 10,
+      "limit": 10,
+      "registered": false,
+      "name": "🌷🕯️ℛ𝓊𝓉𝓎🕯️🌷",
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "44406119919835@lid": {
+      "exp": 6,
+      "limit": 10,
+      "registered": false,
+      "name": "😎",
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "85431513264242@lid": {
+      "exp": 2,
+      "limit": 10,
+      "registered": false,
+      "name": "— 𝓗ֽᜒ̸ִׁ֤ׄ𖹭̶̷᪲֔🄽፝֟ᧉ̷ּ᳟݃ყ݀",
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "158754943303827@lid": {
+      "exp": 13,
+      "limit": 10,
+      "registered": false,
+      "name": "Peli❤️Roja",
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "100734666313868@lid": {
+      "exp": 132,
+      "limit": 10,
+      "registered": false,
+      "name": "˖ ࣪ ‹˙ ⃝🎧 (격노) !",
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "66378971258935@lid": {
+      "exp": 7,
+      "limit": 10,
+      "registered": false,
+      "name": "Skyl3rStar lvs Sumi ♡",
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "219851322855547@lid": {
+      "exp": null,
+      "limit": null,
+      "registered": false,
+      "name": "꒰𝒜ɓɪɠ̫ɑɪ𐡘꒱ 🏷️᪶᪲",
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "219172432793648@lid": {
+      "exp": 21,
+      "limit": 10,
+      "registered": false,
+      "name": "🌸 ৴৴ ოιℓιѕιтαㅤ᷼͡꒱ ᷼͡꒱",
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "69729028964533@lid": {
+      "exp": 2,
+      "limit": 10,
+      "registered": false,
+      "name": "Cristina Y Kerim",
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "155628710432905@lid": {
+      "exp": 8,
+      "limit": 10,
+      "registered": false,
+      "name": "~ㅤㅤㅤ",
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "50555000854@s.whatsapp.net": {
+      "exp": 60,
+      "limit": 10,
+      "registered": false,
+      "name": "🐶✨𝐴𝑙𝑜𝑛𝑑𝑟𝑎✨🐶",
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "187136556978394@lid": {
+      "exp": 20,
+      "limit": 10,
+      "registered": false,
+      "name": "✮ ⋆ ˚｡Nefty♡ ⋆｡°✩",
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "5493813630067@s.whatsapp.net": {
+      "exp": 6,
+      "limit": 10,
+      "registered": false,
+      "name": "𝐈𝐒𝐀",
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "220267414556899@lid": {
+      "exp": 8,
+      "limit": 10,
+      "registered": false,
+      "name": "ฺ۬ໍ۟ࠬ❗︎᳞֠🌸ᩧ𑂴⃘᮫๋ׅ࣪◌ׅ࣪ᜒٜ̥",
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "5350543124@s.whatsapp.net": {
+      "exp": 4,
+      "limit": 10,
+      "registered": false,
+      "name": "ÄŃTHØŃY🤑",
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "120363419584417910@newsletter": {
+      "exp": 67,
+      "limit": 10,
+      "registered": false,
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "5363740241@s.whatsapp.net": {
+      "exp": 9,
+      "limit": 10,
+      "registered": false,
+      "name": "HËÇTØR",
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "45531636199458@lid": {
+      "exp": 6,
+      "limit": 10,
+      "registered": false,
+      "name": "1234",
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "5354331669@s.whatsapp.net": {
+      "exp": 36,
+      "limit": 10,
+      "registered": false,
+      "name": "~¡!Melį✨~",
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "5355144513@s.whatsapp.net": {
+      "exp": 10,
+      "limit": 10,
+      "registered": false,
+      "name": "Bryan",
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "45162185121805@lid": {
+      "exp": 1,
+      "limit": 10,
+      "registered": false,
+      "name": "Sofía💜🏅",
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "70012563935292@lid": {
+      "exp": 4,
+      "limit": 10,
+      "registered": false,
+      "name": "Idk",
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "68316018307307@lid": {
+      "exp": 10,
+      "limit": 10,
+      "registered": false,
+      "name": "꒰   ઠᎥꮪყ  𖹭   ჩ⍺ոji   ꒱",
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "573134106848@s.whatsapp.net": {
+      "exp": 9,
+      "limit": 10,
+      "registered": false,
+      "name": "leyer",
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "13718679240958@lid": {
+      "exp": 4,
+      "limit": 10,
+      "registered": false,
+      "name": "Mayyarh✨",
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "5215568149580@s.whatsapp.net": {
+      "exp": 5,
+      "limit": 10,
+      "registered": false,
+      "name": ".",
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "5212941453837@s.whatsapp.net": {
+      "exp": 10,
+      "limit": 10,
+      "registered": false,
+      "name": "janetnape243",
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "260954059186326@lid": {
+      "exp": 3,
+      "limit": 10,
+      "registered": false,
+      "name": "☕ㅤㅤ࣮  ㅤ 𝗌𝗁⵿ꭤ𝗇ⴗㅤㅤ✿̰",
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "261169008926928@lid": {
+      "exp": 10,
+      "limit": 10,
+      "registered": false,
+      "name": "ㅤㅤㅤㅤㅤㅤㅤ",
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "66804323995898@lid": {
+      "exp": 9,
+      "limit": 10,
+      "registered": false,
+      "name": "𝘳𝙪𝙗𝘣𝘺",
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "276656224784623@lid": {
+      "exp": 1,
+      "limit": 10,
+      "registered": false,
+      "name": "Lauper_3.0🌔",
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "59164496451@s.whatsapp.net": {
+      "exp": 116,
+      "limit": 10,
+      "registered": false,
+      "name": "Tu",
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "68453759226018@lid": {
+      "exp": 8,
+      "limit": 10,
+      "registered": false,
+      "name": "𝓴۪ ܢ𓐘 𝕱𝘂𝗰𝗸  𝗜  𝖪𝗶ო ︕︖",
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "50488471704@s.whatsapp.net": {
+      "exp": 16,
+      "limit": 10,
+      "registered": false,
+      "name": "𝗩☰̶̥𝗡̷𝖀̶𝗦᜔ׄ͟🌑᮫̫᩸",
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "5212221587771@s.whatsapp.net": {
+      "exp": null,
+      "limit": null,
+      "registered": false,
+      "name": "🍭Bᥲᑲᥡ Sᥲȷᥲ🍭",
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0,
+      "Subs": 1754257045631
+    },
+    "120363279654230223@newsletter": {
+      "exp": 2,
+      "limit": 10,
+      "registered": false,
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "120363316296917404@newsletter": {
+      "exp": 13,
+      "limit": 10,
+      "registered": false,
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "281097204166678@lid": {
+      "exp": 5,
+      "limit": 10,
+      "registered": false,
+      "name": "⢾⃨̤۫🍵̸̼࣭ິᮬ̥֟፝⡷⃨̤۫፝⌒⵿⏜̸ּ፝",
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "56937334626@s.whatsapp.net": {
+      "exp": 4,
+      "limit": 10,
+      "registered": false,
+      "name": "⢾⃨̤۫🍵̸̼࣭ິᮬ̥֟፝⡷⃨̤۫፝⌒⵿⏜̸ּ፝",
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "18296727229@s.whatsapp.net": {
+      "exp": 12,
+      "limit": 10,
+      "registered": false,
+      "name": "🌺Key🌺",
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "584260853474@s.whatsapp.net": {
+      "exp": 25,
+      "limit": 10,
+      "registered": false,
+      "name": "+58 426-0853474",
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "120363374610252774@newsletter": {
+      "exp": 27,
+      "limit": 10,
+      "registered": false,
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "5215581423353@s.whatsapp.net": {
+      "exp": 7,
+      "limit": 10,
+      "registered": false,
+      "name": "Zak",
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "120363316634371397@newsletter": {
+      "exp": 28,
+      "limit": 10,
+      "registered": false,
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "120363418078124511@newsletter": {
+      "exp": 20,
+      "limit": 10,
+      "registered": false,
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "120363418800922312@newsletter": {
+      "exp": 23,
+      "limit": 10,
+      "registered": false,
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "120363399657010976@newsletter": {
+      "exp": null,
+      "limit": null,
+      "registered": false,
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "5363611221@s.whatsapp.net": {
+      "exp": 29,
+      "limit": 10,
+      "registered": false,
+      "name": "¡!Mel!¡💙✨",
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "183137892040754@lid": {
+      "exp": 7,
+      "limit": 10,
+      "registered": false,
+      "name": "່່່່່່່່່່່່່່່່່່່່່່່່່",
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "5491156668452@s.whatsapp.net": {
+      "exp": 202,
+      "limit": 10,
+      "registered": false,
+      "name": "🩸⃟⌯ 𝗦᩿𝗔𝗡⃨⃝𝗧𝗜𝗡᩿𝗢 ߷",
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0,
+      "Subs": 1754259630437
+    },
+    "5493877586820@s.whatsapp.net": {
+      "exp": null,
+      "limit": null,
+      "registered": false,
+      "name": "٭nahi٭",
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "556484207818@s.whatsapp.net": {
+      "exp": 3,
+      "limit": 10,
+      "registered": false,
+      "name": "Marcos",
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "50556764729576@lid": {
+      "exp": 1,
+      "limit": 10,
+      "registered": false,
+      "name": "im not sure of this......",
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "196851856871613@lid": {
+      "exp": 9,
+      "limit": 10,
+      "registered": false,
+      "name": "light_blue",
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "50257867026@s.whatsapp.net": {
+      "exp": 3,
+      "limit": 10,
+      "registered": false,
+      "name": "+502 5786 7026",
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "5217761070234@s.whatsapp.net": {
+      "exp": 6,
+      "limit": 10,
+      "registered": false,
+      "name": "Abril  Escamill1906♥️💜🤗",
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "42657900449936@lid": {
+      "exp": 3,
+      "limit": 10,
+      "registered": false,
+      "name": "Jazmin 🫆",
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "573222718547@s.whatsapp.net": {
+      "exp": 12,
+      "limit": 10,
+      "registered": false,
+      "name": "Yuji Itadori",
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "51907796558@s.whatsapp.net": {
+      "exp": 6,
+      "limit": 10,
+      "registered": false,
+      "name": "M",
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "272958425669683@lid": {
+      "exp": 2,
+      "limit": 10,
+      "registered": false,
+      "name": "٭nahi٭",
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "50764735869@s.whatsapp.net": {
+      "exp": 7,
+      "limit": 10,
+      "registered": false,
+      "name": "𖣘𖠄..𝙃𝙖𝙧𝙤𝙡𝙙..𖠄𖣘",
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "56937181460@s.whatsapp.net": {
+      "exp": 16,
+      "limit": 10,
+      "registered": false,
+      "name": "im not sure of this......",
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "51993761587@s.whatsapp.net": {
+      "exp": 4,
+      "limit": 10,
+      "registered": false,
+      "name": "Tohka Yatogami 💜",
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "223420038025312@lid": {
+      "exp": null,
+      "limit": null,
+      "registered": false,
+      "name": "៚𝓼𝓸𝓯𝓲𝓪♚",
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "48632350920746@lid": {
+      "exp": 7,
+      "limit": 10,
+      "registered": false,
+      "name": "yo soy yo 3",
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "270810858168483@lid": {
+      "exp": 61,
+      "limit": 10,
+      "registered": false,
+      "name": "♡٭~𝑖𝑠𝑖𝑑𝑜𝑟𝑎~٭♡",
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "178099425644771@lid": {
+      "exp": 41,
+      "limit": 10,
+      "registered": false,
+      "name": "⋆˚꩜｡𝛫𝜃𝜍𝜆𝜃 𝑆𝜆𝑖𝜂𝜃𝛽𝜇 ⋆˙⟡",
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "51925566075@s.whatsapp.net": {
+      "exp": 14,
+      "limit": 10,
+      "registered": false,
+      "name": "∆→YUKI SUOU←∆ᵗⁱᵏ ᵗᵒᵏ",
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "120363401454490428@newsletter": {
+      "exp": 28,
+      "limit": 10,
+      "registered": false,
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "5213315187834@s.whatsapp.net": {
+      "exp": 2,
+      "limit": 10,
+      "registered": false,
+      "name": "ashiro Serizawa ( Godzilla earth) _07",
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "50369624609@s.whatsapp.net": {
+      "exp": 15,
+      "limit": 10,
+      "registered": false,
+      "name": "🖤",
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "34641951268@s.whatsapp.net": {
+      "exp": 3,
+      "limit": 10,
+      "registered": false,
+      "name": "bot",
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "573195205261@s.whatsapp.net": {
+      "exp": 28,
+      "limit": 10,
+      "registered": false,
+      "name": "⠀୧⠀⠀𓈒⠀🦭⠀ ֺ    㞫     ࣭  ",
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "50254658935@s.whatsapp.net": {
+      "exp": 52,
+      "limit": 10,
+      "registered": false,
+      "name": "🌫️⃞𐅜   𝗗I͟𝗦𝗧Ū𐐥𐐒𝗞.",
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "584128733464@s.whatsapp.net": {
+      "exp": 22,
+      "limit": 10,
+      "registered": false,
+      "name": "Abraham M.🤑😜♥️",
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "56933350468@s.whatsapp.net": {
+      "exp": null,
+      "limit": null,
+      "registered": false,
+      "name": "jaden",
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "51904772193@s.whatsapp.net": {
+      "exp": 14,
+      "limit": 10,
+      "registered": false,
+      "name": "Bot",
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "5491164240139@s.whatsapp.net": {
+      "exp": 13,
+      "limit": 10,
+      "registered": false,
+      "name": "Ｅｚｅ ​",
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "89327317078096@lid": {
+      "exp": 21,
+      "limit": 10,
+      "registered": false,
+      "name": "ᨶ႒ᩚ𝙍𝙐𝘽𝙔-𝘾𝙃𝘼𝙉 𝙈𝘿",
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "34635279070@s.whatsapp.net": {
+      "exp": 38,
+      "limit": 10,
+      "registered": false,
+      "name": "偽りの愛",
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "51968976611@s.whatsapp.net": {
+      "exp": 17,
+      "limit": 10,
+      "registered": false,
+      "name": "R.L 🥱🫵",
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "170673964060834@lid": {
+      "exp": 8,
+      "limit": 10,
+      "registered": false,
+      "name": "ִ۫ 𝒯𝖺𝗇𝗂ֺྀི︩︪s  ֹ 🌟 ۫",
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "5217551491900@s.whatsapp.net": {
+      "exp": 10,
+      "limit": 10,
+      "registered": false,
+      "name": "ッ",
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "120363307319721505@newsletter": {
+      "exp": 5,
+      "limit": 10,
+      "registered": false,
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "112558845485151@lid": {
+      "exp": 14,
+      "limit": 10,
+      "registered": false,
+      "name": "𓆰ñiki𓆪",
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "573154890209@s.whatsapp.net": {
+      "exp": 23,
+      "limit": 10,
+      "registered": false,
+      "name": "𝓝𝓲𝔃𝔂ㅤㅤ🤍",
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "229884131557388@lid": {
+      "exp": 68,
+      "limit": 10,
+      "registered": false,
+      "name": "¡𝙉𝙖𝙣𝙖! 🌸",
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "225078348386396@lid": {
+      "banned": true
+    },
+    "120363422001196280@newsletter": {
+      "exp": 8,
+      "limit": 10,
+      "registered": false,
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "15135718230@s.whatsapp.net": {
+      "exp": 6,
+      "limit": 10,
+      "registered": false,
+      "name": "Speed",
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "573108666448@s.whatsapp.net": {
+      "exp": 1,
+      "limit": 10,
+      "registered": false,
+      "name": "ִ  ۫ ⭒ 𝙋𝙖𝙪 ✭ ׂ 𓈒",
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "52111274471621@lid": {
+      "exp": 53,
+      "limit": 10,
+      "registered": false,
+      "name": "ִ  ۫ ⭒ 𝙋𝙖𝙪 ✭ ׂ 𓈒",
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "267941601894495@lid": {
+      "exp": null,
+      "limit": null,
+      "registered": false,
+      "name": "𝐋uu  - ✿",
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "246029165285519@lid": {
+      "exp": null,
+      "limit": null,
+      "registered": false,
+      "name": "IDANELA🫣",
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "5215638053094@s.whatsapp.net": {
+      "exp": 13,
+      "limit": 10,
+      "registered": false,
+      "name": "@ㅤㅤㅤlix",
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "218553907150911@lid": {
+      "exp": 15,
+      "limit": 10,
+      "registered": false,
+      "name": "🤺",
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "42507878584567@lid": {
+      "exp": null,
+      "limit": null,
+      "registered": false,
+      "name": "Sofii🎶",
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "2388303818965@lid": {
+      "exp": 6,
+      "limit": 10,
+      "registered": false,
+      "name": "~...",
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "50671494173@s.whatsapp.net": {
+      "exp": 8,
+      "limit": 10,
+      "registered": false,
+      "name": "Jho",
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "5218141144193@s.whatsapp.net": {
+      "exp": 2,
+      "limit": 10,
+      "registered": false,
+      "name": "Laura Martin Czardens",
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "138483234562189@lid": {
+      "exp": 5,
+      "limit": 10,
+      "registered": false,
+      "name": "𝗠𝖺𝗇𝖽𝖺𝗋𝗂𝗇𝖺.",
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "573054502934@s.whatsapp.net": {
+      "exp": 10,
+      "limit": 10,
+      "registered": false,
+      "name": "julie",
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "84787570188373@lid": {
+      "exp": 7,
+      "limit": 10,
+      "registered": false,
+      "name": "dllin 🙂",
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "22562033643522@lid": {
+      "exp": 30,
+      "limit": 10,
+      "registered": false,
+      "name": "Atenea 🌸",
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "63410947551319@lid": {
+      "exp": 9,
+      "limit": 10,
+      "registered": false,
+      "name": "Maricela",
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "27428198084653@lid": {
+      "exp": 3,
+      "limit": 10,
+      "registered": false,
+      "name": "꧂",
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "5215576897147@s.whatsapp.net": {
+      "exp": 10,
+      "limit": 10,
+      "registered": false,
+      "name": "Kasane Teto 🥖",
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "126079167647973@lid": {
+      "exp": 17,
+      "limit": 10,
+      "registered": false,
+      "name": "𝓛𐙚",
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "11691270131948@lid": {
+      "exp": 3,
+      "limit": 10,
+      "registered": false,
+      "name": "17 de junio del 2025 ♡",
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "573158912168@s.whatsapp.net": {
+      "exp": 4,
+      "limit": 10,
+      "registered": false,
+      "name": "~💚🤍",
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "238469905428638@lid": {
+      "exp": 11,
+      "limit": 10,
+      "registered": false,
+      "name": "URABE MIKOTO",
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "51913831632@s.whatsapp.net": {
+      "exp": 13,
+      "limit": 10,
+      "registered": false,
+      "name": "ᅠᅠ⸺̸̷.ᅠ  𝝖̷̸̌𝗟̷̸𝞢̷̸̶",
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "5351892504@s.whatsapp.net": {
+      "exp": 3,
+      "limit": 10,
+      "registered": false,
+      "name": "𝕿𝖚 𝕽𝖊𝖎𝖓𝖆",
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "154838319022187@lid": {
+      "exp": 5,
+      "limit": 10,
+      "registered": false,
+      "name": "𝓓𝓲𝓮𝓰𝓸 𝓙𝓸𝓼𝓾𝓮",
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "154267155456039@lid": {
+      "exp": null,
+      "limit": null,
+      "registered": false,
+      "name": "🩸⃟⌯ 𝗦᩿𝗔𝗡⃨⃝𝗧𝗜𝗡᩿𝗢 ߷",
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "573226382884@s.whatsapp.net": {
+      "exp": 9,
+      "limit": 10,
+      "registered": false,
+      "name": ".",
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "84971716886606@lid": {
+      "exp": 1,
+      "limit": 10,
+      "registered": false,
+      "name": "imred_xdz",
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "212776157312@s.whatsapp.net": {
+      "exp": 10,
+      "limit": 10,
+      "registered": false,
+      "name": "saski oritchimaro",
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "110586968952937@lid": {
+      "exp": 51,
+      "limit": 10,
+      "registered": false,
+      "name": "秒 !",
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "59803443433484@lid": {
+      "exp": 17,
+      "limit": 10,
+      "registered": false,
+      "name": "Anis🤍😍",
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "41683077091360@lid": {
+      "exp": 12,
+      "limit": 10,
+      "registered": false,
+      "name": "Abisnaidy 💗🌸!¡!",
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "120363361548405711@newsletter": {
+      "exp": 14,
+      "limit": 10,
+      "registered": false,
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "18636265803854@lid": {
+      "exp": 120,
+      "limit": 10,
+      "registered": false,
+      "name": "Ange",
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "215551943176193@lid": {
+      "exp": 9,
+      "limit": 10,
+      "registered": false,
+      "name": "🏌🏻",
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "176772851224779@lid": {
+      "exp": 10,
+      "limit": 10,
+      "registered": false,
+      "name": "~~ᴀʟᴇ/🫩🖕~~",
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "5492646288443@s.whatsapp.net": {
+      "exp": 5,
+      "limit": 10,
+      "registered": false,
+      "name": "່່່່່່່່່່່່່່່່່່່່່່່່່",
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "51953748836@s.whatsapp.net": {
+      "exp": 36,
+      "limit": 10,
+      "registered": false,
+      "name": "【✞«★“Пост-Панк”»✞】",
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "5493844440329@s.whatsapp.net": {
+      "exp": 9,
+      "limit": 10,
+      "registered": false,
+      "name": "+54 9 3844 44-0329",
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "5215645641373@s.whatsapp.net": {
+      "exp": 12,
+      "limit": 10,
+      "registered": false,
+      "name": "¿¡𝐆✰𝐛𝐲!?",
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "5491128805571@s.whatsapp.net": {
+      "exp": 3,
+      "limit": 10,
+      "registered": false,
+      "name": "light_blue",
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "33969483563151@lid": {
+      "exp": 8,
+      "limit": 10,
+      "registered": false,
+      "name": "Maura 🌸✨💖🌷",
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "120363413809650977@newsletter": {
+      "exp": 5,
+      "limit": 10,
+      "registered": false,
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "5214621469722@s.whatsapp.net": {
+      "exp": 19,
+      "limit": 10,
+      "registered": false,
+      "name": "🌸❒ೄྀNARUTO/TADANOೄྀ❒🍁",
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "51918334204@s.whatsapp.net": {
+      "exp": 9,
+      "limit": 10,
+      "registered": false,
+      "name": "Azarias",
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0,
+      "Subs": 1754263661162
+    },
+    "20048974471306@lid": {
+      "exp": 7,
+      "limit": 10,
+      "registered": false,
+      "name": "Er_YETI",
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "120363419452194738@newsletter": {
+      "exp": 1,
+      "limit": 10,
+      "registered": false,
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "120363393395688219@newsletter": {
+      "exp": 7,
+      "limit": 10,
+      "registered": false,
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "51960819294@s.whatsapp.net": {
+      "exp": 6,
+      "limit": 10,
+      "registered": false,
+      "name": "𝐃̸̷𝝝̷𝐌𝐈̶͠___𝐍̶𝐈𝐂𝐊",
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "158016326340757@lid": {
+      "exp": 5,
+      "limit": 10,
+      "registered": false,
+      "name": "ᵎ🍚꯭۬᎐· 𝐑̸̷࣪𝐨𝐬𝐬༅˖ ࣪ ˒",
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "122887704981675@lid": {
+      "exp": 6,
+      "limit": 10,
+      "registered": false,
+      "name": "𝐃̸̷𝝝̷𝐌𝐈̶͠___𝐍̶𝐈𝐂𝐊",
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "120363321030976219@newsletter": {
+      "exp": 5,
+      "limit": 10,
+      "registered": false,
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "120363401407591596@newsletter": {
+      "exp": null,
+      "limit": null,
+      "registered": false,
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "91212824502350@lid": {
+      "exp": 6,
+      "limit": 10,
+      "registered": false,
+      "name": "🐼🌸🌺",
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "138040316010746@lid": {
+      "exp": 15,
+      "limit": 10,
+      "registered": false,
+      "name": "Meli",
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "120363303874805009@newsletter": {
+      "exp": 9,
+      "limit": 10,
+      "registered": false,
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "5353638329@s.whatsapp.net": {
+      "exp": 14,
+      "limit": 10,
+      "registered": false,
+      "name": "Simeysita💙🎀",
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "151054553505921@lid": {
+      "exp": 1,
+      "limit": 10,
+      "registered": false,
+      "name": "Evelin 🦋🦋🦋💗",
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "5359585092@s.whatsapp.net": {
+      "exp": 35,
+      "limit": 10,
+      "registered": false,
+      "name": "🥷🏻 Bandida retirada 🥷",
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "51921826291@s.whatsapp.net": {
+      "exp": 7,
+      "limit": 10,
+      "registered": false,
+      "name": "ꜱᴏʏᴍᴀʏᴄᴏʟ",
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "120363418866396237@newsletter": {
+      "exp": 7,
+      "limit": 10,
+      "registered": false,
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "40102747189366@lid": {
+      "exp": 8,
+      "limit": 10,
+      "registered": false,
+      "name": "🌸ᩨ᳟ 🅑⃞꯭ı𝖻֟፝ⴘ ✿🍶᪲",
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "5350359362@s.whatsapp.net": {
+      "exp": 16,
+      "limit": 10,
+      "registered": false,
+      "name": "chardito_con_talent",
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "18644587290647@lid": {
+      "exp": 4,
+      "limit": 10,
+      "registered": false,
+      "name": "Nashe",
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "5492616144098@s.whatsapp.net": {
+      "exp": 20,
+      "limit": 10,
+      "registered": false,
+      "name": "𝗔gus :3",
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "47919570935863@lid": {
+      "exp": null,
+      "limit": null,
+      "registered": false,
+      "name": "Yuji Itadori",
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "157196188954794@lid": {
+      "exp": 7,
+      "limit": 10,
+      "registered": false,
+      "name": "𝕸𝕴𝕬🖤",
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "209873593708777@lid": {
+      "exp": 5,
+      "limit": 10,
+      "registered": false,
+      "name": "༺° ᭄🪷 麗日 お茶子 💥~...",
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "50661455436@s.whatsapp.net": {
+      "exp": 3,
+      "limit": 10,
+      "registered": false,
+      "name": "Kyotaro Ichikawa",
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "120363418760548471@newsletter": {
+      "exp": 10,
+      "limit": 10,
+      "registered": false,
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "120363400164071573@newsletter": {
+      "exp": 17,
+      "limit": 10,
+      "registered": false,
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "128673579536490@lid": {
+      "exp": 1,
+      "limit": 10,
+      "registered": false,
+      "name": "🌟",
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "51952906750@s.whatsapp.net": {
+      "exp": 3,
+      "limit": 10,
+      "registered": false,
+      "name": "⏤͟͟͞͞¡★! ིྀ",
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "5353372902@s.whatsapp.net": {
+      "exp": 9,
+      "limit": 10,
+      "registered": false,
+      "name": "El Ale🇯🇵🎮",
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "5217713552344@s.whatsapp.net": {
+      "exp": 79,
+      "limit": 10,
+      "registered": false,
+      "name": "Andres ivan",
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0,
+      "Subs": 1754274334493
+    },
+    "5613941698784@lid": {
+      "exp": 3,
+      "limit": 10,
+      "registered": false,
+      "name": "Analia❤️",
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "231005369724946@lid": {
+      "exp": 260,
+      "limit": 10,
+      "registered": false,
+      "name": "Life",
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "3548179873796@lid": {
+      "exp": 335,
+      "limit": 10,
+      "registered": false,
+      "name": "Andres ivan",
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "120363191696743581@newsletter": {
+      "exp": 10,
+      "limit": 10,
+      "registered": false,
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "5353388845@s.whatsapp.net": {
+      "exp": 116,
+      "limit": 10,
+      "registered": false,
+      "name": "♡★Ashley★♡",
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "120363166430780969@newsletter": {
+      "exp": 28,
+      "limit": 10,
+      "registered": false,
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "5217718604808@s.whatsapp.net": {
+      "exp": 29,
+      "limit": 10,
+      "registered": false,
+      "name": "Andres",
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "5213353317746@s.whatsapp.net": {
+      "exp": 14,
+      "limit": 10,
+      "registered": false,
+      "name": "THE BLACK SHADOW",
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "120363171338053028@newsletter": {
+      "exp": 4,
+      "limit": 10,
+      "registered": false,
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "223669330641095@lid": {
+      "exp": 3,
+      "limit": 10,
+      "registered": false,
+      "name": "Manu",
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "120363203805910750@newsletter": {
+      "exp": 7,
+      "limit": 10,
+      "registered": false,
       "age": -1,
       "regTime": -1,
       "banned": false,
@@ -18610,6 +20893,630 @@
       "onlyLatinos": false,
       "nsfw": false,
       "expired": 0
+    },
+    "5356150363@s.whatsapp.net": {
+      "isBanned": false,
+      "bienvenida": true,
+      "antiLink": false,
+      "onlyLatinos": false,
+      "nsfw": false,
+      "expired": 0
+    },
+    "5350108915@s.whatsapp.net": {
+      "isBanned": false,
+      "bienvenida": true,
+      "antiLink": false,
+      "onlyLatinos": false,
+      "nsfw": false,
+      "expired": 0
+    },
+    "120363245789089245@newsletter": {
+      "isBanned": false,
+      "bienvenida": true,
+      "antiLink": false,
+      "onlyLatinos": false,
+      "nsfw": false,
+      "expired": 0
+    },
+    "12108435025@s.whatsapp.net": {
+      "isBanned": false,
+      "bienvenida": true,
+      "antiLink": false,
+      "onlyLatinos": false,
+      "nsfw": false,
+      "expired": 0
+    },
+    "5351707775@s.whatsapp.net": {
+      "isBanned": false,
+      "bienvenida": true,
+      "antiLink": false,
+      "onlyLatinos": false,
+      "nsfw": false,
+      "expired": 0
+    },
+    "5217776023795@s.whatsapp.net": {
+      "isBanned": false,
+      "bienvenida": true,
+      "antiLink": false,
+      "onlyLatinos": false,
+      "nsfw": false,
+      "expired": 0
+    },
+    "120363419584417910@newsletter": {
+      "isBanned": false,
+      "bienvenida": true,
+      "antiLink": false,
+      "onlyLatinos": false,
+      "nsfw": false,
+      "expired": 0
+    },
+    "59164496451@s.whatsapp.net": {
+      "isBanned": false,
+      "bienvenida": true,
+      "antiLink": false,
+      "onlyLatinos": false,
+      "nsfw": false,
+      "expired": 0
+    },
+    "5212221587771@s.whatsapp.net": {
+      "isBanned": false,
+      "bienvenida": true,
+      "antiLink": false,
+      "onlyLatinos": false,
+      "nsfw": false,
+      "expired": 0
+    },
+    "120363279654230223@newsletter": {
+      "isBanned": false,
+      "bienvenida": true,
+      "antiLink": false,
+      "onlyLatinos": false,
+      "nsfw": false,
+      "expired": 0
+    },
+    "120363400740142624@g.us": {
+      "isBanned": false,
+      "bienvenida": true,
+      "antiLink": false,
+      "onlyLatinos": false,
+      "nsfw": false,
+      "expired": 0
+    },
+    "120363316296917404@newsletter": {
+      "isBanned": false,
+      "bienvenida": true,
+      "antiLink": false,
+      "onlyLatinos": false,
+      "nsfw": false,
+      "expired": 0
+    },
+    "120363420698849633@g.us": {
+      "isBanned": false,
+      "bienvenida": true,
+      "antiLink": false,
+      "onlyLatinos": false,
+      "nsfw": false,
+      "expired": 0
+    },
+    "120363423159270560@g.us": {
+      "isBanned": false,
+      "bienvenida": true,
+      "antiLink": false,
+      "onlyLatinos": false,
+      "nsfw": false,
+      "expired": 0
+    },
+    "120363374610252774@newsletter": {
+      "isBanned": false,
+      "bienvenida": true,
+      "antiLink": false,
+      "onlyLatinos": false,
+      "nsfw": false,
+      "expired": 0
+    },
+    "120363316634371397@newsletter": {
+      "isBanned": false,
+      "bienvenida": true,
+      "antiLink": false,
+      "onlyLatinos": false,
+      "nsfw": false,
+      "expired": 0
+    },
+    "120363418078124511@newsletter": {
+      "isBanned": false,
+      "bienvenida": true,
+      "antiLink": false,
+      "onlyLatinos": false,
+      "nsfw": false,
+      "expired": 0
+    },
+    "120363418800922312@newsletter": {
+      "isBanned": false,
+      "bienvenida": true,
+      "antiLink": false,
+      "onlyLatinos": false,
+      "nsfw": false,
+      "expired": 0
+    },
+    "120363399657010976@newsletter": {
+      "isBanned": false,
+      "bienvenida": true,
+      "antiLink": false,
+      "onlyLatinos": false,
+      "nsfw": false,
+      "expired": 0
+    },
+    "5363611221@s.whatsapp.net": {
+      "isBanned": false,
+      "bienvenida": true,
+      "antiLink": false,
+      "onlyLatinos": false,
+      "nsfw": false,
+      "expired": 0
+    },
+    "120363379726587578@g.us": {
+      "isBanned": false,
+      "bienvenida": true,
+      "antiLink": false,
+      "onlyLatinos": false,
+      "nsfw": false,
+      "expired": 0
+    },
+    "5491156668452@s.whatsapp.net": {
+      "isBanned": false,
+      "bienvenida": true,
+      "antiLink": false,
+      "onlyLatinos": false,
+      "nsfw": false,
+      "expired": 0
+    },
+    "556484207818@s.whatsapp.net": {
+      "isBanned": false,
+      "bienvenida": true,
+      "antiLink": false,
+      "onlyLatinos": false,
+      "nsfw": false,
+      "expired": 0
+    },
+    "5217761070234@s.whatsapp.net": {
+      "isBanned": false,
+      "bienvenida": true,
+      "antiLink": false,
+      "onlyLatinos": false,
+      "nsfw": false,
+      "expired": 0
+    },
+    "120363403093339761@g.us": {
+      "isBanned": false,
+      "bienvenida": true,
+      "antiLink": false,
+      "onlyLatinos": false,
+      "nsfw": false,
+      "expired": 0
+    },
+    "120363402221987999@g.us": {
+      "isBanned": false,
+      "bienvenida": true,
+      "antiLink": false,
+      "onlyLatinos": false,
+      "nsfw": false,
+      "expired": 0
+    },
+    "120363419520385450@g.us": {
+      "isBanned": false,
+      "bienvenida": true,
+      "antiLink": false,
+      "onlyLatinos": false,
+      "nsfw": false,
+      "expired": 0
+    },
+    "120363401454490428@newsletter": {
+      "isBanned": false,
+      "bienvenida": true,
+      "antiLink": false,
+      "onlyLatinos": false,
+      "nsfw": false,
+      "expired": 0
+    },
+    "593992321975@s.whatsapp.net": {
+      "isBanned": false,
+      "bienvenida": true,
+      "antiLink": false,
+      "onlyLatinos": false,
+      "nsfw": false,
+      "expired": 0
+    },
+    "120363347554603511@g.us": {
+      "isBanned": false,
+      "bienvenida": true,
+      "antiLink": false,
+      "onlyLatinos": false,
+      "nsfw": false,
+      "expired": 0
+    },
+    "120363419238233024@g.us": {
+      "isBanned": false,
+      "bienvenida": true,
+      "antiLink": false,
+      "onlyLatinos": false,
+      "nsfw": false,
+      "expired": 0
+    },
+    "51968976611@s.whatsapp.net": {
+      "isBanned": false,
+      "bienvenida": true,
+      "antiLink": false,
+      "onlyLatinos": false,
+      "nsfw": false,
+      "expired": 0
+    },
+    "120363369810385301@g.us": {
+      "isBanned": false,
+      "bienvenida": true,
+      "antiLink": false,
+      "onlyLatinos": false,
+      "nsfw": false,
+      "expired": 0
+    },
+    "584128733464@s.whatsapp.net": {
+      "isBanned": false,
+      "bienvenida": true,
+      "antiLink": false,
+      "onlyLatinos": false,
+      "nsfw": false,
+      "expired": 0
+    },
+    "120363307319721505@newsletter": {
+      "isBanned": false,
+      "bienvenida": true,
+      "antiLink": false,
+      "onlyLatinos": false,
+      "nsfw": false,
+      "expired": 0
+    },
+    "120363422001196280@newsletter": {
+      "isBanned": false,
+      "bienvenida": true,
+      "antiLink": false,
+      "onlyLatinos": false,
+      "nsfw": false,
+      "expired": 0
+    },
+    "120363342518584673@g.us": {
+      "isBanned": false,
+      "bienvenida": true,
+      "antiLink": false,
+      "onlyLatinos": false,
+      "nsfw": false,
+      "expired": 0
+    },
+    "120363368994223512@g.us": {
+      "isBanned": false,
+      "bienvenida": true,
+      "antiLink": false,
+      "onlyLatinos": false,
+      "nsfw": false,
+      "expired": 0
+    },
+    "120363351095545436@g.us": {
+      "isBanned": false,
+      "bienvenida": true,
+      "antiLink": false,
+      "onlyLatinos": false,
+      "nsfw": false,
+      "expired": 0
+    },
+    "120363322358782300@g.us": {
+      "isBanned": false,
+      "bienvenida": true,
+      "antiLink": false,
+      "onlyLatinos": false,
+      "nsfw": false,
+      "expired": 0
+    },
+    "120363419248131594@g.us": {
+      "isBanned": false,
+      "bienvenida": true,
+      "antiLink": false,
+      "onlyLatinos": false,
+      "nsfw": false,
+      "expired": 0
+    },
+    "120363419110200802@g.us": {
+      "isBanned": false,
+      "bienvenida": true,
+      "antiLink": false,
+      "onlyLatinos": false,
+      "nsfw": false,
+      "expired": 0
+    },
+    "120363366160548986@g.us": {
+      "isBanned": false,
+      "bienvenida": true,
+      "antiLink": false,
+      "onlyLatinos": false,
+      "nsfw": false,
+      "expired": 0
+    },
+    "5353638329@s.whatsapp.net": {
+      "isBanned": false,
+      "bienvenida": true,
+      "antiLink": false,
+      "onlyLatinos": false,
+      "nsfw": false,
+      "expired": 0
+    },
+    "120363370355178261@g.us": {
+      "isBanned": false,
+      "bienvenida": true,
+      "antiLink": false,
+      "onlyLatinos": false,
+      "nsfw": false,
+      "expired": 0
+    },
+    "120363419475641946@g.us": {
+      "isBanned": false,
+      "bienvenida": true,
+      "antiLink": false,
+      "onlyLatinos": false,
+      "nsfw": false,
+      "expired": 0
+    },
+    "120363368246539394@g.us": {
+      "isBanned": false,
+      "bienvenida": true,
+      "antiLink": false,
+      "onlyLatinos": false,
+      "nsfw": false,
+      "expired": 0
+    },
+    "120363321686807126@g.us": {
+      "isBanned": false,
+      "bienvenida": true,
+      "antiLink": false,
+      "onlyLatinos": false,
+      "nsfw": false,
+      "expired": 0
+    },
+    "120363350767358682@g.us": {
+      "isBanned": false,
+      "bienvenida": true,
+      "antiLink": false,
+      "onlyLatinos": false,
+      "nsfw": false,
+      "expired": 0
+    },
+    "120363361548405711@newsletter": {
+      "isBanned": false,
+      "bienvenida": true,
+      "antiLink": false,
+      "onlyLatinos": false,
+      "nsfw": false,
+      "expired": 0
+    },
+    "120363413809650977@newsletter": {
+      "isBanned": false,
+      "bienvenida": true,
+      "antiLink": false,
+      "onlyLatinos": false,
+      "nsfw": false,
+      "expired": 0
+    },
+    "51969478611@s.whatsapp.net": {
+      "isBanned": false,
+      "bienvenida": true,
+      "antiLink": false,
+      "onlyLatinos": false,
+      "nsfw": false,
+      "expired": 0
+    },
+    "51918334204@s.whatsapp.net": {
+      "isBanned": false,
+      "bienvenida": true,
+      "antiLink": false,
+      "onlyLatinos": false,
+      "nsfw": false,
+      "expired": 0
+    },
+    "120363419452194738@newsletter": {
+      "isBanned": false,
+      "bienvenida": true,
+      "antiLink": false,
+      "onlyLatinos": false,
+      "nsfw": false,
+      "expired": 0
+    },
+    "120363393395688219@newsletter": {
+      "isBanned": false,
+      "bienvenida": true,
+      "antiLink": false,
+      "onlyLatinos": false,
+      "nsfw": false,
+      "expired": 0
+    },
+    "120363321030976219@newsletter": {
+      "isBanned": false,
+      "bienvenida": true,
+      "antiLink": false,
+      "onlyLatinos": false,
+      "nsfw": false,
+      "expired": 0
+    },
+    "120363401407591596@newsletter": {
+      "isBanned": false,
+      "bienvenida": true,
+      "antiLink": false,
+      "onlyLatinos": false,
+      "nsfw": false,
+      "expired": 0
+    },
+    "120363303874805009@newsletter": {
+      "isBanned": false,
+      "bienvenida": true,
+      "antiLink": false,
+      "onlyLatinos": false,
+      "nsfw": false,
+      "expired": 0
+    },
+    "5359585092@s.whatsapp.net": {
+      "isBanned": false,
+      "bienvenida": true,
+      "antiLink": false,
+      "onlyLatinos": false,
+      "nsfw": false,
+      "expired": 0
+    },
+    "120363418866396237@newsletter": {
+      "isBanned": false,
+      "bienvenida": true,
+      "antiLink": false,
+      "onlyLatinos": false,
+      "nsfw": false,
+      "expired": 0
+    },
+    "120363419288489219@g.us": {
+      "isBanned": false,
+      "bienvenida": true,
+      "antiLink": false,
+      "onlyLatinos": false,
+      "nsfw": false,
+      "expired": 0
+    },
+    "120363418033955596@g.us": {
+      "isBanned": false,
+      "bienvenida": true,
+      "antiLink": false,
+      "onlyLatinos": false,
+      "nsfw": false,
+      "expired": 0
+    },
+    "120363401056824285@g.us": {
+      "isBanned": false,
+      "bienvenida": true,
+      "antiLink": false,
+      "onlyLatinos": false,
+      "nsfw": false,
+      "expired": 0
+    },
+    "120363195789005326@g.us": {
+      "isBanned": false,
+      "bienvenida": true,
+      "antiLink": false,
+      "onlyLatinos": false,
+      "nsfw": false,
+      "expired": 0
+    },
+    "120363418760548471@newsletter": {
+      "isBanned": false,
+      "bienvenida": true,
+      "antiLink": false,
+      "onlyLatinos": false,
+      "nsfw": false,
+      "expired": 0
+    },
+    "120363400164071573@newsletter": {
+      "isBanned": false,
+      "bienvenida": true,
+      "antiLink": false,
+      "onlyLatinos": false,
+      "nsfw": false,
+      "expired": 0
+    },
+    "212657150247@s.whatsapp.net": {
+      "isBanned": false,
+      "bienvenida": true,
+      "antiLink": false,
+      "onlyLatinos": false,
+      "nsfw": false,
+      "expired": 0
+    },
+    "5217713552344@s.whatsapp.net": {
+      "isBanned": false,
+      "bienvenida": true,
+      "antiLink": false,
+      "onlyLatinos": false,
+      "nsfw": false,
+      "expired": 0
+    },
+    "120363397961673260@g.us": {
+      "isBanned": false,
+      "bienvenida": true,
+      "antiLink": false,
+      "onlyLatinos": false,
+      "nsfw": false,
+      "expired": 0
+    },
+    "120363419078491296@g.us": {
+      "isBanned": false,
+      "bienvenida": true,
+      "antiLink": false,
+      "onlyLatinos": false,
+      "nsfw": false,
+      "expired": 0
+    },
+    "5217712403750@s.whatsapp.net": {
+      "isBanned": false,
+      "bienvenida": true,
+      "antiLink": false,
+      "onlyLatinos": false,
+      "nsfw": false,
+      "expired": 0
+    },
+    "120363191696743581@newsletter": {
+      "isBanned": false,
+      "bienvenida": true,
+      "antiLink": false,
+      "onlyLatinos": false,
+      "nsfw": false,
+      "expired": 0
+    },
+    "5353388845@s.whatsapp.net": {
+      "isBanned": false,
+      "bienvenida": true,
+      "antiLink": false,
+      "onlyLatinos": false,
+      "nsfw": false,
+      "expired": 0
+    },
+    "120363166430780969@newsletter": {
+      "isBanned": false,
+      "bienvenida": true,
+      "antiLink": false,
+      "onlyLatinos": false,
+      "nsfw": false,
+      "expired": 0
+    },
+    "5217718604808@s.whatsapp.net": {
+      "isBanned": false,
+      "bienvenida": true,
+      "antiLink": false,
+      "onlyLatinos": false,
+      "nsfw": false,
+      "expired": 0
+    },
+    "120363171338053028@newsletter": {
+      "isBanned": false,
+      "bienvenida": true,
+      "antiLink": false,
+      "onlyLatinos": false,
+      "nsfw": false,
+      "expired": 0
+    },
+    "120363341662610602@g.us": {
+      "isBanned": false,
+      "bienvenida": true,
+      "antiLink": false,
+      "onlyLatinos": false,
+      "nsfw": false,
+      "expired": 0
+    },
+    "120363203805910750@newsletter": {
+      "isBanned": false,
+      "bienvenida": true,
+      "antiLink": false,
+      "onlyLatinos": false,
+      "nsfw": false,
+      "expired": 0
     }
   },
   "stats": {
@@ -18626,16 +21533,16 @@
       "lastSuccess": 1754153197540
     },
     "sub-bots.js": {
-      "total": 176,
-      "success": 176,
-      "last": 1754196916695,
-      "lastSuccess": 1754196916695
+      "total": 178,
+      "success": 178,
+      "last": 1754257822418,
+      "lastSuccess": 1754257822418
     },
     "main-menu.js": {
-      "total": 315,
-      "success": 315,
-      "last": 1754196902175,
-      "lastSuccess": 1754196902175
+      "total": 397,
+      "success": 397,
+      "last": 1754275858458,
+      "lastSuccess": 1754275858458
     },
     "promote.js": {
       "total": 1,
@@ -18656,22 +21563,22 @@
       "lastSuccess": 1754175491208
     },
     "top-gays.js": {
-      "total": 18,
-      "success": 18,
-      "last": 1754121304885,
-      "lastSuccess": 1754121304885
+      "total": 22,
+      "success": 22,
+      "last": 1754275357221,
+      "lastSuccess": 1754275357221
     },
     "serbot-serbot.js": {
-      "total": 104,
-      "success": 104,
-      "last": 1754192106000,
-      "lastSuccess": 1754192106000
+      "total": 122,
+      "success": 122,
+      "last": 1754274887943,
+      "lastSuccess": 1754274887943
     },
     "tag-all.js": {
-      "total": 84,
-      "success": 84,
-      "last": 1754200588064,
-      "lastSuccess": 1754200588064
+      "total": 89,
+      "success": 89,
+      "last": 1754261891209,
+      "lastSuccess": 1754261891209
     },
     "top-feos.js": {
       "total": 5,
@@ -18680,10 +21587,10 @@
       "lastSuccess": 1754088471271
     },
     "top-lindos.js": {
-      "total": 4,
-      "success": 4,
-      "last": 1754091972075,
-      "lastSuccess": 1754091972075
+      "total": 6,
+      "success": 6,
+      "last": 1754266297585,
+      "lastSuccess": 1754266297585
     },
     "top-burros.js": {
       "total": 6,
@@ -18704,16 +21611,16 @@
       "lastSuccess": 1753919758715
     },
     "top-pajeros.js": {
-      "total": 20,
-      "success": 20,
-      "last": 1754175662589,
-      "lastSuccess": 1754175662589
+      "total": 21,
+      "success": 21,
+      "last": 1754262230930,
+      "lastSuccess": 1754262230930
     },
     "stickers-sticker.js": {
-      "total": 29,
-      "success": 29,
-      "last": 1754191609474,
-      "lastSuccess": 1754191609474
+      "total": 55,
+      "success": 55,
+      "last": 1754275081201,
+      "lastSuccess": 1754275081201
     },
     "top-mancos.js": {
       "total": 5,
@@ -18740,10 +21647,10 @@
       "lastSuccess": 1753938490573
     },
     "set-botname.js": {
-      "total": 22,
-      "success": 22,
-      "last": 1754152332744,
-      "lastSuccess": 1754152332744
+      "total": 25,
+      "success": 25,
+      "last": 1754274337373,
+      "lastSuccess": 1754274337373
     },
     "set-botimg.js": {
       "total": 9,
@@ -18752,22 +21659,22 @@
       "lastSuccess": 1754152222389
     },
     "waifu-nsfw.js": {
-      "total": 20,
-      "success": 20,
-      "last": 1754147344598,
-      "lastSuccess": 1754147344598
+      "total": 44,
+      "success": 44,
+      "last": 1754275952787,
+      "lastSuccess": 1754275952787
     },
     "waifu.js": {
-      "total": 11,
-      "success": 11,
-      "last": 1754190268853,
-      "lastSuccess": 1754190268853
+      "total": 15,
+      "success": 15,
+      "last": 1754275376013,
+      "lastSuccess": 1754275376013
     },
     "play.js": {
-      "total": 83,
-      "success": 83,
-      "last": 1754196595278,
-      "lastSuccess": 1754196595278
+      "total": 94,
+      "success": 94,
+      "last": 1754274146933,
+      "lastSuccess": 1754274146933
     },
     "toimg.js": {
       "total": 31,
@@ -18782,10 +21689,10 @@
       "lastSuccess": 1754196625926
     },
     "perfiles-perfil.js": {
-      "total": 16,
-      "success": 16,
-      "last": 1754097458603,
-      "lastSuccess": 1754097458603
+      "total": 17,
+      "success": 17,
+      "last": 1754275226409,
+      "lastSuccess": 1754275226409
     },
     "economia-daily.js": {
       "total": 6,
@@ -18848,10 +21755,10 @@
       "lastSuccess": 1754188282176
     },
     "set-autoread.js": {
-      "total": 17,
-      "success": 17,
-      "last": 1754146434354,
-      "lastSuccess": 1754146434354
+      "total": 23,
+      "success": 23,
+      "last": 1754274933025,
+      "lastSuccess": 1754274933025
     },
     "tiktok-search.js": {
       "total": 22,
@@ -18872,16 +21779,16 @@
       "lastSuccess": 1754147321428
     },
     "buscador-yt.js": {
-      "total": 27,
-      "success": 27,
-      "last": 1754166293393,
-      "lastSuccess": 1754166293393
+      "total": 29,
+      "success": 29,
+      "last": 1754274003209,
+      "lastSuccess": 1754274003209
     },
     "gemini.js": {
-      "total": 38,
-      "success": 38,
-      "last": 1754176346131,
-      "lastSuccess": 1754176346131
+      "total": 40,
+      "success": 40,
+      "last": 1754262694737,
+      "lastSuccess": 1754262694737
     },
     "enhance-image.js": {
       "total": 5,
@@ -18920,10 +21827,10 @@
       "lastSuccess": 1754153436252
     },
     "get-id.js": {
-      "total": 25,
-      "success": 25,
-      "last": 1754165720507,
-      "lastSuccess": 1754165720507
+      "total": 26,
+      "success": 26,
+      "last": 1754234185584,
+      "lastSuccess": 1754234185584
     },
     "add-plugin.js": {
       "total": 40,
@@ -18950,10 +21857,10 @@
       "lastSuccess": 1754100638384
     },
     "owner-replugin.js": {
-      "total": 59,
-      "success": 59,
-      "last": 1754184355460,
-      "lastSuccess": 1754184355460
+      "total": 92,
+      "success": 92,
+      "last": 1754275366934,
+      "lastSuccess": 1754275366934
     },
     "verplugin.js": {
       "total": 3,
@@ -18962,10 +21869,10 @@
       "lastSuccess": 1754101124281
     },
     "owner-verplugin.js": {
-      "total": 23,
-      "success": 23,
-      "last": 1754182326048,
-      "lastSuccess": 1754182326048
+      "total": 24,
+      "success": 24,
+      "last": 1754257819409,
+      "lastSuccess": 1754257819409
     },
     "owner-reconnect-bots.js": {
       "total": 3,
@@ -18986,10 +21893,10 @@
       "lastSuccess": 1754159957657
     },
     "sticker-toimg.js": {
-      "total": 6,
-      "success": 6,
-      "last": 1754185652838,
-      "lastSuccess": 1754185652838
+      "total": 23,
+      "success": 23,
+      "last": 1754272966567,
+      "lastSuccess": 1754272966567
     },
     "main-menu2.js": {
       "total": 1,
@@ -19004,16 +21911,16 @@
       "lastSuccess": 1754161122838
     },
     "group-kick.js": {
-      "total": 19,
-      "success": 19,
-      "last": 1754202494504,
-      "lastSuccess": 1754202494504
+      "total": 20,
+      "success": 20,
+      "last": 1754260450247,
+      "lastSuccess": 1754260450247
     },
     "waifu2.js": {
-      "total": 2,
-      "success": 2,
-      "last": 1754196713033,
-      "lastSuccess": 1754196713033
+      "total": 4,
+      "success": 4,
+      "last": 1754275972250,
+      "lastSuccess": 1754275972250
     },
     "group-delete.js": {
       "total": 6,
@@ -19082,10 +21989,10 @@
       "lastSuccess": 1754182938855
     },
     "download-gitclone.js": {
-      "total": 13,
-      "success": 13,
-      "last": 1754185556276,
-      "lastSuccess": 1754185556276
+      "total": 14,
+      "success": 14,
+      "last": 1754273885249,
+      "lastSuccess": 1754273885249
     },
     "owner-botgroups.js": {
       "total": 4,
@@ -19226,6 +22133,18 @@
       "autoread": true
     },
     "573151491009@s.whatsapp.net": {
+      "self": false,
+      "autoread": true
+    },
+    "5212221587771@s.whatsapp.net": {
+      "self": false,
+      "autoread": true
+    },
+    "5491156668452@s.whatsapp.net": {
+      "self": false,
+      "autoread": true
+    },
+    "5217713552344@s.whatsapp.net": {
       "self": false,
       "autoread": true
     }

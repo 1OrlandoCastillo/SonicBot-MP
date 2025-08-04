@@ -22,15 +22,22 @@ let handler = async (m, { conn, usedPrefix, command }) => {
     const media = await quoted.download()
     if (!media) throw new Error('No se pudo descargar el sticker')
     
+   
+    if (!Buffer.isBuffer(media)) {
+      throw new Error('El sticker descargado no es un Buffer válido')
+    }
+    
     try {
-
       const imageUrl = await webp2png(media)
       if (!imageUrl) throw new Error('No se pudo convertir el sticker a imagen')
       
       await conn.sendMessage(m.chat, { 
         image: { url: imageUrl },
         caption: '',
-        mentions: [m.sender]
+        mentions: [m.sender],
+        contextInfo: {
+          ...rcanal.contextInfo
+        }
       }, { quoted: m })
     } catch (e) {
       console.error('Error al procesar el sticker:', e)
@@ -45,6 +52,6 @@ let handler = async (m, { conn, usedPrefix, command }) => {
 
 handler.help = ['#toimg']
 handler.tags = ['stickers']
-handler.command = ['toimg', 'aimg', 'stickeraimagen']
+handler.command = ['toimg', 'ss']
 
 export default handler

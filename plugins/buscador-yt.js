@@ -3,7 +3,10 @@ import { join } from 'path'
 import axios from 'axios'
 import { format } from 'util'
 
-const botActual = conn.user?.jid?.split('@')[0]?.replace(/\D/g, '')
+let handler = async (m, { conn, text, usedPrefix, command }) => {
+  if (!text) return m.reply(`《✧》Por favor, ingresa una busqueda.\n\nEjemplo: ${usedPrefix + command} BLACKPINK`)
+
+  const botActual = conn.user?.jid?.split('@')[0]?.replace(/\D/g, '') || 'default'
   const configPath = join('./Serbot', botActual, 'config.json')
 
   let nombreBot = global.namebot || 'KIYOMI MD'
@@ -14,9 +17,6 @@ const botActual = conn.user?.jid?.split('@')[0]?.replace(/\D/g, '')
       if (config.name) nombreBot = config.name
     } catch {}
   }
-
-let handler = async (m, { conn, text, usedPrefix, command }) => {
-  if (!text) return m.reply(`《✧》Por favor, ingresa una busqueda.\n\nEjemplo: ${usedPrefix + command} BLACKPINK`)
   
   try {
 
@@ -62,6 +62,6 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
   }
 }
 
-handler.command = /^yt(search|buscar)?$/i
+handler.command = ['yt', 'youtube']
 
 export default handler
