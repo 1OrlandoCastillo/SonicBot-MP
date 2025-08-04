@@ -58,7 +58,7 @@ const handler = async (m, { conn, text, usedPrefix, command }) => {
   }
 }
 
-handler.command = ['video', 'playvideo', 'ytvideo', 'ytv']
+handler.command = ['playvideo', 'ytvideo', 'ytv']
 handler.tags = ['video', 'descargas', 'entretenimiento']
 handler.help = ['video <nombre> - Descargar video desde YouTube']
 

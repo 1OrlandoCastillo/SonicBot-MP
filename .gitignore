@@ -1,6 +1,4 @@
 node_modules/
-storage/databases/
-*.database.json
 sessions/
 yarn.lock
 Serbot/

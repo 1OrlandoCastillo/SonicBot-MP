@@ -82,12 +82,13 @@ let handler = async (m, { conn, usedPrefix }) => {
 │   • ${usedPrefix}setbotimg
 │   • ${usedPrefix}setautoread
 │
-╰➺ ✧ *Economía* 𖤓
+╰➺ ✧ *Economía RPG* 𖤓
 │   • ${usedPrefix}balance
 │   • ${usedPrefix}bal
 │   • ${usedPrefix}coins
+│   • ${usedPrefix}transf @usuario <cantidad>
 │
-╰➺ ✧ *Perfiles* 𖤓
+╰➺ ✧ *Perfiles RPG* 𖤓
 │   • ${usedPrefix}profile
 │   • ${usedPrefix}setbirth <fecha>
 │   • ${usedPrefix}setdesc <descripción>
@@ -95,6 +96,12 @@ let handler = async (m, { conn, usedPrefix }) => {
 │   • ${usedPrefix}setgenre <hombre/mujer>
 │   • ${usedPrefix}birthdays
 │   • ${usedPrefix}allbirthdays
+│
+╰➺ ✧ *Juegos RPG* 𖤓
+│   • ${usedPrefix}dado
+│   • ${usedPrefix}daily / day
+│
+│
 │
 ╰➺ ✧ *Búsquedas* 𖤓
 │   • ${usedPrefix}google <búsqueda>
@@ -110,7 +117,7 @@ let handler = async (m, { conn, usedPrefix }) => {
 ╰➺ ✧ *Descargas* 𖤓
 │   • ${usedPrefix}play <búsqueda/url>
 │   • ${usedPrefix}play2 <búsqueda>
-│   • ${usedPrefix}video <búsqueda>
+│   • ${usedPrefix}ytvideo <búsqueda>
 │   • ${usedPrefix}aptoide <app>
 │   • ${usedPrefix}git <url>
 │
