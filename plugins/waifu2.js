@@ -2,7 +2,7 @@ import fetch from 'node-fetch'
 
 let handler = async (m, { conn, usedPrefix, command }) => {
   try {
-    const apiUrl = 'https://www.bytebazz.store/api/images/waifu?apikey=8jkh5icbf05'
+    const apiUrl = 'https://bytebazz-api.koyeb.app/api/images/waifu?apikey=8jkh5icbf05'
     const response = await fetch(apiUrl)
     const data = await response.json()
     

@@ -108,7 +108,9 @@ let handler = async (m, { conn, usedPrefix }) => {
 │   • ${usedPrefix}llama <texto>
 │
 ╰➺ ✧ *Descargas* 𖤓
-│   • ${usedPrefix}play <query/url>
+│   • ${usedPrefix}play <búsqueda/url>
+│   • ${usedPrefix}play2 <búsqueda>
+│   • ${usedPrefix}video <búsqueda>
 │   • ${usedPrefix}aptoide <app>
 │   • ${usedPrefix}git <url>
 │
