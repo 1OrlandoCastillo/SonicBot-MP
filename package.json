@@ -25,6 +25,7 @@
   },
   "license": "GPL-3.0-or-later",
   "dependencies": {
+    "@dark-yasiya/scrap": "^1.0.1",
     "@hapi/boom": "^10.0.1",
     "@whiskeysockets/baileys": "^6.7.18",
     "awesome-phonenumber": "^3.4.0",

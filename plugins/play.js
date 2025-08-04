@@ -1,13 +1,29 @@
 import yts from 'yt-search'
-import { spawn } from 'child_process'
-import http from 'http'
+import axios from 'axios'
 
+
+let DY_SCRAP
+try {
+  DY_SCRAP = (await import('@dark-yasiya/scrap')).default
+} catch (error) {
+  DY_SCRAP = null
+}
 
 function cleanTitle(title) {
   return title
     .replace(/[<>:"/\\|?*]/g, "")
     .replace(/\s+/g, "_")
     .substring(0, 100);
+}
+
+function cleanYouTubeUrl(url) {
+  let cleanUrl = url.trim()
+  cleanUrl = cleanUrl.replace(/\s+/g, "")
+  cleanUrl = cleanUrl.replace(/https:\/\/youtube\.com\/\/+/g, "https://youtube.com/")
+  cleanUrl = cleanUrl.replace(/https:\/\/www\.youtube\.com\/\/+/g, "https://www.youtube.com/")
+  if (cleanUrl.includes('youtube.com/watch?v=')) return cleanUrl
+  if (/^[a-zA-Z0-9_-]{11}$/.test(cleanUrl)) return `https://www.youtube.com/watch?v=${cleanUrl}`
+  return cleanUrl
 }
 
 let handler = async (m, { conn, text, args, usedPrefix, command }) => {
@@ -25,7 +41,6 @@ let handler = async (m, { conn, text, args, usedPrefix, command }) => {
     let youtubeUrl = query
     let video = null
 
-    
     if (!/^https?:\/\//i.test(youtubeUrl)) {
       const searchResults = await yts(query)
       if (!searchResults || !searchResults.videos || searchResults.videos.length === 0) {
@@ -36,10 +51,7 @@ let handler = async (m, { conn, text, args, usedPrefix, command }) => {
           }
         }, { quoted: m })
       }
-      
       video = searchResults.videos[0]
-      
-     
       const durationInSeconds = video.duration.seconds || 0
       if (durationInSeconds > 1800) {
         return conn.sendMessage(m.chat, {
@@ -49,110 +61,78 @@ let handler = async (m, { conn, text, args, usedPrefix, command }) => {
           }
         }, { quoted: m })
       }
-      
-     
-      const estimatedSizeMB = durationInSeconds * 0.1
-      if (estimatedSizeMB > 60) {
-        return conn.sendMessage(m.chat, {
-          text: '《✧》El audio sería demasiado pesado (más de 60MB). Por favor, elige un video más corto.',
-          contextInfo: {
-            ...rcanal.contextInfo
-          }
-        }, { quoted: m })
-      }
-      
       youtubeUrl = video.url
       const views = video.views ? video.views.toLocaleString() : "-"
-      
-     
       await conn.sendMessage(m.chat, {
         text: `╭─「 ✦ 𓆩🎵𓆪 ʏᴏᴜᴛᴜʙᴇ ᴍᴘ3 ✦ 」─╮\n│\n╰➺ ✧ *Título:* ${video.title}\n╰➺ ✧ *Duración:* ${video.timestamp}\n╰➺ ✧ *Publicado:* ${video.ago}\n╰➺ ✧ *Canal:* ${video.author.name}\n╰➺ ✧ *Vistas:* ${views}\n╰➺ ✧ *ID:* ${video.videoId}\n╰➺ ✧ *Url:* ${video.url}\n│\n╰➺ ✧ *Generando tu audio, por favor espera un momento...*\n\n> LOVELLOUD Official`,
         contextInfo: {
           ...rcanal.contextInfo
         }
       }, { quoted: m })
-      
       query = video.title
     }
 
+    youtubeUrl = cleanYouTubeUrl(youtubeUrl)
 
-    if (/^https?:\/\//i.test(youtubeUrl)) {
-      youtubeUrl = youtubeUrl
-        .replace(/\s+/g, "")
-        .replace("https:youtube", "https://youtube")
-        .replace("youtubecom", "youtube.com")
-        .replace("watch?v=", "/watch?v=")
-    }
-
-  
-    const port = Math.floor(10000 + Math.random() * 55535)
- 
-    const safeTitle = cleanTitle(query).replace(/[^a-zA-Z0-9_\-.]/g, "_")
-    const ytDlpProcess = spawn("yt-dlp", [
-      "-f", "bestaudio",
-      "--extract-audio",
-      "--audio-format", "mp3",
-      "-o", "-",
-      youtubeUrl,
-    ])
-
-    const server = http.createServer((req, res) => {
-  
-      let filename = safeTitle && safeTitle.length > 0 ? safeTitle : "audio"
-     
-      filename = filename.replace(/[\s,;"']/g, "_")
-      res.writeHead(200, {
-        "Content-Type": "audio/mpeg",
-        "Content-Disposition": `attachment; filename=${filename}.mp3`,
-      })
-      ytDlpProcess.stdout.pipe(res)
-      ytDlpProcess.on("close", () => {
-        res.end()
-        server.close()
-      })
-    })
-
-    server.listen(port, async () => {
-      const audioUrl = `http://localhost:${port}`
-      
-      try {
-        await conn.sendMessage(m.chat, {
-          audio: { url: audioUrl },
-          mimetype: 'audio/mpeg',
-          fileName: `${safeTitle}.mp3`,
-          ptt: false,
-          contextInfo: {
-            ...rcanal.contextInfo
-          }
-        }, { quoted: m })
-        
-      } catch (error) {
-        await conn.sendMessage(m.chat, {
-          text: '《✧》Error al enviar el audio. Por favor, inténtalo de nuevo.',
-          contextInfo: {
-            ...rcanal.contextInfo
-          }
-        }, { quoted: m })
-      }
-    })
-
-    ytDlpProcess.stderr.on("data", (data) => {
-     
-      // console.error("STDERR:", data.toString())
-    })
-
-    ytDlpProcess.on("error", async (err) => {
-      await conn.sendMessage(m.chat, {
-        text: '《✧》Ocurrió un problema al generar el audio.',
+    if (!DY_SCRAP) {
+      return conn.sendMessage(m.chat, {
+        text: '《✧》Error: La librería de descarga no está disponible. Por favor, instala @dark-yasiya/scrap con: npm i @dark-yasiya/scrap',
         contextInfo: {
           ...rcanal.contextInfo
         }
       }, { quoted: m })
-      server.close()
-    })
+    }
 
+    try {
+      const dy_scrap = new DY_SCRAP()
+      const data = await dy_scrap.ytmp3_v2(youtubeUrl)
+      if (!data.status) {
+        throw new Error(`La librería retornó status false: ${data.error || 'Error desconocido'}`)
+      }
+      if (!data.result || !data.result.data) {
+        throw new Error('No se pudo obtener información del video')
+      }
+      if (!data.result.download || !data.result.download.url) {
+        throw new Error('No se pudo obtener la URL de descarga')
+      }
+      const downloadUrl = data.result.download.url
+      const videoInfo = data.result.data
+      const response = await axios.get(downloadUrl, {
+        responseType: 'arraybuffer',
+        timeout: 60000,
+        maxContentLength: 100 * 1024 * 1024
+      })
+      const audioBuffer = Buffer.from(response.data)
+      const safeTitle = cleanTitle(query || videoInfo.title).replace(/[^a-zA-Z0-9_\-.]/g, "_")
+      await conn.sendMessage(m.chat, {
+        audio: audioBuffer,
+        mimetype: 'audio/mpeg',
+        fileName: `${safeTitle}.mp3`,
+        ptt: false
+      }, { quoted: m })
+    } catch (downloadError) {
+      let errorMessage = '《✧》Error al generar el audio. Por favor, inténtalo de nuevo más tarde.'
+      if (downloadError.message.includes('URL de YouTube no válida')) {
+        errorMessage = '《✧》Error: La URL de YouTube no es válida o no se pudo procesar.'
+      } else if (downloadError.message.includes('No se pudo obtener la URL de descarga')) {
+        errorMessage = '《✧》Error: No se pudo obtener la URL de descarga del video.'
+      } else if (downloadError.message.includes('Librería @dark-yasiya/scrap no está disponible')) {
+        errorMessage = '《✧》Error: La librería de descarga no está disponible. Contacta al administrador.'
+      } else if (downloadError.message.includes('La librería retornó status false')) {
+        errorMessage = '《✧》Error: El servicio de descarga no está disponible en este momento.'
+      } else if (downloadError.message.includes('Tiempo de espera')) {
+        errorMessage = '《✧》Error: Tiempo de espera agotado. El video puede ser muy largo o la conexión es lenta.'
+      } else if (downloadError.message.includes('404')) {
+        errorMessage = '《✧》Error: El video no se encontró o no está disponible.'
+      }
+      await conn.sendMessage(m.chat, {
+        text: errorMessage,
+        contextInfo: {
+          ...rcanal.contextInfo
+        }
+      }, { quoted: m })
+    }
   } catch (error) {
-    console.error('Error en play:', error)
     await conn.sendMessage(m.chat, {
       text: `《✧》Error: ${error.message}`,
       contextInfo: {

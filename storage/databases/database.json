@@ -1,7 +1,7 @@
 {
   "users": {
     "51958333972@s.whatsapp.net": {
-      "exp": 1205,
+      "exp": 1238,
       "limit": 10,
       "premium": false,
       "premiumTime": 0,
@@ -122,7 +122,7 @@
       "bank": 0
     },
     "114263544885392@lid": {
-      "exp": 71,
+      "exp": 3,
       "limit": 10,
       "premium": false,
       "premiumTime": 0,
@@ -521,7 +521,7 @@
       "coins": 0
     },
     "51901437507@s.whatsapp.net": {
-      "exp": 82,
+      "exp": 221,
       "limit": 10,
       "premium": false,
       "premiumTime": 0,
@@ -6189,7 +6189,7 @@
       "coins": 0
     },
     "51900244641@s.whatsapp.net": {
-      "exp": 154,
+      "exp": 203,
       "limit": 10,
       "registered": false,
       "name": "AXR",
@@ -6198,7 +6198,7 @@
       "banned": false,
       "level": 0,
       "coins": 0,
-      "Subs": 1754274887943
+      "Subs": 1754326724186
     },
     "52081394188413@lid": {
       "exp": 19,
@@ -6223,8 +6223,8 @@
       "coins": 0
     },
     "251504762044604@lid": {
-      "exp": null,
-      "limit": null,
+      "exp": 14,
+      "limit": 10,
       "registered": false,
       "name": "𝐀𝐍𝐓𝐎𝐍𝐘👾ツ",
       "age": -1,
@@ -6234,7 +6234,7 @@
       "coins": 0
     },
     "210033111494798@lid": {
-      "exp": 21,
+      "exp": 22,
       "limit": 10,
       "registered": false,
       "name": "Messi 10",
@@ -6597,7 +6597,7 @@
       "coins": 0
     },
     "5491135968079@s.whatsapp.net": {
-      "exp": 26,
+      "exp": 15,
       "limit": 10,
       "registered": false,
       "name": "HEYTAN RODRIGO 🥋",
@@ -6794,7 +6794,7 @@
       "coins": 0
     },
     "110089205772325@lid": {
-      "exp": 56,
+      "exp": 60,
       "limit": 10,
       "registered": false,
       "name": "HEYTAN RODRIGO 🥋",
@@ -10241,7 +10241,7 @@
       "coins": 0
     },
     "77507600642096@lid": {
-      "exp": 39,
+      "exp": 56,
       "limit": 10,
       "registered": false,
       "name": "Anna Yamada",
@@ -22914,10 +22914,10 @@
       "lastSuccess": 1754285495585
     },
     "main-menu.js": {
-      "total": 433,
-      "success": 433,
-      "last": 1754288355692,
-      "lastSuccess": 1754288355692
+      "total": 435,
+      "success": 435,
+      "last": 1754324704550,
+      "lastSuccess": 1754324704550
     },
     "promote.js": {
       "total": 1,
@@ -22944,10 +22944,10 @@
       "lastSuccess": 1754284413772
     },
     "serbot-serbot.js": {
-      "total": 133,
-      "success": 133,
-      "last": 1754288449811,
-      "lastSuccess": 1754288449811
+      "total": 134,
+      "success": 134,
+      "last": 1754326724187,
+      "lastSuccess": 1754326724187
     },
     "tag-all.js": {
       "total": 107,
@@ -23046,10 +23046,10 @@
       "lastSuccess": 1754281152680
     },
     "play.js": {
-      "total": 102,
-      "success": 102,
-      "last": 1754285429757,
-      "lastSuccess": 1754285429757
+      "total": 123,
+      "success": 123,
+      "last": 1754326703314,
+      "lastSuccess": 1754326703314
     },
     "toimg.js": {
       "total": 31,
@@ -23172,10 +23172,10 @@
       "lastSuccess": 1754030046509
     },
     "play2.js": {
-      "total": 19,
-      "success": 19,
-      "last": 1754285442247,
-      "lastSuccess": 1754285442247
+      "total": 20,
+      "success": 20,
+      "last": 1754326148316,
+      "lastSuccess": 1754326148316
     },
     "catbox-upload.js": {
       "total": 5,
@@ -23202,10 +23202,10 @@
       "lastSuccess": 1754153436252
     },
     "get-id.js": {
-      "total": 26,
-      "success": 26,
-      "last": 1754234185584,
-      "lastSuccess": 1754234185584
+      "total": 27,
+      "success": 27,
+      "last": 1754326802083,
+      "lastSuccess": 1754326802083
     },
     "add-plugin.js": {
       "total": 40,
@@ -23470,6 +23470,12 @@
       "success": 3,
       "last": 1754284237377,
       "lastSuccess": 1754284237377
+    },
+    "test-direct.js": {
+      "total": 1,
+      "success": 1,
+      "last": 1754325314472,
+      "lastSuccess": 1754325314472
     }
   },
   "msgs": {},
