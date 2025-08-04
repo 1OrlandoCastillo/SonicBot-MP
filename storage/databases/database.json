@@ -22,7 +22,7 @@
       "currentWork": ""
     },
     "78186205446362@lid": {
-      "exp": 1199,
+      "exp": 1212,
       "limit": 10,
       "premium": false,
       "premiumTime": 0,
@@ -520,7 +520,7 @@
       "coins": 0
     },
     "51901437507@s.whatsapp.net": {
-      "exp": 136,
+      "exp": 145,
       "limit": 10,
       "premium": false,
       "premiumTime": 0,
@@ -18055,7 +18055,7 @@
       "coins": 0
     },
     "231005369724946@lid": {
-      "exp": 268,
+      "exp": 288,
       "limit": 10,
       "registered": false,
       "name": "Life",
@@ -18066,7 +18066,7 @@
       "coins": 0
     },
     "3548179873796@lid": {
-      "exp": 335,
+      "exp": 425,
       "limit": 10,
       "registered": false,
       "name": "Andres ivan",
@@ -18130,7 +18130,7 @@
       "coins": 0
     },
     "120363171338053028@newsletter": {
-      "exp": 4,
+      "exp": 13,
       "limit": 10,
       "registered": false,
       "age": -1,
@@ -18151,7 +18151,38 @@
       "coins": 0
     },
     "120363203805910750@newsletter": {
-      "exp": 7,
+      "exp": 9,
+      "limit": 10,
+      "registered": false,
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "5219961373734@s.whatsapp.net": {
+      "exp": 6,
+      "limit": 10,
+      "registered": false,
+      "name": "EMMANUEL,❤️‍🩹💓💗💗💗",
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "120363182988433568@newsletter": {
+      "exp": 3,
+      "limit": 10,
+      "registered": false,
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "120363262205255467@newsletter": {
+      "exp": 3,
       "limit": 10,
       "registered": false,
       "age": -1,
@@ -21517,6 +21548,22 @@
       "onlyLatinos": false,
       "nsfw": false,
       "expired": 0
+    },
+    "120363182988433568@newsletter": {
+      "isBanned": false,
+      "bienvenida": true,
+      "antiLink": false,
+      "onlyLatinos": false,
+      "nsfw": false,
+      "expired": 0
+    },
+    "120363262205255467@newsletter": {
+      "isBanned": false,
+      "bienvenida": true,
+      "antiLink": false,
+      "onlyLatinos": false,
+      "nsfw": false,
+      "expired": 0
     }
   },
   "stats": {
@@ -21659,16 +21706,16 @@
       "lastSuccess": 1754152222389
     },
     "waifu-nsfw.js": {
-      "total": 44,
-      "success": 44,
-      "last": 1754275952787,
-      "lastSuccess": 1754275952787
+      "total": 49,
+      "success": 49,
+      "last": 1754276371182,
+      "lastSuccess": 1754276371182
     },
     "waifu.js": {
-      "total": 15,
-      "success": 15,
-      "last": 1754275376013,
-      "lastSuccess": 1754275376013
+      "total": 16,
+      "success": 16,
+      "last": 1754276295566,
+      "lastSuccess": 1754276295566
     },
     "play.js": {
       "total": 94,
