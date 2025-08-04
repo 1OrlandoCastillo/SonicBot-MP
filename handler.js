@@ -264,7 +264,38 @@ for (let plugin of processedPlugins) {
 }
 
 
-if (m.text && !commandExecuted) {
+
+
+const sessionPlugins = ['xnxx.js', 'hentai.js', 'xvideos.js']
+
+for (let plugin of processedPlugins) {
+  if (plugin.handler && typeof plugin.handler.before === 'function' && sessionPlugins.includes(plugin.name)) {
+    try {
+      await plugin.handler.before.call(this, m, {
+        conn: this,
+        participants,
+        groupMetadata,
+        user,
+        bot,
+        isROwner,
+        isOwner,
+        isRAdmin,
+        isAdmin,
+        isBotAdmin,
+        isPrems,
+        chatUpdate,
+        __dirname: ___dirname,
+        __filename
+      })
+      
+      if (m.commandExecuted) break
+    } catch (e) {
+      console.error(`Error en handler.before de ${plugin.name}:`, e)
+    }
+  }
+}
+
+if (m.text && !commandExecuted && !m.commandExecuted) {
   
   const str2Regex = str => str.replace(/[|\\{}()[\]^$+*?.]/g, '\\$&')
   let _prefix = conn.prefix ? conn.prefix : global.prefix

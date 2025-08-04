@@ -143,6 +143,12 @@ let handler = async (m, { conn, usedPrefix }) => {
 │   • ${usedPrefix}waifu
 │   • ${usedPrefix}waifu2
 │   • ${usedPrefix}neko
+│   • ${usedPrefix}xnxx <url>
+│   • ${usedPrefix}xnxx <búsqueda>
+│   • ${usedPrefix}hentai <url>
+│   • ${usedPrefix}hentai <búsqueda>
+│   • ${usedPrefix}xvideos <url>
+│   • ${usedPrefix}xvideos <búsqueda>
 │
 ╰➺ ✧ *Información* 𖤓
 │   • ${usedPrefix}id
