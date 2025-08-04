@@ -521,7 +521,7 @@
       "coins": 0
     },
     "51901437507@s.whatsapp.net": {
-      "exp": 81,
+      "exp": 82,
       "limit": 10,
       "premium": false,
       "premiumTime": 0,
@@ -6189,7 +6189,7 @@
       "coins": 0
     },
     "51900244641@s.whatsapp.net": {
-      "exp": 147,
+      "exp": 154,
       "limit": 10,
       "registered": false,
       "name": "AXR",
@@ -18093,7 +18093,7 @@
       "coins": 0
     },
     "5353388845@s.whatsapp.net": {
-      "exp": 158,
+      "exp": 167,
       "limit": 10,
       "registered": false,
       "name": "♡★Ashley★♡",
@@ -19336,9 +19336,31 @@
       "coins": 0
     },
     "120363419372146370@newsletter": {
-      "exp": 17,
+      "exp": 62,
       "limit": 10,
       "registered": false,
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "195258323337429@lid": {
+      "exp": 1,
+      "limit": 10,
+      "registered": false,
+      "name": "Jharmin",
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "573235171523@s.whatsapp.net": {
+      "exp": 1,
+      "limit": 10,
+      "registered": false,
+      "name": "Jharmin",
       "age": -1,
       "regTime": -1,
       "banned": false,
