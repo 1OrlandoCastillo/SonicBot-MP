@@ -2,5 +2,5 @@ node_modules/
 storage/databases/
 *.database.json
 sessions/
-package-lock.json
+yarn.lock
 Serbot/
