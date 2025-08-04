@@ -35,8 +35,7 @@ let handler = async (m, { conn, text, args, usedPrefix, command }) => {
 ╰➺ ✧ *No se encontró el usuario*
 ╰➺ ✧ *Verifica el username*
 ╰➺ ✧ *O el perfil puede ser privado*
-│
-╰────────────────╯
+
 > LOVELLOUD Official`,
         contextInfo: {
           ...rcanal.contextInfo
@@ -73,8 +72,7 @@ let handler = async (m, { conn, text, args, usedPrefix, command }) => {
 │
 ╰➺ ✧ *Enlaces:*
 ╰➺ ✧ • [Website] (${userData.website})
-│
-╰────────────────╯
+
 > LOVELLOUD Official`
 
    
