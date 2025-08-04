@@ -1,7 +1,7 @@
 {
   "users": {
     "51958333972@s.whatsapp.net": {
-      "exp": 1110,
+      "exp": 1181,
       "limit": 10,
       "premium": false,
       "premiumTime": 0,
@@ -122,7 +122,7 @@
       "bank": 0
     },
     "114263544885392@lid": {
-      "exp": 7,
+      "exp": 12,
       "limit": 10,
       "premium": false,
       "premiumTime": 0,
@@ -179,7 +179,7 @@
       "currentWork": ""
     },
     "58540639154396@lid": {
-      "exp": 80,
+      "exp": 94,
       "limit": 10,
       "premium": false,
       "premiumTime": 0,
@@ -456,7 +456,7 @@
       "coins": 0
     },
     "177052057620554@lid": {
-      "exp": 235,
+      "exp": 246,
       "limit": 10,
       "premium": false,
       "premiumTime": 0,
@@ -521,7 +521,7 @@
       "coins": 0
     },
     "51901437507@s.whatsapp.net": {
-      "exp": 48,
+      "exp": 71,
       "limit": 10,
       "premium": false,
       "premiumTime": 0,
@@ -975,7 +975,7 @@
       "coins": 0
     },
     "5219991034993@s.whatsapp.net": {
-      "exp": 456,
+      "exp": 483,
       "limit": 10,
       "premium": false,
       "premiumTime": 0,
@@ -2772,7 +2772,7 @@
       "bank": 0
     },
     "584144743768@s.whatsapp.net": {
-      "exp": 145,
+      "exp": 211,
       "limit": 10,
       "premium": false,
       "premiumTime": 0,
@@ -8339,7 +8339,7 @@
       "coins": 0
     },
     "77305737158823@lid": {
-      "exp": 7,
+      "exp": 10,
       "limit": 10,
       "registered": false,
       "name": "Eve",
@@ -18037,7 +18037,7 @@
       "coins": 0
     },
     "5217713552344@s.whatsapp.net": {
-      "exp": 20,
+      "exp": 76,
       "limit": 10,
       "registered": false,
       "name": "Andres ivan",
@@ -18071,7 +18071,7 @@
       "coins": 0
     },
     "3548179873796@lid": {
-      "exp": 26,
+      "exp": 40,
       "limit": 10,
       "registered": false,
       "name": "Andres ivan",
@@ -18092,7 +18092,7 @@
       "coins": 0
     },
     "5353388845@s.whatsapp.net": {
-      "exp": 127,
+      "exp": 158,
       "limit": 10,
       "registered": false,
       "name": "♡★Ashley★♡",
@@ -18252,7 +18252,7 @@
       "coins": 0
     },
     "120363164761280493@newsletter": {
-      "exp": 41,
+      "exp": 42,
       "limit": 10,
       "registered": false,
       "age": -1,
@@ -18294,7 +18294,7 @@
       "coins": 0
     },
     "5212713046152@s.whatsapp.net": {
-      "exp": 73,
+      "exp": 98,
       "limit": 10,
       "registered": false,
       "name": "𝕁𝔾 𝔸𝕣𝕞𝕖𝕟𝕥𝕒",
@@ -18317,7 +18317,7 @@
       "coins": 0
     },
     "5216144704787@s.whatsapp.net": {
-      "exp": 73,
+      "exp": 84,
       "limit": 10,
       "registered": false,
       "name": "Jennifer",
@@ -18350,7 +18350,7 @@
       "coins": 0
     },
     "5216961162333@s.whatsapp.net": {
-      "exp": 13,
+      "exp": 27,
       "limit": 10,
       "registered": false,
       "name": "Alan",
@@ -18394,7 +18394,7 @@
       "coins": 0
     },
     "44938259603619@lid": {
-      "exp": 169,
+      "exp": 244,
       "limit": 10,
       "registered": false,
       "name": "𝚈𝚘𝚔𝚘𝚜𝚘",
@@ -18438,7 +18438,7 @@
       "coins": 0
     },
     "275474957791378@lid": {
-      "exp": 8,
+      "exp": 30,
       "limit": 10,
       "registered": false,
       "name": "💗",
@@ -18571,7 +18571,7 @@
       "coins": 0
     },
     "5212311290111@s.whatsapp.net": {
-      "exp": 1499,
+      "exp": 1566,
       "limit": 10,
       "registered": false,
       "name": "elpro",
@@ -18605,7 +18605,7 @@
       "coins": 0
     },
     "51944967910@s.whatsapp.net": {
-      "exp": 130,
+      "exp": 10,
       "limit": 10,
       "registered": false,
       "name": "MIAW",
@@ -18704,7 +18704,7 @@
       "coins": 0
     },
     "51938738324@s.whatsapp.net": {
-      "exp": 5,
+      "exp": 12,
       "limit": 10,
       "registered": false,
       "name": "【𝐃𝕦𝕣𝕒𝐌𝕖𝕟𝕥𝐄𓃗",
@@ -18784,8 +18784,8 @@
       "banned": true
     },
     "5491121631403@s.whatsapp.net": {
-      "exp": 4,
-      "limit": 10,
+      "exp": null,
+      "limit": null,
       "registered": false,
       "name": "...",
       "age": -1,
@@ -18839,7 +18839,7 @@
       "coins": 0
     },
     "235201586294849@lid": {
-      "exp": 30,
+      "exp": 88,
       "limit": 10,
       "registered": false,
       "name": "Amir",
@@ -18850,7 +18850,7 @@
       "coins": 0
     },
     "113863878012982@lid": {
-      "exp": 117,
+      "exp": 154,
       "limit": 10,
       "registered": false,
       "name": "Eligio Alejandro",
@@ -18883,7 +18883,7 @@
       "coins": 0
     },
     "5219711049009@s.whatsapp.net": {
-      "exp": 377,
+      "exp": 635,
       "limit": 10,
       "registered": false,
       "name": "JLVS",
@@ -18971,7 +18971,7 @@
       "coins": 0
     },
     "191199679877250@lid": {
-      "exp": 27,
+      "exp": 35,
       "limit": 10,
       "registered": false,
       "name": "Jennifer",
@@ -19004,7 +19004,7 @@
       "coins": 0
     },
     "5214461072228@s.whatsapp.net": {
-      "exp": 281,
+      "exp": 309,
       "limit": 10,
       "registered": false,
       "name": "José",
@@ -19052,6 +19052,50 @@
       "limit": 10,
       "registered": false,
       "name": "wednesday mouse",
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "5215639474197@s.whatsapp.net": {
+      "exp": 67,
+      "limit": 10,
+      "registered": false,
+      "name": "KeishaCat",
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "185555925102759@lid": {
+      "exp": 11,
+      "limit": 10,
+      "registered": false,
+      "name": "dile a Emilio q me pague",
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "5215522774081@s.whatsapp.net": {
+      "exp": 29,
+      "limit": 10,
+      "registered": false,
+      "name": "Joselin",
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "5355360520@s.whatsapp.net": {
+      "exp": 2,
+      "limit": 10,
+      "registered": false,
+      "name": "⁺‧₊˚ ཐི愛❦☬࿅ʀǟʏռօʟ࿅☬❦愛ཋྀ ˚",
       "age": -1,
       "regTime": -1,
       "banned": false,
@@ -22565,10 +22609,10 @@
       "lastSuccess": 1754283634172
     },
     "main-menu.js": {
-      "total": 429,
-      "success": 429,
-      "last": 1754283872530,
-      "lastSuccess": 1754283872530
+      "total": 430,
+      "success": 430,
+      "last": 1754284247106,
+      "lastSuccess": 1754284247106
     },
     "promote.js": {
       "total": 1,
@@ -22589,10 +22633,10 @@
       "lastSuccess": 1754276540241
     },
     "top-gays.js": {
-      "total": 26,
-      "success": 26,
-      "last": 1754276649551,
-      "lastSuccess": 1754276649551
+      "total": 28,
+      "success": 28,
+      "last": 1754284413772,
+      "lastSuccess": 1754284413772
     },
     "serbot-serbot.js": {
       "total": 132,
@@ -22601,10 +22645,10 @@
       "lastSuccess": 1754281748785
     },
     "tag-all.js": {
-      "total": 105,
-      "success": 105,
-      "last": 1754283131398,
-      "lastSuccess": 1754283131398
+      "total": 107,
+      "success": 107,
+      "last": 1754284529404,
+      "lastSuccess": 1754284529404
     },
     "top-feos.js": {
       "total": 9,
@@ -22667,10 +22711,10 @@
       "lastSuccess": 1753922905550
     },
     "economia-coins.js": {
-      "total": 24,
-      "success": 24,
-      "last": 1754281089331,
-      "lastSuccess": 1754281089331
+      "total": 26,
+      "success": 26,
+      "last": 1754284357310,
+      "lastSuccess": 1754284357310
     },
     "set-botname.js": {
       "total": 25,
@@ -22955,10 +22999,10 @@
       "lastSuccess": 1754151864630
     },
     "group-close.js": {
-      "total": 17,
-      "success": 17,
-      "last": 1754191550219,
-      "lastSuccess": 1754191550219
+      "total": 19,
+      "success": 19,
+      "last": 1754284541186,
+      "lastSuccess": 1754284541186
     },
     "group-demote.js": {
       "total": 6,
@@ -23003,10 +23047,10 @@
       "lastSuccess": 1754169120169
     },
     "owner-subme.js": {
-      "total": 3,
-      "success": 3,
-      "last": 1754170397676,
-      "lastSuccess": 1754170397676
+      "total": 5,
+      "success": 5,
+      "last": 1754284425169,
+      "lastSuccess": 1754284425169
     },
     "main-creador.js": {
       "total": 8,
@@ -23117,10 +23161,10 @@
       "lastSuccess": 1754282527052
     },
     "video.js": {
-      "total": 1,
-      "success": 1,
-      "last": 1754283523077,
-      "lastSuccess": 1754283523077
+      "total": 3,
+      "success": 3,
+      "last": 1754284237377,
+      "lastSuccess": 1754284237377
     }
   },
   "msgs": {},

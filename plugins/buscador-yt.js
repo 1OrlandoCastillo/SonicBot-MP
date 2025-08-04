@@ -3,15 +3,13 @@ import { join } from 'path'
 import axios from 'axios'
 
 let handler = async (m, { conn, text, usedPrefix, command }) => {
-<<<<<<< HEAD
+
   if (!text) return m.reply(`《✧》Por favor, ingresa una busqueda.\n\nEjemplo: ${usedPrefix + command} BLACKPINK`)
 
   const botActual = conn.user?.jid?.split('@')[0]?.replace(/\D/g, '') || 'default'
-=======
-  if (!text) return m.reply(`《✧》Por favor, ingresa una búsqueda.\n\nEjemplo: ${usedPrefix + command} BLACKPINK`)
 
-  const botActual = conn.user?.jid?.split('@')[0]?.replace(/\D/g, '')
->>>>>>> 54fe338e641615dfbd8dd66f653005edc6218869
+
+
   const configPath = join('./Serbot', botActual, 'config.json')
 
   let nombreBot = global.namebot || 'KIYOMI MD'
@@ -22,11 +20,8 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
       if (config.name) nombreBot = config.name
     } catch {}
   }
-<<<<<<< HEAD
   
-=======
 
->>>>>>> 54fe338e641615dfbd8dd66f653005edc6218869
   try {
     const searchQuery = encodeURIComponent(text)
     const apiUrl = `https://bytebazz-api.koyeb.app/api/busqueda/youtube?query=${searchQuery}&apikey=8jkh5icbf05`
