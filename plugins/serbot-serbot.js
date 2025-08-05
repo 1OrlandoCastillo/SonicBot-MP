@@ -117,8 +117,7 @@ export async function AYBot(options) {
 ╰➺ ✧ *Ejemplos:*
 ╰➺ ✧ .code - Para código de vinculación
 ╰➺ ✧ .qr - Para código QR
-│
-╰────────────────╯
+
 > LOVELLOUD Official`,
         contextInfo: {
           ...rcanal.contextInfo
@@ -158,7 +157,7 @@ export async function AYBot(options) {
       },
       msgRetry,
       msgRetryCache,
-      browser: mcode ? ['Ubuntu', 'Chrome', '110.0.5585.95'] : ['Anya Forger (Sub Bot)', 'Chrome', '2.0.0'],
+      browser: mcode ? ['Ubuntu', 'Chrome', '110.0.5585.95'] : ['Kiyomi MD (Sub Bot)', 'Chrome', '2.0.0'],
       version,
       generateHighQualityLinkPreview: true
     }
@@ -185,9 +184,8 @@ export async function AYBot(options) {
 │
 ╰➺ ✧ *Nota:*
 ╰➺ ✧ Este código QR caduca en 30 segundos
-╰➺ ✧ Escanea con calma y estilo
-│
-╰────────────────╯
+╰➺ ✧ Escanea con calma.
+
 > LOVELLOUD Official`
 
   let sendQR = await conn.sendFile(m.chat, await qrcode.toDataURL(qr, { scale: 8 }), "qrcode.png", txt, m, null, rcanal)
@@ -218,8 +216,7 @@ export async function AYBot(options) {
 ╰➺ ✧ Este código es temporal
 ╰➺ ✧ Válido solo para tu número
 ╰➺ ✧ Caduca en 30 segundos
-│
-╰────────────────╯
+
 > LOVELLOUD Official`
         
         let sendTxt = await conn.sendMessage(m.chat, {
@@ -336,13 +333,10 @@ export async function AYBot(options) {
 ╰➺ ✧ *Estado:* Conectado ✅
 ╰➺ ✧ *Auto-leer:* Desactivado ❌
 │
-╰────────────────╯
-│
 ╰➺ ✧ *Comandos de configuración:*
 ╰➺ ✧ *.setautoread on* - Activar auto-leer
 ╰➺ ✧ *.setautoread off* - Desactivar auto-leer
-│
-╰────────────────╯
+
 > LOVELLOUD Official`
 
           

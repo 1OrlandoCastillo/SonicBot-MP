@@ -211,6 +211,12 @@ for (let plugin of processedPlugins) {
 
   if (isMatchCommand) {
     
+    
+    const allowedPrivateCommands = ['qr', 'code', 'setbotname', 'setbotimg', 'setautoread']
+    if (!m.isGroup && !allowedPrivateCommands.includes(command) && !isOwner) {
+      return 
+    }
+    
     if (m.isGroup && global.db.data.botGroups && global.db.data.botGroups[m.chat] === false) {
       const alwaysAllowedCommands = ['grupo']
       if (!alwaysAllowedCommands.includes(command) && !isOwner) {
@@ -265,6 +271,9 @@ for (let plugin of processedPlugins) {
 
 
 if (m.text && !commandExecuted) {
+  
+  
+  if (!m.isGroup) return
   
   const str2Regex = str => str.replace(/[|\\{}()[\]^$+*?.]/g, '\\$&')
   let _prefix = conn.prefix ? conn.prefix : global.prefix

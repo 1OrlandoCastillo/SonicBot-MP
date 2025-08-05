@@ -89,13 +89,17 @@ let handler = async (m, { conn, usedPrefix }) => {
 │   • ${usedPrefix}transf @usuario <cantidad>
 │
 ╰➺ ✧ *Perfiles RPG* 𖤓
-│   • ${usedPrefix}profile
+│   • ${usedPrefix}perfil
 │   • ${usedPrefix}setbirth <fecha>
 │   • ${usedPrefix}setdesc <descripción>
 │   • ${usedPrefix}setfav <personaje>
 │   • ${usedPrefix}setgenre <hombre/mujer>
 │   • ${usedPrefix}birthdays
-│   • ${usedPrefix}allbirthdays
+│   • ${usedPrefix}setname <nombre>
+│
+╰➺ ✧ *Tops RPG* 𖤓
+│   • ${usedPrefix}topcoins
+│
 │
 ╰➺ ✧ *Juegos RPG* 𖤓
 │   • ${usedPrefix}dado
