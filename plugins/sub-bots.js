@@ -194,8 +194,6 @@ let handler = async (m, { conn }) => {
   txt += `╭─「 ✦ 𓆩📈𓆪 ʀᴇsᴜᴍᴇɴ ✦ 」─╮\n`
   txt += `│\n`
   txt += `╰➺ ✧ *Bots Totales:* ${totalBots}\n`
-  txt += `│\n`
-  txt += `╰────────────────╯\n`
   txt += `\n> LOVELLOUD Official`
 
   let imgBot = './storage/img/menu.jpg'

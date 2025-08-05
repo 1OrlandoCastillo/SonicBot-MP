@@ -139,17 +139,12 @@ let handler = async (m, { conn, usedPrefix }) => {
 │   • ${usedPrefix}open
 │   • ${usedPrefix}close
 │   • ${usedPrefix}delete
-│   • ${usedPrefix}adg <numero>
 │   • ${usedPrefix}grupo on/off
 │   • ${usedPrefix}antilink on/off
 │   • ${usedPrefix}antiimg on/off
 │   • ${usedPrefix}antiaudio on/off
 │   • ${usedPrefix}antivideo on/off
 │   • ${usedPrefix}antisticker on/off
-│   • ${usedPrefix}antispam on/off
-│   • ${usedPrefix}anticontact on/off
-│   • ${usedPrefix}antimention on/off
-│   • ${usedPrefix}anticaracter on/off <limite>
 │
 ╰➺ ✧ *Diversión* 𖤓
 │   • ${usedPrefix}topgays

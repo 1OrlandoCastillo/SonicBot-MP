@@ -191,6 +191,17 @@ for (let plugin of processedPlugins) {
   if (typeof plugin.all === 'function') {
     try {
       await plugin.all.call(this, m, {
+        conn: this,
+        participants,
+        groupMetadata,
+        user,
+        bot,
+        isROwner,
+        isOwner,
+        isRAdmin,
+        isAdmin,
+        isBotAdmin,
+        isPrems,
         chatUpdate,
         __dirname: ___dirname,
         __filename
@@ -298,6 +309,362 @@ for (let plugin of processedPlugins) {
   }
 }
 
+
+if (m.isGroup && global.db.data.antiLink && global.db.data.antiLink[m.chat] === true) {
+  const text = m.text || ''
+  const contieneLink = /(https?:\/\/[^\s]+|www\.[^\s]+)/i.test(text)
+  
+  if (contieneLink) {
+   
+    const str2Regex = str => str.replace(/[|\\{}()[\]^$+*?.]/g, '\\$&')
+    let _prefix = global.prefix
+    let isCommand = (_prefix instanceof RegExp ?
+      _prefix.test(m.text) :
+      Array.isArray(_prefix) ?
+        _prefix.some(p => new RegExp(str2Regex(p)).test(m.text)) :
+        typeof _prefix === 'string' ?
+          new RegExp(str2Regex(_prefix)).test(m.text) :
+          false
+    )
+    
+   
+    if (isCommand) return
+    
+    
+    if (!isAdmin) {
+      try {
+        await this.sendMessage(m.chat, { delete: m.key })
+        
+        
+        await this.sendMessage(m.chat, {
+          text: `@${m.sender.split('@')[0]} está prohibido links en este grupo, serás eliminado.`,
+          contextInfo: {
+            ...rcanal.contextInfo,
+            mentionedJid: [m.sender]
+          }
+        }, { quoted: m })
+        
+       
+        await this.groupParticipantsUpdate(m.chat, [m.sender], 'remove')
+        
+      } catch (error) {
+        console.error('Error en anti-link:', error)
+        
+        try {
+          await this.sendMessage(m.chat, { delete: m.key })
+          await this.sendMessage(m.chat, {
+            text: `@${m.sender.split('@')[0]} está prohibido links en este grupo, serás eliminado.`,
+            contextInfo: {
+              ...rcanal.contextInfo,
+              mentionedJid: [m.sender]
+            }
+          }, { quoted: m })
+        } catch (e) {
+          console.error('Error eliminando mensaje con link:', e)
+        }
+      }
+      return
+    }
+  }
+}
+
+
+if (m.isGroup && global.db.data.antiImg && global.db.data.antiImg[m.chat] === true) {
+  if (m.message && (m.message.imageMessage || m.message.extendedTextMessage?.contextInfo?.quotedMessage?.imageMessage)) {
+    
+    const str2Regex = str => str.replace(/[|\\{}()[\]^$+*?.]/g, '\\$&')
+    let _prefix = global.prefix
+    let isCommand = (_prefix instanceof RegExp ?
+      _prefix.test(m.text) :
+      Array.isArray(_prefix) ?
+        _prefix.some(p => new RegExp(str2Regex(p)).test(m.text)) :
+        typeof _prefix === 'string' ?
+          new RegExp(str2Regex(_prefix)).test(m.text) :
+          false
+    )
+    
+    if (isCommand) return
+    
+    if (!isAdmin) {
+      try {
+        await this.sendMessage(m.chat, { delete: m.key })
+      } catch (error) {
+        console.error('Error eliminando imagen:', error)
+      }
+      return
+    }
+  }
+}
+
+
+if (m.isGroup && global.db.data.antiAudio && global.db.data.antiAudio[m.chat] === true) {
+  if (m.message && (m.message.audioMessage || m.message.extendedTextMessage?.contextInfo?.quotedMessage?.audioMessage)) {
+    
+    const str2Regex = str => str.replace(/[|\\{}()[\]^$+*?.]/g, '\\$&')
+    let _prefix = global.prefix
+    let isCommand = (_prefix instanceof RegExp ?
+      _prefix.test(m.text) :
+      Array.isArray(_prefix) ?
+        _prefix.some(p => new RegExp(str2Regex(p)).test(m.text)) :
+        typeof _prefix === 'string' ?
+          new RegExp(str2Regex(_prefix)).test(m.text) :
+          false
+    )
+    
+    if (isCommand) return
+    
+    if (!isAdmin) {
+      try {
+        await this.sendMessage(m.chat, { delete: m.key })
+      } catch (error) {
+        console.error('Error eliminando audio:', error)
+      }
+      return
+    }
+  }
+}
+
+
+if (m.isGroup && global.db.data.antiVideo && global.db.data.antiVideo[m.chat] === true) {
+  if (m.message && (m.message.videoMessage || m.message.extendedTextMessage?.contextInfo?.quotedMessage?.videoMessage)) {
+    
+    const str2Regex = str => str.replace(/[|\\{}()[\]^$+*?.]/g, '\\$&')
+    let _prefix = global.prefix
+    let isCommand = (_prefix instanceof RegExp ?
+      _prefix.test(m.text) :
+      Array.isArray(_prefix) ?
+        _prefix.some(p => new RegExp(str2Regex(p)).test(m.text)) :
+        typeof _prefix === 'string' ?
+          new RegExp(str2Regex(_prefix)).test(m.text) :
+          false
+    )
+    
+    if (isCommand) return
+    
+    if (!isAdmin) {
+      try {
+        await this.sendMessage(m.chat, { delete: m.key })
+      } catch (error) {
+        console.error('Error eliminando video:', error)
+      }
+      return
+    }
+  }
+}
+
+
+if (m.isGroup && global.db.data.antiSticker && global.db.data.antiSticker[m.chat] === true) {
+  if (m.message && (m.message.stickerMessage || m.message.extendedTextMessage?.contextInfo?.quotedMessage?.stickerMessage)) {
+    
+    const str2Regex = str => str.replace(/[|\\{}()[\]^$+*?.]/g, '\\$&')
+    let _prefix = global.prefix
+    let isCommand = (_prefix instanceof RegExp ?
+      _prefix.test(m.text) :
+      Array.isArray(_prefix) ?
+        _prefix.some(p => new RegExp(str2Regex(p)).test(m.text)) :
+        typeof _prefix === 'string' ?
+          new RegExp(str2Regex(_prefix)).test(m.text) :
+          false
+    )
+    
+    if (isCommand) return
+    
+    if (!isAdmin) {
+      try {
+        await this.sendMessage(m.chat, { delete: m.key })
+      } catch (error) {
+        console.error('Error eliminando sticker:', error)
+      }
+      return
+    }
+  }
+}
+
+
+if (m.isGroup && global.db.data.antiSpam && global.db.data.antiSpam[m.chat] === true) {
+  if (!isAdmin) {
+    
+    if (!global.db.data.spamCount) global.db.data.spamCount = {}
+    if (!global.db.data.spamCount[m.chat]) global.db.data.spamCount[m.chat] = {}
+    if (!global.db.data.spamCount[m.chat][m.sender]) {
+      global.db.data.spamCount[m.chat][m.sender] = {
+        count: 0,
+        lastMessage: 0,
+        messages: []
+      }
+    }
+    
+    const now = Date.now()
+    const userSpam = global.db.data.spamCount[m.chat][m.sender]
+    const timeDiff = now - userSpam.lastMessage
+    
+    
+    if (timeDiff < 2000) {
+      userSpam.count++
+      userSpam.lastMessage = now
+      userSpam.messages.push(m.key)
+      
+     
+      if (userSpam.count >= 3) {
+        try {
+          
+          for (const messageKey of userSpam.messages) {
+            try {
+              await this.sendMessage(m.chat, { delete: messageKey })
+            } catch (e) {
+              console.error('Error eliminando mensaje de spam:', e)
+            }
+          }
+          
+         
+          await this.sendMessage(m.chat, {
+            text: `@${m.sender.split('@')[0]} no está permitido spam y será eliminado.`,
+            contextInfo: {
+              ...rcanal.contextInfo,
+              mentionedJid: [m.sender]
+            }
+          }, { quoted: m })
+          
+        
+          await this.groupParticipantsUpdate(m.chat, [m.sender], 'remove')
+          
+         
+          userSpam.count = 0
+          userSpam.messages = []
+          
+        } catch (error) {
+          console.error('Error en anti-spam:', error)
+        }
+        return
+      }
+    } else {
+     
+      userSpam.count = 1
+      userSpam.lastMessage = now
+      userSpam.messages = [m.key]
+    }
+  }
+}
+
+
+if (m.isGroup && global.db.data.antiContact && global.db.data.antiContact[m.chat] === true) {
+  if (m.message && (m.message.contactMessage || m.message.extendedTextMessage?.contextInfo?.quotedMessage?.contactMessage)) {
+    
+    const str2Regex = str => str.replace(/[|\\{}()[\]^$+*?.]/g, '\\$&')
+    let _prefix = global.prefix
+    let isCommand = (_prefix instanceof RegExp ?
+      _prefix.test(m.text) :
+      Array.isArray(_prefix) ?
+        _prefix.some(p => new RegExp(str2Regex(p)).test(m.text)) :
+        typeof _prefix === 'string' ?
+          new RegExp(str2Regex(_prefix)).test(m.text) :
+          false
+    )
+    
+    if (isCommand) return
+    
+    if (!isAdmin) {
+      try {
+        await this.sendMessage(m.chat, { delete: m.key })
+      } catch (error) {
+        console.error('Error eliminando contacto:', error)
+      }
+      return
+    }
+  }
+}
+
+
+if (m.isGroup && global.db.data.antiMention && global.db.data.antiMention[m.chat] === true) {
+  if (m.message && m.message.extendedTextMessage && m.message.extendedTextMessage.contextInfo && m.message.extendedTextMessage.contextInfo.mentionedJid && m.message.extendedTextMessage.contextInfo.mentionedJid.length > 0) {
+    
+    const str2Regex = str => str.replace(/[|\\{}()[\]^$+*?.]/g, '\\$&')
+    let _prefix = global.prefix
+    let isCommand = (_prefix instanceof RegExp ?
+      _prefix.test(m.text) :
+      Array.isArray(_prefix) ?
+        _prefix.some(p => new RegExp(str2Regex(p)).test(m.text)) :
+        typeof _prefix === 'string' ?
+          new RegExp(str2Regex(_prefix)).test(m.text) :
+          false
+    )
+    
+    if (isCommand) return
+    
+    if (!isAdmin) {
+      try {
+        await this.sendMessage(m.chat, { delete: m.key })
+        
+        await this.sendMessage(m.chat, {
+          text: `@${m.sender.split('@')[0]} las menciones están prohibidas.`,
+          contextInfo: {
+            ...rcanal.contextInfo,
+            mentionedJid: [m.sender]
+          }
+        }, { quoted: m })
+        
+      } catch (error) {
+        console.error('Error en anti-menciones:', error)
+      }
+      return
+    }
+  }
+}
+
+
+if (m.isGroup && global.db.data.antiCaracter && global.db.data.antiCaracter[m.chat] && global.db.data.antiCaracter[m.chat].enabled === true) {
+  if (m.text && m.text.length > global.db.data.antiCaracter[m.chat].limit) {
+    
+    const str2Regex = str => str.replace(/[|\\{}()[\]^$+*?.]/g, '\\$&')
+    let _prefix = global.prefix
+    let isCommand = (_prefix instanceof RegExp ?
+      _prefix.test(m.text) :
+      Array.isArray(_prefix) ?
+        _prefix.some(p => new RegExp(str2Regex(p)).test(m.text)) :
+        typeof _prefix === 'string' ?
+          new RegExp(str2Regex(_prefix)).test(m.text) :
+          false
+    )
+    
+    if (isCommand) return
+    
+    if (!isAdmin) {
+      try {
+       
+        await this.sendMessage(m.chat, { delete: m.key })
+        
+       
+        await this.sendMessage(m.chat, {
+          text: `@${m.sender.split('@')[0]} el mensaje excede el límite de ${global.db.data.antiCaracter[m.chat].limit} caracteres permitidos, serás eliminado.`,
+          contextInfo: {
+            ...rcanal.contextInfo,
+            mentionedJid: [m.sender]
+          }
+        }, { quoted: m })
+        
+        
+        await this.groupParticipantsUpdate(m.chat, [m.sender], 'remove')
+        
+      } catch (error) {
+        console.error('Error en anti-caracteres:', error)
+        
+        try {
+          await this.sendMessage(m.chat, { delete: m.key })
+          await this.sendMessage(m.chat, {
+            text: `@${m.sender.split('@')[0]} el mensaje excede el límite de ${global.db.data.antiCaracter[m.chat].limit} caracteres permitidos, serás eliminado.`,
+            contextInfo: {
+              ...rcanal.contextInfo,
+              mentionedJid: [m.sender]
+            }
+          }, { quoted: m })
+        } catch (e) {
+          console.error('Error eliminando mensaje con caracteres excesivos:', e)
+        }
+      }
+      return
+    }
+  }
+}
 
 if (m.text && !commandExecuted && !m.commandExecuted) {
   
