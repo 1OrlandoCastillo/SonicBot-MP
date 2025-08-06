@@ -12,7 +12,7 @@
       "coins": 0
     },
     "114263544885392@lid": {
-      "exp": 57,
+      "exp": 73,
       "limit": 10,
       "registered": false,
       "name": "Sunkovv </>",
@@ -4622,10 +4622,10 @@
       "lastSuccess": 1754351099127
     },
     "main-menu.js": {
-      "total": 91,
-      "success": 91,
-      "last": 1754456725969,
-      "lastSuccess": 1754456725969
+      "total": 93,
+      "success": 93,
+      "last": 1754456958509,
+      "lastSuccess": 1754456958509
     },
     "stickers-sticker.js": {
       "total": 7,
