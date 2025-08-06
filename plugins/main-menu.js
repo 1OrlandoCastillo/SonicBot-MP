@@ -223,6 +223,7 @@ let handler = async (m, { conn, usedPrefix }) => {
 │   • ${usedPrefix}antimention on/off
 │   • ${usedPrefix}antidocument on/off
 │   • ${usedPrefix}anticaracter on/off <limite>
+│   • ${usedPrefix}soloadmin on/off
 │
 ╰➺ ✧ *Diversión* 𖤓
 │   • ${usedPrefix}topgays

@@ -12,7 +12,7 @@
       "coins": 0
     },
     "114263544885392@lid": {
-      "exp": 43,
+      "exp": 57,
       "limit": 10,
       "registered": false,
       "name": "Sunkovv </>",
@@ -39,7 +39,7 @@
       "coins": 0
     },
     "51958333972@s.whatsapp.net": {
-      "exp": 5,
+      "exp": 13,
       "limit": 10,
       "registered": false,
       "name": "𝗞𝗜𝗬𝗢𝗠𝗜 𝗠𝗗 🪐",
@@ -50,8 +50,8 @@
       "coins": 0
     },
     "177052057620554@lid": {
-      "exp": 62,
-      "limit": 10,
+      "exp": null,
+      "limit": null,
       "registered": false,
       "name": "𝗞𝗜𝗬𝗢𝗠𝗜 𝗠𝗗 🪐",
       "age": -1,
@@ -2429,8 +2429,8 @@
       "coins": 0
     },
     "275878953148477@lid": {
-      "exp": null,
-      "limit": null,
+      "exp": 11,
+      "limit": 10,
       "registered": false,
       "name": "Fernando",
       "age": -1,
@@ -3097,7 +3097,7 @@
       "coins": 0
     },
     "239273164963865@lid": {
-      "exp": 41,
+      "exp": 49,
       "limit": 10,
       "registered": false,
       "name": "Cheo 🦦",
@@ -4622,10 +4622,10 @@
       "lastSuccess": 1754351099127
     },
     "main-menu.js": {
-      "total": 88,
-      "success": 88,
-      "last": 1754455896621,
-      "lastSuccess": 1754455896621
+      "total": 91,
+      "success": 91,
+      "last": 1754456725969,
+      "lastSuccess": 1754456725969
     },
     "stickers-sticker.js": {
       "total": 7,
@@ -4682,10 +4682,10 @@
       "lastSuccess": 1754365844005
     },
     "sub-bots.js": {
-      "total": 10,
-      "success": 10,
-      "last": 1754372396300,
-      "lastSuccess": 1754372396300
+      "total": 11,
+      "success": 11,
+      "last": 1754456213421,
+      "lastSuccess": 1754456213421
     },
     "top-gays.js": {
       "total": 1,
@@ -4950,6 +4950,12 @@
       "success": 1,
       "last": 1754454428524,
       "lastSuccess": 1754454428524
+    },
+    "solo-admin.js": {
+      "total": 4,
+      "success": 4,
+      "last": 1754456745608,
+      "lastSuccess": 1754456745608
     }
   },
   "msgs": {},
@@ -5086,5 +5092,8 @@
   "antiDocument": {
     "120363419764426260@g.us": true,
     "120363420102608901@g.us": true
+  },
+  "soloAdmin": {
+    "120363418878325439@g.us": false
   }
 }
