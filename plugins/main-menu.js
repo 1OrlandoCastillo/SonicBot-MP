@@ -211,7 +211,6 @@ let handler = async (m, { conn, usedPrefix }) => {
 │   • ${usedPrefix}open
 │   • ${usedPrefix}close
 │   • ${usedPrefix}delete
-│   • ${usedPrefix}soloadmin on/off
 │   • ${usedPrefix}adg <numero>
 │   • ${usedPrefix}grupo on/off
 │   • ${usedPrefix}antilink on/off
@@ -224,6 +223,9 @@ let handler = async (m, { conn, usedPrefix }) => {
 │   • ${usedPrefix}antimention on/off
 │   • ${usedPrefix}antidocument on/off
 │   • ${usedPrefix}anticaracter on/off <limite>
+│   • ${usedPrefix}soloadmin on/off
+│   • ${usedPrefix}modoia on/off
+│   • ${usedPrefix}modohot on/off
 │
 ╰➺ ✧ *Diversión* 𖤓
 │   • ${usedPrefix}topgays

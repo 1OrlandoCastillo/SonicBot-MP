@@ -963,6 +963,88 @@ if (shouldAutoRead) {
   } catch (e) {
     console.error('Error al marcar como leído:', e)
   }
+  
+  if (m.isGroup && global.db.data.modoIA && global.db.data.modoIA[m.chat] === true && m.text && !m.fromMe) {
+    try {
+      
+      const { callGeminiAPI, isLikelyCommand } = await import('./lib/geminiAPI.js')
+      
+      
+      if (isLikelyCommand(m.text)) return
+      
+     
+      if (m.text.trim().length < 3) return
+      
+      
+      if (/^[\s\u{1F600}-\u{1F64F}\u{1F300}-\u{1F5FF}\u{1F680}-\u{1F6FF}\u{1F1E0}-\u{1F1FF}\u{2600}-\u{26FF}\u{2700}-\u{27BF}]*$/u.test(m.text)) return
+      
+     
+      const userName = m.pushName || m.name || 'Usuario'
+      const groupName = await this.getName(m.chat) || 'Grupo'
+      
+      
+      await this.sendPresenceUpdate('composing', m.chat)
+      
+      
+      const response = await callGeminiAPI(m.text, userName, groupName, m.chat)
+      
+      
+      if (response && response.length > 0) {
+        await this.sendMessage(m.chat, {
+          text: response,
+          contextInfo: {
+            ...rcanal.contextInfo
+          }
+        }, { quoted: m })
+      }
+      
+    } catch (error) {
+      console.error('Error en Modo IA:', error)
+      
+    }
+  }
+
+
+if (m.isGroup && global.db.data.modoHot && global.db.data.modoHot[m.chat] === true && m.text && !m.fromMe) {
+  try {
+    
+    const { callGeminiHotAPI, isLikelyCommand } = await import('./lib/geminiAPI.js')
+    
+    
+    if (isLikelyCommand(m.text)) return
+    
+    
+    if (m.text.trim().length < 3) return
+    
+    
+    if (/^[\s\u{1F600}-\u{1F64F}\u{1F300}-\u{1F5FF}\u{1F680}-\u{1F6FF}\u{1F1E0}-\u{1F1FF}\u{2600}-\u{26FF}\u{2700}-\u{27BF}]*$/u.test(m.text)) return
+    
+    
+    const userName = m.pushName || m.name || 'Usuario'
+    const groupName = await this.getName(m.chat) || 'Grupo'
+    
+    
+    await this.sendPresenceUpdate('composing', m.chat)
+    
+    
+    const response = await callGeminiHotAPI(m.text, userName, groupName, m.chat)
+    
+    
+    if (response && response.length > 0) {
+      await this.sendMessage(m.chat, {
+        text: response,
+        contextInfo: {
+          ...rcanal.contextInfo
+        }
+      }, { quoted: m })
+    }
+    
+  } catch (error) {
+    console.error('Error en Modo Hot:', error)
+    
+  }
+}
+
 }
 
 }
