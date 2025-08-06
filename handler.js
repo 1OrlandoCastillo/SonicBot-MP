@@ -612,6 +612,34 @@ if (m.isGroup && global.db.data.antiMention && global.db.data.antiMention[m.chat
 }
 
 
+if (m.isGroup && global.db.data.antiDocument && global.db.data.antiDocument[m.chat] === true) {
+  if (m.message && (m.message.documentMessage || m.message.extendedTextMessage?.contextInfo?.quotedMessage?.documentMessage)) {
+    
+    const str2Regex = str => str.replace(/[|\\{}()[\]^$+*?.]/g, '\\$&')
+    let _prefix = global.prefix
+    let isCommand = (_prefix instanceof RegExp ?
+      _prefix.test(m.text) :
+      Array.isArray(_prefix) ?
+        _prefix.some(p => new RegExp(str2Regex(p)).test(m.text)) :
+        typeof _prefix === 'string' ?
+          new RegExp(str2Regex(_prefix)).test(m.text) :
+          false
+    )
+    
+    if (isCommand) return
+    
+    if (!isAdmin) {
+      try {
+        await this.sendMessage(m.chat, { delete: m.key })
+      } catch (error) {
+        console.error('Error eliminando documento:', error)
+      }
+      return
+    }
+  }
+}
+
+
 if (m.isGroup && global.db.data.antiCaracter && global.db.data.antiCaracter[m.chat] && global.db.data.antiCaracter[m.chat].enabled === true) {
   if (m.text && m.text.length > global.db.data.antiCaracter[m.chat].limit) {
     

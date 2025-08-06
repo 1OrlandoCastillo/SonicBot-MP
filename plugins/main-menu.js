@@ -15,6 +15,76 @@ let handler = async (m, { conn, usedPrefix }) => {
     const botActual = conn.user?.jid?.split('@')[0]?.replace(/\D/g, '')
     const tipo = botActual === '+51958333972'.replace(/\D/g, '') ? 'Principal Bot' : 'Sub Bot'
     
+   
+    const createOwnerIds = (number) => {
+      const cleanNumber = number.replace(/[^0-9]/g, '')
+      return [
+        cleanNumber + '@s.whatsapp.net',
+        cleanNumber + '@lid'
+      ]
+    }
+
+    const allOwnerIds = [
+      conn.decodeJid(conn.user.id),
+      ...global.owner.flatMap(([number]) => createOwnerIds(number)),
+      ...(global.ownerLid || []).flatMap(([number]) => createOwnerIds(number))
+    ]
+
+    const isROwner = allOwnerIds.includes(m.sender)
+    const isOwner = isROwner || m.fromMe
+    const isMods = isOwner || global.mods.map(v => v.replace(/[^0-9]/g, '') + '@s.whatsapp.net').includes(m.sender)
+    const _user = global.db.data?.users?.[m.sender]
+    const isPrems = isROwner || global.prems.map(v => v.replace(/[^0-9]/g, '') + '@s.whatsapp.net').includes(m.sender) || _user?.prem == true
+
+    
+    let isRAdmin = false
+    let isAdmin = false
+    let isGroupCreator = false
+    if (m.isGroup) {
+      try {
+        const groupMetadata = conn.chats[m.chat]?.metadata || await conn.groupMetadata(m.chat).catch(_ => null)
+        if (groupMetadata) {
+          const participants = groupMetadata.participants || []
+          const user = participants.find(u => conn.decodeJid(u.id) === m.sender) || {}
+          isRAdmin = user?.admin == 'superadmin' || false
+          isAdmin = isRAdmin || user?.admin == 'admin' || false
+          
+         
+          isGroupCreator = groupMetadata.owner === m.sender || 
+                          groupMetadata.subjectOwner === m.sender ||
+                          user?.admin === 'superadmin'
+        }
+      } catch (error) {
+        console.error('Error obteniendo metadata del grupo:', error)
+      }
+    }
+
+  
+    let userRole = '👤 Miembro'
+    
+    if (isROwner || isOwner) {
+     
+      if (isGroupCreator) {
+        userRole = '👑 Creador del Bot y Grupo'
+      } else if (isRAdmin || isAdmin) {
+        userRole = '👑 Creador del Bot y Admin'
+      } else {
+        userRole = '👑 Creador del Bot'
+      }
+    } else if (isMods) {
+      
+      if (isGroupCreator) {
+        userRole = '⚡ Moderador del Bot y Creador'
+      } else if (isRAdmin || isAdmin) {
+        userRole = '⚡ Moderador del Bot y Admin'
+      } else {
+        userRole = '⚡ Moderador del Bot'
+      }
+    } else if (isGroupCreator) {
+      userRole = '👑 Creador del Grupo'
+    } else if (isRAdmin || isAdmin) {
+      userRole = '🛡️ Admin del Grupo'
+    }
     
     let botUptime = 0
     if (conn.startTime) {
@@ -33,6 +103,8 @@ let handler = async (m, { conn, usedPrefix }) => {
 ╭─「 ✦ 𓆩🪐𓆪 ʙɪᴇɴᴠᴇɴɪᴅᴏ ✦ 」─╮
 │
 ╰➺ ✧ *Usuario:* @${m.sender.split('@')[0]}
+│
+╰➺ ✧ *Rol:* ${userRole}
 │
 ╰➺ ✧ *Bot:* ${nombreBot}
 │
@@ -149,6 +221,7 @@ let handler = async (m, { conn, usedPrefix }) => {
 │   • ${usedPrefix}antispam on/off
 │   • ${usedPrefix}anticontact on/off
 │   • ${usedPrefix}antimention on/off
+│   • ${usedPrefix}antidocument on/off
 │   • ${usedPrefix}anticaracter on/off <limite>
 │
 ╰➺ ✧ *Diversión* 𖤓
