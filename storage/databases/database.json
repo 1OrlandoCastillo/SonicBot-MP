@@ -12,7 +12,7 @@
       "coins": 0
     },
     "114263544885392@lid": {
-      "exp": 596,
+      "exp": 629,
       "limit": 10,
       "registered": false,
       "name": "Sunkovv </>",
@@ -184,7 +184,7 @@
       "coins": 0
     },
     "58540639154396@lid": {
-      "exp": 205,
+      "exp": 209,
       "limit": 10,
       "registered": false,
       "name": "⠀︎⠀ ⠀ ⠀ᅠ⠀",
@@ -2429,7 +2429,7 @@
       "coins": 0
     },
     "275878953148477@lid": {
-      "exp": 48,
+      "exp": 60,
       "limit": 10,
       "registered": false,
       "name": "Fernando",
@@ -3890,7 +3890,7 @@
       "coins": 0
     },
     "573002462383@s.whatsapp.net": {
-      "exp": 235,
+      "exp": 254,
       "limit": 10,
       "registered": false,
       "name": "Beykher Escobar Ramos",
@@ -3968,7 +3968,7 @@
       "coins": 0
     },
     "250800907509830@lid": {
-      "exp": 19,
+      "exp": 2,
       "limit": 10,
       "registered": false,
       "name": "👑⃠𝙹𝚊𝚟𝚒 ᛇ",
@@ -4001,8 +4001,8 @@
       "coins": 0
     },
     "120363417316752807@newsletter": {
-      "exp": 27,
-      "limit": 10,
+      "exp": null,
+      "limit": null,
       "registered": false,
       "age": -1,
       "regTime": -1,
@@ -4048,6 +4048,17 @@
       "limit": 10,
       "registered": false,
       "name": "✖✞🇳🇮꧁꧅MЦЯDΣЯKIᄂᄂƧ꧅ ꧂🇳",
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "279143346360535@lid": {
+      "exp": 9,
+      "limit": 10,
+      "registered": false,
+      "name": "J̣̌æl",
       "age": -1,
       "regTime": -1,
       "banned": false,
@@ -4851,10 +4862,10 @@
       "lastSuccess": 1754351099127
     },
     "main-menu.js": {
-      "total": 103,
-      "success": 103,
-      "last": 1754459623806,
-      "lastSuccess": 1754459623806
+      "total": 104,
+      "success": 104,
+      "last": 1754461514502,
+      "lastSuccess": 1754461514502
     },
     "stickers-sticker.js": {
       "total": 7,
@@ -5211,10 +5222,10 @@
       "lastSuccess": 1754459720913
     },
     "modo-hot.js": {
-      "total": 7,
-      "success": 7,
-      "last": 1754460999813,
-      "lastSuccess": 1754460999813
+      "total": 9,
+      "success": 9,
+      "last": 1754461411877,
+      "lastSuccess": 1754461411877
     }
   },
   "msgs": {},
@@ -5365,6 +5376,6 @@
   },
   "modoHot": {
     "120363418878325439@g.us": true,
-    "120363420102608901@g.us": true
+    "120363420102608901@g.us": false
   }
 }
