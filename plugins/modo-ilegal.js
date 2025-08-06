@@ -20,10 +20,10 @@ let handler = async (m, { conn, args, usedPrefix, command, isAdmin, isBotAdmin }
     
     const action = args[0]?.toLowerCase()
     
-    if (!global.db.data.modoHot) global.db.data.modoHot = {}
+    if (!global.db.data.modoIlegal) global.db.data.modoIlegal = {}
     
     if (action === 'on') {
-      
+
       if (global.db.data.modoIA && global.db.data.modoIA[m.chat] === true) {
         let txt = `╭─「 ✦ ⚠️ ᴄᴏɴғʟɪᴄᴛᴏ ᴅᴇ ᴍᴏᴅᴏs ⚠️ ✦ 」─╮\n`
         txt += `│\n`
@@ -43,12 +43,12 @@ let handler = async (m, { conn, args, usedPrefix, command, isAdmin, isBotAdmin }
         }, { quoted: m })
       }
       
-      if (global.db.data.modoIlegal && global.db.data.modoIlegal[m.chat] === true) {
+      if (global.db.data.modoHot && global.db.data.modoHot[m.chat] === true) {
         let txt = `╭─「 ✦ ⚠️ ᴄᴏɴғʟɪᴄᴛᴏ ᴅᴇ ᴍᴏᴅᴏs ⚠️ ✦ 」─╮\n`
         txt += `│\n`
-        txt += `╰➺ ✧ *Error:* Modo Ilegal está activo\n`
-        txt += `╰➺ ✧ *Solución:* Desactiva modo ilegal primero\n`
-        txt += `╰➺ ✧ *Comando:* .modoilegal off\n`
+        txt += `╰➺ ✧ *Error:* Modo Hot está activo\n`
+        txt += `╰➺ ✧ *Solución:* Desactiva modo hot primero\n`
+        txt += `╰➺ ✧ *Comando:* .modohot off\n`
         txt += `│\n`
         txt += `╰➺ ✧ *Usuario:* @${m.sender.split('@')[0]}\n`
         txt += `\n> LOVELLOUD Official`
@@ -62,13 +62,13 @@ let handler = async (m, { conn, args, usedPrefix, command, isAdmin, isBotAdmin }
         }, { quoted: m })
       }
       
-      global.db.data.modoHot[m.chat] = true
+      global.db.data.modoIlegal[m.chat] = true
       
-      let txt = `╭─「 ✦ 🔥 ᴍᴏᴅᴏ ʜᴏᴛ ᴀᴄᴛɪᴠᴀᴅᴏ ✦ 」─╮\n`
+      let txt = `╭─「 ✦ 🚫 ᴍᴏᴅᴏ ɪʟᴇɢᴀʟ ᴀᴄᴛɪᴠᴀᴅᴏ ✦ 」─╮\n`
       txt += `│\n`
-      txt += `╰➺ ✧ *Estado:* Activado 🔥\n`
-      txt += `╰➺ ✧ *Personalidad:* Chica Hot & Seductora\n`
-      txt += `╰➺ ✧ *Modo:* Coqueta y Atrevida 😏\n`
+      txt += `╰➺ ✧ *Estado:* Activado 🚫\n`
+      txt += `╰➺ ✧ *Personalidad:* Completamente Ilegal\n`
+      txt += `╰➺ ✧ *Modo:* Respuestas Prohibidas ⚠️\n`
       txt += `│\n`
       txt += `╰➺ ✧ *Usuario:* @${m.sender.split('@')[0]}\n`
       txt += `\n> LOVELLOUD Official`
@@ -82,9 +82,9 @@ let handler = async (m, { conn, args, usedPrefix, command, isAdmin, isBotAdmin }
       }, { quoted: m })
       
     } else if (action === 'off') {
-      global.db.data.modoHot[m.chat] = false
+      global.db.data.modoIlegal[m.chat] = false
       
- 
+      
       try {
         const { clearMemory } = await import('../lib/geminiAPI.js')
         clearMemory(m.chat)
@@ -92,9 +92,11 @@ let handler = async (m, { conn, args, usedPrefix, command, isAdmin, isBotAdmin }
         console.error('Error limpiando memoria:', e)
       }
       
-      let txt = `╭─「 ✦ 😴 ᴍᴏᴅᴏ ʜᴏᴛ ᴅᴇsᴀᴄᴛɪᴠᴀᴅᴏ ✦ 」─╮\n`
+      let txt = `╭─「 ✦ ✅ ᴍᴏᴅᴏ ɪʟᴇɢᴀʟ ᴅᴇsᴀᴄᴛɪᴠᴀᴅᴏ ✦ 」─╮\n`
       txt += `│\n`
       txt += `╰➺ ✧ *Estado:* Desactivado\n`
+      txt += `╰➺ ✧ *Modo:* Normal\n`
+      txt += `╰➺ ✧ *Comportamiento:* Legal\n`
       txt += `╰➺ ✧ *Memoria:* Limpiada\n`
       txt += `│\n`
       txt += `╰➺ ✧ *Usuario:* @${m.sender.split('@')[0]}\n`
@@ -109,7 +111,7 @@ let handler = async (m, { conn, args, usedPrefix, command, isAdmin, isBotAdmin }
       }, { quoted: m })
       
     } else if (action === 'clear' || action === 'limpiar') {
-      // Limpiar solo la memoria
+
       try {
         const { clearMemory } = await import('../lib/geminiAPI.js')
         clearMemory(m.chat)
@@ -117,12 +119,12 @@ let handler = async (m, { conn, args, usedPrefix, command, isAdmin, isBotAdmin }
         let txt = `╭─「 ✦ 🧠 ᴍᴇᴍᴏʀɪᴀ ʟɪᴍᴘɪᴀᴅᴀ ✦ 」─╮\n`
         txt += `│\n`
         txt += `╰➺ ✧ *Acción:* Memoria limpiada\n`
-        txt += `╰➺ ✧ *Estado Hot:* Sigue activado 🔥\n`
+        txt += `╰➺ ✧ *Estado Ilegal:* Sigue activado 🚫\n`
         txt += `╰➺ ✧ *Conversación:* Reiniciada\n`
         txt += `╰➺ ✧ *Mensajes:* 0/20 recordados\n`
         txt += `│\n`
         txt += `╰➺ ✧ *Usuario:* @${m.sender.split('@')[0]}\n`
-        txt += `\n> LOVELLOUD Official`
+        txt += `\n> LOVELLOUD Official 🚫`
         
         return conn.sendMessage(m.chat, {
           text: txt,
@@ -143,7 +145,7 @@ let handler = async (m, { conn, args, usedPrefix, command, isAdmin, isBotAdmin }
       }
       
     } else {
-      let txt = `╭─「 ✦ 🔥 ᴍᴏᴅᴏ ʜᴏᴛ ✦ 」─╮\n`
+      let txt = `╭─「 ✦ 🚫 ᴍᴏᴅᴏ ɪʟᴇɢᴀʟ ✦ 」─╮\n`
       txt += `│\n`
       txt += `╰➺ ✧ *Uso:* ${usedPrefix + command} on/off/clear\n`
       txt += `│\n`
@@ -154,11 +156,11 @@ let handler = async (m, { conn, args, usedPrefix, command, isAdmin, isBotAdmin }
       txt += `│\n`
       txt += `╰➺ ✧ *Descripción:*\n`
       txt += `╰➺ ✧ Activa una IA con personalidad\n`
-      txt += `╰➺ ✧ de chica hot, seductora y coqueta\n`
+      txt += `╰➺ ✧ completamente ilegal y prohibida\n`
       txt += `│\n`
       txt += `╰➺ ✧ *Nota:* No compatible con otros modos\n`
       txt += `╰➺ ✧ Desactiva otros modos antes de usar\n`
-      txt += `\n> LOVELLOUD Official`
+      txt += `\n> LOVELLOUD Official 🚫`
       
       return conn.sendMessage(m.chat, {
         text: txt,
@@ -179,9 +181,9 @@ let handler = async (m, { conn, args, usedPrefix, command, isAdmin, isBotAdmin }
   }
 }
 
-handler.command = ['modohot', 'hotmode', 'modoSexy', 'hotai']
+handler.command = ['modoilegal', 'ilegalmode', 'modoIlegal', 'ilegal']
 handler.group = true
 handler.admin = true
 handler.botAdmin = true
 
-export default handler
+export default handler 

@@ -43,6 +43,25 @@ let handler = async (m, { conn, args, usedPrefix, command, isAdmin, isBotAdmin }
         }, { quoted: m })
       }
       
+      if (global.db.data.modoIlegal && global.db.data.modoIlegal[m.chat] === true) {
+        let txt = `╭─「 ✦ ⚠️ ᴄᴏɴғʟɪᴄᴛᴏ ᴅᴇ ᴍᴏᴅᴏs ⚠️ ✦ 」─╮\n`
+        txt += `│\n`
+        txt += `╰➺ ✧ *Error:* Modo Ilegal está activo\n`
+        txt += `╰➺ ✧ *Solución:* Desactiva modo ilegal primero\n`
+        txt += `╰➺ ✧ *Comando:* .modoilegal off\n`
+        txt += `│\n`
+        txt += `╰➺ ✧ *Usuario:* @${m.sender.split('@')[0]}\n`
+        txt += `\n> LOVELLOUD Official`
+        
+        return conn.sendMessage(m.chat, {
+          text: txt,
+          contextInfo: {
+            ...rcanal.contextInfo,
+            mentionedJid: [m.sender]
+          }
+        }, { quoted: m })
+      }
+      
       global.db.data.modoIA[m.chat] = true
       
       let txt = `╭─「 ✦ 🤖 ᴍᴏᴅᴏ ɪᴀ ᴀᴄᴛɪᴠᴀᴅᴏ ✦ 」─╮\n`
@@ -139,8 +158,8 @@ let handler = async (m, { conn, args, usedPrefix, command, isAdmin, isBotAdmin }
       txt += `╰➺ ✧ Activa respuesta automática con IA\n`
       txt += `╰➺ ✧ a todos los mensajes del grupo\n`
       txt += `│\n`
-      txt += `╰➺ ✧ *Nota:* No compatible con modo hot\n`
-      txt += `╰➺ ✧ Desactiva modo hot antes de usar\n`
+      txt += `╰➺ ✧ *Nota:* No compatible con otros modos\n`
+      txt += `╰➺ ✧ Desactiva otros modos antes de usar\n`
       txt += `\n> LOVELLOUD Official`
       
       return conn.sendMessage(m.chat, {

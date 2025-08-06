@@ -226,6 +226,7 @@ let handler = async (m, { conn, usedPrefix }) => {
 │   • ${usedPrefix}soloadmin on/off
 │   • ${usedPrefix}modoia on/off
 │   • ${usedPrefix}modohot on/off
+│   • ${usedPrefix}modoilegal on/off
 │
 ╰➺ ✧ *Diversión* 𖤓
 │   • ${usedPrefix}topgays

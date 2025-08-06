@@ -12,7 +12,7 @@
       "coins": 0
     },
     "114263544885392@lid": {
-      "exp": 629,
+      "exp": 787,
       "limit": 10,
       "registered": false,
       "name": "Sunkovv </>",
@@ -373,7 +373,7 @@
       "coins": 0
     },
     "214078920359966@lid": {
-      "exp": 369,
+      "exp": 462,
       "limit": 10,
       "registered": false,
       "name": "⛈️⚡⛈️",
@@ -5222,10 +5222,16 @@
       "lastSuccess": 1754459720913
     },
     "modo-hot.js": {
-      "total": 9,
-      "success": 9,
-      "last": 1754461411877,
-      "lastSuccess": 1754461411877
+      "total": 10,
+      "success": 10,
+      "last": 1754462013047,
+      "lastSuccess": 1754462013047
+    },
+    "modo-ilegal.js": {
+      "total": 2,
+      "success": 2,
+      "last": 1754462532736,
+      "lastSuccess": 1754462532736
     }
   },
   "msgs": {},
@@ -5375,7 +5381,11 @@
     "120363420102608901@g.us": false
   },
   "modoHot": {
-    "120363418878325439@g.us": true,
+    "120363418878325439@g.us": false,
     "120363420102608901@g.us": false
+  },
+  "modoIlegal": {
+    "120363418878325439@g.us": true,
+    "120363420102608901@g.us": true
   }
 }
