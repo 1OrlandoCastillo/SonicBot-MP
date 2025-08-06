@@ -12,7 +12,7 @@
       "coins": 0
     },
     "114263544885392@lid": {
-      "exp": 787,
+      "exp": 810,
       "limit": 10,
       "registered": false,
       "name": "Sunkovv </>",
@@ -373,7 +373,7 @@
       "coins": 0
     },
     "214078920359966@lid": {
-      "exp": 462,
+      "exp": 473,
       "limit": 10,
       "registered": false,
       "name": "⛈️⚡⛈️",
@@ -4064,6 +4064,39 @@
       "banned": false,
       "level": 0,
       "coins": 0
+    },
+    "87540610678820@lid": {
+      "exp": 2,
+      "limit": 10,
+      "registered": false,
+      "name": "yefer",
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "88429652144288@lid": {
+      "exp": 12,
+      "limit": 10,
+      "registered": false,
+      "name": "⁠ 𝑱𝒐𝒉𝒂𝒏 ও",
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "101593575887006@lid": {
+      "exp": 8,
+      "limit": 10,
+      "registered": false,
+      "name": "Samuel",
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
     }
   },
   "chats": {
@@ -4834,6 +4867,14 @@
       "onlyLatinos": false,
       "nsfw": false,
       "expired": 0
+    },
+    "120363328021759992@g.us": {
+      "isBanned": false,
+      "bienvenida": true,
+      "antiLink": false,
+      "onlyLatinos": false,
+      "nsfw": false,
+      "expired": 0
     }
   },
   "stats": {
@@ -4862,10 +4903,10 @@
       "lastSuccess": 1754351099127
     },
     "main-menu.js": {
-      "total": 104,
-      "success": 104,
-      "last": 1754461514502,
-      "lastSuccess": 1754461514502
+      "total": 107,
+      "success": 107,
+      "last": 1754463640817,
+      "lastSuccess": 1754463640817
     },
     "stickers-sticker.js": {
       "total": 7,
@@ -5228,10 +5269,10 @@
       "lastSuccess": 1754462013047
     },
     "modo-ilegal.js": {
-      "total": 2,
-      "success": 2,
-      "last": 1754462532736,
-      "lastSuccess": 1754462532736
+      "total": 3,
+      "success": 3,
+      "last": 1754463539896,
+      "lastSuccess": 1754463539896
     }
   },
   "msgs": {},
@@ -5386,6 +5427,6 @@
   },
   "modoIlegal": {
     "120363418878325439@g.us": true,
-    "120363420102608901@g.us": true
+    "120363420102608901@g.us": false
   }
 }
