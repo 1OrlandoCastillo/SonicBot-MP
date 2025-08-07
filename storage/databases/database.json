@@ -39,7 +39,7 @@
       "coins": 0
     },
     "51958333972@s.whatsapp.net": {
-      "exp": 28,
+      "exp": 34,
       "limit": 10,
       "registered": false,
       "name": "𝗞𝗜𝗬𝗢𝗠𝗜 𝗠𝗗 🪐",
@@ -373,7 +373,7 @@
       "coins": 0
     },
     "214078920359966@lid": {
-      "exp": 50,
+      "exp": 55,
       "limit": 10,
       "registered": false,
       "name": "⛈️⚡⛈️",
@@ -3086,7 +3086,7 @@
       "coins": 0
     },
     "170231330795766@lid": {
-      "exp": 33,
+      "exp": 49,
       "limit": 10,
       "registered": false,
       "name": "‧͙⁺˚*⃝･༓𝐾𝑎𝑟𝑡༓･*⃝˚⁺‧͙",
@@ -3913,7 +3913,7 @@
       "coins": 0
     },
     "158652400951525@lid": {
-      "exp": 545,
+      "exp": 576,
       "limit": 10,
       "registered": false,
       "name": "✰𝖓𝖇𝖆𝖐✰",
@@ -3946,7 +3946,7 @@
       "coins": 0
     },
     "72327819722978@lid": {
-      "exp": 210,
+      "exp": 230,
       "limit": 10,
       "registered": false,
       "name": "ঔৣ⚔𝔍𝔢𝔰𝔰𝔲𝔰ঔৣ꧂",
@@ -4022,7 +4022,7 @@
       "coins": 0
     },
     "154296767238315@lid": {
-      "exp": 1095,
+      "exp": 37,
       "limit": 10,
       "registered": false,
       "name": "☠️ ~ RODRIGO ~ ☠️",
@@ -4099,7 +4099,7 @@
       "coins": 0
     },
     "51969746139@s.whatsapp.net": {
-      "exp": 11,
+      "exp": 76,
       "limit": 10,
       "registered": false,
       "name": "<3",
@@ -4238,7 +4238,7 @@
       "coins": 0
     },
     "51918542107@s.whatsapp.net": {
-      "exp": 80,
+      "exp": 103,
       "limit": 10,
       "registered": false,
       "name": "<3",
@@ -4592,7 +4592,7 @@
       "coins": 0
     },
     "573232052364@s.whatsapp.net": {
-      "exp": 65,
+      "exp": 90,
       "limit": 10,
       "registered": false,
       "name": "aquito perez",
@@ -4841,7 +4841,7 @@
       "coins": 0
     },
     "573206534465@s.whatsapp.net": {
-      "exp": 68,
+      "exp": 108,
       "limit": 10,
       "registered": false,
       "name": "∞★꧁☯︎furrito2☯︎꧂★∞",
@@ -5160,8 +5160,8 @@
       "coins": 0
     },
     "72481935249585@lid": {
-      "exp": null,
-      "limit": null,
+      "exp": 7,
+      "limit": 10,
       "registered": false,
       "name": "Almendra",
       "age": -1,
@@ -5619,7 +5619,7 @@
       "coins": 0
     },
     "5216278893061@s.whatsapp.net": {
-      "exp": 20,
+      "exp": 23,
       "limit": 10,
       "registered": false,
       "name": "Gael 👻👻👻👻",
@@ -5628,7 +5628,7 @@
       "banned": false,
       "level": 0,
       "coins": 0,
-      "Subs": 1754535634842
+      "Subs": 1754536010457
     },
     "160898584989845@lid": {
       "exp": 1,
@@ -5686,7 +5686,7 @@
       "coins": 0
     },
     "43955030863878@lid": {
-      "exp": 184,
+      "exp": 206,
       "limit": 10,
       "registered": false,
       "name": "Infinite 308 XD",
@@ -5762,7 +5762,7 @@
       "coins": 0
     },
     "23614334185615@lid": {
-      "exp": 88,
+      "exp": 100,
       "limit": 10,
       "registered": false,
       "name": "GUS",
@@ -5784,8 +5784,8 @@
       "coins": 0
     },
     "265179937915080@lid": {
-      "exp": 44,
-      "limit": 10,
+      "exp": null,
+      "limit": null,
       "registered": false,
       "name": "Fer",
       "age": -1,
@@ -5872,7 +5872,7 @@
       "coins": 0
     },
     "76317894647828@lid": {
-      "exp": 10,
+      "exp": 15,
       "limit": 10,
       "registered": false,
       "name": "Hermes",
@@ -7153,10 +7153,10 @@
       "lastSuccess": 1754529120997
     },
     "serbot-serbot.js": {
-      "total": 30,
-      "success": 30,
-      "last": 1754535634842,
-      "lastSuccess": 1754535634842
+      "total": 34,
+      "success": 34,
+      "last": 1754536010458,
+      "lastSuccess": 1754536010458
     },
     "owner-update.js": {
       "total": 11,
