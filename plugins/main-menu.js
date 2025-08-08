@@ -158,8 +158,7 @@ let handler = async (m, { conn, usedPrefix }) => {
 │   • ${usedPrefix}update
 │   • ${usedPrefix}restart
 │   • ${usedPrefix}subme <mensaje>
-│   • ${usedPrefix}subbot <acción>
-'│
+│
 ╰➺ ✧ *Sub-bots* 𖤓
 │   • ${usedPrefix}qr
 │   • ${usedPrefix}code
@@ -236,6 +235,9 @@ let handler = async (m, { conn, usedPrefix }) => {
 │   • ${usedPrefix}open
 │   • ${usedPrefix}close
 │   • ${usedPrefix}delete
+│   • ${usedPrefix}namegp <nombre>
+│   • ${usedPrefix}desgp <descripción>
+│   • ${usedPrefix}photogp
 │   • ${usedPrefix}adg <numero>
 │   • ${usedPrefix}grupo on/off
 │   • ${usedPrefix}antilink on/off
