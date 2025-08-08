@@ -287,7 +287,6 @@ let handler = async (m, { conn, usedPrefix }) => {
       title: `✦ ${nombreBot} | WhatsApp Bot\n`,
       body: `𝗖𝗼𝗺𝗮𝗻𝗱𝗼𝘀 𝗱𝗲 ${nombreBot} By @Sung and @Sunkovv`,
       thumbnailUrl: imgBot,
-      sourceUrl: global.canal || 'https://whatsapp.com/channel/0029VbAZUQ3002T9KZfx2O1M',
       mediaType: 1,
       showAdAttribution: true,
       renderLargerThumbnail: true

@@ -12,7 +12,7 @@
       "coins": 0
     },
     "114263544885392@lid": {
-      "exp": 126,
+      "exp": 131,
       "limit": 10,
       "registered": false,
       "name": "Sunkovv </>",
@@ -5513,8 +5513,8 @@
       "coins": 0
     },
     "136614420443387@lid": {
-      "exp": 180,
-      "limit": 10,
+      "exp": null,
+      "limit": null,
       "registered": false,
       "name": "....",
       "age": -1,
@@ -5831,7 +5831,7 @@
       "coins": 0
     },
     "151324800860378@lid": {
-      "exp": 26,
+      "exp": 42,
       "limit": 10,
       "registered": false,
       "name": "Juan🦅",
@@ -5864,8 +5864,8 @@
       "coins": 0
     },
     "124279291179136@lid": {
-      "exp": null,
-      "limit": null,
+      "exp": 9,
+      "limit": 10,
       "registered": false,
       "name": "Gabriel",
       "age": -1,
@@ -5976,7 +5976,7 @@
       "coins": 0
     },
     "275359496978496@lid": {
-      "exp": 38,
+      "exp": 50,
       "limit": 10,
       "registered": false,
       "name": "??",
@@ -6230,7 +6230,7 @@
       "coins": 0
     },
     "94364927844382@lid": {
-      "exp": 257,
+      "exp": 276,
       "limit": 10,
       "registered": false,
       "name": "Sánchez 💋",
@@ -6274,8 +6274,8 @@
       "coins": 0
     },
     "5493826675722@s.whatsapp.net": {
-      "exp": 230,
-      "limit": 10,
+      "exp": null,
+      "limit": null,
       "registered": false,
       "name": "黑悟空🥷🏼🥷🏼",
       "age": -1,
@@ -6286,7 +6286,7 @@
       "Subs": 1754617508994
     },
     "31950832189615@lid": {
-      "exp": 755,
+      "exp": 795,
       "limit": 10,
       "registered": false,
       "name": "Fabián😁",
@@ -6660,7 +6660,7 @@
       "coins": 0
     },
     "5217451277692@s.whatsapp.net": {
-      "exp": 10,
+      "exp": 12,
       "limit": 10,
       "registered": false,
       "name": "kevinmusic108",
@@ -7014,7 +7014,7 @@
       "coins": 0
     },
     "109913112064159@lid": {
-      "exp": 349,
+      "exp": 388,
       "limit": 10,
       "registered": false,
       "name": "😁  SAMIR",
@@ -7157,7 +7157,7 @@
       "coins": 0
     },
     "174316096381055@lid": {
-      "exp": 10,
+      "exp": 18,
       "limit": 10,
       "registered": false,
       "name": "una personita👅",
@@ -7310,7 +7310,7 @@
       "coins": 0
     },
     "584241582109@s.whatsapp.net": {
-      "exp": 113,
+      "exp": 131,
       "limit": 10,
       "registered": false,
       "name": "♥ΩΩ♥",
@@ -7597,7 +7597,7 @@
       "coins": 0
     },
     "74698692018367@lid": {
-      "exp": 49,
+      "exp": 69,
       "limit": 10,
       "registered": false,
       "name": "CH",
@@ -7663,7 +7663,7 @@
       "coins": 0
     },
     "5214462997983@s.whatsapp.net": {
-      "exp": 4,
+      "exp": 18,
       "limit": 10,
       "registered": false,
       "name": "lilit 😈",
@@ -7678,6 +7678,28 @@
       "limit": 10,
       "registered": false,
       "name": ".",
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "92874741915864@lid": {
+      "exp": 4,
+      "limit": 10,
+      "registered": false,
+      "name": "~.",
+      "age": -1,
+      "regTime": -1,
+      "banned": false,
+      "level": 0,
+      "coins": 0
+    },
+    "155439564116018@lid": {
+      "exp": 4,
+      "limit": 10,
+      "registered": false,
+      "name": "❤𝐽𝑢𝑙𝑖𝑜❤",
       "age": -1,
       "regTime": -1,
       "banned": false,
@@ -9401,10 +9423,10 @@
       "lastSuccess": 1754351099127
     },
     "main-menu.js": {
-      "total": 233,
-      "success": 233,
-      "last": 1754625025801,
-      "lastSuccess": 1754625025801
+      "total": 234,
+      "success": 234,
+      "last": 1754625828830,
+      "lastSuccess": 1754625828830
     },
     "stickers-sticker.js": {
       "total": 18,
