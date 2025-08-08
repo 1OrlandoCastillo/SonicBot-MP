@@ -54,6 +54,17 @@ try {
   if (!('self' in settings)) settings.self = false  
   if (!('autoread' in settings)) settings.autoread = true 
   if (!('autoread' in opts)) opts.autoread = true 
+  
+  
+  if (global.db.data.notes && global.db.data.notes[m.chat]) {
+    const now = Date.now()
+    const originalLength = global.db.data.notes[m.chat].length
+    global.db.data.notes[m.chat] = global.db.data.notes[m.chat].filter(note => note.expiresAt > now)
+    const cleanedLength = global.db.data.notes[m.chat].length
+    if (originalLength > cleanedLength) {
+      console.log(`[NOTAS] Se limpiaron ${originalLength - cleanedLength} notas expiradas en ${m.chat}`)
+    }
+  }
 } catch (e) {  
   console.error(e)  
 }  

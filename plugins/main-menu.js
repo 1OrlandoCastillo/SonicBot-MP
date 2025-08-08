@@ -213,6 +213,12 @@ let handler = async (m, { conn, usedPrefix }) => {
 │   • ${usedPrefix}aptoide <app>
 │   • ${usedPrefix}git <url>
 │
+╰➺ ✧ *Herramientas* 𖤓
+│   • ${usedPrefix}nota <contenido>
+│   • ${usedPrefix}delnota <numero>
+│   • ${usedPrefix}vernotas
+│   • ${usedPrefix}id 
+│
 ╰➺ ✧ *Stickers* 𖤓
 │   • ${usedPrefix}sticker
 │   • ${usedPrefix}toimg
@@ -223,6 +229,9 @@ let handler = async (m, { conn, usedPrefix }) => {
 │   • ${usedPrefix}ban @usuario
 │   • ${usedPrefix}promote @usuario
 │   • ${usedPrefix}demote @usuario
+│   • ${usedPrefix}warn @usuario <motivo>
+│   • ${usedPrefix}delwarn @usuario
+│   • ${usedPrefix}warnings @usuario
 │   • ${usedPrefix}tag
 │   • ${usedPrefix}open
 │   • ${usedPrefix}close
@@ -266,10 +275,6 @@ let handler = async (m, { conn, usedPrefix }) => {
 │   • ${usedPrefix}xvideos <url>
 │   • ${usedPrefix}xvideos <búsqueda>
 │
-╰➺ ✧ *Información* 𖤓
-│   • ${usedPrefix}id
-│   • ${usedPrefix}menu
-│   • ${usedPrefix}help
 │
 ╰────────────────╯
 
