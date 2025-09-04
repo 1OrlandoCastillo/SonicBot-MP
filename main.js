@@ -139,14 +139,25 @@ function clearTmp() {
   const tmpDirs = [join(__dirname, 'tmp'), join(__dirname, 'serbot')]
 
   tmpDirs.forEach(tmpDir => {
-    if (!existsSync(tmpDir)) mkdirSync(tmpDir, { recursive: true })
-    const files = readdirSync(tmpDir).map(file => join(tmpDir, file))
-    files.forEach(file => {
-      const stats = statSync(file)
-      if (stats.isFile() && Date.now() - stats.mtimeMs >= 1000 * 60 * 3) {
-        unlinkSync(file)
-      }
-    })
+    if (!existsSync(tmpDir)) {
+      mkdirSync(tmpDir, { recursive: true })
+      console.log(`📂 Carpeta creada automáticamente: ${tmpDir}`)
+    }
+
+    // Si aún existe, limpiar archivos
+    if (existsSync(tmpDir)) {
+      const files = readdirSync(tmpDir).map(file => join(tmpDir, file))
+      files.forEach(file => {
+        try {
+          const stats = statSync(file)
+          if (stats.isFile() && Date.now() - stats.mtimeMs >= 1000 * 60 * 3) {
+            unlinkSync(file)
+          }
+        } catch (err) {
+          console.error(`❌ Error eliminando archivo ${file}:`, err.message)
+        }
+      })
+    }
   })
 }
 
@@ -220,5 +231,4 @@ global.reconnectSubBots = async function() {
   console.log(chalk.cyan(`\n🎉 Proceso de reconexión de sub-bots completado`))
 }
 
-// --- Resto de tu main.js ---
 process.on('uncaughtException', console.error)
